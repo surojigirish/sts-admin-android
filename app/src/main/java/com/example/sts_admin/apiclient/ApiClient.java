@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "http://192.168.1.6:5000/employee/";
+    private static final String BASE_URL = "http://192.168.0.111:5000/employee/";
 
     private static Retrofit getRetrofit() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
@@ -27,13 +27,8 @@ public class ApiClient {
         return retrofit;
     }
 
-    public static Api getLoginAdminRoute(){
+    public static Api getRoute(){
         Api api = getRetrofit().create(Api.class);
-        return api;
-    }
-
-    public static Api getLogoutAdminRoute(){
-        Api api=getRetrofit().create(Api.class);
         return api;
     }
 }

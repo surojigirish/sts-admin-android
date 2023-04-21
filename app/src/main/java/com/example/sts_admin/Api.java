@@ -8,6 +8,7 @@ import com.example.sts_admin.logoutModel.LogoutResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 
 public interface Api {
@@ -16,6 +17,6 @@ public interface Api {
     Call<LoginResponse> adminLogin(@Body LoginRequest loginRequest);
 
 
-    @DELETE("logout")
-    Call<LogoutResponse> adminLogout(@Body LogoutRequest logoutRequest);
+    @HTTP(method = "DELETE", path = "logout", hasBody = true)
+    Call<LogoutResponse> logout(@Body LogoutRequest logoutRequest);
 }

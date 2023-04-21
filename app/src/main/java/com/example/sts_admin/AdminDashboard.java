@@ -63,18 +63,19 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
     public LogoutRequest logoutRequest(){
        LogoutRequest logoutRequest=new LogoutRequest();
-       logoutRequest.setToken(sharedPrefManager.getUser().getToken());
+       logoutRequest.setToken(getSessionToken());
        return logoutRequest;
     }
 
     public void logout(LogoutRequest logoutRequest){
-        Call<LogoutResponse> logoutResponseCall= ApiClient.getLogoutAdminRoute().adminLogout(logoutRequest);
+        Call<LogoutResponse> logoutResponseCall= ApiClient.getRoute().logout(logoutRequest);
         logoutResponseCall.enqueue(new Callback<LogoutResponse>() {
             @Override
             public void onResponse(Call<LogoutResponse> call, Response<LogoutResponse> response) {
                 LogoutResponse logoutResponse=response.body();
                 if (response.isSuccessful()){
-                    if(logoutResponse!=null && logoutResponse.getStatus()==200){
+//                    Toast.makeText(AdminDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
+                    if(logoutResponse != null && logoutResponse.getStatus() == 200){
                         sharedPrefManager.logout();
                         Toast.makeText(AdminDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(AdminDashboard.this,AdminLogin.class);
@@ -83,12 +84,14 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
                         finish();
                     }
 
+                } else {
+                    Toast.makeText(AdminDashboard.this, "onResponse: " + response.errorBody(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LogoutResponse> call, Throwable t) {
-
+                Toast.makeText(AdminDashboard.this, "onFailure: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -115,6 +118,12 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
         tvUsername.setText(username);
         tvEmail.setText(sharedPrefManager.getUser().getEmail());
+    }
+
+    // required for logout
+    public String getSessionToken() {
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        return sharedPrefManager.getUser().getToken();
     }
 
     void initializeViews() {

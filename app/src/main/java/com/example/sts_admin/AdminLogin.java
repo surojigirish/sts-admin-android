@@ -80,7 +80,7 @@ public class AdminLogin extends AppCompatActivity {
     }
     
     public void login(LoginRequest loginRequest) {
-        Call<LoginResponse> loginResponseCall = ApiClient.getLoginAdminRoute().adminLogin(loginRequest);
+        Call<LoginResponse> loginResponseCall = ApiClient.getRoute().adminLogin(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
