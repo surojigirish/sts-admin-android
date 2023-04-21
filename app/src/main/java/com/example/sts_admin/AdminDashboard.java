@@ -7,10 +7,16 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
+
+import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 public class AdminDashboard extends AppCompatActivity implements View.OnClickListener{
 
     CardView update,user,trip;
+
+    TextView tvUsername, tvEmail;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,10 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         user.setOnClickListener((View.OnClickListener) this);
         trip.setOnClickListener((View.OnClickListener)this);
 
+        // call the user details methods
+        initializeViews();
+        getLoggedInUserDetails();
+
 //        findViewById(R.id.card1).setOnClickListener(v->startActivity(new Intent(Cards.this,LoginActivity.class)));
 //        findViewById(R.id.card2).setOnClickListener(v->startActivity(new Intent(Cards.this,LoginActivity.class)));
 
@@ -42,5 +52,22 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
             case R.id.trip:i=new Intent(this, TripHistory.class);startActivity(i);break;
 
         }
+    }
+
+    public void getLoggedInUserDetails() {
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+
+        String username = "Welcome back! "
+                + sharedPrefManager.getUser().getFirstname()
+                + " "
+                + sharedPrefManager.getUser().getLastname();
+
+        tvUsername.setText(username);
+        tvEmail.setText(sharedPrefManager.getUser().getEmail());
+    }
+
+    void initializeViews() {
+        tvUsername = findViewById(R.id.tv_username);
+        tvEmail = findViewById(R.id.tv_email);
     }
 }
