@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sts_admin.apiclient.ApiClient;
 import com.example.sts_admin.loginModel.LoginRequest;
 import com.example.sts_admin.loginModel.LoginResponse;
+import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -31,6 +32,8 @@ public class AdminLogin extends AppCompatActivity {
     Button loginBtn;
     TextView tvIpAddress;
 
+    SharedPrefManager sharedPrefManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class AdminLogin extends AppCompatActivity {
         password = findViewById(R.id.adminPassword);
         loginBtn = findViewById(R.id.adminLoginBtn);
 
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+
         tvIpAddress = findViewById(R.id.tv_ip);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -51,8 +56,20 @@ public class AdminLogin extends AppCompatActivity {
             }
         });
     }
-    
-    
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // check if user is logged and start the dashboard intent
+        if (sharedPrefManager.isLogged()) {
+            Intent intent = new Intent(AdminLogin.this, AdminDashboard.class);
+            // setFlags clears previous tasks
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
+
     // to create the login request
     public LoginRequest loginRequest(){
         LoginRequest loginRequest = new LoginRequest();
@@ -63,16 +80,22 @@ public class AdminLogin extends AppCompatActivity {
     }
     
     public void login(LoginRequest loginRequest) {
-        Call<LoginResponse> loginResponseCall = ApiClient.getLoginAdminRoute().adminLogin(loginRequest);
+        Call<LoginResponse> loginResponseCall = ApiClient.getRoute().adminLogin(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                LoginResponse loginResponse = response.body();
                 if (response.isSuccessful()) {
-                    Toast.makeText(AdminLogin.this, "user successfully logged in", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(AdminLogin.this,AdminDashboard.class);
-                    startActivity(intent);
-                    finish();
-//                    tvIpAddress.setText(getIpAddress());
+                    if (loginResponse != null && loginResponse.getStatus() == 200) {
+                        sharedPrefManager.saveUser(loginResponse.getUser());
+                        Toast.makeText(AdminLogin.this, "user successfully logged in", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AdminLogin.this, AdminDashboard.class);
+                        // setFlags clears previous tasks
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                        //                    tvIpAddress.setText(getIpAddress());
+                    }
                 } else {
                     Toast.makeText(AdminLogin.this, "login failed", Toast.LENGTH_SHORT).show();
                 }
@@ -85,6 +108,8 @@ public class AdminLogin extends AppCompatActivity {
         });
     }
 
+
+    // extract ip address
     public String getIpAddress(){
         String ipAddress = "";
             try {
