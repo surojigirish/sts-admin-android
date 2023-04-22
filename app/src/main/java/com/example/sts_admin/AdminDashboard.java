@@ -1,11 +1,15 @@
 package com.example.sts_admin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -52,20 +56,35 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+
+
+
         // call the user details methods
-        initializeViews();
-        getLoggedInUserDetails();
+//        initializeViews();
+//        getLoggedInUserDetails();
 
 //        findViewById(R.id.card1).setOnClickListener(v->startActivity(new Intent(Cards.this,LoginActivity.class)));
 //        findViewById(R.id.card2).setOnClickListener(v->startActivity(new Intent(Cards.this,LoginActivity.class)));
-
+//
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater=getMenuInflater();
+//        inflater.inflate(R.menu.logoutmenu,menu);
+//        return super.onCreateOptionsMenu(menu);
+//
+//    }
+
+
 
     public LogoutRequest logoutRequest(){
        LogoutRequest logoutRequest=new LogoutRequest();
        logoutRequest.setToken(getSessionToken());
        return logoutRequest;
     }
+
+
 
     public void logout(LogoutRequest logoutRequest){
         Call<LogoutResponse> logoutResponseCall= ApiClient.getRoute().logout(logoutRequest);
@@ -96,6 +115,8 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v){
@@ -108,26 +129,26 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void getLoggedInUserDetails() {
-        sharedPrefManager = new SharedPrefManager(getApplicationContext());
-
-        String username = "Welcome back! "
-                + sharedPrefManager.getUser().getFirstname()
-                + " "
-                + sharedPrefManager.getUser().getLastname();
-
-        tvUsername.setText(username);
-        tvEmail.setText(sharedPrefManager.getUser().getEmail());
-    }
+//    public void getLoggedInUserDetails() {
+//        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+//
+//        String username = "Welcome back! "
+//                + sharedPrefManager.getUser().getFirstname()
+//                + " "
+//                + sharedPrefManager.getUser().getLastname();
+//
+//        tvUsername.setText(username);
+//        tvEmail.setText(sharedPrefManager.getUser().getEmail());
+//    }
 
     // required for logout
     public String getSessionToken() {
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         return sharedPrefManager.getUser().getToken();
     }
-
-    void initializeViews() {
-        tvUsername = findViewById(R.id.tv_username);
-        tvEmail = findViewById(R.id.tv_email);
-    }
+//
+//    void initializeViews() {
+//        tvUsername = findViewById(R.id.tv_username);
+//        tvEmail = findViewById(R.id.tv_email);
+//    }
 }
