@@ -12,6 +12,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface Api {
@@ -24,5 +25,7 @@ public interface Api {
     Call<LogoutResponse> logout(@Body LogoutRequest logoutRequest);
 
     @POST("register-driver")
-    Call<RegisterResponse> driverRegister(@Body RegisterRequest registerRequest);
+    Call<RegisterResponse> driverRegister(
+            @Header("Authorization") String token,
+            @Body RegisterRequest registerRequest);
 }

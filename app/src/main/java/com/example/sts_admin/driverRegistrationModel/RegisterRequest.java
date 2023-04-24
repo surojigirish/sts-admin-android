@@ -5,7 +5,7 @@ public class RegisterRequest {
      private String licenseNo;
      private String firstname;
      private String lastname;
-     private int contact;
+     private String contact;
      private String gender;
      private String role;
      private String employeeNo;
@@ -36,11 +36,11 @@ public class RegisterRequest {
         this.lastname = lastname;
     }
 
-    public int getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public void setContact(int contact) {
+    public void setContact(String contact) {
         this.contact = contact;
     }
 
