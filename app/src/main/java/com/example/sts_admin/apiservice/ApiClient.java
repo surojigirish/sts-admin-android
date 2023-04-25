@@ -1,6 +1,4 @@
-package com.example.sts_admin.apiclient;
-
-import com.example.sts_admin.Api;
+package com.example.sts_admin.apiservice;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -9,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    private static final String BASE_URL = "http://192.168.119.166:5000/employee/";
+    private static final String BASE_URL = "http://192.168.0.109:5000/employee/";
 
     private static Retrofit getRetrofit() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();

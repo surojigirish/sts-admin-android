@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sts_admin.apiclient.ApiClient;
+import com.example.sts_admin.apiservice.ApiClient;
 import com.example.sts_admin.driverRegistrationModel.RegisterRequest;
 import com.example.sts_admin.driverRegistrationModel.RegisterResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
@@ -66,7 +66,7 @@ public class DriverRegistration extends AppCompatActivity {
             registerRequest.setPassword(password.getText().toString());
             registerRequest.setLicenseNo(licenseNo.getText().toString());
             registerRequest.setContact(contactNo.getText().toString());
-            registerRequest.setRole("driver");
+//            registerRequest.setRole("driver");
             return registerRequest;
     }
 
@@ -83,8 +83,12 @@ public class DriverRegistration extends AppCompatActivity {
                         Intent intent = new Intent(DriverRegistration.this, AdminDashboard.class);
                         startActivity(intent);
                         finish();
+                    } else if (registerResponse != null && registerResponse.getStatus() == 400) {
+                        Toast.makeText(DriverRegistration.this, "fields are mandatory", Toast.LENGTH_SHORT).show();
+                    } else if (registerResponse != null && registerResponse.getStatus() == 405) {
+                        Toast.makeText(DriverRegistration.this, "driver role required", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                     Toast.makeText(DriverRegistration.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                 }
             }

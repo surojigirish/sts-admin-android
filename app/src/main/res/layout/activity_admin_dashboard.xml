@@ -260,6 +260,13 @@
             android:layout_height="wrap_content"
             android:text="logout"
             android:id="@+id/logoutBtn"/>
+
+        <Button
+            android:id="@+id/btn_view_drivers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Drivers"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

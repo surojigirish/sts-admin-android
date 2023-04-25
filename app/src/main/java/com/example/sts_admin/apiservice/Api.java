@@ -1,4 +1,4 @@
-package com.example.sts_admin;
+package com.example.sts_admin.apiservice;
 
 import com.example.sts_admin.driverRegistrationModel.RegisterRequest;
 import com.example.sts_admin.driverRegistrationModel.RegisterResponse;
@@ -6,10 +6,12 @@ import com.example.sts_admin.loginModel.LoginRequest;
 import com.example.sts_admin.loginModel.LoginResponse;
 import com.example.sts_admin.logoutModel.LogoutRequest;
 import com.example.sts_admin.logoutModel.LogoutResponse;
+import com.example.sts_admin.model.EmployeeDriverResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -28,4 +30,7 @@ public interface Api {
     Call<RegisterResponse> driverRegister(
             @Header("Authorization") String token,
             @Body RegisterRequest registerRequest);
+
+    @GET("drivers")
+    Call<EmployeeDriverResponse> getDrivers(@Header("Authorization") String token);
 }

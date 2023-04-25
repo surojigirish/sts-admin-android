@@ -1,6 +1,7 @@
 package com.example.sts_admin.driverRegistrationModel;
 
-import com.example.sts_admin.model.User_Driver;
+import com.example.sts_admin.model.User;
+import com.example.sts_admin.model.UserDriver;
 
 public class RegisterResponse {
 
@@ -8,11 +9,11 @@ public class RegisterResponse {
     private int status;
     private boolean success;
 
-    private User_Driver user_driver;
+    private UserDriver user_driver;
 
 
 
-    public RegisterResponse(String message, int status, boolean success, User_Driver user_driver) {
+    public RegisterResponse(String message, int status, boolean success, UserDriver user_driver) {
         this.message = message;
         this.status = status;
         this.success = success;
@@ -44,11 +45,11 @@ public class RegisterResponse {
         this.success = success;
     }
 
-    public User_Driver getUser_driver() {
+    public UserDriver getUser_driver() {
         return user_driver;
     }
 
-    public void setUser_driver(User_Driver user_driver) {
+    public void setUser_driver(UserDriver user_driver) {
         this.user_driver = user_driver;
     }
 }
