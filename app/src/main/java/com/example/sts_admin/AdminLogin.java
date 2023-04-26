@@ -2,6 +2,7 @@ package com.example.sts_admin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sts_admin.apiclient.ApiClient;
+import com.example.sts_admin.apiservice.ApiClient;
 import com.example.sts_admin.loginModel.LoginRequest;
 import com.example.sts_admin.loginModel.LoginResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
@@ -97,12 +98,14 @@ public class AdminLogin extends AppCompatActivity {
                         //                    tvIpAddress.setText(getIpAddress());
                     }
                 } else {
+
                     Toast.makeText(AdminLogin.this, "login failed", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
+                Log.d("TAG", "onFailure : " + t.getLocalizedMessage());
                 Toast.makeText(AdminLogin.this, "onFailure: " +t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
