@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sts_admin.apiclient.ApiClient;
+import com.example.sts_admin.apiservice.ApiClient;
 import com.example.sts_admin.logoutModel.LogoutRequest;
 import com.example.sts_admin.logoutModel.LogoutResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
@@ -27,6 +27,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
     TextView tvUsername, tvEmail;
 
     Button logoutBtn;
+    Button viewDrivers;
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -38,6 +39,8 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         user=(CardView) findViewById(R.id.user_profile);
         trip=(CardView) findViewById(R.id.trip);
         logoutBtn=findViewById(R.id.logoutBtn);
+
+        viewDrivers = findViewById(R.id.btn_view_drivers);
 
 
 
@@ -52,20 +55,41 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
             }
         });
 
+
+
+        viewDrivers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switchActivityOnClick();
+            }
+        });
+
         // call the user details methods
-        initializeViews();
-        getLoggedInUserDetails();
+//        initializeViews();
+//        getLoggedInUserDetails();
 
 //        findViewById(R.id.card1).setOnClickListener(v->startActivity(new Intent(Cards.this,LoginActivity.class)));
 //        findViewById(R.id.card2).setOnClickListener(v->startActivity(new Intent(Cards.this,LoginActivity.class)));
-
+//
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater=getMenuInflater();
+//        inflater.inflate(R.menu.logoutmenu,menu);
+//        return super.onCreateOptionsMenu(menu);
+//
+//    }
+
+
 
     public LogoutRequest logoutRequest(){
        LogoutRequest logoutRequest=new LogoutRequest();
        logoutRequest.setToken(getSessionToken());
        return logoutRequest;
     }
+
+
 
     public void logout(LogoutRequest logoutRequest){
         Call<LogoutResponse> logoutResponseCall= ApiClient.getRoute().logout(logoutRequest);
@@ -96,6 +120,8 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v){
@@ -108,17 +134,17 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void getLoggedInUserDetails() {
-        sharedPrefManager = new SharedPrefManager(getApplicationContext());
-
-        String username = "Welcome back! "
-                + sharedPrefManager.getUser().getFirstname()
-                + " "
-                + sharedPrefManager.getUser().getLastname();
-
-        tvUsername.setText(username);
-        tvEmail.setText(sharedPrefManager.getUser().getEmail());
-    }
+//    public void getLoggedInUserDetails() {
+//        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+//
+//        String username = "Welcome back! "
+//                + sharedPrefManager.getUser().getFirstname()
+//                + " "
+//                + sharedPrefManager.getUser().getLastname();
+//
+//        tvUsername.setText(username);
+//        tvEmail.setText(sharedPrefManager.getUser().getEmail());
+//    }
 
     // required for logout
     public String getSessionToken() {
@@ -126,8 +152,13 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         return sharedPrefManager.getUser().getToken();
     }
 
-    void initializeViews() {
-        tvUsername = findViewById(R.id.tv_username);
-        tvEmail = findViewById(R.id.tv_email);
+    public void switchActivityOnClick(){
+        Intent intent=new Intent(AdminDashboard.this, DriverDetails.class);
+        startActivity(intent);
     }
+//
+//    void initializeViews() {
+//        tvUsername = findViewById(R.id.tv_username);
+//        tvEmail = findViewById(R.id.tv_email);
+//    }
 }
