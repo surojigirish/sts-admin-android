@@ -1,4 +1,4 @@
-package com.example.sts_admin;
+package com.example.sts_admin.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< HEAD:app/src/main/java/com/example/sts_admin/DriverRegistration.java
 import com.example.sts_admin.apiservice.AuthClient;
 import com.example.sts_admin.driverRegistrationModel.RegisterRequest;
 import com.example.sts_admin.driverRegistrationModel.RegisterResponse;
+=======
+import com.example.sts_admin.Consts;
+import com.example.sts_admin.R;
+import com.example.sts_admin.apiservice.Client;
+import com.example.sts_admin.apiservice.request.DriverRegisterRequest;
+import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
+>>>>>>> 7edc965b6fe8bd6df472f9f546f1113e51f3d1de:app/src/main/java/com/example/sts_admin/activity/DriverRegistration.java
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import retrofit2.Call;
@@ -67,8 +75,8 @@ public class DriverRegistration extends AppCompatActivity {
 
     }
 
-    public RegisterRequest registerRequest(){
-            RegisterRequest registerRequest=new RegisterRequest();
+    public DriverRegisterRequest registerRequest(){
+            DriverRegisterRequest registerRequest=new DriverRegisterRequest();
             registerRequest.setFirstname(firstname.getText().toString());
             registerRequest.setLastname(lastname.getText().toString());
             registerRequest.setEmail(email.getText().toString());
@@ -79,13 +87,14 @@ public class DriverRegistration extends AppCompatActivity {
             return registerRequest;
     }
 
-    public void register(RegisterRequest registerRequest){
-        Call<RegisterResponse> registerResponseCall= AuthClient.getRoute().driverRegister(getUserSession(),registerRequest);
 
-        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
+    public void register(DriverRegisterRequest registerRequest){
+        Call<DriverRegisterResponse> registerResponseCall= Client.getInstance(Consts.BASE_URL_ADMIN).getRoute().driverRegister(getUserSession(),registerRequest);
+
+        registerResponseCall.enqueue(new Callback<DriverRegisterResponse>() {
             @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                RegisterResponse registerResponse=response.body();
+            public void onResponse(Call<DriverRegisterResponse> call, Response<DriverRegisterResponse> response) {
+                DriverRegisterResponse registerResponse=response.body();
                 if (response.isSuccessful()){
                     if (registerResponse != null && registerResponse.getStatus() == 200) {
                         Toast.makeText(DriverRegistration.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
@@ -103,7 +112,7 @@ public class DriverRegistration extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+            public void onFailure(Call<DriverRegisterResponse> call, Throwable t) {
 
             }
         });

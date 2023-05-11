@@ -1,6 +1,6 @@
-package com.example.sts_admin.driverRegistrationModel;
+package com.example.sts_admin.apiservice.request;
 
-public class RegisterRequest {
+public class DriverRegisterRequest {
 
      private String licenseNo;
      private String firstname;

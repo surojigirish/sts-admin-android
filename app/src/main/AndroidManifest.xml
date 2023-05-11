@@ -38,7 +38,7 @@
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,28 +47,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Welcome"
+            android:name=".activity.Welcome"
             android:exported="false" />
         <activity
-            android:name=".AdminLogin"
+            android:name=".activity.AdminLogin"
             android:exported="false" />
         <activity
-            android:name=".AdminDashboard"
+            android:name=".activity.AdminDashboard"
             android:exported="false" />
         <activity
-            android:name=".UpdateSchedule"
+            android:name=".activity.UpdateBusSchedule"
             android:exported="false" />
         <activity
-            android:name=".AddRoute"
+            android:name=".activity.DriverRegistration"
             android:exported="false" />
         <activity
-            android:name=".DriverRegistration"
+            android:name=".activity.DriverDetails"
             android:exported="false" />
         <activity
-            android:name=".DriverDetails"
-            android:exported="false" />
-        <activity
-            android:name=".TripHistory"
+            android:name=".activity.TripHistory"
             android:exported="false" />
     </application>
 

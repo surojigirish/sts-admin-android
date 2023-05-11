@@ -2,7 +2,7 @@ package com.example.sts_admin.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UserDriver {
+public class Driver {
 
     @SerializedName("contact")
     private String contact;
@@ -16,8 +16,8 @@ public class UserDriver {
     private String lastname;
     @SerializedName("licenseNo")
     private String licenseNo;
-    @SerializedName("userId")
-    private Integer userId;
+    @SerializedName("empId")
+    private Integer empId;
 
     public String getContact() {
         return contact;
@@ -67,11 +67,11 @@ public class UserDriver {
         this.licenseNo = licenseNo;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public Integer getEmpId() {
+        return empId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setEmpId(Integer empId) {
+        this.empId = empId;
     }
 }

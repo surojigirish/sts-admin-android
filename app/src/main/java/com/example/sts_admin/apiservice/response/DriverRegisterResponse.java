@@ -1,19 +1,18 @@
-package com.example.sts_admin.driverRegistrationModel;
+package com.example.sts_admin.apiservice.response;
 
-import com.example.sts_admin.model.User;
-import com.example.sts_admin.model.UserDriver;
+import com.example.sts_admin.model.Driver;
 
-public class RegisterResponse {
+public class DriverRegisterResponse {
 
     private String message;
     private int status;
     private boolean success;
 
-    private UserDriver user_driver;
+    private Driver user_driver;
 
 
 
-    public RegisterResponse(String message, int status, boolean success, UserDriver user_driver) {
+    public DriverRegisterResponse(String message, int status, boolean success, Driver user_driver) {
         this.message = message;
         this.status = status;
         this.success = success;
@@ -45,11 +44,11 @@ public class RegisterResponse {
         this.success = success;
     }
 
-    public UserDriver getUser_driver() {
+    public Driver getUser_driver() {
         return user_driver;
     }
 
-    public void setUser_driver(UserDriver user_driver) {
+    public void setUser_driver(Driver user_driver) {
         this.user_driver = user_driver;
     }
 }

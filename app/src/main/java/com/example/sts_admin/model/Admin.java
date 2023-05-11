@@ -1,13 +1,13 @@
 package com.example.sts_admin.model;
 
-public class User {
+public class Admin {
     private int userId;
     private String email;
     private String firstname;
     private String lastname;
     private String token;
 
-    public User(int userId, String email, String firstname, String lastname, String token) {
+    public Admin(int userId, String email, String firstname, String lastname, String token) {
         this.userId = userId;
         this.email = email;
         this.firstname = firstname;
