@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sts_admin.apiservice.ApiClient;
+import com.example.sts_admin.apiservice.AuthClient;
 import com.example.sts_admin.logoutModel.LogoutRequest;
 import com.example.sts_admin.logoutModel.LogoutResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
@@ -27,7 +27,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
     TextView tvUsername, tvEmail;
 
     Button logoutBtn;
-    Button viewDrivers;
+//    Button viewDrivers;
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -40,7 +40,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         trip=(CardView) findViewById(R.id.trip);
         logoutBtn=findViewById(R.id.logoutBtn);
 
-        viewDrivers = findViewById(R.id.btn_view_drivers);
+//        viewDrivers = findViewById(R.id.btn_view_drivers);
 
 
 
@@ -57,12 +57,12 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
 
 
-        viewDrivers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchActivityOnClick();
-            }
-        });
+//        viewDrivers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                switchActivityOnClick();
+//            }
+//        });
 
         // call the user details methods
 //        initializeViews();
@@ -92,7 +92,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
 
     public void logout(LogoutRequest logoutRequest){
-        Call<LogoutResponse> logoutResponseCall= ApiClient.getRoute().logout(logoutRequest);
+        Call<LogoutResponse> logoutResponseCall= AuthClient.getRoute().logout(logoutRequest);
         logoutResponseCall.enqueue(new Callback<LogoutResponse>() {
             @Override
             public void onResponse(Call<LogoutResponse> call, Response<LogoutResponse> response) {
@@ -127,7 +127,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v){
         Intent i;
         switch (v.getId()){
-            case R.id.updateSch:i=new Intent(this, UpdateBusSchedule.class);startActivity(i);break;
+            case R.id.updateSch:i=new Intent(this, UpdateSchedule.class);startActivity(i);break;
             case R.id.user_profile:i=new Intent(this, DriverRegistration.class);startActivity(i);break;
             case R.id.trip:i=new Intent(this, TripHistory.class);startActivity(i);break;
 
@@ -152,10 +152,10 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         return sharedPrefManager.getUser().getToken();
     }
 
-    public void switchActivityOnClick(){
-        Intent intent=new Intent(AdminDashboard.this, DriverDetails.class);
-        startActivity(intent);
-    }
+//    public void switchActivityOnClick(){
+//        Intent intent=new Intent(AdminDashboard.this, DriverDetails.class);
+//        startActivity(intent);
+//    }
 //
 //    void initializeViews() {
 //        tvUsername = findViewById(R.id.tv_username);

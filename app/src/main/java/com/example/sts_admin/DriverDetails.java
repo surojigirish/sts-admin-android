@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.sts_admin.adapters.DriverAdapter;
-import com.example.sts_admin.apiservice.ApiClient;
+import com.example.sts_admin.apiservice.AuthClient;
 import com.example.sts_admin.model.EmployeeDriverResponse;
 import com.example.sts_admin.model.UserDriver;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
@@ -41,7 +41,7 @@ public class DriverDetails extends AppCompatActivity {
     }
 
     private void getAllDrivers() {
-        Call<EmployeeDriverResponse> call = ApiClient.getRoute().getDrivers(getUserSession());
+        Call<EmployeeDriverResponse> call = AuthClient.getRoute().getDrivers(getUserSession());
         call.enqueue(new Callback<EmployeeDriverResponse>() {
             @Override
             public void onResponse(Call<EmployeeDriverResponse> call, Response<EmployeeDriverResponse> response) {

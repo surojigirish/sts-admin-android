@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sts_admin.apiservice.ApiClient;
+import com.example.sts_admin.apiservice.AuthClient;
 import com.example.sts_admin.driverRegistrationModel.RegisterRequest;
 import com.example.sts_admin.driverRegistrationModel.RegisterResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
@@ -23,7 +23,7 @@ public class DriverRegistration extends AppCompatActivity {
 
     TextView text;
     EditText firstname,email, lastname,password,licenseNo, contactNo;
-    Button regBtn;
+    Button regBtn, driverDetailsBtn;
 
     SharedPrefManager sharedPrefManager;
 
@@ -44,6 +44,14 @@ public class DriverRegistration extends AppCompatActivity {
                register(registerRequest());
             }
         });
+
+        driverDetailsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(DriverRegistration.this, DriverDetails.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void initViews() {
@@ -55,6 +63,7 @@ public class DriverRegistration extends AppCompatActivity {
         regBtn=findViewById(R.id.driverRegBtn);
         licenseNo = findViewById(R.id.et_driver_license);
         contactNo = findViewById(R.id.et_contact_number);
+        driverDetailsBtn=findViewById(R.id.driverDetailsBtn);
 
     }
 
@@ -66,12 +75,12 @@ public class DriverRegistration extends AppCompatActivity {
             registerRequest.setPassword(password.getText().toString());
             registerRequest.setLicenseNo(licenseNo.getText().toString());
             registerRequest.setContact(contactNo.getText().toString());
-//            registerRequest.setRole("driver");
+            registerRequest.setRole("driver");
             return registerRequest;
     }
 
     public void register(RegisterRequest registerRequest){
-        Call<RegisterResponse> registerResponseCall= ApiClient.getRoute().driverRegister(getUserSession(),registerRequest);
+        Call<RegisterResponse> registerResponseCall= AuthClient.getRoute().driverRegister(getUserSession(),registerRequest);
 
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override

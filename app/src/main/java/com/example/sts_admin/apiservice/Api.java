@@ -1,5 +1,9 @@
 package com.example.sts_admin.apiservice;
 
+import com.example.sts_admin.addRouteModel.AddRequest;
+import com.example.sts_admin.addRouteModel.AddResponse;
+import com.example.sts_admin.addSourceModel.SourceRequest;
+import com.example.sts_admin.addSourceModel.SourceResponse;
 import com.example.sts_admin.driverRegistrationModel.RegisterRequest;
 import com.example.sts_admin.driverRegistrationModel.RegisterResponse;
 import com.example.sts_admin.loginModel.LoginRequest;
@@ -33,4 +37,13 @@ public interface Api {
 
     @GET("drivers")
     Call<EmployeeDriverResponse> getDrivers(@Header("Authorization") String token);
+
+
+    @POST("add-route")
+    Call<AddResponse> addRoute(@Body AddRequest addRequest);
+
+    @POST("add-halt")
+    Call<SourceResponse>addSource(@Body SourceRequest sourceRequest);
+
+
 }

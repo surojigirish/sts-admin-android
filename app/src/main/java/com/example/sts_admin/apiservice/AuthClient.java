@@ -5,9 +5,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient {
+public class AuthClient {
 
-    private static final String BASE_URL = "http://43.205.114.246:5000/employee/";
+    private static final String BASE_URL = "http://192.168.232.169:5000/employee/";
 
     private static Retrofit getRetrofit() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();

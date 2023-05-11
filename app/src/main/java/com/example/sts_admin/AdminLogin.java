@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sts_admin.apiservice.ApiClient;
+import com.example.sts_admin.apiservice.AuthClient;
 import com.example.sts_admin.loginModel.LoginRequest;
 import com.example.sts_admin.loginModel.LoginResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
@@ -81,12 +81,13 @@ public class AdminLogin extends AppCompatActivity {
     }
     
     public void login(LoginRequest loginRequest) {
-        Call<LoginResponse> loginResponseCall = ApiClient.getRoute().adminLogin(loginRequest);
+        Call<LoginResponse> loginResponseCall = AuthClient.getRoute().adminLogin(loginRequest);
         loginResponseCall.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 LoginResponse loginResponse = response.body();
                 if (response.isSuccessful()) {
+                    Log.d("LOGIN", "onResponse: successfully");
                     if (loginResponse != null && loginResponse.getStatus() == 200) {
                         sharedPrefManager.saveUser(loginResponse.getUser());
                         Toast.makeText(AdminLogin.this, "user successfully logged in", Toast.LENGTH_SHORT).show();
