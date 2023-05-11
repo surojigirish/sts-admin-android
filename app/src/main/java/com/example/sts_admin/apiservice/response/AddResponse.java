@@ -1,4 +1,4 @@
-package com.example.sts_admin.addRouteModel;
+package com.example.sts_admin.apiservice.response;
 
 import com.example.sts_admin.model.UserAdmin;
 import com.google.gson.annotations.SerializedName;

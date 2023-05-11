@@ -9,18 +9,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-<<<<<<< HEAD:app/src/main/java/com/example/sts_admin/DriverRegistration.java
-import com.example.sts_admin.apiservice.AuthClient;
-import com.example.sts_admin.driverRegistrationModel.RegisterRequest;
-import com.example.sts_admin.driverRegistrationModel.RegisterResponse;
-=======
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.DriverRegisterRequest;
 import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
->>>>>>> 7edc965b6fe8bd6df472f9f546f1113e51f3d1de:app/src/main/java/com/example/sts_admin/activity/DriverRegistration.java
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import retrofit2.Call;

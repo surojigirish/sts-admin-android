@@ -11,17 +11,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-<<<<<<< HEAD:app/src/main/java/com/example/sts_admin/AdminLogin.java
-import com.example.sts_admin.apiservice.AuthClient;
-import com.example.sts_admin.loginModel.LoginRequest;
-import com.example.sts_admin.loginModel.LoginResponse;
-=======
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.AdminLoginRequest;
 import com.example.sts_admin.apiservice.response.AdminLoginResponse;
->>>>>>> 7edc965b6fe8bd6df472f9f546f1113e51f3d1de:app/src/main/java/com/example/sts_admin/activity/AdminLogin.java
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.net.Inet4Address;

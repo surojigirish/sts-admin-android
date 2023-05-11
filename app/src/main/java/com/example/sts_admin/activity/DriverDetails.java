@@ -10,15 +10,9 @@ import android.widget.Toast;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.DriverAdapter;
-<<<<<<< HEAD:app/src/main/java/com/example/sts_admin/DriverDetails.java
-import com.example.sts_admin.apiservice.AuthClient;
-import com.example.sts_admin.model.EmployeeDriverResponse;
-import com.example.sts_admin.model.UserDriver;
-=======
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.EmployeeDriverResponse;
 import com.example.sts_admin.model.Driver;
->>>>>>> 7edc965b6fe8bd6df472f9f546f1113e51f3d1de:app/src/main/java/com/example/sts_admin/activity/DriverDetails.java
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.List;

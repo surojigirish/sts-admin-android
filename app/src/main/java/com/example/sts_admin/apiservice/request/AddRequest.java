@@ -1,4 +1,4 @@
-package com.example.sts_admin.addRouteModel;
+package com.example.sts_admin.apiservice.request;
 
 public class AddRequest {
 

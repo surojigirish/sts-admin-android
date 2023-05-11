@@ -1,17 +1,17 @@
-package com.example.sts_admin.addSourceModel;
+package com.example.sts_admin.apiservice.response;
 
 
-import com.example.sts_admin.model.UserAdminSource;
+import com.example.sts_admin.model.Halts;
 import com.google.gson.annotations.SerializedName;
 
-public class SourceResponse {
+public class HaltResponse {
 
     private String message;
     private int status;
     private boolean success;
 
     @SerializedName("user-admin")
-    private UserAdminSource user_admin;
+    private Halts halts;
 
 
     public String getMessage() {
@@ -38,11 +38,11 @@ public class SourceResponse {
         this.success = success;
     }
 
-    public UserAdminSource getUser_admin() {
-        return user_admin;
+    public Halts getHalts() {
+        return halts;
     }
 
-    public void setUser_admin(UserAdminSource user_admin) {
-        this.user_admin = user_admin;
+    public void setHalts(Halts halts) {
+        this.halts = halts;
     }
 }

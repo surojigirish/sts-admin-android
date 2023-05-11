@@ -1,20 +1,20 @@
-package com.example.sts_admin;
+package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.sts_admin.addRouteModel.AddRequest;
-import com.example.sts_admin.addRouteModel.AddResponse;
-import com.example.sts_admin.apiservice.AuthClient;
-import com.example.sts_admin.apiservice.ScheduleClient;
+import com.example.sts_admin.Consts;
+import com.example.sts_admin.R;
+import com.example.sts_admin.apiservice.Client;
+import com.example.sts_admin.apiservice.request.AddRequest;
+import com.example.sts_admin.apiservice.response.AddResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,7 +38,7 @@ public class AddRoute extends AppCompatActivity {
         addRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                route(addRequest());
+//                route(addRequest());
             }
         });
 
@@ -55,8 +55,8 @@ public class AddRoute extends AppCompatActivity {
 
     }
 
-    public void route(AddRequest addRequest){
-        Call<AddResponse> addResponseCall= ScheduleClient.getRoute().addRoute(addRequest());
+    /*public void route(AddRequest addRequest){
+        Call<AddResponse> addResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute();
         addResponseCall.enqueue(new Callback<AddResponse>() {
             @Override
             public void onResponse(Call<AddResponse> call, Response<AddResponse> response) {
@@ -79,5 +79,5 @@ public class AddRoute extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.example.sts_admin;
+package com.example.sts_admin.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.sts_admin.R;
 
 public class UpdateSchedule extends AppCompatActivity {
 
@@ -40,7 +42,7 @@ public class UpdateSchedule extends AppCompatActivity {
        addSource.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Intent intent=new Intent(UpdateSchedule.this, AddSource.class);
+               Intent intent=new Intent(UpdateSchedule.this, AddHalts.class);
                startActivity(intent);
            }
        });

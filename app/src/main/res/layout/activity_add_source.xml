@@ -4,26 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddSource">
+    tools:context=".activity.AddHalts">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="92dp"
+        android:text="Add Halt Details"
+        android:textAllCaps="true"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/source"
+        android:id="@+id/et_halt_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="233dp"
-        android:hint="Source"
+        android:hint="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/addSourceBtn"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/et_halt_long"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:text="Add Source"
+        android:layout_marginTop="47dp"
+        android:hint="longitude"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/source" />
+        app:layout_constraintTop_toBottomOf="@+id/et_halt_name" />
+
+    <EditText
+        android:id="@+id/et_halt_lat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:hint="latitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_halt_long" />
+
+    <Button
+        android:id="@+id/btn_add_halt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="152dp"
+        android:text="Add Source"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.847"
+        app:layout_constraintStart_toEndOf="@+id/btn_geo_location"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_geo_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="Get Geo Location"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_add_halt"
+        app:layout_constraintEnd_toStartOf="@+id/btn_add_halt"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
