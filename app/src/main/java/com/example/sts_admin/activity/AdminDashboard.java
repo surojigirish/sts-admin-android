@@ -1,4 +1,4 @@
-package com.example.sts_admin;
+package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -11,9 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sts_admin.apiservice.ApiClient;
-import com.example.sts_admin.logoutModel.LogoutRequest;
-import com.example.sts_admin.logoutModel.LogoutResponse;
+import com.example.sts_admin.Consts;
+import com.example.sts_admin.R;
+import com.example.sts_admin.apiservice.Client;
+import com.example.sts_admin.apiservice.request.AdminLogoutRequest;
+import com.example.sts_admin.apiservice.response.AdminLogoutResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import retrofit2.Call;
@@ -83,26 +85,26 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
 
 
-    public LogoutRequest logoutRequest(){
-       LogoutRequest logoutRequest=new LogoutRequest();
+    public AdminLogoutRequest logoutRequest(){
+       AdminLogoutRequest logoutRequest=new AdminLogoutRequest();
        logoutRequest.setToken(getSessionToken());
        return logoutRequest;
     }
 
 
 
-    public void logout(LogoutRequest logoutRequest){
-        Call<LogoutResponse> logoutResponseCall= ApiClient.getRoute().logout(logoutRequest);
-        logoutResponseCall.enqueue(new Callback<LogoutResponse>() {
+    public void logout(AdminLogoutRequest logoutRequest){
+        Call<AdminLogoutResponse> logoutResponseCall= Client.getInstance(Consts.BASE_URL_ADMIN).getRoute().logout(logoutRequest);
+        logoutResponseCall.enqueue(new Callback<AdminLogoutResponse>() {
             @Override
-            public void onResponse(Call<LogoutResponse> call, Response<LogoutResponse> response) {
-                LogoutResponse logoutResponse=response.body();
+            public void onResponse(Call<AdminLogoutResponse> call, Response<AdminLogoutResponse> response) {
+                AdminLogoutResponse logoutResponse=response.body();
                 if (response.isSuccessful()){
 //                    Toast.makeText(AdminDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
                     if(logoutResponse != null && logoutResponse.getStatus() == 200){
                         sharedPrefManager.logout();
                         Toast.makeText(AdminDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(AdminDashboard.this,AdminLogin.class);
+                        Intent intent=new Intent(AdminDashboard.this, AdminLogin.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
@@ -114,7 +116,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
             }
 
             @Override
-            public void onFailure(Call<LogoutResponse> call, Throwable t) {
+            public void onFailure(Call<AdminLogoutResponse> call, Throwable t) {
                 Toast.makeText(AdminDashboard.this, "onFailure: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });

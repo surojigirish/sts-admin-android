@@ -1,6 +1,6 @@
-package com.example.sts_admin.loginModel;
+package com.example.sts_admin.apiservice.request;
 
-public class LoginRequest {
+public class AdminLoginRequest {
 
     private String email;
     private String password;

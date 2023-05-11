@@ -10,18 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sts_admin.R;
-import com.example.sts_admin.model.UserDriver;
-
-import org.w3c.dom.Text;
+import com.example.sts_admin.model.Driver;
 
 import java.util.List;
 
 public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder> {
 
-    List<UserDriver> driverList;
+    List<Driver> driverList;
     Context context;
 
-    public DriverAdapter(Context context, List<UserDriver> driverList) {
+    public DriverAdapter(Context context, List<Driver> driverList) {
         this.context = context;
         this.driverList = driverList;
     }

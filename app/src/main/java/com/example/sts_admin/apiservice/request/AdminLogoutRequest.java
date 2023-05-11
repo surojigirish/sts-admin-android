@@ -1,6 +1,6 @@
-package com.example.sts_admin.logoutModel;
+package com.example.sts_admin.apiservice.request;
 
-public class LogoutRequest {
+public class AdminLogoutRequest {
     private String token;
 
     public String getToken() {

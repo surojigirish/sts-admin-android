@@ -1,14 +1,18 @@
-package com.example.sts_admin.logoutModel;
+package com.example.sts_admin.apiservice.response;
 
-public class LogoutResponse {
+import com.example.sts_admin.model.Admin;
+
+public class AdminLoginResponse {
+
     private int status;
     private String message;
-    private boolean success;
+    private Admin user;
 
-    public LogoutResponse(int status, String message, boolean success) {
+
+    public AdminLoginResponse(int status, String message, Admin user) {
         this.status = status;
         this.message = message;
-        this.success = success;
+        this.user = user;
     }
 
     public int getStatus() {
@@ -27,11 +31,11 @@ public class LogoutResponse {
         this.message = message;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public Admin getUser() {
+        return user;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setUser(Admin user) {
+        this.user = user;
     }
 }

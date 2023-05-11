@@ -1,4 +1,4 @@
-package com.example.sts_admin;
+package com.example.sts_admin.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sts_admin.apiservice.ApiClient;
-import com.example.sts_admin.loginModel.LoginRequest;
-import com.example.sts_admin.loginModel.LoginResponse;
+import com.example.sts_admin.Consts;
+import com.example.sts_admin.R;
+import com.example.sts_admin.apiservice.Client;
+import com.example.sts_admin.apiservice.request.AdminLoginRequest;
+import com.example.sts_admin.apiservice.response.AdminLoginResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.net.Inet4Address;
@@ -72,20 +74,20 @@ public class AdminLogin extends AppCompatActivity {
     }
 
     // to create the login request
-    public LoginRequest loginRequest(){
-        LoginRequest loginRequest = new LoginRequest();
+    public AdminLoginRequest loginRequest(){
+        AdminLoginRequest loginRequest = new AdminLoginRequest();
         loginRequest.setEmail(email.getText().toString());
         loginRequest.setPassword(password.getText().toString());
         loginRequest.setIpaddress(getIpAddress());
         return loginRequest;
     }
     
-    public void login(LoginRequest loginRequest) {
-        Call<LoginResponse> loginResponseCall = ApiClient.getRoute().adminLogin(loginRequest);
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+    public void login(AdminLoginRequest loginRequest) {
+        Call<AdminLoginResponse> loginResponseCall = Client.getInstance(Consts.BASE_URL_ADMIN).getRoute().adminLogin(loginRequest);
+        loginResponseCall.enqueue(new Callback<AdminLoginResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse loginResponse = response.body();
+            public void onResponse(Call<AdminLoginResponse> call, Response<AdminLoginResponse> response) {
+                AdminLoginResponse loginResponse = response.body();
                 if (response.isSuccessful()) {
                     if (loginResponse != null && loginResponse.getStatus() == 200) {
                         sharedPrefManager.saveUser(loginResponse.getUser());
@@ -104,7 +106,7 @@ public class AdminLogin extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(Call<AdminLoginResponse> call, Throwable t) {
                 Log.d("TAG", "onFailure : " + t.getLocalizedMessage());
                 Toast.makeText(AdminLogin.this, "onFailure: " +t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }

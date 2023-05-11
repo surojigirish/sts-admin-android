@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:layout_height="match_parent"
-    tools:context=".UpdateBusSchedule">
+    tools:context=".activity.UpdateBusSchedule">
 
     <TextView
         android:layout_width="match_parent"

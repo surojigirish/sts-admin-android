@@ -3,7 +3,7 @@ package com.example.sts_admin.sharedpref;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.sts_admin.model.User;
+import com.example.sts_admin.model.Admin;
 
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "stsadmin";
@@ -15,7 +15,7 @@ public class SharedPrefManager {
         this.context = context;
     }
 
-    public void saveUser(User user) {
+    public void saveUser(Admin user) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putInt("id", user.getUserId());
@@ -32,9 +32,9 @@ public class SharedPrefManager {
         return sharedPreferences.getBoolean("logged", false);
     }
 
-    public User getUser() {
+    public Admin getUser() {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return new User(sharedPreferences.getInt("id", -1),
+        return new Admin(sharedPreferences.getInt("id", -1),
                 sharedPreferences.getString("email", null),
                 sharedPreferences.getString("firstname", null),
                 sharedPreferences.getString("lastname", null),

@@ -1,4 +1,4 @@
-package com.example.sts_admin;
+package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.sts_admin.R;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 public class Welcome extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class Welcome extends AppCompatActivity {
         btn1=findViewById(R.id.button);
 
         initSharedPrefManager();
-        findViewById(R.id.button).setOnClickListener(v->startActivity(new Intent(Welcome.this,AdminLogin.class)));
+        findViewById(R.id.button).setOnClickListener(v->startActivity(new Intent(Welcome.this, AdminLogin.class)));
     }
 
     @Override

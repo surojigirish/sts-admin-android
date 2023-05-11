@@ -5,28 +5,29 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient {
+public class Client {
 
-    private static final String BASE_URL = "http://43.205.114.246:5000/employee/";
+    private final Retrofit retrofit;
 
-    private static Retrofit getRetrofit() {
+    private Client(String baseUrl) {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor).build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+        retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
-
-        return retrofit;
     }
 
-    public static Api getRoute(){
-        Api api = getRetrofit().create(Api.class);
-        return api;
+    public static synchronized Client getInstance(String baseUrl) {
+        return new Client(baseUrl);
+    }
+
+    public Api getRoute() {
+        return retrofit.create(Api.class);
     }
 }
