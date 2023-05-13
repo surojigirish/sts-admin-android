@@ -3,39 +3,50 @@ package com.example.sts_admin.model;
 import com.google.gson.annotations.SerializedName;
 
 public class Schedule {
-//    "arrival-time": "20:00",
-//                "departure-time": "17:00",
-//                "duration": "45",
-//                "schedule-id": 8
 
 
+//    "arrival-at": "18:00",
+//        "departure-at": "17:15",
+//        "duration": "45",
+//        "id": 1,
+//        "route-destination": "PANJIM",
+//        "route-source": "MARGAO"
 
-    @SerializedName( "arrival-time")
-    private String arrivalTime;
 
-    @SerializedName("departure-time")
-    private String departureTime;
-
+    @SerializedName("arrival-at")
+    private String arrivalAt;
+    @SerializedName("departure-at")
+    private String departureAt;
     @SerializedName("duration")
     private String duration;
+    @SerializedName("route-destination")
+    private String routeDestination;
+    @SerializedName("route-source")
+    private String routeSource;
+    @SerializedName("id")
+    private Integer id;
 
-    @SerializedName("schedule-id")
-    private String scheduleId;
-
-    public String getArrivalTime() {
-        return arrivalTime;
+    public Schedule(Integer id, String routeSource, String routeDestination) {
+        this.routeDestination = routeDestination;
+        this.routeSource = routeSource;
+        this.id = id;
     }
 
-    public void setArrivalTime(String arrivalTime) {
-        this.arrivalTime = arrivalTime;
+    public String getArrivalAt() {
+        return arrivalAt;
     }
 
-    public String getDepartureTime() {
-        return departureTime;
+    public void setArrivalAt(String arrivalAt) {
+        this.arrivalAt = arrivalAt;
     }
 
-    public void setDepartureTime(String departureTime) {
-        this.departureTime = departureTime;
+    public String getDepartureAt() {
+        return departureAt;
+    }
+
+    public void setDepartureAt(String departureAt) {
+        this.departureAt = departureAt;
+
     }
 
     public String getDuration() {
@@ -46,11 +57,29 @@ public class Schedule {
         this.duration = duration;
     }
 
-    public String getScheduleId() {
-        return scheduleId;
+
+    public String getRouteDestination() {
+        return routeDestination;
     }
 
-    public void setScheduleId(String scheduleId) {
-        this.scheduleId = scheduleId;
+    public void setRouteDestination(String routeDestination) {
+        this.routeDestination = routeDestination;
+    }
+
+    public String getRouteSource() {
+        return routeSource;
+    }
+
+    public void setRouteSource(String routeSource) {
+        this.routeSource = routeSource;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+
     }
 }

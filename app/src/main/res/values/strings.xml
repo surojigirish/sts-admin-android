@@ -1,16 +1,22 @@
 <resources>
     <string name="app_name">STS_ADMIN</string>
     <string name="title_activity_maps">MapsActivity</string>
+
+
+
+    <!-- bus status spinner items -->
+    <string-array name="bus_status_spinner_items">
+        <item>ACTIVE</item>
+        <item>INACTIVE</item>
+    </string-array>
+
+
+    <!-- bus status spinner items -->
+    <string-array name="bus_type_spinner_items">
+        <item>LOCAL</item>
+        <item>SHUTTLE</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!--    <String-array name="routeId">-->
 
-    <!--        <item>1</item>-->
-    <!--        <item>2</item>-->
-    <!--        <item>3</item>-->
-    <!--        <item>4</item>-->
-    <!--        <item>5</item>-->
-    <!--        <item>6</item>-->
-
-    <!--    </String-array>-->
 </resources>

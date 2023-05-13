@@ -7,37 +7,15 @@ import java.util.List;
 
 public class ScheduleResponse {
 
-//
-//    "message": "schedule info added successfully",
-//            "schedule": {
-//        "arrival-time": "20:00",
-//                "departure-time": "17:00",
-//                "duration": "45",
-//                "schedule-id": 8
-//    },
-//            "status": 200,
-//            "success": true
 
+    @SerializedName("result")
+    List<Schedule> scheduleList;
 
-    @SerializedName("message")
-    private String message;
+    private @SerializedName("status")
+    Integer status;
+    private @SerializedName("success")
+    boolean success;
 
-    @SerializedName("schedule")
-    private Schedule schedule;
-
-    @SerializedName("status")
-    private Integer status;
-
-    @SerializedName("success")
-    private String success;
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public Integer getStatus() {
         return status;
@@ -47,19 +25,21 @@ public class ScheduleResponse {
         this.status = status;
     }
 
-    public String getSuccess() {
+
+    public boolean isSuccess() {
         return success;
     }
 
-    public void setSuccess(String success) {
+    public void setSuccess(boolean success) {
         this.success = success;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
+    public List<Schedule> getScheduleList() {
+        return scheduleList;
     }
 
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
+    public void setScheduleList(List<Schedule> scheduleList) {
+        this.scheduleList = scheduleList;
+
     }
 }
