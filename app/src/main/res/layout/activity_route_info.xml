@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RouteInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/linearlayout_route_info_view_holder">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="76dp"
+                android:text="@string/add_route_info"
+                android:textAllCaps="true"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_route_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="208dp"
+                android:text="@string/route_info"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tv_route_stands"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/stands_details"
+                android:textSize="28sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_route_info"
+                app:layout_constraintStart_toEndOf="@+id/tv_route_info" />
+
+            <TextView
+                android:id="@+id/tv_route_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:text="@string/source"
+                android:textSize="28sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_source"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/tv_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="27dp"
+                android:text="@string/source_id"
+                android:textSize="28sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_route_source"
+                app:layout_constraintTop_toBottomOf="@+id/tv_route_stands" />
+
+            <TextView
+                android:id="@+id/tv_route_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/destination"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_route_source" />
+
+            <EditText
+                android:id="@+id/tv_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/destination_id"
+                android:textSize="28sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_route_destination"
+                app:layout_constraintStart_toEndOf="@+id/tv_route_destination"
+                android:inputType="text"
+                android:autofillHints="@string/destination_id" />
+
+            <TextView
+                android:id="@+id/tv_route_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="56dp"
+                android:text="@string/distance_id"
+                android:textSize="28sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_distance"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="19dp"
+                android:text="@string/distance"
+                android:textSize="28sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_route_distance"
+                app:layout_constraintTop_toBottomOf="@+id/tv_destination" />
+
+            <TextView
+                android:id="@+id/tv_route_fare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fare_id"
+                android:textSize="28sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_fare"
+                app:layout_constraintEnd_toEndOf="@+id/tv_route_distance" />
+
+            <TextView
+                android:id="@+id/tv_fare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="21dp"
+                android:text="@string/fare"
+                android:textSize="28sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_route_fare"
+                app:layout_constraintTop_toBottomOf="@+id/tv_distance" />
+
+            <Button
+                android:id="@+id/btn_add_route_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="78dp"
+                android:text="@string/btn_add_route_info"
+                app:layout_constraintStart_toStartOf="@+id/tv_route_fare"
+                app:layout_constraintTop_toBottomOf="@+id/tv_route_fare" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+    <!-- frame layout to attach frags -->
+    <FrameLayout
+        android:id="@+id/frameLayout_route_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,6 +27,9 @@
             android:name=".activity.AddSchedule"
             android:exported="false" />
         <activity
+            android:name=".activity.RouteInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.AddHalts"
             android:exported="false" />
         <activity
@@ -68,6 +71,9 @@
             android:exported="false" />
         <activity
             android:name=".activity.UpdateSchedule"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddRoute"
             android:exported="false" />
         <activity
             android:name=".activity.AdminDashboard"

@@ -21,6 +21,35 @@ public class Halts {
     @SerializedName("source-name")
     private String name;
 
+    // temp
+    @SerializedName("id")
+    private Integer id;
+    @SerializedName("name")
+    private String haltName;
+
+    public Halts(Integer id, String haltName, String latitude, String longitude) {
+        this.id = id;
+        this.haltName = haltName;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getHaltName() {
+        return haltName;
+    }
+
+    public void setHaltName(String haltName) {
+        this.haltName = haltName;
+    }
+
     public String getLatitude() {
         return latitude;
     }

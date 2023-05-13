@@ -4,14 +4,16 @@ package com.example.sts_admin.apiservice.response;
 import com.example.sts_admin.model.Halts;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class HaltResponse {
 
     private String message;
     private int status;
     private boolean success;
 
-    @SerializedName("user-admin")
-    private Halts halts;
+    @SerializedName("result")
+    private List<Halts> result;
 
 
     public String getMessage() {
@@ -38,11 +40,11 @@ public class HaltResponse {
         this.success = success;
     }
 
-    public Halts getHalts() {
-        return halts;
+    public List<Halts> getResult() {
+        return result;
     }
 
-    public void setHalts(Halts halts) {
-        this.halts = halts;
+    public void setResult(List<Halts> result) {
+        this.result = result;
     }
 }

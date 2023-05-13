@@ -1,18 +1,28 @@
 package com.example.sts_admin.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
-public class UserAdmin {
+public class Route {
 
+    @SerializedName("destination")
     private  String destination;
     @SerializedName("route-id")
-    private  int route_id;
+    private  int routeId;
+    @SerializedName("source")
     private String source;
 
-    public UserAdmin(String destination, int route_id, String source) {
+    public Route(int routeId, String source, String destination) {
         this.destination = destination;
-        this.route_id = route_id;
+        this.routeId = routeId;
         this.source = source;
+    }
+
+    public Route () {
     }
 
     public String getDestination() {
@@ -23,12 +33,12 @@ public class UserAdmin {
         this.destination = destination;
     }
 
-    public int getRoute_id() {
-        return route_id;
+    public int getRouteId() {
+        return routeId;
     }
 
-    public void setRoute_id(int route_id) {
-        this.route_id = route_id;
+    public void setRouteId(int routeId) {
+        this.routeId = routeId;
     }
 
     public String getSource() {
