@@ -13,8 +13,8 @@ import android.widget.Toast;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
-import com.example.sts_admin.apiservice.request.AddRequest;
-import com.example.sts_admin.apiservice.response.AddResponse;
+import com.example.sts_admin.apiservice.request.RouteRequest;
+import com.example.sts_admin.apiservice.response.RouteResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,7 +38,7 @@ public class AddRoute extends AppCompatActivity {
         addRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                route(addRequest());
+                route(routeRequest());
             }
         });
 
@@ -46,8 +46,8 @@ public class AddRoute extends AppCompatActivity {
     }
 
 
-    public AddRequest addRequest() {
-        AddRequest addRequest=new AddRequest();
+    public RouteRequest routeRequest() {
+        RouteRequest addRequest=new RouteRequest();
 
         addRequest.setSource(source.getText().toString());
         addRequest.setDestination(destination.getText().toString());
@@ -55,12 +55,12 @@ public class AddRoute extends AppCompatActivity {
 
     }
 
-    /*public void route(AddRequest addRequest){
-        Call<AddResponse> addResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute();
-        addResponseCall.enqueue(new Callback<AddResponse>() {
+    public void route(RouteRequest routeRequest){
+        Call<RouteResponse> addResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().addRoute(routeRequest);
+        addResponseCall.enqueue(new Callback<RouteResponse>() {
             @Override
-            public void onResponse(Call<AddResponse> call, Response<AddResponse> response) {
-                AddResponse addResponse = response.body();
+            public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
+                RouteResponse addResponse = response.body();
                 if (response.isSuccessful()) {
                     if (addResponse != null && addResponse.getStatus() == 200) {
                         Toast.makeText(AddRoute.this, "Route Added  Successfully", Toast.LENGTH_SHORT).show();
@@ -75,9 +75,9 @@ public class AddRoute extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<AddResponse> call, Throwable t) {
+            public void onFailure(Call<RouteResponse> call, Throwable t) {
 
             }
         });
-    }*/
+    }
 }

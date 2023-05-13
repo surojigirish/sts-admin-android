@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">STS_ADMIN</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="click_to_add_route">Click to add route</string>
+    <string name="source">Source :</string>
+    <string name="destination">Destination :</string>
+    <string name="route_info">Route Info :</string>
+    <string name="add_route_info">add route info</string>
+    <string name="stands_details">stands details</string>
+    <string name="destination_id">Destination</string>
+    <string name="source_id">Source</string>
+    <string name="distance">0 km</string>
+    <string name="distance_id">Distance :</string>
+    <string name="fare_id">fare :</string>
+    <string name="fare">0</string>
+    <string name="btn_add_route_info">add route-info</string>
+
 </resources>

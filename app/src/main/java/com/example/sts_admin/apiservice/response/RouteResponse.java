@@ -1,22 +1,20 @@
 package com.example.sts_admin.apiservice.response;
 
-import com.example.sts_admin.model.UserAdmin;
+import com.example.sts_admin.model.Route;
 import com.google.gson.annotations.SerializedName;
 
-public class AddResponse {
+import java.util.List;
 
+public class RouteResponse {
+
+        @SerializedName("result")
+        private List<Route> result;
+        @SerializedName("status")
+        private Integer status;
+        @SerializedName("success")
+        private Boolean success;
+        @SerializedName("message")
         private String message;
-        private int status;
-        private boolean success;
-        @SerializedName("user-admin")
-        private UserAdmin user_admin;
-
-        public AddResponse(String message, int status, boolean success, UserAdmin user_admin) {
-                this.message = message;
-                this.status = status;
-                this.success = success;
-                this.user_admin = user_admin;
-        }
 
         public String getMessage() {
                 return message;
@@ -42,11 +40,11 @@ public class AddResponse {
                 this.success = success;
         }
 
-        public UserAdmin getUser_admin() {
-                return user_admin;
+        public List<Route> getResult() {
+                return result;
         }
 
-        public void setUser_admin(UserAdmin user_admin) {
-                this.user_admin = user_admin;
+        public void setResult(List<Route> result) {
+                this.result = result;
         }
 }

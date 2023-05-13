@@ -17,8 +17,29 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="Add Source"
+        android:text="Add Halt"
         android:id="@+id/add_source"/>
+
+    <Button
+        android:layout_marginTop="8dp"
+        android:id="@+id/btn_route_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="add route info" />
+
+    <Button
+        android:layout_marginTop="8dp"
+        android:id="@+id/btn_schedule_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="add schedule info" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout_schedule_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>
