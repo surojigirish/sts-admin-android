@@ -1,4 +1,4 @@
-package com.example.sts_admin.frag;
+package com.example.sts_admin.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchScheduleId extends Fragment {
+public class ScheduleSearchFragment extends Fragment {
     RecyclerView recycleViewScheduleItems;
     List<Schedule> scheduleList;
     ScheduleAdapter.OnScheduleItemClickListener onScheduleItemClickListener;

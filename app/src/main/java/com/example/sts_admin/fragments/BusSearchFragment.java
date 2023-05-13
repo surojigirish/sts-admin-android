@@ -1,4 +1,4 @@
-package com.example.sts_admin.frag;
+package com.example.sts_admin.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchBusId extends Fragment {
+public class BusSearchFragment extends Fragment {
     RecyclerView recyclerViewBusItems;
     List<Bus> busList;
 

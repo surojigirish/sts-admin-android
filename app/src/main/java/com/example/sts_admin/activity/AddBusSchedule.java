@@ -4,14 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +18,8 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.AddBusScheduleRequest;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
-import com.example.sts_admin.frag.SearchBusId;
-import com.example.sts_admin.frag.SearchScheduleId;
+import com.example.sts_admin.fragments.BusSearchFragment;
+import com.example.sts_admin.fragments.ScheduleSearchFragment;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.Calendar;
@@ -55,7 +53,7 @@ public class AddBusSchedule extends AppCompatActivity {
         etBusid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchBusId frag = new SearchBusId();
+                BusSearchFragment frag = new BusSearchFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frameLayout_busSchedule, frag);
                 transaction.commit();
@@ -68,7 +66,7 @@ public class AddBusSchedule extends AppCompatActivity {
         etScheduleId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchScheduleId frag = new SearchScheduleId();
+                ScheduleSearchFragment frag = new ScheduleSearchFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frameLayout_busSchedule, frag);
                 transaction.commit();
