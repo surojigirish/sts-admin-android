@@ -164,12 +164,12 @@ public class RouteInfoActivity extends AppCompatActivity {
 
                 // calculate distance between source and destination
                 double calculateDistance = calculateDistance(doubleSourceLat, doubleSourceLong, doubleDestinationLat, doubleDestinationLong);
-                distance = String.format("%.2f km", calculateDistance);
+                distance = String.format("%.2f", calculateDistance);
                 tvDistance.setText(distance);
 
                 // calculate fare
                 double calculateFare = calculateFare(calculateDistance);
-                fare = String.format("%.2f Rs", calculateFare);
+                fare = String.format("%.2f", calculateFare);
                 tvFare.setText(fare);
             } catch (NumberFormatException e) {
                 // Handle parsing error
