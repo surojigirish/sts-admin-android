@@ -11,12 +11,12 @@ public class AddResponse {
         @SerializedName("user-admin")
         private UserAdmin user_admin;
 
-        public AddResponse(String message, int status, boolean success, UserAdmin user_admin) {
-                this.message = message;
-                this.status = status;
-                this.success = success;
-                this.user_admin = user_admin;
-        }
+//        public AddResponse(String message, int status, boolean success, UserAdmin user_admin) {
+//                this.message = message;
+//                this.status = status;
+//                this.success = success;
+//                this.user_admin = user_admin;
+//        }
 
         public String getMessage() {
                 return message;

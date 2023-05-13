@@ -25,7 +25,7 @@ public class AddRoute extends AppCompatActivity {
     EditText source,destination;
     Button addRoute;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class AddRoute extends AppCompatActivity {
         addRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                route(addRequest());
+                route(addRequest());
             }
         });
 
@@ -55,8 +55,8 @@ public class AddRoute extends AppCompatActivity {
 
     }
 
-    /*public void route(AddRequest addRequest){
-        Call<AddResponse> addResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute();
+   public void route(AddRequest addRequest){
+        Call<AddResponse> addResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().addRoute(addRequest);
         addResponseCall.enqueue(new Callback<AddResponse>() {
             @Override
             public void onResponse(Call<AddResponse> call, Response<AddResponse> response) {
@@ -79,5 +79,5 @@ public class AddRoute extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 }

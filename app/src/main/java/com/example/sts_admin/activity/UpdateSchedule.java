@@ -1,10 +1,13 @@
 package com.example.sts_admin.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sts_admin.R;
@@ -12,8 +15,9 @@ import com.example.sts_admin.R;
 public class UpdateSchedule extends AppCompatActivity {
 
 
-    Button addRoute,addSource;
+    Button addRoute,addSource,addSchedule;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +33,7 @@ public class UpdateSchedule extends AppCompatActivity {
 
         addRoute=findViewById(R.id.add_route);
         addSource=findViewById(R.id.add_source);
+        addSchedule=findViewById(R.id.add_schedule);
 
 
        addRoute.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +48,15 @@ public class UpdateSchedule extends AppCompatActivity {
            @Override
            public void onClick(View view) {
                Intent intent=new Intent(UpdateSchedule.this, AddHalts.class);
+               startActivity(intent);
+           }
+       });
+
+       addSchedule.setOnClickListener(new View.OnClickListener() {
+           @RequiresApi(api = Build.VERSION_CODES.N)
+           @Override
+           public void onClick(View view) {
+               Intent intent=new Intent(UpdateSchedule.this, AddSchedule.class);
                startActivity(intent);
            }
        });

@@ -20,5 +20,13 @@
         android:text="Add Source"
         android:id="@+id/add_source"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Add Schedule"
+        android:id="@+id/add_schedule"
+        android:layout_marginTop="10dp"/>
+
 
 </LinearLayout>
