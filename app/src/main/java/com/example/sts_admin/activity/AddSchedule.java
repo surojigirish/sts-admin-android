@@ -1,9 +1,5 @@
 package com.example.sts_admin.activity;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -15,13 +11,17 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.assets.TimeDurationCalculator;
-import com.example.sts_admin.fragment.SearchRouteId;
+import com.example.sts_admin.fragments.SearchRouteId;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -111,7 +111,7 @@ public class AddSchedule extends AppCompatActivity {
         tv_routeId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SearchRouteId searchRouteId=new SearchRouteId();
+                SearchRouteId searchRouteId = new SearchRouteId();
                 FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.fl_routeId,searchRouteId);
                 transaction.commit();

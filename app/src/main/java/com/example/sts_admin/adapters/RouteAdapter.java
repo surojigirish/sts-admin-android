@@ -10,78 +10,78 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sts_admin.R;
-import com.example.sts_admin.model.Routes;
+import com.example.sts_admin.model.Route;
 
 import java.util.List;
 
-import okhttp3.Route;
-
 public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.ViewHolder> {
 
-    List<Routes> routesList;
     Context context;
+    List<Route> routeList;
 
-    OnRouteItemClickListener onRouteItemClickListener;
+    // Listener instance
+    public OnItemClickListener itemClickListener;
 
-    public RouteAdapter(List<Routes> routesList, Context context, OnRouteItemClickListener onRouteItemClickListener) {
-        this.routesList = routesList;
+    public RouteAdapter(Context context, List<Route> routeList, OnItemClickListener itemClickListener) {
         this.context = context;
-        this.onRouteItemClickListener = onRouteItemClickListener;
+        this.routeList = routeList;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(context)
-                .inflate(R.layout.routeitem,parent,false);
-        return new ViewHolder(view);
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.route_list_item, parent, false);
+
+        return new ViewHolder(view, itemClickListener, routeList);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.source.setText(routesList.get(position).getSource());
-        holder.destination.setText(routesList.get(position).getDestination());
+        Route route = routeList.get(position);
+        holder.tvSourceStand.setText(route.getSource());
+        holder.tvDestinationStand.setText(route.getDestination());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Integer position=holder.getAdapterPosition();
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
 
-                if (position!=RecyclerView.NO_POSITION && onRouteItemClickListener!=null){
-                    Routes selectedRoute=routesList.get(position);
-                    Integer routeId= selectedRoute.getRouteId();
-                    String source= selectedRoute.getSource();
-                    String destination= selectedRoute.getDestination();
-                    onRouteItemClickListener.onClickListener(routeId,source,destination);
+                if (position != RecyclerView.NO_POSITION && itemClickListener != null) {
+                    // get route position
+                    Route selectedRoute = routeList.get(position);
+                    // store route-id
+                    int routeId = selectedRoute.getRouteId();
+                    String destination = selectedRoute.getDestination();
+                    String source = selectedRoute.getSource();
+                    // call click listener and pass params
+                    itemClickListener.onItemClick(routeId, destination, source);
                 }
             }
         });
-
-
-
     }
 
     @Override
     public int getItemCount() {
-        return routesList.size();
+        return routeList.size();
     }
 
+    // ViewHolder
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView tvSourceStand, tvDestinationStand;
 
-        TextView source,destination;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final OnItemClickListener listener, final List<Route> routeList) {
             super(itemView);
 
-            source=itemView.findViewById(R.id.routeSource);
-            destination=itemView.findViewById(R.id.routeDestination);
-
-
-
+            // init views
+            tvSourceStand = itemView.findViewById(R.id.textView_source_stand);
+            tvDestinationStand = itemView.findViewById(R.id.textView_destination_stand);
         }
     }
 
-    public interface OnRouteItemClickListener{
-        void onClickListener(Integer routeId,String source, String destination);
+    public interface OnItemClickListener {
+        void onItemClick(Integer routeId, String routeDestination, String routeSource);
     }
 }

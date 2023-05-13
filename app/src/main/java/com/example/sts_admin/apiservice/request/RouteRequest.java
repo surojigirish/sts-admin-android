@@ -1,12 +1,12 @@
 package com.example.sts_admin.apiservice.request;
 
-public class AddRequest {
+public class RouteRequest {
 
     private String source;
     private String destination;
 
 
-    public AddRequest() {
+    public RouteRequest() {
         this.source = source;
         this.destination = destination;
     }

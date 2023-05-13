@@ -1,41 +1,50 @@
 package com.example.sts_admin.apiservice.response;
 
-import com.example.sts_admin.model.Routes;
+import com.example.sts_admin.model.Route;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class RouteResponse {
-    @SerializedName("result")
-    List<Routes> routesList;
 
-    @SerializedName("status")
-    private  String status;
+        @SerializedName("result")
+        private List<Route> result;
+        @SerializedName("status")
+        private Integer status;
+        @SerializedName("success")
+        private Boolean success;
+        @SerializedName("message")
+        private String message;
 
-    @SerializedName("success")
-    private  boolean success;
+        public String getMessage() {
+                return message;
+        }
 
-    public List<Routes> getRoutesList() {
-        return routesList;
-    }
+        public void setMessage(String message) {
+                this.message = message;
+        }
 
-    public void setRoutesList(List<Routes> routesList) {
-        this.routesList = routesList;
-    }
+        public int getStatus() {
+                return status;
+        }
 
-    public String getStatus() {
-        return status;
-    }
+        public void setStatus(int status) {
+                this.status = status;
+        }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+        public boolean isSuccess() {
+                return success;
+        }
 
-    public boolean isSuccess() {
-        return success;
-    }
+        public void setSuccess(boolean success) {
+                this.success = success;
+        }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
+        public List<Route> getResult() {
+                return result;
+        }
+
+        public void setResult(List<Route> result) {
+                this.result = result;
+        }
 }
