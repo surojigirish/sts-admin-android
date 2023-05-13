@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.sts_admin.model.Admin;
+import com.example.sts_admin.model.Bus;
+import com.example.sts_admin.model.Schedule;
 
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "stsadmin";
+    private static final String SHARED_PREF_ADD_BUS_SCHEDULE_NAME = "stsbusschedule";
     SharedPreferences sharedPreferences;
     Context context;
     private SharedPreferences.Editor editor;
@@ -46,6 +49,36 @@ public class SharedPrefManager {
         editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
+    }
+
+    public void saveBus(Integer busId, String busRegNo) {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putInt("busId", busId);
+        editor.putString("busRegNo", busRegNo);
+        editor.apply();
+    }
+
+    public void saveSchedule(Integer scheduleId, String source, String destination) {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putInt("scheduleId", scheduleId);
+        editor.putString("source", source);
+        editor.putString("destination", destination);
+        editor.apply();
+    }
+
+    public Bus getBusDetails() {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+        return new Bus(sharedPreferences.getInt("busId", 0),
+                sharedPreferences.getString("busRegNo", ""));
+    }
+
+    public Schedule getScheduleDetails() {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+        return new Schedule(sharedPreferences.getInt("scheduleId", 0),
+                sharedPreferences.getString("source", ""),
+                sharedPreferences.getString("destination", ""));
     }
 
 }

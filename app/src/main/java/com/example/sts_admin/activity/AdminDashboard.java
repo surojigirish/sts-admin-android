@@ -24,7 +24,7 @@ import retrofit2.Response;
 
 public class AdminDashboard extends AppCompatActivity implements View.OnClickListener{
 
-    CardView update,user,trip;
+    CardView update,user, addBusSchedule,bus;
 
     TextView tvUsername, tvEmail;
 
@@ -39,7 +39,8 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
         update=(CardView) findViewById(R.id.updateSch);
         user=(CardView) findViewById(R.id.user_profile);
-        trip=(CardView) findViewById(R.id.trip);
+        addBusSchedule =(CardView) findViewById(R.id.trip);
+        bus=(CardView) findViewById(R.id.bus);
         logoutBtn=findViewById(R.id.logoutBtn);
 
 //        viewDrivers = findViewById(R.id.btn_view_drivers);
@@ -48,7 +49,8 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
         update.setOnClickListener((View.OnClickListener) this);
         user.setOnClickListener((View.OnClickListener) this);
-        trip.setOnClickListener((View.OnClickListener)this);
+        addBusSchedule.setOnClickListener((View.OnClickListener)this);
+        bus.setOnClickListener((View.OnClickListener)this);
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,32 +58,8 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-
-
-
-//        viewDrivers.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                switchActivityOnClick();
-//            }
-//        });
-
-        // call the user details methods
-//        initializeViews();
-//        getLoggedInUserDetails();
-
-//        findViewById(R.id.card1).setOnClickListener(v->startActivity(new Intent(Cards.this,LoginActivity.class)));
-//        findViewById(R.id.card2).setOnClickListener(v->startActivity(new Intent(Cards.this,LoginActivity.class)));
-//
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater=getMenuInflater();
-//        inflater.inflate(R.menu.logoutmenu,menu);
-//        return super.onCreateOptionsMenu(menu);
-//
-//    }
 
 
 
@@ -124,7 +102,6 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
     }
 
 
-
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v){
@@ -132,7 +109,8 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.updateSch:i=new Intent(this, UpdateSchedule.class);startActivity(i);break;
             case R.id.user_profile:i=new Intent(this, DriverRegistration.class);startActivity(i);break;
-            case R.id.trip:i=new Intent(this, TripHistory.class);startActivity(i);break;
+            case R.id.trip:i=new Intent(this, AddBusSchedule.class);startActivity(i);break;
+            case R.id.bus:i=new Intent(this, AddBusDetails.class);startActivity(i);break;
 
         }
     }
