@@ -1,10 +1,13 @@
 package com.example.sts_admin.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,9 +17,9 @@ import com.example.sts_admin.model.RouteInfo;
 
 public class UpdateSchedule extends AppCompatActivity {
 
-
     Button btnAddRoute, btnAddSource, btnRouteInfo, btnScheduleInfo;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

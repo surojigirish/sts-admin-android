@@ -25,7 +25,7 @@ public class AddRoute extends AppCompatActivity {
     EditText source,destination;
     Button addRoute;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

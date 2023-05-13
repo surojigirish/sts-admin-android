@@ -102,7 +102,6 @@ public class AdminLogin extends AppCompatActivity {
                         //                    tvIpAddress.setText(getIpAddress());
                     }
                 } else {
-
                     Toast.makeText(AdminLogin.this, "login failed", Toast.LENGTH_SHORT).show();
                 }
             }
