@@ -4,9 +4,12 @@ import com.example.sts_admin.Consts;
 
 import com.example.sts_admin.apiservice.request.AddBusRequest;
 import com.example.sts_admin.apiservice.request.AddBusScheduleRequest;
+import com.example.sts_admin.apiservice.request.AddRequest;
 import com.example.sts_admin.apiservice.request.DriverRegisterRequest;
 import com.example.sts_admin.apiservice.request.HaltRequest;
+import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
+import com.example.sts_admin.apiservice.response.AddResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
 import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
 import com.example.sts_admin.apiservice.request.AdminLoginRequest;
@@ -16,6 +19,7 @@ import com.example.sts_admin.apiservice.response.AdminLogoutResponse;
 import com.example.sts_admin.apiservice.response.EmployeeDriverResponse;
 import com.example.sts_admin.apiservice.response.HaltResponse;
 
+import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 
 import retrofit2.Call;
@@ -56,8 +60,14 @@ public interface Api {
     @GET(Consts.ENDPOINT_BUS_INFO)
     Call<BusScheduleResponse> getAllBus();
 
+    @POST(Consts.ENDPOINT_ADD_SCHEDULE)
+    Call<ScheduleResponse> addSchedule(@Body ScheduleRequest scheduleRequest);
+
     @GET(Consts.ENDPOINT_ADD_SCHEDULE_DETAILS)
     Call<ScheduleResponse> getAllSchedule();
+
+    @GET(Consts.ENDPOINT_GET_ROUTE)
+    Call<RouteResponse> getAllRoutes();
 
     @POST(Consts.ENDPOINT_ADD_BUS_SCHEDULE)
     Call<BusScheduleResponse> addBusSchedule(@Body AddBusScheduleRequest addBusScheduleRequest);

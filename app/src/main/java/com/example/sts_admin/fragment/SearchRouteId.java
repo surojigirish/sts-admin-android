@@ -67,7 +67,7 @@ public class SearchRouteId extends Fragment {
     }
 
     public void getRoutesInfo(){
-        Call<RouteResponse> routeResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getRoutesInfo();
+        Call<RouteResponse> routeResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getAllRoutes();
         routeResponseCall.enqueue(new Callback<RouteResponse>() {
             @Override
             public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {

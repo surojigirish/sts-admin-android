@@ -16,6 +16,8 @@ public class Consts {
     public static final String ENDPOINT_REGISTER_DRIVER = "register-driver";
     public static final String ENDPOINT_DRIVERS = "drivers";
 
+    public static final String ENDPOINT_ADD_ROUTE = "add-route";
+
     public static final String ENDPOINT_BUS_INFO = "bus";
 
     public static final String ENDPOINT_ADD_HALT = "add-halt";
@@ -39,4 +41,5 @@ public class Consts {
 
     // request codes
     public static final Integer LOCATION_REQUEST_CODE = 1;
+
 }
