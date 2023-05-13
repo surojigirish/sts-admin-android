@@ -55,6 +55,15 @@ public class UpdateSchedule extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnScheduleInfo.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(UpdateSchedule.this, AddSchedule.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

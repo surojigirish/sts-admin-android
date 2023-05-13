@@ -3,6 +3,7 @@ package com.example.sts_admin.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -55,6 +56,7 @@ public class RouteInfoActivity extends AppCompatActivity {
     }
 
     // on activity start
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onStart() {
         super.onStart();
