@@ -1,4 +1,4 @@
-package com.example.sts_admin.fragment;
+package com.example.sts_admin.fragments;
 
 import android.content.Intent;
 import android.os.Build;
@@ -23,6 +23,7 @@ import com.example.sts_admin.activity.AddSchedule;
 import com.example.sts_admin.adapters.RouteAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.RouteResponse;
+import com.example.sts_admin.model.Route;
 import com.example.sts_admin.model.Routes;
 
 import java.util.List;
@@ -34,9 +35,9 @@ import retrofit2.Response;
 public class SearchRouteId extends Fragment {
 
     RecyclerView recyclerViewRouteId;
-    List<Routes> routesList;
+    List<Route> routesList;
 
-    RouteAdapter.OnRouteItemClickListener onRouteItemClickListener;
+    RouteAdapter.OnItemClickListener onRouteItemClickListener;
 
 
     @Override
@@ -58,9 +59,9 @@ public class SearchRouteId extends Fragment {
 
         getRoutesInfo();
 
-        onRouteItemClickListener =new RouteAdapter.OnRouteItemClickListener() {
+        onRouteItemClickListener =new RouteAdapter.OnItemClickListener() {
             @Override
-            public void onClickListener(Integer routeId, String source, String destination) {
+            public void onItemClick(Integer routeId, String routeDestination, String routeSource) {
 
             }
         };
@@ -72,18 +73,17 @@ public class SearchRouteId extends Fragment {
             @Override
             public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
-                    routesList=response.body().getRoutesList();
-                    recyclerViewRouteId.setAdapter(new RouteAdapter(routesList, getContext(), new RouteAdapter.OnRouteItemClickListener() {
+                    routesList=response.body().getResult();
+                    recyclerViewRouteId.setAdapter(new RouteAdapter(getContext(), routesList, new RouteAdapter.OnItemClickListener() {
                         @RequiresApi(api = Build.VERSION_CODES.N)
                         @Override
-                        public void onClickListener(Integer routeId, String source, String destination) {
-                            Intent i= new Intent(getContext(),AddSchedule.class);
+                        public void onItemClick(Integer routeId, String routeDestination, String routeSource) {
+                            Intent i= new Intent(getContext(), AddSchedule.class);
                             i.putExtra("routeId",routeId);
-                            i.putExtra("source",source);
-                            i.putExtra("destination",destination);
+                            i.putExtra("source", routeSource);
+                            i.putExtra("destination", routeDestination);
                             startActivity(i);
-                        }
-                    }));
+                        }}));
                 }
             }
 

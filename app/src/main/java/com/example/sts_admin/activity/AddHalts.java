@@ -158,7 +158,7 @@ public class AddHalts extends AppCompatActivity {
             public void onResponse(Call<HaltResponse> call, Response<HaltResponse> response) {
                 HaltResponse sourceResponse=response.body();
                 if (response.body() != null && response.isSuccessful() && response.body().getStatus() == 200) {
-                    Toast.makeText(AddHalts.this, "halt added" + sourceResponse.getHalts().getName() + "successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddHalts.this, "halt added successfully", Toast.LENGTH_SHORT).show();
                 }
             }
 
