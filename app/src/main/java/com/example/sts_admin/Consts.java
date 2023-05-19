@@ -7,7 +7,6 @@ public class Consts {
     public static final String BASE_URL_ADMIN = "http://" + IP_ADDRESS + "/employee/";
     public static final String BASE_URL_SCHEDULE = "http://" + IP_ADDRESS + "/schedule/";
     public static final String BASE_URL_BOOKING = "http://" + IP_ADDRESS + "/booking/";
-
     public static final String BASE_URL_BUS = "http://" + IP_ADDRESS + "/bus/";
 
     // Endpoints

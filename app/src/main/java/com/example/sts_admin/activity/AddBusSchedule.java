@@ -108,6 +108,7 @@ public class AddBusSchedule extends AppCompatActivity {
         AddBusScheduleRequest addBusScheduleRequest = new AddBusScheduleRequest();
         addBusScheduleRequest.setBusId(sharedPrefManager.getBusDetails().getId());
         addBusScheduleRequest.setScheduleId(sharedPrefManager.getScheduleDetails().getId());
+        addBusScheduleRequest.setDriverId(4);
         addBusScheduleRequest.setDate(getSelectedDate());
         return addBusScheduleRequest;
     }
@@ -121,10 +122,10 @@ public class AddBusSchedule extends AppCompatActivity {
                     Log.i("TAG", "onResponse: success "+response.body());
                     Toast.makeText(AddBusSchedule.this, "Bus scheduled successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AddBusSchedule.this, AdminDashboard.class);
-                    // setFlags clears previous tasks
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    // setFlags clears previous tasks
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    finish();
+//                    finish();
                 }
             }
 
@@ -147,9 +148,6 @@ public class AddBusSchedule extends AppCompatActivity {
         etBusid.setText(busRegNo);
         etScheduleId.setText(schedule);
     }
-
-
-
 
 
     public void getCurrentDate(){
@@ -207,13 +205,7 @@ public class AddBusSchedule extends AppCompatActivity {
         etScheduleId.setText("Scheduled at : "+srcdest);
     }
 
-
-
-
-
     // getter and setter
-
-
     public Integer getBusId() {
         return busId;
     }
