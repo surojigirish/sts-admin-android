@@ -34,7 +34,7 @@ public class AddBusSchedule extends AppCompatActivity {
     String selectedDate;
     Integer scheduleId,busId;
 
-    TextView title,datePicker;
+    TextView title,datePicker,textView5;
     private int year, month, dayOfMonth;
     TextView etBusid,etScheduleId,tvDriver;
     Button addBusScheduleBtn;
@@ -199,6 +199,7 @@ public class AddBusSchedule extends AppCompatActivity {
 
     public void initComponents(){
         title = findViewById(R.id.tv_bus_schedule_title);
+        textView5 = findViewById(R.id.textView5);
         etBusid = findViewById(R.id.et_bus_id);
         etScheduleId = findViewById(R.id.et_schedule_id);
         datePicker = findViewById(R.id.tv_date_picker);
@@ -218,6 +219,7 @@ public class AddBusSchedule extends AppCompatActivity {
         datePicker.setVisibility(View.GONE);
         addBusScheduleBtn.setVisibility(View.GONE);
         tvDriver.setVisibility(View.GONE);
+        textView5.setVisibility(View.GONE);
     }
 
     public void getSearchBusData(){
