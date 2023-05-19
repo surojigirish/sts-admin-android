@@ -26,10 +26,14 @@ public class Schedule {
     @SerializedName("id")
     private Integer id;
 
-    public Schedule(Integer id, String routeSource, String routeDestination) {
-        this.routeDestination = routeDestination;
-        this.routeSource = routeSource;
-        this.id = id;
+
+
+    public Schedule(Integer scheduleId, String source, String destination) {
+        this.id = scheduleId;
+        this.routeSource = source;
+        this.routeDestination  = destination;
+
+
     }
 
     public String getArrivalAt() {

@@ -1,4 +1,4 @@
-package com.example.sts_admin.frag;
+package com.example.sts_admin.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -78,11 +78,7 @@ public class SearchBusId extends Fragment {
                             sharedPrefManager.saveBus(busId, busRegNo);
                             /*i.putExtra("busId",busId);
                             i.putExtra("busRegNo",busRegNo);*/
-
                             startActivity(i);
-
-
-
                         }
                     }));
                 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SearchRouteId">
+    tools:context=".fragments.SearchDriver">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:layout_margin="8dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewRouteId"
+            android:id="@+id/recyclerView_driver"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

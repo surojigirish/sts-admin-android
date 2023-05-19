@@ -19,6 +19,13 @@ public class Driver {
     @SerializedName("empId")
     private Integer empId;
 
+    public Driver(Integer empId, String empNo, String fname, String lname) {
+        this.empId = empId;
+        this.employeeNo = empNo;
+        this.firstname = fname;
+        this.lastname = lname;
+    }
+
     public String getContact() {
         return contact;
     }

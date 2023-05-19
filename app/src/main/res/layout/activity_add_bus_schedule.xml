@@ -23,9 +23,10 @@
         android:id="@+id/et_bus_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="72dp"
         android:text="bus id"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_bus_schedule_title" />
 
@@ -33,41 +34,61 @@
         android:id="@+id/et_schedule_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="42dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_bus_id" />
+
+    <TextView
+        android:id="@+id/et_driver_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:text="driver id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_schedule_id" />
 
     <TextView
         android:id="@+id/tv_date_picker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="50dp"
         android:text="date"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_schedule_id" />
+        app:layout_constraintTop_toBottomOf="@+id/et_driver_id" />
+
 
     <Button
         android:id="@+id/add_bus_details_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="47dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="58dp"
+        android:layout_marginEnd="105dp"
         android:text="Add bus Schedule"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_date_picker" />
 
+
     <FrameLayout
         android:id="@+id/frameLayout_busSchedule"
         android:layout_width="0dp"
         android:layout_height="0dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

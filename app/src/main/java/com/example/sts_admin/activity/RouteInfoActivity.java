@@ -9,9 +9,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,8 @@ public class RouteInfoActivity extends AppCompatActivity {
     TextView tvDistance, tvFare;
     EditText etRouteInfo, etSource, etDestination;
     Button btnAddRouteInfo;
+    Spinner busTypeSpinner;
+    String busTypeItem;
     LinearLayout llRouteInfoViewHolder;
 
     // get data from shared pref manager
@@ -148,6 +153,19 @@ public class RouteInfoActivity extends AppCompatActivity {
             }
         });
 
+        busType();
+        busTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                setBusTypeItem(adapterView.getItemAtPosition(position).toString());
+                Log.i("TAG", "onItemSelected: selected item "+adapterView.getItemAtPosition(position).toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Handle the case when no item is selected
+            }
+        });
+
         double doubleSourceLat = 0.0;
         double doubleSourceLong = 0.0;
         double doubleDestinationLat = 0.0;
@@ -208,12 +226,16 @@ public class RouteInfoActivity extends AppCompatActivity {
         etSource = findViewById(R.id.tv_source);
         etDestination = findViewById(R.id.tv_destination);
 
+
         // textview
         tvDistance = findViewById(R.id.tv_distance);
         tvFare = findViewById(R.id.tv_fare);
 
         // button
         btnAddRouteInfo = findViewById(R.id.btn_add_route_info);
+
+        // spinner
+        busTypeSpinner = findViewById(R.id.bus_type_spinner);
 
         // linearlayout
         llRouteInfoViewHolder = findViewById(R.id.linearlayout_route_info_view_holder);
@@ -252,6 +274,7 @@ public class RouteInfoActivity extends AppCompatActivity {
         request.setRouteId(routeId);
         request.setSourceId(sourceId);
         request.setDestinationId(destinationId);
+        request.setBusType(getBusTypeItem());
         request.setDistance(distance);
         request.setFare(fare);
         return request;
@@ -293,5 +316,23 @@ public class RouteInfoActivity extends AppCompatActivity {
         etDestination.setText(R.string.destination_id);
         tvDistance.setText(R.string.distance);
         tvFare.setText(R.string.fare);
+    }
+
+
+// adapter for bus type spinner
+    public void busType(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.bus_type_spinner_items, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        busTypeSpinner.setAdapter(adapter);
+    }
+
+    // getter and setter for bus type spinner
+    public String getBusTypeItem() {
+        return busTypeItem;
+    }
+
+    public void setBusTypeItem(String busTypeItem) {
+        this.busTypeItem = busTypeItem;
     }
 }

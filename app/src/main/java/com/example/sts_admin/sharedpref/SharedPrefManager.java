@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 import com.example.sts_admin.model.Admin;
 import com.example.sts_admin.model.Bus;
+import com.example.sts_admin.model.Driver;
 import com.example.sts_admin.model.Schedule;
 
 public class SharedPrefManager {
@@ -79,6 +80,31 @@ public class SharedPrefManager {
         return new Schedule(sharedPreferences.getInt("scheduleId", 0),
                 sharedPreferences.getString("source", ""),
                 sharedPreferences.getString("destination", ""));
+    }
+
+    public void saveDriver(Integer empId, String employeeNo,String firstnaame,String lastname) {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putInt("empId", empId);
+        editor.putString("empNO", employeeNo);
+        editor.putString("fname", firstnaame);
+        editor.putString("lname", lastname);
+        editor.apply();
+    }
+
+    public Driver getDriverDetails() {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+        return new Driver(sharedPreferences.getInt("empId", 0),
+                sharedPreferences.getString("empNo", ""),
+                sharedPreferences.getString("fname", ""),
+                sharedPreferences.getString("lname", ""));
+    }
+
+    public void clearScheduleData() {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 
 }

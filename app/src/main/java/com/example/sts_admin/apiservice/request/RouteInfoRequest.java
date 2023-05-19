@@ -14,6 +14,16 @@ public class RouteInfoRequest {
     private String distance;
     @SerializedName("fare")
     private String fare;
+    @SerializedName("bus-type")
+    private String busType;
+
+    public String getBusType(String busTypeItem) {
+        return busType;
+    }
+
+    public void setBusType(String busType) {
+        this.busType = busType;
+    }
 
     public Integer getRouteId() {
         return routeId;
