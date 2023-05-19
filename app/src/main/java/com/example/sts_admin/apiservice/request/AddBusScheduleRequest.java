@@ -14,8 +14,19 @@ public class AddBusScheduleRequest {
     private Integer busId;
     @SerializedName("schedule-id")
     private Integer scheduleId;
+
+    @SerializedName("employee-id")
+    private Integer driverid;
     @SerializedName("date")
     private String date;
+
+    public Integer getDriverid() {
+        return driverid;
+    }
+
+    public void setDriverid(Integer driverid) {
+        this.driverid = driverid;
+    }
 
     public Integer getBusId(Integer busId) {
         return this.busId;

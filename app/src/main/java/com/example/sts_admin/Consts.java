@@ -1,7 +1,8 @@
 package com.example.sts_admin;
 
 public class Consts {
-    public static final String IP_ADDRESS = "3.110.42.226";
+//    public static final String IP_ADDRESS = "3.110.42.226";
+    public static final String IP_ADDRESS = "192.168.232.166:5000";
 
     // Base urls
     public static final String BASE_URL_ADMIN = "http://" + IP_ADDRESS + "/employee/";

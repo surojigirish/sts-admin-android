@@ -51,7 +51,7 @@ public class DriverDetails extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         userDriverList = response.body().getEmployee();
-                        recyclerView.setAdapter(new DriverAdapter(getApplicationContext(), userDriverList));
+                        recyclerView.setAdapter(new DriverAdapter(userDriverList, getApplicationContext()));
 
                     }
                 } else {
