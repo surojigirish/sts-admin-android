@@ -22,6 +22,7 @@ import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.assets.TimeDurationCalculator;
 import com.example.sts_admin.fragments.SearchRouteId;
+import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -44,6 +45,8 @@ public class AddSchedule extends AppCompatActivity {
     // Declare global variables
     int hour, minute;
 
+    SharedPrefManager sharedPrefManager;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +61,8 @@ public class AddSchedule extends AppCompatActivity {
         durationTime=findViewById(R.id.et_duration);
         tv_routeId =findViewById(R.id.tvrouteId);
         text=findViewById(R.id.textView4);
+
+        sharedPrefManager=new SharedPrefManager(getApplicationContext());
 
 //        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.class.getModifiers(), android.R.layout.simple_dropdown_item_1line);
 
@@ -205,8 +210,13 @@ public class AddSchedule extends AppCompatActivity {
         String source=i.getStringExtra("source");
         String destination=i.getStringExtra("destination");
         String tvSrcDst = source +" to "+destination;
+        tv_routeId.setText( tvSrcDst);
 
-        tv_routeId.setText(tvSrcDst);
+//        if (source.equals(null) && destination.equals(null)){
+//            tv_routeId.setText("add route");
+//        }else {
+
+//        }
     }
 
 
@@ -229,6 +239,8 @@ public class AddSchedule extends AppCompatActivity {
                 if (response.isSuccessful()){
                     if(scheduleResponse!=null && scheduleResponse.getStatus() == 200 ){
                         Toast.makeText(AddSchedule.this, "Schedule Added", Toast.LENGTH_LONG).show();
+
+
                     }
                 } else {
                     Toast.makeText(AddSchedule.this, "Schedule Failed", Toast.LENGTH_LONG).show();

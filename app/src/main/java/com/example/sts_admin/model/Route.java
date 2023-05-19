@@ -1,10 +1,5 @@
 package com.example.sts_admin.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.annotation.NonNull;
-
 import com.google.gson.annotations.SerializedName;
 
 public class Route {
@@ -16,7 +11,7 @@ public class Route {
     @SerializedName("source")
     private String source;
 
-    public Route(int routeId, String source, String destination) {
+    public Route(String destination, int routeId, String source) {
         this.destination = destination;
         this.routeId = routeId;
         this.source = source;

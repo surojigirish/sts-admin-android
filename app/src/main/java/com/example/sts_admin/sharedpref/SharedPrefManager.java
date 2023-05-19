@@ -3,8 +3,10 @@ package com.example.sts_admin.sharedpref;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.model.Admin;
 import com.example.sts_admin.model.Bus;
+import com.example.sts_admin.model.Route;
 import com.example.sts_admin.model.Routes;
 import com.example.sts_admin.model.Schedule;
 
@@ -82,15 +84,19 @@ public class SharedPrefManager {
                 sharedPreferences.getString("destination", ""));
     }
 
-    public void saveRouteSchedule(String departureTime,String arrivalTime, String duration, Integer routeId){
-        sharedPreferences=context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME,Context.MODE_PRIVATE);
-        editor=sharedPreferences.edit();
-        editor.putString("departureTime",departureTime);
-        editor.putString("arrivalTime",arrivalTime);
-
+//    public void saveRoute(String departureAt, String arrivalAt) {
+//        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("departure", departureAt);
+//        editor.putString("arrival", arrivalAt);
+//        editor.apply();
     }
 
+//    public Schedule getSchedule() {
+//        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+//        return new Schedule(
+//                sharedPreferences.getString("departure", ""),
+//                sharedPreferences.getString("source", ""));
+//    }
 
 
-
-}
