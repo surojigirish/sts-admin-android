@@ -1,5 +1,6 @@
 package com.example.sts_admin.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,7 +24,7 @@ import retrofit2.Response;
 public class DriverRegistration extends AppCompatActivity {
 
     TextView text;
-    EditText firstname,email, lastname,password,licenseNo, contactNo;
+    EditText firstname,email, lastname,password,licenseNo, contactNo, gender;
     Button regBtn, driverDetailsBtn;
 
     SharedPrefManager sharedPrefManager;
@@ -55,6 +56,7 @@ public class DriverRegistration extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("WrongViewCast")
     public void initViews() {
         text=findViewById(R.id.driverText);
         firstname =findViewById(R.id.driverName);
@@ -65,6 +67,7 @@ public class DriverRegistration extends AppCompatActivity {
         licenseNo = findViewById(R.id.et_driver_license);
         contactNo = findViewById(R.id.et_contact_number);
         driverDetailsBtn=findViewById(R.id.driverDetailsBtn);
+        gender=findViewById(R.id.et_gender);
 
     }
 
@@ -76,12 +79,19 @@ public class DriverRegistration extends AppCompatActivity {
             registerRequest.setPassword(password.getText().toString());
             registerRequest.setLicenseNo(licenseNo.getText().toString());
             registerRequest.setContact(contactNo.getText().toString());
+            registerRequest.setGender(gender.getText().toString());
             registerRequest.setRole("driver");
+
             return registerRequest;
+    }
+
+    private void validation(){
+
     }
 
 
     public void register(DriverRegisterRequest registerRequest){
+
         Call<DriverRegisterResponse> registerResponseCall= Client.getInstance(Consts.BASE_URL_ADMIN).getRoute().driverRegister(getUserSession(),registerRequest);
 
         registerResponseCall.enqueue(new Callback<DriverRegisterResponse>() {
