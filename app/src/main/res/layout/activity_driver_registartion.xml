@@ -7,13 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".activity.AdminLogin">
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_margin="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -24,6 +26,7 @@
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
+
 
             <EditText
                 android:layout_margin="8dp"
@@ -80,6 +83,19 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/driverEmail"
+                android:drawableLeft="@drawable/baseline_person_pin_24"
+                android:padding="10dp"/>
+            <EditText
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Gender"
+                android:id="@+id/et_gender"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/button_border"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/et_contact_number"
                 android:drawableLeft="@drawable/baseline_person_pin_24"
                 android:padding="10dp"/>
 

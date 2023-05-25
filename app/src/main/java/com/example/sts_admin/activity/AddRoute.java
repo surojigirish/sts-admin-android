@@ -23,9 +23,10 @@ import retrofit2.Response;
 public class AddRoute extends AppCompatActivity {
 
     EditText source,destination;
-    Button addRoute;
+    Button addNewRoute;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,15 +34,14 @@ public class AddRoute extends AppCompatActivity {
 
         source=findViewById(R.id.source);
         destination=findViewById(R.id.destination);
-        addRoute=findViewById(R.id.button2);
+        addNewRoute=findViewById(R.id.add_route_btn);
 
-        addRoute.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                route(routeRequest());
-            }
-        });
-
+      addNewRoute.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              route(routeRequest());
+          }
+      });
 
     }
 

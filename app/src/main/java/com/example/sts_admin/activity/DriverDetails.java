@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.sts_admin.Consts;
@@ -21,13 +23,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DriverDetails extends AppCompatActivity {
+public class DriverDetails extends AppCompatActivity{
 
     RecyclerView recyclerView;
     SharedPrefManager sharedPrefManager;
-
+    DriverAdapter.OnClickDriverDetails onClickDriverDetails;
     List<Driver> userDriverList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +41,15 @@ public class DriverDetails extends AppCompatActivity {
 
         getAllDrivers();
 
+        onClickDriverDetails = new DriverAdapter.OnClickDriverDetails() {
+            @Override
+            public void onClickItem(String driverFirstName, String driverLastName, String driverLicenseNo, String driverContact) {
+
+            }
+        };
+
     }
+
 
     private void getAllDrivers() {
 
@@ -51,7 +60,19 @@ public class DriverDetails extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         userDriverList = response.body().getEmployee();
-                        recyclerView.setAdapter(new DriverAdapter(getApplicationContext(), userDriverList));
+                        recyclerView.setAdapter(new DriverAdapter(userDriverList, getApplicationContext(), new DriverAdapter.OnClickDriverDetails() {
+                            @Override
+                            public void onClickItem(String driverFirstName, String driverLastName, String driverLicenseNo, String driverContact) {
+                                // go to show driver details
+                                Intent i = new Intent(getApplicationContext(),DriverInfoList.class);
+                                i.putExtra("firstname", driverFirstName);
+                                i.putExtra("lastname", driverLastName);
+                                i.putExtra("licenseNo", driverLicenseNo);
+                                i.putExtra("contact", driverContact);
+                                startActivity(i);
+
+                            }
+                        }));
 
                     }
                 } else {
@@ -70,7 +91,6 @@ public class DriverDetails extends AppCompatActivity {
 
     public String getUserSession() {
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
-
         return sharedPrefManager.getUser().getToken();
     }
 
