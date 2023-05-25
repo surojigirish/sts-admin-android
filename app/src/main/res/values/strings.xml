@@ -18,7 +18,6 @@
     <string name="btn_add_route_info">add route-info</string>
 
 
-
     <!-- bus status spinner items -->
     <string-array name="bus_status_spinner_items">
         <item>ACTIVE</item>

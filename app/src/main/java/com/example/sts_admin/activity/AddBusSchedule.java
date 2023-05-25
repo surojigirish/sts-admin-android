@@ -22,6 +22,7 @@ import com.example.sts_admin.apiservice.request.AddBusScheduleRequest;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
 import com.example.sts_admin.frag.SearchBusId;
 import com.example.sts_admin.frag.SearchScheduleId;
+import com.example.sts_admin.model.Driver;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.Calendar;
@@ -37,7 +38,7 @@ public class AddBusSchedule extends AppCompatActivity {
 
     TextView title,datePicker;
     private int year, month, dayOfMonth;
-    TextView etBusid,etScheduleId;
+    TextView etBusid,etScheduleId,etDrivers;
     Button addBusScheduleBtn;
 
     // shared pref
@@ -64,6 +65,14 @@ public class AddBusSchedule extends AppCompatActivity {
             }
         });
         getSearchBusData();
+
+        etDrivers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 
         etScheduleId.setOnClickListener(new View.OnClickListener() {
             @Override

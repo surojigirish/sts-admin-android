@@ -39,6 +39,16 @@
         app:layout_constraintTop_toBottomOf="@+id/et_bus_id" />
 
     <TextView
+        android:id="@+id/et_drivers"
+        android:layout_width="0dp"
+        android:text="Drivers"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_schedule_id"/>
+
+    <TextView
         android:id="@+id/tv_date_picker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -47,7 +57,7 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_schedule_id" />
+        app:layout_constraintTop_toBottomOf="@+id/et_drivers" />
 
     <Button
         android:id="@+id/add_bus_details_btn"
@@ -63,11 +73,12 @@
         android:id="@+id/frameLayout_busSchedule"
         android:layout_width="0dp"
         android:layout_height="0dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
