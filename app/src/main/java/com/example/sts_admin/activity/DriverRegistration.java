@@ -42,6 +42,7 @@ public class DriverRegistration extends AppCompatActivity {
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                validation();
 
                register(registerRequest());
             }
@@ -69,6 +70,7 @@ public class DriverRegistration extends AppCompatActivity {
         driverDetailsBtn=findViewById(R.id.driverDetailsBtn);
         gender=findViewById(R.id.et_gender);
 
+
     }
 
     public DriverRegisterRequest registerRequest(){
@@ -85,11 +87,37 @@ public class DriverRegistration extends AppCompatActivity {
             return registerRequest;
     }
 
-    private void validation(){
+    private void validation() {
+
+        if (firstname.getText().toString().isEmpty()) {
+            firstname.setError("Field cannot be empty");
+        } else if (firstname.getText().toString().length() <= 3) {
+            firstname.setError(",ore than 3 char req");
+        }
+
+        if (lastname.getText().toString().isEmpty()) {
+            lastname.setError("Field cannot be empty");
+        } else if (lastname.getText().toString().length() <= 3) {
+            lastname.setError(",ore than 3 char req");
+        }
+
+//        if (email.getText().toString().isEmpty()) {
+//            email.setError("Field cannot be empty");
+//        } else {
+//            if (android.util.Patterns.EMAIL_ADDRESS.matcher((CharSequence) email).matches()) {
+//                email.setText("Valid email address");
+//            } else {
+//                email.setText("Invalid email address");
+//            }
+//        }
+        if (password.getText().toString().isEmpty()){
+            password.setError("password is must");
+        } else if (password.getText().toString().length()<=5) {
+            password.setError("should contain more than 5 char");
+
+        }
 
     }
-
-
     public void register(DriverRegisterRequest registerRequest){
 
         Call<DriverRegisterResponse> registerResponseCall= Client.getInstance(Consts.BASE_URL_ADMIN).getRoute().driverRegister(getUserSession(),registerRequest);

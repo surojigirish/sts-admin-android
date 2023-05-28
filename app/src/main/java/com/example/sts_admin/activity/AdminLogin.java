@@ -1,5 +1,6 @@
 package com.example.sts_admin.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,12 +33,13 @@ public class AdminLogin extends AppCompatActivity {
 
     TextView text;
     EditText email, password;
-    Button loginBtn;
+    Button loginBtn,driverLoginBtn;
     TextView tvIpAddress;
 
     SharedPrefManager sharedPrefManager;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class AdminLogin extends AppCompatActivity {
         email = findViewById(R.id.adminUsername);
         password = findViewById(R.id.adminPassword);
         loginBtn = findViewById(R.id.adminLoginBtn);
+        driverLoginBtn=findViewById(R.id.driverLogin);
 
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
 
@@ -58,7 +61,17 @@ public class AdminLogin extends AppCompatActivity {
                 login(loginRequest());
             }
         });
+
+
+        driverLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(AdminLogin.this,DriverLogin.class);
+                startActivity(i);
+            }
+        });
     }
+
 
     @Override
     protected void onStart() {

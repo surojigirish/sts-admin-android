@@ -52,12 +52,13 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
                 Integer pos = holder.getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION && onClickDriverDetails != null){
                     Driver selectedDriver = driverList.get(pos);
+                    Integer driverId=selectedDriver.getEmpId();
                     String driverFirstName = selectedDriver.getFirstname();
                     String driverLastName = selectedDriver.getLastname();
                     String driverLicenseNo = selectedDriver.getLicenseNo();
                     String driverContact = selectedDriver.getContact();
 
-                    onClickDriverDetails.onClickItem(driverFirstName,driverLastName,driverLicenseNo,driverContact);
+                    onClickDriverDetails.onClickItem(driverId,driverFirstName,driverLastName,driverLicenseNo,driverContact);
 
                 }
 
@@ -87,7 +88,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
 
 
     public interface OnClickDriverDetails {
-        void onClickItem(String driverFirstName,String driverLastName,String driverLicenseNo,String driverContact);
+        void onClickItem(Integer driverId,String driverFirstName,String driverLastName,String driverLicenseNo,String driverContact);
 
     }
 

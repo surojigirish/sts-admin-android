@@ -18,6 +18,18 @@
         android:theme="@style/Theme.STS_ADMIN"
         tools:targetApi="31">
         <activity
+            android:name=".activity.BusScheduleInfoListScanner"
+            android:exported="false" />
+        <activity
+            android:name=".activity.BusScheduleList"
+            android:exported="false" />
+        <activity
+            android:name=".activity.DriverDashboard"
+            android:exported="false" />
+        <activity
+            android:name=".activity.DriverLogin"
+            android:exported="false" />
+        <activity
             android:name=".activity.DriverInfoList"
             android:exported="false" />
         <activity

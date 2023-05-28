@@ -17,11 +17,14 @@ import android.widget.Toast;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
+import com.example.sts_admin.adapters.DriverAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.AddBusScheduleRequest;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
+import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
 import com.example.sts_admin.frag.SearchBusId;
 import com.example.sts_admin.frag.SearchScheduleId;
+import com.example.sts_admin.fragments.SearchDriver;
 import com.example.sts_admin.model.Driver;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
@@ -34,7 +37,7 @@ import retrofit2.Response;
 public class AddBusSchedule extends AppCompatActivity {
 
     String selectedDate;
-    Integer scheduleId,busId;
+    Integer scheduleId,busId,driverId;
 
     TextView title,datePicker;
     private int year, month, dayOfMonth;
@@ -69,9 +72,18 @@ public class AddBusSchedule extends AppCompatActivity {
         etDrivers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SearchDriver frag = new SearchDriver();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frameLayout_busSchedule,frag);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+                hideViewsOnFragTransaction();
+
 
             }
         });
+        getDriverData();
 
 
         etScheduleId.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +161,7 @@ public class AddBusSchedule extends AppCompatActivity {
     public void showTextViewData() {
         String busRegNo = sharedPrefManager.getBusDetails().getRegNo();
         String schedule = sharedPrefManager.getScheduleDetails().getRouteSource() + " to " + sharedPrefManager.getScheduleDetails().getRouteDestination();
+        String driverName= sharedPrefManager.getDriverDetails().getFirstname();
 
         if (busRegNo.isEmpty()) {
             busRegNo = "SELECT BUS";
@@ -156,6 +169,8 @@ public class AddBusSchedule extends AppCompatActivity {
 
         etBusid.setText(busRegNo);
         etScheduleId.setText(schedule);
+        etDrivers.setText(driverName);
+
     }
 
 
@@ -188,6 +203,7 @@ public class AddBusSchedule extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
+        etDrivers=findViewById(R.id.et_drivers);
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
@@ -198,6 +214,7 @@ public class AddBusSchedule extends AppCompatActivity {
         etScheduleId.setVisibility(View.GONE);
         datePicker.setVisibility(View.GONE);
         addBusScheduleBtn.setVisibility(View.GONE);
+        etDrivers.setVisibility(View.GONE);
     }
 
     public void getSearchBusData(){
@@ -217,12 +234,31 @@ public class AddBusSchedule extends AppCompatActivity {
         etScheduleId.setText("Scheduled at : "+srcdest);
     }
 
+    public void getDriverData(){
+        Intent i= getIntent();
+        setDriverId(i.getIntExtra("driverId",0));
+        String driverFirstName= i.getStringExtra("driverFirstName");
+        String driverLastName= i.getStringExtra("driverLastName");
+        String driverFirstLast = driverFirstName +" to "+driverLastName;
+        etDrivers.setText("Driver Name :"+driverFirstLast);
+
+
+    }
+
 
 
 
 
     // getter and setter
 
+
+    public Integer getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(Integer driverId) {
+        this.driverId = driverId;
+    }
 
     public Integer getBusId() {
         return busId;

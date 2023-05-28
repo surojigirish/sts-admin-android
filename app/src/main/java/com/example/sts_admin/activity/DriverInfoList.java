@@ -10,7 +10,7 @@ import com.example.sts_admin.R;
 
 public class DriverInfoList extends AppCompatActivity {
 
-    TextView driverFirstName, driverLastName, driverLicenseNo,driverContactNo;
+    TextView driverFirstName, driverLastName, driverLicenseNo,driverContactNo,driverEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +21,19 @@ public class DriverInfoList extends AppCompatActivity {
         driverLastName=findViewById(R.id.driver_last_name);
         driverLicenseNo=findViewById(R.id.driver_license_no);
         driverContactNo=findViewById(R.id.driver_contact_no);
+        driverEmail=findViewById(R.id.driver_email);
 
         Intent i = getIntent();
         String firstname = i.getStringExtra("firstname");
         String lastname = i.getStringExtra("lastname");
         String licenseNo = i.getStringExtra("licenseNo");
         String contact = i.getStringExtra("contact");
+        String email = i.getStringExtra("email");
+
         driverFirstName.setText(firstname);
         driverLastName.setText(lastname);
         driverLicenseNo.setText(licenseNo);
         driverContactNo.setText(contact);
+        driverEmail.setText(email);
     }
 }

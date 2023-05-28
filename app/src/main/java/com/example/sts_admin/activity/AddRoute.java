@@ -60,13 +60,14 @@ public class AddRoute extends AppCompatActivity {
         addResponseCall.enqueue(new Callback<RouteResponse>() {
             @Override
             public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
-                RouteResponse addResponse = response.body();
                 if (response.isSuccessful()) {
-                    if (addResponse != null && addResponse.getStatus() == 200) {
-                        Toast.makeText(AddRoute.this, "Route Added  Successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AddRoute.this, UpdateSchedule.class);
-                        startActivity(intent);
-                        finish();
+                    if (response.body() != null && response.body().getStatus() == 200) {
+
+                                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+
+//                        Intent intent = new Intent(AddRoute.this, UpdateSchedule.class);
+//                        startActivity(intent);
+//                        finish();
                     } else {
                         Toast.makeText(AddRoute.this, "Failed To Add", Toast.LENGTH_SHORT).show();
                     }

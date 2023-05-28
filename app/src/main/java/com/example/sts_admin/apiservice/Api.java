@@ -10,6 +10,7 @@ import com.example.sts_admin.apiservice.request.HaltRequest;
 import com.example.sts_admin.apiservice.request.RouteInfoRequest;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
+import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
 import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
@@ -85,4 +86,7 @@ public interface Api {
     @POST(Consts.ENDPOINT_ADD_BUS_SCHEDULE)
     Call<BusScheduleResponse> addBusSchedule(@Body AddBusScheduleRequest addBusScheduleRequest);
 
+
+    @GET(Consts.ENDPOINT_BUS_SCHEDULE_LIST_ITEMS)
+    Call<BusScheduleDetailsResponse> getAllBusScheduleList();
 }

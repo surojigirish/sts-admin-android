@@ -43,7 +43,7 @@ public class DriverDetails extends AppCompatActivity{
 
         onClickDriverDetails = new DriverAdapter.OnClickDriverDetails() {
             @Override
-            public void onClickItem(String driverFirstName, String driverLastName, String driverLicenseNo, String driverContact) {
+            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName, String driverLicenseNo, String driverContact) {
 
             }
         };
@@ -62,9 +62,11 @@ public class DriverDetails extends AppCompatActivity{
                         userDriverList = response.body().getEmployee();
                         recyclerView.setAdapter(new DriverAdapter(userDriverList, getApplicationContext(), new DriverAdapter.OnClickDriverDetails() {
                             @Override
-                            public void onClickItem(String driverFirstName, String driverLastName, String driverLicenseNo, String driverContact) {
+                            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName, String driverLicenseNo, String driverContact) {
                                 // go to show driver details
                                 Intent i = new Intent(getApplicationContext(),DriverInfoList.class);
+                                i.putExtra("email",sharedPrefManager.getUser().getEmail());
+                                i.putExtra("driverId",driverId);
                                 i.putExtra("firstname", driverFirstName);
                                 i.putExtra("lastname", driverLastName);
                                 i.putExtra("licenseNo", driverLicenseNo);
