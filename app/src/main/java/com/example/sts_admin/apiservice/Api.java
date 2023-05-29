@@ -4,6 +4,7 @@ import com.example.sts_admin.Consts;
 
 import com.example.sts_admin.apiservice.request.AddBusRequest;
 import com.example.sts_admin.apiservice.request.AddBusScheduleRequest;
+import com.example.sts_admin.apiservice.request.DriverLoginRequest;
 import com.example.sts_admin.apiservice.request.RouteRequest;
 import com.example.sts_admin.apiservice.request.DriverRegisterRequest;
 import com.example.sts_admin.apiservice.request.HaltRequest;
@@ -11,6 +12,7 @@ import com.example.sts_admin.apiservice.request.RouteInfoRequest;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
+import com.example.sts_admin.apiservice.response.DriverLoginResponse;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
 import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
@@ -40,6 +42,8 @@ public interface Api {
     @POST(Consts.ENDPOINT_ADMIN_LOGIN)
     Call<AdminLoginResponse> adminLogin(@Body AdminLoginRequest loginRequest);
 
+    @POST(Consts.ENDPOINT_DRIVER_LOGIN)
+    Call<DriverLoginResponse> driverLogin(@Body DriverLoginRequest driverLoginRequest);
 
     @HTTP(method = "DELETE", path = Consts.ENDPOINT_ADMIN_LOGOUT, hasBody = true)
     Call<AdminLogoutResponse> logout(@Body AdminLogoutRequest logoutRequest);
@@ -89,4 +93,5 @@ public interface Api {
 
     @GET(Consts.ENDPOINT_BUS_SCHEDULE_LIST_ITEMS)
     Call<BusScheduleDetailsResponse> getAllBusScheduleList();
+
 }

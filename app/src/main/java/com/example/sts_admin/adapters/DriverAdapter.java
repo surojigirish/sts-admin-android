@@ -18,12 +18,12 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
 
     List<Driver> driverList;
     Context context;
-    OnClickDriverDetails onClickDriverDetails;
+    OnItemClickListener onItemClickListener;
 
-    public DriverAdapter(List<Driver> driverList, Context context, OnClickDriverDetails onClickDriverDetails) {
+    public DriverAdapter(List<Driver> driverList, Context context, OnItemClickListener onItemClickListener) {
         this.driverList = driverList;
         this.context = context;
-        this.onClickDriverDetails = onClickDriverDetails;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -50,15 +50,15 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
             @Override
             public void onClick(View view) {
                 Integer pos = holder.getAdapterPosition();
-                if (pos != RecyclerView.NO_POSITION && onClickDriverDetails != null){
+                if (pos != RecyclerView.NO_POSITION && onItemClickListener != null){
                     Driver selectedDriver = driverList.get(pos);
                     Integer driverId=selectedDriver.getEmpId();
                     String driverFirstName = selectedDriver.getFirstname();
                     String driverLastName = selectedDriver.getLastname();
-                    String driverLicenseNo = selectedDriver.getLicenseNo();
-                    String driverContact = selectedDriver.getContact();
+//                    String driverLicenseNo = selectedDriver.getLicenseNo();
+//                    String driverContact = selectedDriver.getContact();
 
-                    onClickDriverDetails.onClickItem(driverId,driverFirstName,driverLastName,driverLicenseNo,driverContact);
+                    onItemClickListener.onClickItem(driverId,driverFirstName,driverLastName);
 
                 }
 
@@ -87,9 +87,10 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
     }
 
 
-    public interface OnClickDriverDetails {
-        void onClickItem(Integer driverId,String driverFirstName,String driverLastName,String driverLicenseNo,String driverContact);
+    public interface OnItemClickListener {
+        void onClickItem(Integer driverId,String driverFirstName,String driverLastName);
 
+//        void onItemClick(Integer driverId, String driverFirstName, String driverLastName);
     }
 
 }

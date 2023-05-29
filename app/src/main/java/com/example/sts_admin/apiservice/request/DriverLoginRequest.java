@@ -12,11 +12,6 @@ public class DriverLoginRequest {
        @SerializedName("ipaddress")
        private String ipaddress;
 
-    public DriverLoginRequest(String email, String password, String ipaddress) {
-        this.email = email;
-        this.password = password;
-        this.ipaddress = ipaddress;
-    }
 
     public String getEmail() {
         return email;

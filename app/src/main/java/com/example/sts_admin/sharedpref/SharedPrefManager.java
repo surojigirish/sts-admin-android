@@ -87,20 +87,20 @@ public class SharedPrefManager {
     }
 
 
-    public void saveDriver(Integer driverId, String driverFirstName,String driverLastName) {
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_DRIVER_DETAILS, Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
-        editor.putString("driverFirstName", driverFirstName);
-        editor.putString("driverLastName", driverLastName);
-        editor.putInt("driverId", driverId);
-        editor.apply();
-    }
-    public Driver getDriverDetails() {
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_DRIVER_DETAILS, Context.MODE_PRIVATE);
-        return new Driver(sharedPreferences.getString("driverFirstName",""),
-                sharedPreferences.getString("driverLastName",""),
-                sharedPreferences.getInt("driverId",0));
-    }
+//    public void saveDriver(Integer driverId, String driverFirstName,String driverLastName) {
+//        sharedPreferences = context.getSharedPreferences(SHARED_PREF_DRIVER_DETAILS, Context.MODE_PRIVATE);
+//        editor = sharedPreferences.edit();
+//        editor.putString("driverFirstName", driverFirstName);
+//        editor.putString("driverLastName", driverLastName);
+//        editor.putInt("driverId", driverId);
+//        editor.apply();
+//    }
+//    public Driver getDriverDetails() {
+//        sharedPreferences = context.getSharedPreferences(SHARED_PREF_DRIVER_DETAILS, Context.MODE_PRIVATE);
+//        return new Driver(sharedPreferences.getString("driverFirstName",""),
+//                sharedPreferences.getString("driverLastName",""),
+//                sharedPreferences.getInt("driverId",0));
+//    }
 
 //    public void saveRoute(String departureAt, String arrivalAt) {
 //        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);

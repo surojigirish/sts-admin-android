@@ -27,7 +27,7 @@ public class DriverDetails extends AppCompatActivity{
 
     RecyclerView recyclerView;
     SharedPrefManager sharedPrefManager;
-    DriverAdapter.OnClickDriverDetails onClickDriverDetails;
+    DriverAdapter.OnItemClickListener onItemClickListener;
     List<Driver> userDriverList;
 
     @Override
@@ -41,9 +41,9 @@ public class DriverDetails extends AppCompatActivity{
 
         getAllDrivers();
 
-        onClickDriverDetails = new DriverAdapter.OnClickDriverDetails() {
+        onItemClickListener = new DriverAdapter.OnItemClickListener() {
             @Override
-            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName, String driverLicenseNo, String driverContact) {
+            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName) {
 
             }
         };
@@ -60,17 +60,17 @@ public class DriverDetails extends AppCompatActivity{
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         userDriverList = response.body().getEmployee();
-                        recyclerView.setAdapter(new DriverAdapter(userDriverList, getApplicationContext(), new DriverAdapter.OnClickDriverDetails() {
+                        recyclerView.setAdapter(new DriverAdapter(userDriverList, getApplicationContext(), new DriverAdapter.OnItemClickListener() {
                             @Override
-                            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName, String driverLicenseNo, String driverContact) {
+                            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName) {
                                 // go to show driver details
                                 Intent i = new Intent(getApplicationContext(),DriverInfoList.class);
                                 i.putExtra("email",sharedPrefManager.getUser().getEmail());
                                 i.putExtra("driverId",driverId);
                                 i.putExtra("firstname", driverFirstName);
                                 i.putExtra("lastname", driverLastName);
-                                i.putExtra("licenseNo", driverLicenseNo);
-                                i.putExtra("contact", driverContact);
+//                                i.putExtra("licenseNo", driverLicenseNo);
+//                                i.putExtra("contact", driverContact);
                                 startActivity(i);
 
                             }

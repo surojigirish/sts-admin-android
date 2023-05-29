@@ -2,6 +2,10 @@ package com.example.sts_admin.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,17 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.activity.AddBusSchedule;
-import com.example.sts_admin.activity.DriverDetails;
-import com.example.sts_admin.adapters.BusAdapter;
 import com.example.sts_admin.adapters.DriverAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.EmployeeDriverResponse;
@@ -38,8 +34,7 @@ public class SearchDriver extends Fragment {
     RecyclerView recyclerView;
     List<Driver> driverList;
     SharedPrefManager sharedPrefManager;
-//    DriverAdapter.OnItemClickListener onItemClickListener;
-    DriverAdapter.OnClickDriverDetails onClickDriverDetails;
+    DriverAdapter.OnItemClickListener onItemClickListener;
 
 
     @Override
@@ -60,12 +55,14 @@ public class SearchDriver extends Fragment {
 
         getAllDrivers();
 
+        onItemClickListener = new DriverAdapter.OnItemClickListener() {
 
-        onClickDriverDetails = new DriverAdapter.OnClickDriverDetails() {
             @Override
-            public void onClickItem(Integer driverId, String driverFirstName, String driverLastName,String driverLicenseNo, String driverContact) {
+            public void onClickItem(Integer driverId, String driverFirstName, String driverLastName) {
 
             }
+
+
         };
     }
 
@@ -79,23 +76,14 @@ public class SearchDriver extends Fragment {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         driverList = response.body().getEmployee();
-//                        recyclerView.setAdapter(new DriverAdapter(driverList, getContext(), new DriverAdapter.OnItemClickListener() {
-//                            @Override
-//                            public void onItemClick(Integer id, String employeeNo, String firstName, String lastName) {
-//                                Intent i = new Intent(getContext(), AddBusSchedule.class);
-//                                Log.i("TAG", "onClickListener: " +firstName);
-////                                sharedPrefManager.saveDriver(id, employeeNo,firstName,lastName);
-//
-//                                startActivity(i);
-//
-//                            }
-//                        }));
-                        recyclerView.setAdapter(new DriverAdapter(driverList, getContext(), new DriverAdapter.OnClickDriverDetails() {
+                        recyclerView.setAdapter(new DriverAdapter(driverList, getContext(), new DriverAdapter.OnItemClickListener() {
                             @Override
-                            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName, String driverLicenseNo, String driverContact) {
+                            public void onClickItem(Integer driverId, String driverFirstName, String driverLastName) {
                                 Intent i = new Intent(getContext(), AddBusSchedule.class);
-//                                Log.i("TAG", "onClickListener: " +firstName);
-                                sharedPrefManager.saveDriver(driverId,driverFirstName,driverLastName);
+
+                                i.putExtra("driverId", driverId);
+                                i.putExtra("driverFirstName", driverFirstName);
+                                i.putExtra("driverLastName", driverLastName);
                                 startActivity(i);
                             }
                         }));

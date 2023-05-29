@@ -129,7 +129,7 @@ public class AddBusSchedule extends AppCompatActivity {
         AddBusScheduleRequest addBusScheduleRequest = new AddBusScheduleRequest();
         addBusScheduleRequest.setBusId(sharedPrefManager.getBusDetails().getId());
         addBusScheduleRequest.setScheduleId(sharedPrefManager.getScheduleDetails().getId());
-        addBusScheduleRequest.setDriver_id(4);
+        addBusScheduleRequest.setDriver_id(driverId);
         addBusScheduleRequest.setDate(getSelectedDate());
         return addBusScheduleRequest;
     }
@@ -161,7 +161,7 @@ public class AddBusSchedule extends AppCompatActivity {
     public void showTextViewData() {
         String busRegNo = sharedPrefManager.getBusDetails().getRegNo();
         String schedule = sharedPrefManager.getScheduleDetails().getRouteSource() + " to " + sharedPrefManager.getScheduleDetails().getRouteDestination();
-        String driverName= sharedPrefManager.getDriverDetails().getFirstname();
+//        String driverName= sharedPrefManager.getDriverDetails().getFirstname();
 
         if (busRegNo.isEmpty()) {
             busRegNo = "SELECT BUS";
@@ -169,7 +169,7 @@ public class AddBusSchedule extends AppCompatActivity {
 
         etBusid.setText(busRegNo);
         etScheduleId.setText(schedule);
-        etDrivers.setText(driverName);
+//        etDrivers.setText(driverName);
 
     }
 
@@ -183,7 +183,7 @@ public class AddBusSchedule extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                       setSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        setSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
                         datePicker.setText("Scheduler on : "+selectedDate);
                     }
                 },
@@ -239,7 +239,7 @@ public class AddBusSchedule extends AppCompatActivity {
         setDriverId(i.getIntExtra("driverId",0));
         String driverFirstName= i.getStringExtra("driverFirstName");
         String driverLastName= i.getStringExtra("driverLastName");
-        String driverFirstLast = driverFirstName +" to "+driverLastName;
+        String driverFirstLast = driverFirstName +" "+driverLastName;
         etDrivers.setText("Driver Name :"+driverFirstLast);
 
 
