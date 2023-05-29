@@ -86,12 +86,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:autofillHints="@string/destination_id"
+                android:inputType="text"
                 android:text="@string/destination_id"
                 android:textSize="28sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_route_destination"
-                app:layout_constraintStart_toEndOf="@+id/tv_route_destination"
-                android:inputType="text"
-                android:autofillHints="@string/destination_id" />
+                app:layout_constraintStart_toEndOf="@+id/tv_route_destination" />
+
+
+            <TextView
+                android:id="@+id/tv_bus_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="16dp"
+                android:text="Bus Type"
+                android:textSize="28sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/bus_type_spinner"
+                app:layout_constraintEnd_toStartOf="@+id/bus_type_spinner"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/bus_type_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="98dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_bus_type"
+                app:layout_constraintTop_toBottomOf="@+id/tv_destination" />
 
             <TextView
                 android:id="@+id/tv_route_distance"
@@ -108,27 +131,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginTop="22dp"
                 android:text="@string/distance"
                 android:textSize="28sp"
                 app:layout_constraintStart_toEndOf="@+id/tv_route_distance"
-                app:layout_constraintTop_toBottomOf="@+id/tv_destination" />
+                app:layout_constraintTop_toBottomOf="@+id/bus_type_spinner" />
 
             <TextView
                 android:id="@+id/tv_route_fare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
                 android:text="@string/fare_id"
                 android:textSize="28sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_fare"
-                app:layout_constraintEnd_toEndOf="@+id/tv_route_distance" />
+                app:layout_constraintEnd_toStartOf="@+id/tv_distance" />
 
             <TextView
                 android:id="@+id/tv_fare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="21dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/fare"
                 android:textSize="28sp"
                 app:layout_constraintStart_toEndOf="@+id/tv_route_fare"
@@ -138,11 +162,20 @@
                 android:id="@+id/btn_add_route_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="78dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="34dp"
                 android:text="@string/btn_add_route_info"
                 app:layout_constraintStart_toStartOf="@+id/tv_route_fare"
                 app:layout_constraintTop_toBottomOf="@+id/tv_route_fare" />
+
+            <FrameLayout
+                android:id="@+id/frameLayout_route_info"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -150,13 +183,5 @@
 
 
     <!-- frame layout to attach frags -->
-    <FrameLayout
-        android:id="@+id/frameLayout_route_info"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

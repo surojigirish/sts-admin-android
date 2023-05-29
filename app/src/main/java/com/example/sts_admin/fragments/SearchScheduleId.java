@@ -1,4 +1,4 @@
-package com.example.sts_admin.frag;
+package com.example.sts_admin.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -8,18 +8,30 @@ public class RouteInfo {
             "distance": "17",
             "fare": "17",
             "route-id": 4,
-            "source-name": 6*/
+            "source-name":
+            "bus-type"6*/
 
     @SerializedName("destination-name")
     private Integer destinationId;
     @SerializedName("distance")
     private String distance;
+
+    @SerializedName("bus-type")
+    private String busType;
     @SerializedName("fare")
     private String fare;
     @SerializedName("route-id")
     private Integer routeId;
     @SerializedName("source-name")
     private Integer sourceId;
+
+    public String getBusType() {
+        return busType;
+    }
+
+    public void setBusType(String busType) {
+        this.busType = busType;
+    }
 
     public Integer getDestinationId() {
         return destinationId;

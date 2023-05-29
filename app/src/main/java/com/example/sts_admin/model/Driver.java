@@ -27,6 +27,16 @@ public class Driver {
         this.lastname = lastname;
         this.licenseNo = licenseNo;
         this.empId = empId;
+
+//    public Driver(Integer empId, String empNo, String fname, String lname) {
+//        this.empId = empId;
+//        this.employeeNo = empNo;
+//        this.firstname = fname;
+//        this.lastname = lname;
+//
+//    }
+
+
     }
 
     public String getContact() {

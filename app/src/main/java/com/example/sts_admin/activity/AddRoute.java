@@ -36,12 +36,12 @@ public class AddRoute extends AppCompatActivity {
         destination=findViewById(R.id.destination);
         addNewRoute=findViewById(R.id.add_route_btn);
 
-      addNewRoute.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-              route(routeRequest());
-          }
-      });
+        addNewRoute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                route(routeRequest());
+            }
+        });
 
     }
 
@@ -63,7 +63,7 @@ public class AddRoute extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if (response.body() != null && response.body().getStatus() == 200) {
 
-                                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
 
 //                        Intent intent = new Intent(AddRoute.this, UpdateSchedule.class);
 //                        startActivity(intent);

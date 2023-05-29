@@ -108,7 +108,7 @@ public class SharedPrefManager {
 //        editor.putString("departure", departureAt);
 //        editor.putString("arrival", arrivalAt);
 //        editor.apply();
-    }
+}
 
 //    public Schedule getSchedule() {
 //        SharedPreferences sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);

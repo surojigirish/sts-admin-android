@@ -79,7 +79,6 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
             public void onResponse(Call<AdminLogoutResponse> call, Response<AdminLogoutResponse> response) {
                 AdminLogoutResponse logoutResponse=response.body();
                 if (response.isSuccessful()){
-//                    Toast.makeText(AdminDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
                     if(logoutResponse != null && logoutResponse.getStatus() == 200){
                         sharedPrefManager.logout();
                         Toast.makeText(AdminDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
@@ -114,32 +113,8 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
         }
     }
-
-//    public void getLoggedInUserDetails() {
-//        sharedPrefManager = new SharedPrefManager(getApplicationContext());
-//
-//        String username = "Welcome back! "
-//                + sharedPrefManager.getUser().getFirstname()
-//                + " "
-//                + sharedPrefManager.getUser().getLastname();
-//
-//        tvUsername.setText(username);
-//        tvEmail.setText(sharedPrefManager.getUser().getEmail());
-//    }
-
-    // required for logout
     public String getSessionToken() {
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
         return sharedPrefManager.getUser().getToken();
     }
-
-//    public void switchActivityOnClick(){
-//        Intent intent=new Intent(AdminDashboard.this, DriverDetails.class);
-//        startActivity(intent);
-//    }
-//
-//    void initializeViews() {
-//        tvUsername = findViewById(R.id.tv_username);
-//        tvEmail = findViewById(R.id.tv_email);
-//    }
 }

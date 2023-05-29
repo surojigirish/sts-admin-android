@@ -1,31 +1,26 @@
 package com.example.sts_admin.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
-import com.example.sts_admin.adapters.DriverAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.AddBusScheduleRequest;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
-import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
-import com.example.sts_admin.frag.SearchBusId;
-import com.example.sts_admin.frag.SearchScheduleId;
+import com.example.sts_admin.fragments.SearchBusId;
 import com.example.sts_admin.fragments.SearchDriver;
-import com.example.sts_admin.model.Driver;
+import com.example.sts_admin.fragments.SearchScheduleId;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.Calendar;
