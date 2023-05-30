@@ -90,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Gender"
+                android:inputType="textCapWords"
                 android:id="@+id/et_gender"
                 android:layout_marginLeft="30dp"
                 android:background="@drawable/button_border"

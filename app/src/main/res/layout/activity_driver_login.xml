@@ -6,46 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".activity.DriverLogin">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/black"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/wave__1_"
+        android:layout_marginBottom="537dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
     <TextView
         android:id="@+id/driverText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="392dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="455dp"
         android:gravity="center"
         android:text="Driver Login"
         android:textColor="@color/black"
         android:textSize="50sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <EditText
         android:id="@+id/driverLoginEmail"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="70dp"
         android:layout_below="@id/driverText"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/button_border"
         android:drawableLeft="@drawable/baseline_person_24"
         android:hint="Email"
+        android:layout_marginTop="25dp"
+        android:inputType="textEmailAddress"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/driverLoginPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/driverText" />
 
     <EditText
         android:id="@+id/driverLoginPassword"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="70dp"
         android:layout_below="@id/driverLoginEmail"
         android:layout_marginBottom="29dp"
         android:background="@drawable/button_border"
         android:drawableLeft="@drawable/baseline_lock_24"
         android:hint="Password"
+        android:inputType="textPassword"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/driverLoginBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +79,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/driverLoginPassword"
-        android:layout_marginBottom="215dp"
+        android:layout_marginBottom="135dp"
         android:background="@drawable/button_border"
         android:shadowRadius="@integer/material_motion_duration_medium_2"
         android:text="Login"
@@ -65,6 +87,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/driverLoginPassword"
         tools:ignore="MissingConstraints" />
