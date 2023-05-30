@@ -12,6 +12,9 @@ public class Consts {
 
     public static final String BASE_URL_BUS = "http://" + IP_ADDRESS + "/bus/";
 
+    // http://3.110.42.226/location/
+    public static final String BASE_URL_LOCATION = "http://" + IP_ADDRESS + "/location/";
+
     // Endpoints
     public static final String ENDPOINT_ADMIN_LOGIN = "admin-login";
     public static final String ENDPOINT_DRIVER_LOGIN = "driver-login";
