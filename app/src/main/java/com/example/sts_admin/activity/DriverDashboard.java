@@ -1,7 +1,9 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.AdminLogoutRequest;
 import com.example.sts_admin.apiservice.response.AdminLogoutResponse;
+import com.example.sts_admin.fragments.RouteSearchFragment;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import retrofit2.Call;
@@ -25,6 +28,9 @@ public class DriverDashboard extends AppCompatActivity {
     CardView busScheduleList;
 
     Button driverLogoutBtn;
+
+    private AppCompatButton btnValidatePassFrag;
+
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -34,6 +40,7 @@ public class DriverDashboard extends AppCompatActivity {
 
         busScheduleList=findViewById(R.id.bus_schedule_list);
         driverLogoutBtn=findViewById(R.id.driverLogoutBtn);
+
         busScheduleList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,6 +54,17 @@ public class DriverDashboard extends AppCompatActivity {
             public void onClick(View view) {
                 logout(logoutRequest());
 
+            }
+        });
+
+        // button to validate pass fragment screen
+        btnValidatePassFrag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RouteSearchFragment fragment = new RouteSearchFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frameLayout_validate_pass, fragment);
+                transaction.commit();
             }
         });
     }
@@ -90,4 +108,14 @@ public class DriverDashboard extends AppCompatActivity {
         return sharedPrefManager.getUser().getToken();
     }
 
+
+
+    /*   Validate Pass    */
+
+    // init views
+    private void initializeViews() {
+        btnValidatePassFrag = findViewById(R.id.appCompatButton_pass_validation);
+    }
+
+    //
 }
