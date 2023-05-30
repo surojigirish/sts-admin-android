@@ -76,8 +76,6 @@ public class BusScheduleList extends AppCompatActivity {
                                 intent.putExtra("scheduleId",driverScheduleId);
                                 startActivity(intent);
                                 finish();
-
-
                             }
                         }));
 
