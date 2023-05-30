@@ -16,6 +16,7 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.AdminLogoutRequest;
 import com.example.sts_admin.apiservice.response.AdminLogoutResponse;
+import com.example.sts_admin.fragments.PassValidateScheduleListFragment;
 import com.example.sts_admin.fragments.RouteSearchFragment;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
@@ -40,6 +41,7 @@ public class DriverDashboard extends AppCompatActivity {
 
         busScheduleList=findViewById(R.id.bus_schedule_list);
         driverLogoutBtn=findViewById(R.id.driverLogoutBtn);
+        initializeViews();
 
         busScheduleList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +63,13 @@ public class DriverDashboard extends AppCompatActivity {
         btnValidatePassFrag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RouteSearchFragment fragment = new RouteSearchFragment();
+                PassValidateScheduleListFragment fragment = new PassValidateScheduleListFragment();
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frameLayout_validate_pass, fragment);
                 transaction.commit();
+
+                // hide views
+                hideViewsOnFragCall();
             }
         });
     }
@@ -117,5 +122,10 @@ public class DriverDashboard extends AppCompatActivity {
         btnValidatePassFrag = findViewById(R.id.appCompatButton_pass_validation);
     }
 
-    //
+    // Hide Views on frag call
+    private void hideViewsOnFragCall() {
+        busScheduleList.setVisibility(View.GONE);
+        driverLogoutBtn.setVisibility(View.GONE);
+        btnValidatePassFrag.setVisibility(View.INVISIBLE);
+    }
 }

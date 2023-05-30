@@ -15,13 +15,20 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/bus_schedule_recycler"
             android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_height="350dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Scanner to validate and allocate bus to pass holder -->
-
+        <SurfaceView
+            android:id="@+id/scanner_camera_preview"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bus_schedule_recycler" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
