@@ -5,6 +5,7 @@ import com.example.sts_admin.Consts;
 import com.example.sts_admin.apiservice.request.AddBusRequest;
 import com.example.sts_admin.apiservice.request.AddBusScheduleRequest;
 import com.example.sts_admin.apiservice.request.DriverLoginRequest;
+import com.example.sts_admin.apiservice.request.LocationUpdate;
 import com.example.sts_admin.apiservice.request.RouteRequest;
 import com.example.sts_admin.apiservice.request.DriverRegisterRequest;
 import com.example.sts_admin.apiservice.request.HaltRequest;
@@ -36,6 +37,9 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface Api {
 
@@ -93,5 +97,12 @@ public interface Api {
 
     @GET(Consts.ENDPOINT_BUS_SCHEDULE_LIST_ITEMS)
     Call<BusScheduleDetailsResponse> getAllBusScheduleList();
+
+
+    // Bus-schedule location update api
+    @PUT("bus-schedule/{bus-schedule-id}/update-location")
+    Call<Void> updateLocation(
+            @Path("bus-schedule-id") Integer busScheduleId,
+            @Body LocationUpdate request);
 
 }
