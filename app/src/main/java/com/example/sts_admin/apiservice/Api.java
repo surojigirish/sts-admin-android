@@ -11,6 +11,7 @@ import com.example.sts_admin.apiservice.request.DriverRegisterRequest;
 import com.example.sts_admin.apiservice.request.HaltRequest;
 import com.example.sts_admin.apiservice.request.RouteInfoRequest;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
+import com.example.sts_admin.apiservice.request.ValidationRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
 import com.example.sts_admin.apiservice.response.DriverLoginResponse;
@@ -25,11 +26,6 @@ import com.example.sts_admin.apiservice.response.AdminLogoutResponse;
 import com.example.sts_admin.apiservice.response.EmployeeDriverResponse;
 import com.example.sts_admin.apiservice.response.HaltResponse;
 import com.example.sts_admin.apiservice.response.RouteInfoResponse;
-import com.example.sts_admin.model.Route;
-
-import java.util.List;
-
-import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 
 import retrofit2.Call;
@@ -39,7 +35,6 @@ import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -105,9 +100,15 @@ public interface Api {
     @PUT("bus-schedule/{bus-schedule-id}/update-location")
     Call<Void> updateLocation(
             @Path("bus-schedule-id") Integer busScheduleId,
-            @Body LocationUpdate request);
+            @Body LocationUpdate request );
 
     @GET("search")
     Call<MainResponse> getBusScheduleOnDate(@Query("date") String date);
+
+    @POST("passenger/{passenger-id}/passes/{pass-id}/validate-pass")
+    Call<MainResponse> validatePass(
+            @Path("pass-id") Integer passId,
+            @Path("passenger-id") Integer passengerId,
+            @Body ValidationRequest request );
 
 }

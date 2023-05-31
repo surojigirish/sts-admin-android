@@ -28,6 +28,7 @@ import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.ShuttleBusScheduleAdapter;
 import com.example.sts_admin.apiservice.Client;
+import com.example.sts_admin.apiservice.request.ValidationRequest;
 import com.example.sts_admin.apiservice.response.MainResponse;
 import com.example.sts_admin.model.BusSchedule;
 import com.example.sts_admin.model.PassValidation;
@@ -283,4 +284,33 @@ public class PassValidateScheduleListFragment extends Fragment {
         // Return shuttleBusList
         return shuttleBusList;
     }
+
+    // API call to validate pass and passenger
+    private void validatePass(ValidationRequest request) {
+        // path variables required
+        Integer passId = passValidation.getPassId();
+        Integer passengerId = passValidation.getPassengerId();
+
+        Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_BOOKING).getRoute().validatePass(passengerId, passId, request);
+        call.enqueue(new Callback<MainResponse>() {
+            @Override
+            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null && response.body().getStatusCode() == 200) {
+                        Log.i("TAG", "onResponse 200: Pass and Passenger allocated a bus " + response.body().getMessage());
+                    } else if (response.body() != null && response.body().getStatusCode() == 400) {
+                        Log.i("TAG", "onResponse 400: Pass and Passenger not allocated a bus " + response.body().getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MainResponse> call, Throwable t) {
+                Log.i("TAG", "onFailure: pass validation " + t);
+            }
+        });
+    }
+
+    // Pass validation function that requires a request
+
 }
