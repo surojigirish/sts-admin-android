@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sts_admin.Consts;
@@ -38,7 +39,7 @@ public class AddSchedule extends AppCompatActivity {
 
 
 
-    Button addScheduleBtn;
+    AppCompatButton addScheduleBtn;
 
     String saveArrivalTime, savaDepartureTime, timeDuration;
 

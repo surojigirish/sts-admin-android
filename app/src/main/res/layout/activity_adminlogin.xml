@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="@color/black"/>
+        android:background="@android:color/holo_orange_light"/>
 
     <View
         android:layout_width="match_parent"
@@ -39,6 +39,7 @@
         android:layout_marginTop="70dp"
         android:layout_marginRight="30dp"
         android:hint="UserName"
+        android:background="#97FFC247"
         android:padding="10dp" />
 
 
@@ -85,7 +86,7 @@
 
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/adminLoginBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,13 +95,14 @@
         android:layout_marginTop="25dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/button_border"
-        android:backgroundTint="#090808"
         android:shadowRadius="@integer/material_motion_duration_medium_2"
         android:text="Login"
         android:textSize="35sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" >
 
-    <Button
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/driverLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,7 +114,9 @@
         android:shadowRadius="250"
         android:text="DRIVER LOGIN"
         android:textSize="35sp"
-        android:textStyle="bold" />
+        android:textStyle="bold" >
+
+    </androidx.appcompat.widget.AppCompatButton>
 
     <TextView
         android:id="@+id/tv_ip"

@@ -1,6 +1,7 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -23,7 +24,7 @@ import retrofit2.Response;
 public class AddRoute extends AppCompatActivity {
 
     EditText source,destination;
-    Button addNewRoute;
+    AppCompatButton addNewRoute;
 
 
     @SuppressLint("MissingInflatedId")

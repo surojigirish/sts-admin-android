@@ -43,7 +43,7 @@ public class DriverDetails extends AppCompatActivity{
 
         onItemClickListener = new DriverAdapter.OnItemClickListener() {
             @Override
-            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName) {
+            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName,String driverLicenseNo,String driverContact,String driverGender, String driverEmployeeNo) {
 
             }
         };
@@ -62,15 +62,17 @@ public class DriverDetails extends AppCompatActivity{
                         userDriverList = response.body().getEmployee();
                         recyclerView.setAdapter(new DriverAdapter(userDriverList, getApplicationContext(), new DriverAdapter.OnItemClickListener() {
                             @Override
-                            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName) {
+                            public void onClickItem(Integer driverId,String driverFirstName, String driverLastName,String driverLicenseNo,String driverContact,String driverGender, String driverEmployeeNo) {
                                 // go to show driver details
                                 Intent i = new Intent(getApplicationContext(),DriverInfoList.class);
                                 i.putExtra("email",sharedPrefManager.getUser().getEmail());
                                 i.putExtra("driverId",driverId);
                                 i.putExtra("firstname", driverFirstName);
                                 i.putExtra("lastname", driverLastName);
-//                                i.putExtra("licenseNo", driverLicenseNo);
-//                                i.putExtra("contact", driverContact);
+                                i.putExtra("licenseNo", driverLicenseNo);
+                                i.putExtra("contact", driverContact);
+                                i.putExtra("gender",driverGender);
+                                i.putExtra("employeeNo",driverEmployeeNo);
                                 startActivity(i);
 
                             }

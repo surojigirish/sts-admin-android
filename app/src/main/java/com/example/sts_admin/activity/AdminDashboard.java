@@ -1,6 +1,7 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
@@ -28,7 +29,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
     TextView tvUsername, tvEmail;
 
-    Button logoutBtn;
+    AppCompatButton logoutBtn;
 //    Button viewDrivers;
     SharedPrefManager sharedPrefManager;
 

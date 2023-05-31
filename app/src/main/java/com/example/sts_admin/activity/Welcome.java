@@ -1,6 +1,7 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ public class Welcome extends AppCompatActivity {
 
     ImageView imageView;
     TextView textView;
-    Button btn1;
+    AppCompatButton btn1;
 
     // SharedPrefManager init
     SharedPrefManager sharedPrefManager;
@@ -26,7 +27,7 @@ public class Welcome extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         imageView=findViewById(R.id.imageView2);
-        textView=findViewById(R.id.textView);
+//        textView=findViewById(R.id.textView);
         btn1=findViewById(R.id.button);
 
         initSharedPrefManager();

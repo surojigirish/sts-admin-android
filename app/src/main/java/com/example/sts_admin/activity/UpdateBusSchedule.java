@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.sts_admin.R;
 
@@ -15,7 +16,7 @@ public class UpdateBusSchedule extends AppCompatActivity {
 
     TextView text;
     EditText schedule,departure,duration,arrive,route;
-    Button updateBtn;
+    AppCompatButton updateBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

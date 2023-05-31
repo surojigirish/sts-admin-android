@@ -58,7 +58,7 @@ public class SearchDriver extends Fragment {
         onItemClickListener = new DriverAdapter.OnItemClickListener() {
 
             @Override
-            public void onClickItem(Integer driverId, String driverFirstName, String driverLastName) {
+            public void onClickItem(Integer driverId, String driverFirstName, String driverLastName,String driverLicenseNo,String driverContact,String driverGender, String driverEmployeeNo) {
 
             }
 
@@ -78,7 +78,7 @@ public class SearchDriver extends Fragment {
                         driverList = response.body().getEmployee();
                         recyclerView.setAdapter(new DriverAdapter(driverList, getContext(), new DriverAdapter.OnItemClickListener() {
                             @Override
-                            public void onClickItem(Integer driverId, String driverFirstName, String driverLastName) {
+                            public void onClickItem(Integer driverId, String driverFirstName, String driverLastName,String driverLicenseNo,String driverContact,String driverGender, String driverEmployeeNo) {
                                 Intent i = new Intent(getContext(), AddBusSchedule.class);
 
                                 i.putExtra("driverId", driverId);

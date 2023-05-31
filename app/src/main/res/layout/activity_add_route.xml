@@ -6,16 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddRoute">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@android:color/holo_orange_light"
+        tools:ignore="MissingConstraints" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="119dp"
+        android:background="@drawable/wave__1_"/>
+
     <EditText
         android:id="@+id/source"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="316dp"
         android:hint="SourceStand"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <EditText
         android:id="@+id/destination"
@@ -28,13 +42,16 @@
         app:layout_constraintTop_toBottomOf="@+id/source"
         app:layout_constraintVertical_bias="0.073" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/add_route_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="16dp"
         android:text="Add Route"
+        android:textSize="20sp"
+        android:background="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/destination" />
 

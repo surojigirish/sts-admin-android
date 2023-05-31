@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
@@ -36,7 +37,7 @@ public class AdminLogin extends AppCompatActivity {
     TextView text;
     EditText email;
     TextInputEditText password;
-    Button loginBtn,driverLoginBtn;
+   AppCompatButton loginBtn,driverLoginBtn;
     TextView tvIpAddress;
 
     SharedPrefManager sharedPrefManager;

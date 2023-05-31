@@ -1,6 +1,7 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import retrofit2.Response;
 public class AddBusDetails extends AppCompatActivity {
 
     EditText reg_no, capacity;
-    Button addBus;
+    AppCompatButton addBus;
     Spinner busStatusSpinner,busTypeSpinner;
     String busStatusItem,busTypeItem;
 
