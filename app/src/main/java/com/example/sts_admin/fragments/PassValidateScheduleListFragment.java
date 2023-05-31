@@ -36,6 +36,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -163,10 +164,12 @@ public class PassValidateScheduleListFragment extends Fragment {
             public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null && response.body().getStatusCode() == 200) {
-                        // add the list to bus schedule list instance variable
+                        // add response to vBusScheduleList
                         vBusScheduleList = response.body().getListOfBusSchedule();
+                        // Filter shuttle buses from the vBusScheduleList
+                        List<ListOfBusSchedule> shuttleBusList = filterShuttleBuses(vBusScheduleList);
                         // add the list to recyclerView instance of bus list
-                        busScheduleRecyclerView.setAdapter(new ShuttleBusScheduleAdapter(vBusScheduleList));
+                        busScheduleRecyclerView.setAdapter(new ShuttleBusScheduleAdapter(shuttleBusList));
                     }
                 }
             }
@@ -176,5 +179,21 @@ public class PassValidateScheduleListFragment extends Fragment {
                 Log.i("TAG", "onFailure: t " + t);
             }
         });
+    }
+
+    // Function to filter list of shuttle buses schedule
+    private List<ListOfBusSchedule> filterShuttleBuses(List<ListOfBusSchedule> busScheduleList) {
+        // Create a new List to Store Shuttle Buses schedule
+        List<ListOfBusSchedule> shuttleBusList = new ArrayList<>();
+
+        // Iterate through Bus Schedules
+        for (ListOfBusSchedule busSchedule : busScheduleList) {
+            // Filter bus-type SHUTTLE and add to new shuttleBusList
+            if (busSchedule.getBus().getType().equals("SHUTTLE")) {
+                shuttleBusList.add(busSchedule);
+            }
+        }
+        // Return shuttleBusList
+        return shuttleBusList;
     }
 }
