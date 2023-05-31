@@ -30,6 +30,7 @@ import com.example.sts_admin.adapters.ShuttleBusScheduleAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.MainResponse;
 import com.example.sts_admin.model.BusSchedule;
+import com.example.sts_admin.model.PassValidation;
 import com.example.sts_admin.model.results.ListOfBusSchedule;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -55,6 +56,9 @@ public class PassValidateScheduleListFragment extends Fragment {
     ShuttleBusScheduleAdapter.OnBusScheduleClickListener onBusScheduleItemClick;
     // Bus Schedule instance variables to handle date and bus-schedule id
     private BusSchedule onBusScheduleClickedData;
+
+    // QR data store
+    PassValidation passValidation;
 
 
     // Scanner variables
@@ -118,6 +122,8 @@ public class PassValidateScheduleListFragment extends Fragment {
 
         // Barcode Detector setup function
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
+            private boolean isToastDisplayed = false; // Flag to track if a toast is already displayed
+
             @Override
             public void release() {
 
@@ -127,15 +133,53 @@ public class PassValidateScheduleListFragment extends Fragment {
             public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
 
-                if (barcodes.size() > 0) {
+                if (barcodes.size() > 0 && !isToastDisplayed) {
+                    // Set the flag to true to prevent multiple toasts
+                    isToastDisplayed = true;
+
+                    /*// Extract the barcode value
+                    String barcodeValue = barcodes.valueAt(0).displayValue;
+
+                    // Decode the QR data
+                    String[] qrValues = barcodeValue.split("\\|");
+                    if (qrValues.length >= 2) {
+                        String passId = qrValues[0].trim();
+                        String passengerId = qrValues[1].trim();
+
+                        // print the message
+                        Toast.makeText(requireContext(), "Pass ID: " + passId + " PassengerId: " + passengerId, Toast.LENGTH_SHORT).show();
+
+                        // Reset the flag to allow further toasts
+                        isToastDisplayed = false;
+                    }*/
+
                     // Add Handler to handle the Toast on main thread looper
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
                         public void run() {
+                            // Extract the barcode value
                             String barcodeValue = barcodes.valueAt(0).displayValue;
 
-                            // print the message
-                            Toast.makeText(requireContext(), "value " + barcodeValue, Toast.LENGTH_SHORT).show();
+                            // Decode the QR data
+                            String[] qrValues = barcodeValue.split("\\|");
+                            if (qrValues.length >= 2) {
+                                String passId = qrValues[0].trim();
+                                String passengerId = qrValues[1].trim();
+                                passValidation.setPassId(Integer.valueOf(passId));
+                                passValidation.setPassengerId(Integer.valueOf(passengerId));
+
+                                // Toast the message
+                                Toast.makeText(requireContext(), "Pass ID: " + passValidation.getPassId() + " PassengerId: " + passValidation.getPassengerId(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            // Use a Handler to reset the flag after a delay (1 second)
+                            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    // Reset the flag to allow further toasts
+                                    isToastDisplayed = false;
+                                }
+                            }, 1000); // Adjust the delay as needed
                         }
                     });
                 }
@@ -156,6 +200,9 @@ public class PassValidateScheduleListFragment extends Fragment {
 
         // instance of Bus Schedule model class
         onBusScheduleClickedData = new BusSchedule();
+
+        // instance of PassValidation model class
+        passValidation = new PassValidation();
     }
 
     // Start camera function
@@ -181,6 +228,7 @@ public class PassValidateScheduleListFragment extends Fragment {
         }
         Log.i("TAG", "getShuttleBusScheduleListData: date " + date);
 
+        // Api Call to get bus schedule list
         Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE)
                 .getRoute().getBusScheduleOnDate(String.valueOf(date));
 
