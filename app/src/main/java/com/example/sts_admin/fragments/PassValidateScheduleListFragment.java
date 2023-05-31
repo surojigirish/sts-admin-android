@@ -23,9 +23,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.sts_admin.Assets;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
-import com.example.sts_admin.adapters.BusScheduleListAdapter;
 import com.example.sts_admin.adapters.ShuttleBusScheduleAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.MainResponse;
@@ -37,6 +37,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -173,8 +174,15 @@ public class PassValidateScheduleListFragment extends Fragment {
 
     // API call to get all bus schedule list and filter to show only shuttle buses
     private void getShuttleBusScheduleListData() {
+        // Current date
+        LocalDate date = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            date = Assets.getCurrentDate();
+        }
+        Log.i("TAG", "getShuttleBusScheduleListData: date " + date);
+
         Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE)
-                .getRoute().getBusScheduleOnDate("2023-5-30");
+                .getRoute().getBusScheduleOnDate(String.valueOf(date));
 
         call.enqueue(new Callback<MainResponse>() {
             @Override
@@ -211,11 +219,16 @@ public class PassValidateScheduleListFragment extends Fragment {
     private List<ListOfBusSchedule> filterShuttleBuses(List<ListOfBusSchedule> busScheduleList) {
         // Create a new List to Store Shuttle Buses schedule
         List<ListOfBusSchedule> shuttleBusList = new ArrayList<>();
+        int filtered = 0, loop = 0;
 
         // Iterate through Bus Schedules
         for (ListOfBusSchedule busSchedule : busScheduleList) {
-            // Filter bus-type SHUTTLE and add to new shuttleBusList
-            if (busSchedule.getBus().getType().equals("SHUTTLE")) {
+            loop++;
+            Log.i("TAG", "filterShuttleBuses: loop " + loop);
+            // Filter bus-type SHUTTLE and seats-available greater than 0
+            if (busSchedule.getBus().getType().equals("SHUTTLE") && busSchedule.getBusSchedule().getSeatsAvailable() > 0) {
+                filtered++;
+                Log.i("TAG", "filterShuttleBuses: filtered " + filtered);
                 shuttleBusList.add(busSchedule);
             }
         }
