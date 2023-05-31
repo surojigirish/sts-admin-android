@@ -14,6 +14,7 @@ import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
 import com.example.sts_admin.apiservice.response.DriverLoginResponse;
+import com.example.sts_admin.apiservice.response.MainResponse;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
 import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
@@ -40,6 +41,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface Api {
 
@@ -104,5 +106,8 @@ public interface Api {
     Call<Void> updateLocation(
             @Path("bus-schedule-id") Integer busScheduleId,
             @Body LocationUpdate request);
+
+    @GET("search")
+    Call<MainResponse> getBusScheduleOnDate(@Query("date") String date);
 
 }

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sts_admin.Consts;
@@ -28,9 +29,8 @@ public class DriverDashboard extends AppCompatActivity {
 
     CardView busScheduleList;
 
-    Button driverLogoutBtn;
-
-    private AppCompatButton btnValidatePassFrag;
+    private AppCompatButton btnValidatePassFrag, driverLogoutBtn;
+    private TextView tvDashBoardWelcomeText;
 
     SharedPrefManager sharedPrefManager;
 
@@ -119,6 +119,10 @@ public class DriverDashboard extends AppCompatActivity {
 
     // init views
     private void initializeViews() {
+        // Welcome screen text
+        tvDashBoardWelcomeText = findViewById(R.id.tvDashBoardWelcomeText);
+
+        // Pass validate frag button
         btnValidatePassFrag = findViewById(R.id.appCompatButton_pass_validation);
     }
 
@@ -127,5 +131,6 @@ public class DriverDashboard extends AppCompatActivity {
         busScheduleList.setVisibility(View.GONE);
         driverLogoutBtn.setVisibility(View.GONE);
         btnValidatePassFrag.setVisibility(View.INVISIBLE);
+        tvDashBoardWelcomeText.setVisibility(View.INVISIBLE);
     }
 }

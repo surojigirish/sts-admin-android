@@ -86,4 +86,59 @@ public class Schedule {
         this.id = id;
 
     }
+
+
+
+
+    /* Schedule Model for Pass Schedule Info
+    * model ID is already having serialized format and variable
+    * and also duration so need not make a variable for them 2
+    *
+    *
+    *  */
+
+
+    @SerializedName("arrival")
+    private String arrivalTime;
+
+    @SerializedName("arrival-stand")
+    private String arrivalBusStand;
+
+    @SerializedName("departure")
+    private String departureTime;
+
+    @SerializedName("departure-stand")
+    private String departureBusStand;
+
+    public String getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(String arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    public String getArrivalBusStand() {
+        return arrivalBusStand;
+    }
+
+    public void setArrivalBusStand(String arrivalBusStand) {
+        this.arrivalBusStand = arrivalBusStand;
+    }
+
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public String getDepartureBusStand() {
+        return departureBusStand;
+    }
+
+    public void setDepartureBusStand(String departureBusStand) {
+        this.departureBusStand = departureBusStand;
+    }
 }

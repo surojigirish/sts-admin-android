@@ -9,10 +9,12 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -21,18 +23,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
+import com.example.sts_admin.adapters.BusScheduleListAdapter;
+import com.example.sts_admin.adapters.ShuttleBusScheduleAdapter;
+import com.example.sts_admin.apiservice.Client;
+import com.example.sts_admin.apiservice.response.MainResponse;
+import com.example.sts_admin.model.results.ListOfBusSchedule;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class PassValidateScheduleListFragment extends Fragment {
 
+    // Bus schedule list variables
     private RecyclerView busScheduleRecyclerView;
+    private List<ListOfBusSchedule> vBusScheduleList;
+
+    // Scanner variables
     private SurfaceView scannerCameraPreview;
     private CameraSource cameraSource;
 
@@ -49,6 +66,7 @@ public class PassValidateScheduleListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initViews(view);
+        getShuttleBusScheduleListData();
 
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(requireContext())
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
@@ -116,7 +134,9 @@ public class PassValidateScheduleListFragment extends Fragment {
         scannerCameraPreview = v.findViewById(R.id.scanner_camera_preview);
 
         // List of bus schedule recycler init
-        busScheduleRecyclerView = v.findViewById(R.id.bus_schedule_list_recycler);
+        busScheduleRecyclerView = v.findViewById(R.id.bus_schedule_recycler);
+        busScheduleRecyclerView.setHasFixedSize(true);
+        busScheduleRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     // Start camera function
@@ -130,5 +150,31 @@ public class PassValidateScheduleListFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    // API call to get all bus schedule list and filter to show only shuttle buses
+    private void getShuttleBusScheduleListData() {
+        Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE)
+                .getRoute().getBusScheduleOnDate("2023-5-30");
+
+        call.enqueue(new Callback<MainResponse>() {
+            @Override
+            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null && response.body().getStatusCode() == 200) {
+                        // add the list to bus schedule list instance variable
+                        vBusScheduleList = response.body().getListOfBusSchedule();
+                        // add the list to recyclerView instance of bus list
+                        busScheduleRecyclerView.setAdapter(new ShuttleBusScheduleAdapter(vBusScheduleList));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MainResponse> call, Throwable t) {
+                Log.i("TAG", "onFailure: t " + t);
+            }
+        });
     }
 }

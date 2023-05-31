@@ -10,6 +10,10 @@ public class Bus {
     private Integer id;
     @SerializedName("rto-reg-no")
     private String regNo;
+
+    @SerializedName("reg-no")
+    private String registrationNumber;
+
     @SerializedName("status")
     private String status;
     @SerializedName("type")
@@ -58,5 +62,14 @@ public class Bus {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 }

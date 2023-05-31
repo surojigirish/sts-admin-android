@@ -12,7 +12,6 @@ public class Consts {
 
     public static final String BASE_URL_BUS = "http://" + IP_ADDRESS + "/bus/";
 
-    // http://3.110.42.226/location/
     public static final String BASE_URL_LOCATION = "http://" + IP_ADDRESS + "/location/";
 
     // Endpoints
