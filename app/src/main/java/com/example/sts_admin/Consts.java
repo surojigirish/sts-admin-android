@@ -52,4 +52,9 @@ public class Consts {
     public static final String TYPO_ROUTE_INFO_INIT = "Click to add route";
     public static final String TYPO_SOURCE_INFO_INIT = "Source";
     public static final String TYPO_DESTINATION_INFO_INIT = "Destination";
+
+
+
+    // Shared Preferences
+    public static final String SHARED_PREF_DRIVER = "stsdriver";
 }

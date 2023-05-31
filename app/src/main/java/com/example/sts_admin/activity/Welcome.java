@@ -5,7 +5,6 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,12 +37,20 @@ public class Welcome extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if (sharedPrefManager.isLogged()) {
+        if (sharedPrefManager.isAdminLogged()) {
             Intent intent = new Intent(Welcome.this, AdminDashboard.class);
             // setFlags
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
+        }
+
+        // Check if driver user is logged in
+        if (sharedPrefManager.isDriverLogged()) {
+            Intent intent = new Intent(Welcome.this, DriverDashboard.class);
+            // setFlags clears previous tasks
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
     }
 

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +19,6 @@ import com.example.sts_admin.apiservice.request.AdminLoginRequest;
 import com.example.sts_admin.apiservice.response.AdminLoginResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -82,8 +80,16 @@ public class AdminLogin extends AppCompatActivity {
         super.onStart();
 
         // check if user is logged and start the dashboard intent
-        if (sharedPrefManager.isLogged()) {
+        if (sharedPrefManager.isAdminLogged()) {
             Intent intent = new Intent(AdminLogin.this, AdminDashboard.class);
+            // setFlags clears previous tasks
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+
+        // Check if driver user is logged in
+        if (sharedPrefManager.isDriverLogged()) {
+            Intent intent = new Intent(AdminLogin.this, DriverDashboard.class);
             // setFlags clears previous tasks
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

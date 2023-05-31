@@ -3,13 +3,9 @@ package com.example.sts_admin.sharedpref;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.sts_admin.apiservice.request.ScheduleRequest;
+import com.example.sts_admin.Consts;
 import com.example.sts_admin.model.Admin;
 import com.example.sts_admin.model.Bus;
-import com.example.sts_admin.model.Driver;
-import com.example.sts_admin.model.Employee;
-import com.example.sts_admin.model.Route;
-import com.example.sts_admin.model.Routes;
 import com.example.sts_admin.model.Schedule;
 import com.example.sts_admin.model.Session;
 
@@ -37,8 +33,13 @@ public class SharedPrefManager {
         editor.apply();
     }
 
-    public boolean isLogged() {
+    public boolean isAdminLogged() {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean("logged", false);
+    }
+
+    public boolean isDriverLogged() {
+        sharedPreferences = context.getSharedPreferences(Consts.SHARED_PREF_DRIVER, Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean("logged", false);
     }
 
@@ -88,7 +89,7 @@ public class SharedPrefManager {
                 sharedPreferences.getString("destination", ""));
     }
     public void saveDriver(Session driver){
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_DRIVER_DETAILS,Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences(Consts.SHARED_PREF_DRIVER, Context.MODE_PRIVATE);
         editor= sharedPreferences.edit();
 //        editor.putInt("driver_Id",driver.getEmployee().getDriver().getEmpId());
         editor.putString("licenseNo",driver.getEmployee().getDriver().getLicenseNo());
@@ -110,7 +111,7 @@ public class SharedPrefManager {
 //    }
 
     public Session getDriverId(){
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_DRIVER_DETAILS,Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences(Consts.SHARED_PREF_DRIVER, Context.MODE_PRIVATE);
         return new Session(sharedPreferences.getString("licenseNo",null),
                 sharedPreferences.getString("employeeNo",null),
                 sharedPreferences.getString("firstname",null),

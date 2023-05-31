@@ -61,14 +61,6 @@ public class DriverLogin extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        // check if user is logged and start the dashboard intent
-        if (sharedPrefManager.isLogged()) {
-            Intent intent = new Intent(DriverLogin.this, DriverDashboard.class);
-            // setFlags clears previous tasks
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
     }
 
 
