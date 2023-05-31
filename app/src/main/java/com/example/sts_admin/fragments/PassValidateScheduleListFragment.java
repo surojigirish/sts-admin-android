@@ -29,6 +29,7 @@ import com.example.sts_admin.adapters.BusScheduleListAdapter;
 import com.example.sts_admin.adapters.ShuttleBusScheduleAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.MainResponse;
+import com.example.sts_admin.model.BusSchedule;
 import com.example.sts_admin.model.results.ListOfBusSchedule;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -49,6 +50,11 @@ public class PassValidateScheduleListFragment extends Fragment {
     // Bus schedule list variables
     private RecyclerView busScheduleRecyclerView;
     private List<ListOfBusSchedule> vBusScheduleList;
+    // On Bus schedule item click handler
+    ShuttleBusScheduleAdapter.OnBusScheduleClickListener onBusScheduleItemClick;
+    // Bus Schedule instance variables to handle date and bus-schedule id
+    private BusSchedule onBusScheduleClickedData;
+
 
     // Scanner variables
     private SurfaceView scannerCameraPreview;
@@ -68,6 +74,14 @@ public class PassValidateScheduleListFragment extends Fragment {
 
         initViews(view);
         getShuttleBusScheduleListData();
+
+        // Bus schedule list item click listener
+        onBusScheduleItemClick = new ShuttleBusScheduleAdapter.OnBusScheduleClickListener() {
+            @Override
+            public void onItemClick(Integer busId, String scheduleDate) {
+                Log.i("TAG", "onViewCreated->onBusScheduleItemClick: " + busId);
+            }
+        };
 
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(requireContext())
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
@@ -138,6 +152,9 @@ public class PassValidateScheduleListFragment extends Fragment {
         busScheduleRecyclerView = v.findViewById(R.id.bus_schedule_recycler);
         busScheduleRecyclerView.setHasFixedSize(true);
         busScheduleRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // instance of Bus Schedule model class
+        onBusScheduleClickedData = new BusSchedule();
     }
 
     // Start camera function
@@ -169,7 +186,16 @@ public class PassValidateScheduleListFragment extends Fragment {
                         // Filter shuttle buses from the vBusScheduleList
                         List<ListOfBusSchedule> shuttleBusList = filterShuttleBuses(vBusScheduleList);
                         // add the list to recyclerView instance of bus list
-                        busScheduleRecyclerView.setAdapter(new ShuttleBusScheduleAdapter(shuttleBusList));
+                        busScheduleRecyclerView.setAdapter(new ShuttleBusScheduleAdapter(shuttleBusList, new ShuttleBusScheduleAdapter.OnBusScheduleClickListener() {
+                            @Override
+                            public void onItemClick(Integer busId, String scheduleDate) {
+                                onBusScheduleClickedData.setId(busId);
+                                onBusScheduleClickedData.setDate(scheduleDate);
+
+                                Log.i("TAG", "onItemClick: bus-id " + onBusScheduleClickedData.getId());
+                                Log.i("TAG", "onItemClick: schedule date " + onBusScheduleClickedData.getDate());
+                            }
+                        }));
                     }
                 }
             }

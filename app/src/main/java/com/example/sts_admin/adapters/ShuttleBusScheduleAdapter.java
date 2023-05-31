@@ -1,6 +1,5 @@
 package com.example.sts_admin.adapters;
 
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +18,12 @@ public class ShuttleBusScheduleAdapter extends RecyclerView.Adapter<ShuttleBusSc
     // initialize list
     private List<ListOfBusSchedule> busScheduleList;
 
-    public ShuttleBusScheduleAdapter(List<ListOfBusSchedule> busScheduleList) {
+    // On click listener
+    private OnBusScheduleClickListener onBusScheduleClickListener;
+
+    public ShuttleBusScheduleAdapter(List<ListOfBusSchedule> busScheduleList, OnBusScheduleClickListener onBusScheduleClickListener) {
         this.busScheduleList = busScheduleList;
+        this.onBusScheduleClickListener = onBusScheduleClickListener;
     }
 
     @NonNull
@@ -33,7 +36,7 @@ public class ShuttleBusScheduleAdapter extends RecyclerView.Adapter<ShuttleBusSc
                         false
                 );
 
-        return new ViewHolder(view);
+        return new ViewHolder(view, onBusScheduleClickListener, busScheduleList);
     }
 
     @Override
@@ -51,6 +54,25 @@ public class ShuttleBusScheduleAdapter extends RecyclerView.Adapter<ShuttleBusSc
         // seat and duration data
         holder.availableSeats.setText(String.valueOf(busScheduleList.get(position).getBusSchedule().getSeatsAvailable()));
         holder.durationOfTravel.setText(busScheduleList.get(position).getBusSchedule().getSchedule().getDuration());
+
+        // On item click listener
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = holder.getAdapterPosition();
+
+                if (pos != RecyclerView.NO_POSITION && onBusScheduleClickListener != null) {
+                    ListOfBusSchedule busSchedule = busScheduleList.get(pos);
+
+                    // pass bus schedule id and date
+                    Integer busScheduleId = busSchedule.getBusSchedule().getId();
+                    String date = busSchedule.getBusSchedule().getDate();
+
+                    // pass the data to onClick handler
+                    onBusScheduleClickListener.onItemClick(busScheduleId, date);
+                }
+            }
+        });
     }
 
     @Override
@@ -64,7 +86,7 @@ public class ShuttleBusScheduleAdapter extends RecyclerView.Adapter<ShuttleBusSc
         // Declare variables that will hold data for the bus schedule list item
         TextView departureTime, arrivalTime, departureBusStand, arrivalBusStand, availableSeats, date, durationOfTravel, busRegistration, busType;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnBusScheduleClickListener listener, List<ListOfBusSchedule> busScheduleList) {
             super(itemView);
 
             // init views
@@ -88,5 +110,10 @@ public class ShuttleBusScheduleAdapter extends RecyclerView.Adapter<ShuttleBusSc
             durationOfTravel = v.findViewById(R.id.tvDuration);
             date = v.findViewById(R.id.tvDateOfSchedule);
         }
+    }
+
+    // Interface to set onClickListener
+    public interface OnBusScheduleClickListener {
+        void onItemClick(Integer busId, String scheduleDate);
     }
 }
