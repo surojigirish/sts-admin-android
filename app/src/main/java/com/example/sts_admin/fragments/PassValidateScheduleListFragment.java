@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -52,6 +53,7 @@ public class PassValidateScheduleListFragment extends Fragment {
 
     // Bus schedule list variables
     private RecyclerView busScheduleRecyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private List<ListOfBusSchedule> vBusScheduleList;
     // On Bus schedule item click handler
     ShuttleBusScheduleAdapter.OnBusScheduleClickListener onBusScheduleItemClick;
@@ -80,6 +82,13 @@ public class PassValidateScheduleListFragment extends Fragment {
 
         initViews(view);
         getShuttleBusScheduleListData();
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getShuttleBusScheduleListData();
+            }
+        });
 
         // Bus schedule list item click listener
         onBusScheduleItemClick = new ShuttleBusScheduleAdapter.OnBusScheduleClickListener() {
@@ -151,7 +160,7 @@ public class PassValidateScheduleListFragment extends Fragment {
                                 String stringPassId = qrValues[0].trim();
                                 String stringPassengerId = qrValues[1].trim();
 
-                                // Convert data type from String to Integer
+                                // Convert data from String to Integer
                                 Integer passId = Integer.valueOf(stringPassId);
                                 Integer passengerId = Integer.valueOf(stringPassengerId);
 
@@ -180,6 +189,9 @@ public class PassValidateScheduleListFragment extends Fragment {
     private void initViews(View v) {
         // Scanner view init
         scannerCameraPreview = v.findViewById(R.id.scanner_camera_preview);
+
+        // Swipe to refresh
+        swipeRefreshLayout = v.findViewById(R.id.swipeToRefreshBusSchedule);
 
         // List of bus schedule recycler init
         busScheduleRecyclerView = v.findViewById(R.id.bus_schedule_recycler);
@@ -249,6 +261,9 @@ public class PassValidateScheduleListFragment extends Fragment {
                 Log.i("TAG", "onFailure: t " + t);
             }
         });
+
+        // Notify the SwipeRefreshLayout that the refresh action has finished
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     // Function to filter list of shuttle buses schedule
@@ -296,7 +311,7 @@ public class PassValidateScheduleListFragment extends Fragment {
         });
     }
 
-    // Pass validation function that requires a request
+    // Pass validation request function
     private ValidationRequest passValidationRequest() {
         ValidationRequest request = new ValidationRequest();
         // get request data from Bus Schedule instance

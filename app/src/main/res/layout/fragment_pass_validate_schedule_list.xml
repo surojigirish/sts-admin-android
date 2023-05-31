@@ -11,14 +11,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Recyclerview to hold bus schedule list-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bus_schedule_recycler"
-            android:layout_width="0dp"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeToRefreshBusSchedule"
+            android:layout_width="match_parent"
             android:layout_height="350dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Recyclerview to hold bus schedule list-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bus_schedule_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
         <!-- Scanner to validate and allocate bus to pass holder -->
         <SurfaceView
@@ -28,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bus_schedule_recycler" />
+            app:layout_constraintTop_toBottomOf="@+id/swipeToRefreshBusSchedule" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
