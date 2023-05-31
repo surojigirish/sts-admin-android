@@ -138,22 +138,6 @@ public class PassValidateScheduleListFragment extends Fragment {
                     // Set the flag to true to prevent multiple toasts
                     isToastDisplayed = true;
 
-                    /*// Extract the barcode value
-                    String barcodeValue = barcodes.valueAt(0).displayValue;
-
-                    // Decode the QR data
-                    String[] qrValues = barcodeValue.split("\\|");
-                    if (qrValues.length >= 2) {
-                        String passId = qrValues[0].trim();
-                        String passengerId = qrValues[1].trim();
-
-                        // print the message
-                        Toast.makeText(requireContext(), "Pass ID: " + passId + " PassengerId: " + passengerId, Toast.LENGTH_SHORT).show();
-
-                        // Reset the flag to allow further toasts
-                        isToastDisplayed = false;
-                    }*/
-
                     // Add Handler to handle the Toast on main thread looper
                     new Handler(Looper.getMainLooper()).post(new Runnable() {
                         @Override
@@ -164,13 +148,16 @@ public class PassValidateScheduleListFragment extends Fragment {
                             // Decode the QR data
                             String[] qrValues = barcodeValue.split("\\|");
                             if (qrValues.length >= 2) {
-                                String passId = qrValues[0].trim();
-                                String passengerId = qrValues[1].trim();
-                                passValidation.setPassId(Integer.valueOf(passId));
-                                passValidation.setPassengerId(Integer.valueOf(passengerId));
+                                String stringPassId = qrValues[0].trim();
+                                String stringPassengerId = qrValues[1].trim();
 
+                                // Convert data type from String to Integer
+                                Integer passId = Integer.valueOf(stringPassId);
+                                Integer passengerId = Integer.valueOf(stringPassengerId);
+
+                                validatePass(passengerId, passId, passValidationRequest());
                                 // Toast the message
-                                Toast.makeText(requireContext(), "Pass ID: " + passValidation.getPassId() + " PassengerId: " + passValidation.getPassengerId(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireContext(), "Pass ID: " + stringPassId + " PassengerId: " + stringPassengerId, Toast.LENGTH_SHORT).show();
                             }
 
                             // Use a Handler to reset the flag after a delay (1 second)
@@ -286,10 +273,7 @@ public class PassValidateScheduleListFragment extends Fragment {
     }
 
     // API call to validate pass and passenger
-    private void validatePass(ValidationRequest request) {
-        // path variables required
-        Integer passId = passValidation.getPassId();
-        Integer passengerId = passValidation.getPassengerId();
+    private void validatePass(Integer passengerId, Integer passId, ValidationRequest request) {
 
         Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_BOOKING).getRoute().validatePass(passengerId, passId, request);
         call.enqueue(new Callback<MainResponse>() {
@@ -297,6 +281,7 @@ public class PassValidateScheduleListFragment extends Fragment {
             public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null && response.body().getStatusCode() == 200) {
+                        Toast.makeText(requireContext(), "Pass validated", Toast.LENGTH_SHORT).show();
                         Log.i("TAG", "onResponse 200: Pass and Passenger allocated a bus " + response.body().getMessage());
                     } else if (response.body() != null && response.body().getStatusCode() == 400) {
                         Log.i("TAG", "onResponse 400: Pass and Passenger not allocated a bus " + response.body().getMessage());
@@ -312,5 +297,21 @@ public class PassValidateScheduleListFragment extends Fragment {
     }
 
     // Pass validation function that requires a request
+    private ValidationRequest passValidationRequest() {
+        ValidationRequest request = new ValidationRequest();
+        // get request data from Bus Schedule instance
+        Integer busScheduleId = onBusScheduleClickedData.getId();
+        String date = onBusScheduleClickedData.getDate();
+        // get current time stamp
+        String timeStamp = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            timeStamp = Assets.getFormattedDate();
+        }
+        // set request data
+        request.setBusScheduleId(busScheduleId);
+        request.setTravelDate(date);
+        request.setBookingTimeStamp(timeStamp);
 
+        return request;
+    }
 }

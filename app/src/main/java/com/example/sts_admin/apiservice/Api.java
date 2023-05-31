@@ -107,8 +107,8 @@ public interface Api {
 
     @POST("passenger/{passenger-id}/passes/{pass-id}/validate-pass")
     Call<MainResponse> validatePass(
-            @Path("pass-id") Integer passId,
             @Path("passenger-id") Integer passengerId,
+            @Path("pass-id") Integer passId,
             @Body ValidationRequest request );
 
 }
