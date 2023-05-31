@@ -6,11 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddBusSchedule">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/holo_orange_light"
+        tools:ignore="MissingConstraints" />
+
+
     <TextView
         android:id="@+id/tv_bus_schedule_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="169dp"
+        android:layout_marginTop="210dp"
         android:text="Add bus schedule"
         android:textAlignment="center"
         android:textColor="@color/black"
@@ -81,12 +88,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_drivers" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/add_bus_details_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="47dp"
+        android:background="@android:color/holo_orange_light"
         android:text="Add bus Schedule"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_date_picker" />
@@ -100,7 +109,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/wave__1_"/>
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

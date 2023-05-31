@@ -4,13 +4,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@android:color/holo_orange_light"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/wave__1_"/>
+
     <Button
+        android:id="@+id/add_route"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Add Route"
-        android:id="@+id/add_route"
-        android:layout_marginTop="150dp"/>
+        android:layout_marginTop="80dp"
+        android:text="Add Route" />
 
     <Button
         android:layout_width="wrap_content"
@@ -21,7 +31,7 @@
         android:id="@+id/add_source"/>
 
     <Button
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/btn_route_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,17 +39,17 @@
         android:text="add route info" />
 
     <Button
-        android:layout_marginTop="8dp"
         android:id="@+id/btn_schedule_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:text="add schedule info" />
 
-    <FrameLayout
-        android:id="@+id/frameLayout_schedule_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <!--    <FrameLayout-->
+<!--        android:id="@+id/frameLayout_schedule_container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
 
 
 </LinearLayout>

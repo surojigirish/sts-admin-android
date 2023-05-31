@@ -1,6 +1,7 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +33,8 @@ public class DriverLogin extends AppCompatActivity {
 
 
     TextView driverLoginEmail, driverLoginPassword,driverIpAddress;
-    Button driverLoginButton;
+    AppCompatButton driverLoginButton;
+
     SharedPrefManager sharedPrefManager;
 
     @Override
@@ -41,10 +43,12 @@ public class DriverLogin extends AppCompatActivity {
         setContentView(R.layout.activity_driver_login);
 
         driverLoginEmail = findViewById(R.id.driverLoginEmail);
-        driverLoginPassword = findViewById(R.id.driverLoginPassword);
+        driverLoginPassword = findViewById(R.id.driverLoginPassword2);
         driverLoginButton = findViewById(R.id.driverLoginBtn);
 
         driverIpAddress=findViewById(R.id.driverIpAddress);
+
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
 
         driverLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +56,19 @@ public class DriverLogin extends AppCompatActivity {
               driverLogin(driverLoginRequest());
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // check if user is logged and start the dashboard intent
+        if (sharedPrefManager.isLogged()) {
+            Intent intent = new Intent(DriverLogin.this, DriverDashboard.class);
+            // setFlags clears previous tasks
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
     }
 
 
@@ -71,12 +88,14 @@ public class DriverLogin extends AppCompatActivity {
             @Override
             public void onResponse(Call<DriverLoginResponse> call, Response<DriverLoginResponse> response) {
                 DriverLoginResponse driverLoginResponse = response.body();
-                if (response.isSuccessful()){
-                    if(driverLoginResponse != null && driverLoginResponse.getStatus() == 200);
-                    Toast.makeText(DriverLogin.this, "Driver Successfully Logged In", Toast.LENGTH_SHORT).show();
-                   Intent intent = new Intent(DriverLogin.this,DriverDashboard.class);
-                   startActivity(intent);
-                   finish();
+                if (response.isSuccessful()) {
+                    if (driverLoginResponse != null && driverLoginResponse.getStatus() == 200) {
+                        sharedPrefManager.saveDriver(driverLoginResponse.getSession());
+                        Toast.makeText(DriverLogin.this, "Driver Successfully Logged In", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(DriverLogin.this, DriverDashboard.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
 
@@ -112,5 +131,7 @@ public class DriverLogin extends AppCompatActivity {
             }
             return driverIpAddress;
         }
+
+
 
     }

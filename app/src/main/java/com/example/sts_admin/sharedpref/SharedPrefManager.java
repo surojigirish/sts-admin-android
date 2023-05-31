@@ -7,14 +7,16 @@ import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.model.Admin;
 import com.example.sts_admin.model.Bus;
 import com.example.sts_admin.model.Driver;
+import com.example.sts_admin.model.Employee;
 import com.example.sts_admin.model.Route;
 import com.example.sts_admin.model.Routes;
 import com.example.sts_admin.model.Schedule;
+import com.example.sts_admin.model.Session;
 
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "stsadmin";
     private static final String SHARED_PREF_ADD_BUS_SCHEDULE_NAME = "stsbusschedule";
-    private static final String SHARED_PREF_DRIVER_DETAILS = "stsdriverdetails";
+    private static final String SHARED_PREF_DRIVER_DETAILS = "stsdriverlogin";
     SharedPreferences sharedPreferences;
     Context context;
     private SharedPreferences.Editor editor;
@@ -84,6 +86,41 @@ public class SharedPrefManager {
         return new Schedule(sharedPreferences.getInt("scheduleId", 0),
                 sharedPreferences.getString("source", ""),
                 sharedPreferences.getString("destination", ""));
+    }
+    public void saveDriver(Session driver){
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_DRIVER_DETAILS,Context.MODE_PRIVATE);
+        editor= sharedPreferences.edit();
+//        editor.putInt("driver_Id",driver.getEmployee().getDriver().getEmpId());
+        editor.putString("licenseNo",driver.getEmployee().getDriver().getLicenseNo());
+        editor.putString("employeeNo",driver.getEmployee().getDriver().getEmployeeNo());
+        editor.putString("firstName",driver.getEmployee().getDriver().getFirstname());
+        editor.putString("gender",driver.getEmployee().getDriver().getGender());
+        editor.putInt("id",driver.getEmployee().getId());
+        editor.putString("lastname",driver.getEmployee().getDriver().getLastname());
+        editor.putString("token",driver.getToken());
+        editor.putString("email",driver.getUser().getEmail());
+        editor.putInt("userId",driver.getUser().getId());
+        editor.putBoolean("logged",true);
+        editor.apply();
+    }
+
+//    public boolean isLoggedIn() {
+//        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+//        return sharedPreferences.getBoolean("logged", false);
+//    }
+
+    public Session getDriverId(){
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_DRIVER_DETAILS,Context.MODE_PRIVATE);
+        return new Session(sharedPreferences.getString("licenseNo",null),
+                sharedPreferences.getString("employeeNo",null),
+                sharedPreferences.getString("firstname",null),
+                sharedPreferences.getString("gender",null),
+                sharedPreferences.getInt("id",-1),
+                sharedPreferences.getString("lastname",null),
+                sharedPreferences.getString("token"," "),
+                sharedPreferences.getString("email", ""),
+                sharedPreferences.getInt("userId",-1));
+
     }
 
 

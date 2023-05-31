@@ -1,6 +1,7 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
@@ -14,6 +15,7 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.AdminLogoutRequest;
 import com.example.sts_admin.apiservice.response.AdminLogoutResponse;
+import com.example.sts_admin.model.Session;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import retrofit2.Call;
@@ -24,8 +26,9 @@ public class DriverDashboard extends AppCompatActivity {
 
     CardView busScheduleList;
 
-    Button driverLogoutBtn;
+    AppCompatButton driverLogoutBtn;
     SharedPrefManager sharedPrefManager;
+    private Session savedSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,22 @@ public class DriverDashboard extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // init sharedPrefManager to get saved-session of passenger
+        setSharedPrefManager();
+        String sessionToken = savedSession.getToken();
+//        Log.i("TAG", "Passenger Home Page -> onStart: user-session-token" + sessionToken);
+    }
+
+    // SharedPrefManager function
+    public void setSharedPrefManager() {
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        savedSession = sharedPrefManager.getDriverId();
     }
 
     public AdminLogoutRequest logoutRequest(){
@@ -87,7 +106,7 @@ public class DriverDashboard extends AppCompatActivity {
     }
     public String getSessionToken() {
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
-        return sharedPrefManager.getUser().getToken();
+        return sharedPrefManager.getDriverId().getToken();
     }
 
 }

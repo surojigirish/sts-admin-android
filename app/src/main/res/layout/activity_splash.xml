@@ -14,5 +14,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/sts_logo" />
+        android:src="@drawable/sts_new_logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

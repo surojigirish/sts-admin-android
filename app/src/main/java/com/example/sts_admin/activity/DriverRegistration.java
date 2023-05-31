@@ -10,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
@@ -25,7 +27,7 @@ public class DriverRegistration extends AppCompatActivity {
 
     TextView text;
     EditText firstname,email, lastname,password,licenseNo, contactNo, gender;
-    Button regBtn, driverDetailsBtn;
+    AppCompatButton regBtn, driverDetailsBtn;
 
     SharedPrefManager sharedPrefManager;
 

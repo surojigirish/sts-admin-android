@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sts_admin.Consts;
@@ -37,7 +38,7 @@ public class AddBusSchedule extends AppCompatActivity {
     TextView title,datePicker;
     private int year, month, dayOfMonth;
     TextView etBusid,etScheduleId,etDrivers;
-    Button addBusScheduleBtn;
+    AppCompatButton addBusScheduleBtn;
 
     // shared pref
     SharedPrefManager sharedPrefManager;
@@ -114,6 +115,7 @@ public class AddBusSchedule extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AddBusSchedules(addBusSchedule());
+                finish();
             }
         });
     }

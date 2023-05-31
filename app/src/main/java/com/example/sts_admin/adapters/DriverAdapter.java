@@ -55,10 +55,12 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
                     Integer driverId=selectedDriver.getEmpId();
                     String driverFirstName = selectedDriver.getFirstname();
                     String driverLastName = selectedDriver.getLastname();
-//                    String driverLicenseNo = selectedDriver.getLicenseNo();
-//                    String driverContact = selectedDriver.getContact();
+                    String driverLicenseNo = selectedDriver.getLicenseNo();
+                    String driverContact = selectedDriver.getContact();
+                    String driverGender=selectedDriver.getGender();
+                    String driverEmployeeNo=selectedDriver.getEmployeeNo();
 
-                    onItemClickListener.onClickItem(driverId,driverFirstName,driverLastName);
+                    onItemClickListener.onClickItem(driverId,driverFirstName,driverLastName,driverLicenseNo,driverContact,driverGender,driverEmployeeNo);
 
                 }
 
@@ -88,7 +90,7 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
 
 
     public interface OnItemClickListener {
-        void onClickItem(Integer driverId,String driverFirstName,String driverLastName);
+        void onClickItem(Integer driverId,String driverFirstName,String driverLastName,String driverLicenseNo,String driverContact,String driverGender, String driverEmployeeNo);
 
 //        void onItemClick(Integer driverId, String driverFirstName, String driverLastName);
     }
