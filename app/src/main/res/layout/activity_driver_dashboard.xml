@@ -17,12 +17,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/wave__1_"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2">
+            android:layout_weight="3"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/tvDashBoardWelcomeText"
@@ -30,7 +34,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="0dp"
-                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Welcome To Driver DashBoard"
                 android:textColor="@color/black"
@@ -42,10 +45,11 @@
 
         <GridLayout
             android:layout_width="200dp"
-            android:layout_height="10dp"
-            android:layout_weight="4"
-            android:alignmentMode="alignMargins"
+            android:layout_height="0dp"
+            android:layout_weight="4.5"
             android:columnCount="1"
+            android:layout_marginTop="-30dp"
+            android:alignmentMode="alignMargins"
             android:columnOrderPreserved="false"
             android:padding="10dp"
             android:rowCount="1">
@@ -55,13 +59,13 @@
                 android:id="@+id/bus_schedule_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_rowWeight="1"
+                app:cardBackgroundColor="@android:color/holo_orange_light"
+                android:background="@android:color/holo_orange_light"
                 android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@color/black"
-                app:cardBackgroundColor="@color/black"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="8dp">
 
@@ -97,13 +101,13 @@
         </GridLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/driverLogoutBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="logout"
             android:textColor="@color/white"
-            android:background="#FF9800"
-            android:id="@+id/driverLogoutBtn"/>
+            android:background="#FF9800"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButton_pass_validation"
@@ -112,7 +116,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="8dp"
-            android:background="#FF9800"
+            android:background="@android:color/holo_orange_light"
             android:text="Validate Pass"
             android:textColor="@color/white" />
 

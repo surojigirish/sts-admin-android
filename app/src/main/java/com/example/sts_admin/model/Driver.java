@@ -19,7 +19,7 @@ public class Driver {
     @SerializedName("empId")
     private Integer empId;
 
-    public Driver(String contact, String employeeNo, Integer empId) {
+    public Driver(String contact, String employeeNo, String firstname, String gender, String lastname, String licenseNo, Integer empId) {
         this.contact = contact;
         this.employeeNo = employeeNo;
         this.firstname = firstname;
@@ -27,16 +27,6 @@ public class Driver {
         this.lastname = lastname;
         this.licenseNo = licenseNo;
         this.empId = empId;
-
-//    public Driver(Integer empId, String empNo, String fname, String lname) {
-//        this.empId = empId;
-//        this.employeeNo = empNo;
-//        this.firstname = fname;
-//        this.lastname = lname;
-//
-//    }
-
-
     }
 
     public String getContact() {

@@ -10,6 +10,12 @@ public class User {
     @SerializedName("id")
     private Integer id;
 
+
+//    public User(String email, Integer id) {
+//        this.email = email;
+//        this.id = id;
+//    }
+
     public String getEmail() {
         return email;
     }

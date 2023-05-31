@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
@@ -18,6 +18,7 @@ import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.AdminLoginRequest;
 import com.example.sts_admin.apiservice.response.AdminLoginResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -32,8 +33,9 @@ import retrofit2.Response;
 public class AdminLogin extends AppCompatActivity {
 
     TextView text;
-    EditText email, password;
-    Button loginBtn,driverLoginBtn;
+    EditText email;
+    TextInputEditText password;
+   AppCompatButton loginBtn,driverLoginBtn;
     TextView tvIpAddress;
 
     SharedPrefManager sharedPrefManager;
@@ -46,8 +48,8 @@ public class AdminLogin extends AppCompatActivity {
         setContentView(R.layout.activity_adminlogin);
 
         text = findViewById(R.id.adminText);
-        email = findViewById(R.id.adminUsername);
-        password = findViewById(R.id.adminPassword);
+        email= findViewById(R.id.adminUsername);
+        password = findViewById(R.id.adminPassword2);
         loginBtn = findViewById(R.id.adminLoginBtn);
         driverLoginBtn=findViewById(R.id.driverLogin);
 
@@ -78,8 +80,16 @@ public class AdminLogin extends AppCompatActivity {
         super.onStart();
 
         // check if user is logged and start the dashboard intent
-        if (sharedPrefManager.isLogged()) {
+        if (sharedPrefManager.isAdminLogged()) {
             Intent intent = new Intent(AdminLogin.this, AdminDashboard.class);
+            // setFlags clears previous tasks
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+
+        // Check if driver user is logged in
+        if (sharedPrefManager.isDriverLogged()) {
+            Intent intent = new Intent(AdminLogin.this, DriverDashboard.class);
             // setFlags clears previous tasks
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

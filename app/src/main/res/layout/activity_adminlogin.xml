@@ -7,70 +7,116 @@
     android:layout_height="match_parent"
     tools:context=".activity.AdminLogin">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@android:color/holo_orange_light"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignTop="@+id/adminText"
+        android:layout_marginTop="-100dp"
+        android:background="@drawable/wave__1_"/>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/adminText"
-        android:text="Admin Login"
-        android:textSize="50sp"
-        android:gravity="center"
-        android:layout_marginTop="150dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="UserName"
-        android:id="@+id/adminUsername"
-        android:layout_marginLeft="30dp"
-        android:background="@drawable/button_border"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="55dp"
-        android:layout_below="@id/adminText"
-        android:drawableLeft="@drawable/baseline_person_24"
-        android:padding="10dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="Password"
-        android:id="@+id/adminPassword"
-        android:layout_marginLeft="30dp"
-        android:background="@drawable/button_border"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@id/adminUsername"
-        android:drawableLeft="@drawable/baseline_lock_24"
-        android:padding="10dp"/>
-
-    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:gravity="center"
+        android:text="Admin Login"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/adminUsername"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/adminText"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="30dp"
+        android:hint="UserName"
+        android:background="#97FFC247"
+        android:padding="10dp" />
+
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/adminUsername"-->
+<!--        android:layout_marginLeft="30dp"-->
+<!--        android:layout_marginRight="30dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginTop="360dp"-->
+<!--        android:background="@drawable/button_border"-->
+<!--        app:boxCornerRadiusBottomEnd="10dp"-->
+<!--        app:boxCornerRadiusBottomStart="10dp"-->
+<!--        app:boxCornerRadiusTopEnd="10dp"-->
+<!--        app:boxCornerRadiusTopStart="10dp">-->
+
+    <!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/adminPassword"
+        app:passwordToggleEnabled="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="420dp"
+        android:background="@drawable/button_border"
+        app:boxCornerRadiusBottomEnd="10dp"
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/adminPassword2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/adminUsername"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:drawableLeft="@drawable/baseline_lock_24"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/adminLoginBtn"
-        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/adminPassword"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="55dp"
-        android:textSize="35sp"
-        android:textStyle="bold"
         android:background="@drawable/button_border"
-        android:shadowRadius="@integer/material_motion_duration_medium_2"/>
+        android:shadowRadius="@integer/material_motion_duration_medium_2"
+        android:text="Login"
+        android:textSize="35sp"
+        android:textStyle="bold" >
 
-    <Button
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/driverLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/adminLoginBtn"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="22dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/button_border"
         android:shadowRadius="250"
         android:text="DRIVER LOGIN"
         android:textSize="35sp"
-        android:textStyle="bold"
-        android:id="@+id/driverLogin"
-        android:layout_below="@id/adminLoginBtn"
-        android:layout_marginTop="20dp"/>
+        android:textStyle="bold" >
+
+    </androidx.appcompat.widget.AppCompatButton>
 
     <TextView
         android:id="@+id/tv_ip"

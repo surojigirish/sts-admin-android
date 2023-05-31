@@ -6,14 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddSchedule">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/holo_orange_light"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="214dp"
         android:text="Add Schedule"
         android:textSize="35sp"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,10 +28,10 @@
 
     <TextView
         android:id="@+id/tvrouteId"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="305dp"
         android:hint="route_id"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/et_departure"
@@ -32,7 +39,7 @@
 
     <TextView
         android:id="@+id/et_departure"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="352dp"
         android:hint="departure_at"
@@ -44,7 +51,7 @@
 
     <TextView
         android:id="@+id/et_arrival"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:hint="arrival_at"
@@ -55,7 +62,7 @@
 
     <TextView
         android:id="@+id/et_duration"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:hint="duration"
@@ -65,27 +72,38 @@
         app:layout_constraintTop_toBottomOf="@+id/et_arrival" />
 
 
-    <Button
+        <FrameLayout
+        android:id="@+id/fl_routeId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" >
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addScheduleBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/holo_orange_light"
         android:text="Add Schedule"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_duration" />
 
-        <FrameLayout
-            android:id="@+id/fl_routeId"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/wave__1_"
+            app:layout_editor_absoluteY="100dp"
+            tools:ignore="MissingConstraints" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,11 @@ public class Session {
         this.user = user;
     }
 
+
+    public Session(String licenseNo, String employeeNo, String firstname, String gender, int id, String lastname, String string, String email, int userId) {
+    }
+
+
     public Employee getEmployee() {
         return employee;
     }
