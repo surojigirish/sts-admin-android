@@ -59,6 +59,13 @@ public class SharedPrefManager {
         editor.apply();
     }
 
+    public void driverLogout() {
+        sharedPreferences = context.getSharedPreferences(Consts.SHARED_PREF_DRIVER, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
+
     public void saveBus(Integer busId, String busRegNo) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
