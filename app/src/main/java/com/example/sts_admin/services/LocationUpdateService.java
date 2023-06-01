@@ -64,6 +64,7 @@ public class LocationUpdateService extends Service {
 
         // Log the location update
         Log.i("LocationUpdateService", "Received location update: lat = " + latitude + " long = " + longitude);
+        Toast.makeText(this, "LocationUpdateService Received location update: lat =  " + latitude + " ,long = " + longitude, Toast.LENGTH_SHORT).show();
 
         // Create location update request object
         LocationUpdate request = createLocationUpdateRequest(latitude, longitude);

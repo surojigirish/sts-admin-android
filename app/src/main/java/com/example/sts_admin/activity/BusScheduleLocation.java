@@ -64,7 +64,6 @@ public class BusScheduleLocation extends AppCompatActivity {
                 } else {
                     startSendingLocation();
                 }
-                /*requestUserLocation();*/
             }
         });
 
