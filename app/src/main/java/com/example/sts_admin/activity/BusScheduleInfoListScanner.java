@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -19,6 +20,7 @@ import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.LocationUpdate;
+import com.example.sts_admin.services.LocationUpdateService;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -40,6 +42,8 @@ public class BusScheduleInfoListScanner extends AppCompatActivity {
     // Declare FusedLocationProviderClient as a class variable
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationUpdate locationUpdateRequest;
+    private PendingIntent locationUpdatePendingIntent;
+    private boolean sendingLocationEnabled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,12 @@ public class BusScheduleInfoListScanner extends AppCompatActivity {
         locationEnableDisable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                requestUserLocation();
+                if (sendingLocationEnabled) {
+                    stopSendingLocation();
+                } else {
+                    startSendingLocation();
+                }
+                /*requestUserLocation();*/
             }
         });
 
@@ -90,7 +99,29 @@ public class BusScheduleInfoListScanner extends AppCompatActivity {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
-    // Location update request
+    // Start sending location updates
+    private void startSendingLocation() {
+        if (!sendingLocationEnabled) {
+            sendingLocationEnabled = true;
+            locationEnableDisable.setText("Disable Sending Location");
+
+            // Request user location
+            requestUserLocation();
+        }
+    }
+
+    // Stop sending location updates
+    private void stopSendingLocation() {
+        if (sendingLocationEnabled) {
+            sendingLocationEnabled = false;
+            locationEnableDisable.setText("Enable Sending Location");
+
+            // Stop location updates
+            fusedLocationProviderClient.removeLocationUpdates(locationUpdatePendingIntent);
+        }
+    }
+
+    // Location update request for API call
     private LocationUpdate createLocationUpdateRequest(double lat, double lng) {
         LocationUpdate request = new LocationUpdate();
 
@@ -140,8 +171,15 @@ public class BusScheduleInfoListScanner extends AppCompatActivity {
         locationRequest.setFastestInterval(5000);    // use fastest interval
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
+        // Create a PendingIntent for the location update
+        Intent intent = new Intent(this, LocationUpdateService.class);
+        locationUpdatePendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // fused location provider client
+        // Background service for location
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationUpdatePendingIntent);
+
+
+        /*// fused location provider client
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, new LocationCallback() {
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
@@ -163,7 +201,7 @@ public class BusScheduleInfoListScanner extends AppCompatActivity {
                     }
                 }
             }
-        }, null);
+        }, null);*/
     }
 
     // location request permission check

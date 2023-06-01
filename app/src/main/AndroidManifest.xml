@@ -111,6 +111,12 @@
         <activity
             android:name=".activity.TripHistory"
             android:exported="false" />
+
+        <!-- Location Background Service -->
+        <service
+            android:name=".services.LocationUpdateService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

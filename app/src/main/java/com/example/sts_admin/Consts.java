@@ -34,6 +34,9 @@ public class Consts {
     public static final String ENDPOINT_ADD_BUS_SCHEDULE = "add-bus-schedule";
     public static final String ENDPOINT_BUS_SCHEDULE_LIST_ITEMS = "bus-schedule";
 
+    // driver bus schedule endpoint
+    public static final String ENDPOINT_BUS_DRIVER_BUS_SCHEDULE = "driver-employee/{employee-id}/bus-schedules";
+
     //schedule
     public static final String ENDPOINT_ADD_SCHEDULE_DETAILS = "schedules";
 
@@ -43,6 +46,8 @@ public class Consts {
 
     // location
     public static final Integer LOCATION_THRESHOLD = 50;
+    public static final Integer NOTIFICATION_ID = 123;
+    public static final String CHANNEL_ID = "LocationUpdateChannel";
 
     // request codes
     public static final Integer LOCATION_REQUEST_CODE = 1;

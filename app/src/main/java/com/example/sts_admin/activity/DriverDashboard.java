@@ -48,7 +48,7 @@ public class DriverDashboard extends AppCompatActivity {
         busScheduleList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(DriverDashboard.this,BusScheduleList.class);
+                Intent intent= new Intent(DriverDashboard.this, BusScheduleList.class);
                 startActivity(intent);
             }
         });
