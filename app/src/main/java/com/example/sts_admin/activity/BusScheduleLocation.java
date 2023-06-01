@@ -9,31 +9,21 @@ import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
-import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.LocationUpdate;
 import com.example.sts_admin.services.LocationUpdateService;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class BusScheduleInfoListScanner extends AppCompatActivity {
+public class BusScheduleLocation extends AppCompatActivity {
 
     private static final int REQUEST_CHECK_SETTINGS = 0;
     TextView tvBusScheduleID;
@@ -130,6 +120,10 @@ public class BusScheduleInfoListScanner extends AppCompatActivity {
 
             // Stop location updates
             fusedLocationProviderClient.removeLocationUpdates(locationUpdatePendingIntent);
+
+            // Stop LocationUpdateService
+            Intent serviceIntent = new Intent(this, LocationUpdateService.class);
+            stopService(serviceIntent);
         }
     }
 
@@ -169,7 +163,5 @@ public class BusScheduleInfoListScanner extends AppCompatActivity {
             }
         }
     }
-
-    private int counter = 0;
 
 }
