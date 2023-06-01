@@ -1,66 +1,59 @@
 package com.example.sts_admin.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sts_admin.R;
-import com.example.sts_admin.activity.DriverDashboard;
-import com.example.sts_admin.model.Result;
+import com.example.sts_admin.model.results.ListOfBusSchedule;
 
 import java.util.List;
 
 public class BusScheduleListAdapter extends RecyclerView.Adapter<BusScheduleListAdapter.ViewHolder> {
 
-    List<Result> busScheduleList;
-    Context context;
+    List<ListOfBusSchedule> driverBusSchedule;
 
-    private OnItemClickListener onItemClickListener;
+    // Click listener
+    private OnDriverBusScheduleClick onDriverBusScheduleClick;
 
-    public BusScheduleListAdapter(List<Result> busScheduleList, Context context, OnItemClickListener onItemClickListener) {
-        this.busScheduleList = busScheduleList;
-        this.context = context;
-        this.onItemClickListener = onItemClickListener;
+    public BusScheduleListAdapter(List<ListOfBusSchedule> driverBusSchedule, OnDriverBusScheduleClick onDriverBusScheduleClick) {
+        this.driverBusSchedule = driverBusSchedule;
+        this.onDriverBusScheduleClick = onDriverBusScheduleClick;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context)
+        View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.bus_schedule_list_items, parent, false);
 
-        return new ViewHolder(view);
+        return new ViewHolder(view, onDriverBusScheduleClick, driverBusSchedule);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        holder.availableSeats.setText(busScheduleList.get(position).getAvailableSeats());
-        holder.busId.setText(busScheduleList.get(position).getBusId().toString());
-        holder.date.setText(busScheduleList.get(position).getDate());
-        holder.scheduleId.setText(busScheduleList.get(position).getScheduleId().toString());
+        holder.busScheduleId.setText(String.valueOf(driverBusSchedule.get(position).getBusSchedule().getId()));
+        holder.busRegistration.setText(driverBusSchedule.get(position).getBus().getRegistrationNumber());
+        holder.busType.setText(driverBusSchedule.get(position).getBus().getType());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "CLICKED", Toast.LENGTH_SHORT).show();
-                Integer pos = holder.getAdapterPosition();
-                if (pos != RecyclerView.NO_POSITION && onItemClickListener != null) {
-//                if (onItemClickListener != null) {
-//                    onItemClickListener.onItemClick("barcode");
-//                }
-                    Result selectedList= busScheduleList.get(pos);
-                    String driverBusId = selectedList.getBusId().toString();
-                    String driverScheduleId=selectedList.getScheduleId().toString();
+            public void onClick(View v) {
+                int pos = holder.getAdapterPosition();
 
-                    onItemClickListener.onItemClick(driverBusId,driverScheduleId);
+                if (pos != RecyclerView.NO_POSITION && onDriverBusScheduleClick != null) {
+                    ListOfBusSchedule busSchedule = driverBusSchedule.get(pos);
+
+                    // pass bus schedule id
+                    Integer busScheduleId = busSchedule.getBusSchedule().getId();
+
+                    // Click handler
+                    onDriverBusScheduleClick.onItemClick(busScheduleId);
                 }
             }
         });
@@ -68,25 +61,23 @@ public class BusScheduleListAdapter extends RecyclerView.Adapter<BusScheduleList
 
     @Override
     public int getItemCount() {
-        return busScheduleList.size();
+        return driverBusSchedule.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
+        TextView busScheduleId, busRegistration, busType;
 
-        TextView availableSeats, busId, date, scheduleId;
-
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnDriverBusScheduleClick listener, List<ListOfBusSchedule> driverBusScheduleList) {
             super(itemView);
-            availableSeats = itemView.findViewById(R.id.available_seats);
-            busId = itemView.findViewById(R.id.bus_id);
-            date = itemView.findViewById(R.id.date);
-            scheduleId = itemView.findViewById(R.id.schedule_id);
+            busScheduleId = itemView.findViewById(R.id.tv_busScheduleId);
+            busRegistration = itemView.findViewById(R.id.tv_busRegistration);
+            busType = itemView.findViewById(R.id.tv_busType);
         }
     }
 
 
-        public interface OnItemClickListener {
-            void onItemClick(String driverBusId, String driverScheduleId);
-        }
+    public interface OnDriverBusScheduleClick {
+        void onItemClick(Integer busScheduleId);
+    }
 }

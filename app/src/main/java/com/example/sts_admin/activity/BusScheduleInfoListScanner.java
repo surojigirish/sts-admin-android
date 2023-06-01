@@ -34,7 +34,7 @@ import retrofit2.Response;
 public class BusScheduleInfoListScanner extends AppCompatActivity {
 
     private static final int REQUEST_CHECK_SETTINGS = 0;
-    TextView driverBusId, driverScheduleId;
+    TextView tvBusScheduleID;
 
     Button locationEnableDisable;
 
@@ -50,18 +50,15 @@ public class BusScheduleInfoListScanner extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_schedule_info_list_scanner);
 
-        driverBusId = findViewById(R.id.driver_busId);
-        driverScheduleId = findViewById(R.id.driver_scheduleId);
+        tvBusScheduleID = findViewById(R.id.tv_driverBusSchedule);
         locationEnableDisable = findViewById(R.id.enable_disable);
 
 
         // set data to views
         Intent intent = getIntent();
-        String busId = intent.getStringExtra("busId");
-        String scheduleId = intent.getStringExtra("scheduleId");
+        String busScheduleId = intent.getStringExtra("busScheduleId");
 
-        driverBusId.setText(busId);
-        driverScheduleId.setText(scheduleId);
+        tvBusScheduleID.setText(busScheduleId);
 
 
         initFusedLocationProviderClient();

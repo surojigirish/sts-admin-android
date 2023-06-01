@@ -111,4 +111,7 @@ public interface Api {
             @Path("pass-id") Integer passId,
             @Body ValidationRequest request );
 
+    // Driver bus-schedules
+    @GET(Consts.ENDPOINT_DRIVER_BUS_SCHEDULE)
+    Call<MainResponse> driverBusSchedules(@Path("employee-id") Integer empId);
 }

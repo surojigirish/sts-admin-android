@@ -6,13 +6,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.BusScheduleListAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
-import com.example.sts_admin.model.Result;
+import com.example.sts_admin.apiservice.response.MainResponse;
+import com.example.sts_admin.model.results.ListOfBusSchedule;
 
 import java.util.List;
 
@@ -23,9 +25,9 @@ import retrofit2.Response;
 public class BusScheduleList extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    List<Result> busScheduleList;
+    List<ListOfBusSchedule> driverBusScheduleList;
 
-    BusScheduleListAdapter.OnItemClickListener onItemClickListener;
+    BusScheduleListAdapter.OnDriverBusScheduleClick clickListener;
 
 
 
@@ -40,52 +42,41 @@ public class BusScheduleList extends AppCompatActivity {
 
 
 
-        getAllBusScheduleList();
+        allDriverSchedules();
 
-//        onItemClickListener = new BusScheduleListAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(String barcode) {
-//
-//            }
-//        };
-
-        onItemClickListener= new BusScheduleListAdapter.OnItemClickListener() {
+        clickListener = new BusScheduleListAdapter.OnDriverBusScheduleClick() {
             @Override
-            public void onItemClick(String driverBusId, String driverScheduleId) {
-                // Handle the click event and initiate barcode scanning
-                // You can start the ScannerActivity or any other barcode scanning logic here
+            public void onItemClick(Integer busScheduleId) {
+
             }
         };
     }
 
-
-    public void getAllBusScheduleList(){
-        Call<BusScheduleDetailsResponse> call = Client.getInstance(Consts.BASE_URL_BUS).getRoute().getAllBusScheduleList();
-        call.enqueue(new Callback<BusScheduleDetailsResponse>() {
+    // Driver schedules API call
+    private void allDriverSchedules() {
+        Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().driverBusSchedules(4);
+        call.enqueue(new Callback<MainResponse>() {
             @Override
-            public void onResponse(Call<BusScheduleDetailsResponse> call, Response<BusScheduleDetailsResponse> response) {
-                if (response.isSuccessful()){
-                    if (response.body() != null &&  response.body().getStatus()==200){
-                        busScheduleList= response.body().getResult();
-                        recyclerView.setAdapter(new BusScheduleListAdapter(busScheduleList, getApplicationContext(), new BusScheduleListAdapter.OnItemClickListener() {
+            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null && response.body().getStatusCode() == 200) {
+                        driverBusScheduleList = response.body().getListOfBusSchedule();
+                        recyclerView.setAdapter(new BusScheduleListAdapter(driverBusScheduleList, new BusScheduleListAdapter.OnDriverBusScheduleClick() {
                             @Override
-                            public void onItemClick(String driverBusId,String driverScheduleId) {
-
+                            public void onItemClick(Integer busScheduleId) {
+                                Log.i("DRIVER SCHEDULE", "onItemClick: bus-schedule " + busScheduleId);
                                 Intent intent= new Intent(getApplicationContext(), BusScheduleInfoListScanner.class);
-                                intent.putExtra("busId",driverBusId);
-                                intent.putExtra("scheduleId",driverScheduleId);
+                                intent.putExtra("busScheduleId", busScheduleId);
                                 startActivity(intent);
                                 finish();
                             }
                         }));
-
-
                     }
                 }
             }
 
             @Override
-            public void onFailure(Call<BusScheduleDetailsResponse> call, Throwable t) {
+            public void onFailure(Call<MainResponse> call, Throwable t) {
 
             }
         });

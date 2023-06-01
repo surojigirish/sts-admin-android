@@ -35,7 +35,7 @@ public class Consts {
     public static final String ENDPOINT_BUS_SCHEDULE_LIST_ITEMS = "bus-schedule";
 
     // driver bus schedule endpoint
-    public static final String ENDPOINT_BUS_DRIVER_BUS_SCHEDULE = "driver-employee/{employee-id}/bus-schedules";
+    public static final String ENDPOINT_DRIVER_BUS_SCHEDULE = "driver-employee/{employee-id}/bus-schedules";
 
     //schedule
     public static final String ENDPOINT_ADD_SCHEDULE_DETAILS = "schedules";

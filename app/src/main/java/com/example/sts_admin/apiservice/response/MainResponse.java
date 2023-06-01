@@ -7,15 +7,16 @@ import java.util.List;
 
 public class MainResponse {
 
-    @SerializedName("results")
-    private List<ListOfBusSchedule> listOfBusSchedule;
     @SerializedName("status")
     private Integer statusCode;
     @SerializedName("success")
     private Boolean success;
-
     @SerializedName("message")
     private String message;
+
+    // Different sets of results
+    @SerializedName("results")
+    private List<ListOfBusSchedule> listOfBusSchedule;
 
     public List<ListOfBusSchedule> getListOfBusSchedule() {
         return listOfBusSchedule;
