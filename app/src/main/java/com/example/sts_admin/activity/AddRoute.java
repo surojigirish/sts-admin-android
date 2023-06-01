@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +42,10 @@ public class AddRoute extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 route(routeRequest());
+                Toast.makeText(AddRoute.this, "Route added", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(AddRoute.this, UpdateSchedule.class);
+                startActivity(i);
+                finish();
             }
         });
 
@@ -62,17 +67,9 @@ public class AddRoute extends AppCompatActivity {
             @Override
             public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
                 if (response.isSuccessful()) {
-                    if (response.body() != null && response.body().getStatus() == 200) {
-
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-
-//                        Intent intent = new Intent(AddRoute.this, UpdateSchedule.class);
-//                        startActivity(intent);
-//                        finish();
-                    } else {
-                        Toast.makeText(AddRoute.this, "Failed To Add", Toast.LENGTH_SHORT).show();
-                    }
-
+                    Log.i("TAG", "onResponse: success");
+                } else {
+                    Log.i("ADD ROUTE DATA", "onResponse: unable to add route data");
                 }
             }
 
