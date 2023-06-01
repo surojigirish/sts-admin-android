@@ -107,12 +107,12 @@ public class DriverDashboard extends AppCompatActivity {
                 if (response.isSuccessful()){
 //                    Toast.makeText(AdminDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
                     if(logoutResponse != null && logoutResponse.getStatus() == 200){
-                        sharedPrefManager.logout();
-                        Toast.makeText(DriverDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(DriverDashboard.this, DriverLogin.class);
+                        sharedPrefManager.driverLogout();
+                        Intent intent=new Intent(DriverDashboard.this, AdminLogin.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
+                        Toast.makeText(DriverDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
