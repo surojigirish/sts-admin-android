@@ -27,6 +27,8 @@ import retrofit2.Response;
 
 public class LocationUpdateService extends Service {
 
+    int busScheduleId;
+
 
     @Nullable
     @Override
@@ -37,6 +39,9 @@ public class LocationUpdateService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
+            // Get putExtra from Intent
+            busScheduleId = intent.getIntExtra("busScheduleId", 0);
+
             if (LocationResult.hasResult(intent)) {
                 LocationResult locationResult = LocationResult.extractResult(intent);
                 if (locationResult != null) {
@@ -73,7 +78,7 @@ public class LocationUpdateService extends Service {
         Log.i("TAG", "updateLocation: counter incremented on call" + counter);
 
         Call<Void> call = Client.getInstance(Consts.BASE_URL_LOCATION)
-                .getRoute().updateLocation(21, request);
+                .getRoute().updateLocation(busScheduleId, request);
 
         call.enqueue(new Callback<Void>() {
             @Override

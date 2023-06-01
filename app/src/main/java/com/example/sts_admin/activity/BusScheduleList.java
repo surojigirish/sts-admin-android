@@ -29,8 +29,6 @@ public class BusScheduleList extends AppCompatActivity {
 
     BusScheduleListAdapter.OnDriverBusScheduleClick clickListener;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +45,7 @@ public class BusScheduleList extends AppCompatActivity {
         clickListener = new BusScheduleListAdapter.OnDriverBusScheduleClick() {
             @Override
             public void onItemClick(Integer busScheduleId) {
-
+                // do something on item click
             }
         };
     }

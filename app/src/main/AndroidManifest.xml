@@ -14,6 +14,9 @@
     <!-- Bar Code Scanner required -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- Location background services -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

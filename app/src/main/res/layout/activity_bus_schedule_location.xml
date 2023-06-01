@@ -6,26 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".activity.BusScheduleInfoListScanner">
 
-
     <TextView
         android:id="@+id/tv_driverBusSchedule"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="busId"
-        android:textSize="20sp"
+        android:text="Bus Schedule ID: "
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/enable_disable"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="#FF9800"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:id="@+id/appCompatButton_location"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="146dp"
-        android:text="location enable/disable"
+        android:layout_marginTop="132dp"
+        android:text="Enable Bus Location"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
