@@ -7,29 +7,41 @@
     tools:context=".activity.AddRoute">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:id="@+id/constraintLayout5"
+        android:layout_width="0dp"
         android:layout_height="120dp"
         android:background="@android:color/holo_orange_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 
     <View
+        android:id="@+id/view5"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="119dp"
-        android:background="@drawable/wave__1_"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/wave__1_"
+        app:layout_constraintBottom_toTopOf="@+id/source"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/source"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="275dp"
         android:hint="SourceStand"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
 
     <EditText
         android:id="@+id/destination"
@@ -47,9 +59,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@android:color/holo_orange_light"
         android:text="Add Route"
         android:textSize="20sp"
-        android:background="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"

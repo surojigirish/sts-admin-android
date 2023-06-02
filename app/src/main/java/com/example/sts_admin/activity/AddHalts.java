@@ -2,6 +2,7 @@ package com.example.sts_admin.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -34,7 +35,7 @@ import retrofit2.Response;
 public class AddHalts extends AppCompatActivity {
 
     EditText etHaltName, etHaltLongitude, etHaltLatitude;
-    Button btnAddHalt, btnGetLatLong;
+    AppCompatButton btnAddHalt, btnGetLatLong;
 
     // location
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -62,7 +63,7 @@ public class AddHalts extends AppCompatActivity {
         etHaltName=findViewById(R.id.et_halt_name);
         etHaltLatitude=findViewById(R.id.et_halt_lat);
         etHaltLongitude=findViewById(R.id.et_halt_long);
-        
+
         btnAddHalt = findViewById(R.id.btn_add_halt);
         btnGetLatLong = findViewById(R.id.btn_geo_location);
 
@@ -77,7 +78,12 @@ public class AddHalts extends AppCompatActivity {
         btnAddHalt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 source(haltRequest());
+                Toast.makeText(AddHalts.this, "Halt added successfully", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(AddHalts.this,UpdateSchedule.class);
+                startActivity(i);
+                finish();
             }
         });
 
@@ -143,11 +149,11 @@ public class AddHalts extends AppCompatActivity {
 
 
     public HaltRequest haltRequest(){
-       HaltRequest haltRequest = new HaltRequest();
-       haltRequest.setName(etHaltName.getText().toString());
-       haltRequest.setLatitude(etHaltLatitude.getText().toString());
-       haltRequest.setLongitude(etHaltLongitude.getText().toString());
-       return haltRequest;
+        HaltRequest haltRequest = new HaltRequest();
+        haltRequest.setName(etHaltName.getText().toString());
+        haltRequest.setLatitude(etHaltLatitude.getText().toString());
+        haltRequest.setLongitude(etHaltLongitude.getText().toString());
+        return haltRequest;
     }
 
     public void source(HaltRequest haltRequest){
@@ -158,7 +164,8 @@ public class AddHalts extends AppCompatActivity {
             public void onResponse(Call<HaltResponse> call, Response<HaltResponse> response) {
                 HaltResponse sourceResponse=response.body();
                 if (response.body() != null && response.isSuccessful() && response.body().getStatus() == 200) {
-                    Toast.makeText(AddHalts.this, "halt added successfully", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(AddHalts.this, "Added", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
