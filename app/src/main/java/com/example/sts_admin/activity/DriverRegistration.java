@@ -148,6 +148,7 @@ public class DriverRegistration extends AppCompatActivity {
                 if (response.isSuccessful()){
 
                     if (registerResponse != null && registerResponse.getStatus() == 200) {
+                        validation();
                         Toast.makeText(DriverRegistration.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DriverRegistration.this, AdminDashboard.class);
                         startActivity(intent);
