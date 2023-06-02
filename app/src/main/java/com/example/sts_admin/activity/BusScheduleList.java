@@ -12,7 +12,6 @@ import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.BusScheduleListAdapter;
 import com.example.sts_admin.apiservice.Client;
-import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
 import com.example.sts_admin.apiservice.response.MainResponse;
 import com.example.sts_admin.model.results.ListOfBusSchedule;
 
@@ -28,8 +27,6 @@ public class BusScheduleList extends AppCompatActivity {
     List<ListOfBusSchedule> driverBusScheduleList;
 
     BusScheduleListAdapter.OnDriverBusScheduleClick clickListener;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +44,7 @@ public class BusScheduleList extends AppCompatActivity {
         clickListener = new BusScheduleListAdapter.OnDriverBusScheduleClick() {
             @Override
             public void onItemClick(Integer busScheduleId) {
-
+                // do something on item click
             }
         };
     }
@@ -65,7 +62,7 @@ public class BusScheduleList extends AppCompatActivity {
                             @Override
                             public void onItemClick(Integer busScheduleId) {
                                 Log.i("DRIVER SCHEDULE", "onItemClick: bus-schedule " + busScheduleId);
-                                Intent intent= new Intent(getApplicationContext(), BusScheduleInfoListScanner.class);
+                                Intent intent= new Intent(getApplicationContext(), BusScheduleLocation.class);
                                 intent.putExtra("busScheduleId", busScheduleId);
                                 startActivity(intent);
                                 finish();

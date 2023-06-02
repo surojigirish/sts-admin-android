@@ -16,9 +16,9 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
-import com.example.sts_admin.activity.BusScheduleInfoListScanner;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.LocationUpdate;
+import com.example.sts_admin.model.BusSchedule;
 import com.google.android.gms.location.LocationResult;
 
 import retrofit2.Call;
@@ -26,6 +26,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LocationUpdateService extends Service {
+
+    private int busScheduleId;
 
 
     @Nullable
@@ -36,7 +38,12 @@ public class LocationUpdateService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.i("LocationUpdateService", "Service started");
+
         if (intent != null) {
+            // Get putExtra from Intent
+            busScheduleId = intent.getIntExtra("busScheduleId", -1);
+
             if (LocationResult.hasResult(intent)) {
                 LocationResult locationResult = LocationResult.extractResult(intent);
                 if (locationResult != null) {
@@ -57,6 +64,7 @@ public class LocationUpdateService extends Service {
 
         // Log the location update
         Log.i("LocationUpdateService", "Received location update: lat = " + latitude + " long = " + longitude);
+        Toast.makeText(this, "LocationUpdateService Received location update: lat =  " + latitude + " ,long = " + longitude, Toast.LENGTH_SHORT).show();
 
         // Create location update request object
         LocationUpdate request = createLocationUpdateRequest(latitude, longitude);
@@ -67,13 +75,8 @@ public class LocationUpdateService extends Service {
 
     // API call in background service
     private void updateLocation(LocationUpdate request) {
-        // update counter
-        int counter = 0;
-        counter++;
-        Log.i("TAG", "updateLocation: counter incremented on call" + counter);
-
         Call<Void> call = Client.getInstance(Consts.BASE_URL_LOCATION)
-                .getRoute().updateLocation(21, request);
+                .getRoute().updateLocation(busScheduleId, request);
 
         call.enqueue(new Callback<Void>() {
             @Override
@@ -122,10 +125,12 @@ public class LocationUpdateService extends Service {
             nm.createNotificationChannel(channel);
         }
 
+
+
         // Create the notification to show the foreground service
         Notification notification = new NotificationCompat.Builder(this, Consts.CHANNEL_ID)
-                .setContentTitle("Location Updates")
-                .setContentText("Running...")
+                .setContentTitle("Location Enabled")
+                .setContentText("Current trip location running...")
                 .setSmallIcon(R.drawable.bus_icon)
                 .build();
 
