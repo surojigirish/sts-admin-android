@@ -142,7 +142,7 @@ public class BusScheduleLocation extends AppCompatActivity {
         // Create a PendingIntent for the location update
         Intent intent = new Intent(this, LocationUpdateService.class);
         intent.putExtra("busScheduleId", busScheduleId);
-        locationUpdatePendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        locationUpdatePendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_MUTABLE);
 
         // Background service for location
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationUpdatePendingIntent);

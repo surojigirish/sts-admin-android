@@ -35,7 +35,7 @@
                 android:gravity="center"
                 android:text="Welcome To Admin DashBoard"
                 android:textColor="@color/black"
-                android:textSize="40dp"
+                android:textSize="40sp"
                 android:textStyle="bold"/>
         </RelativeLayout>
 
@@ -75,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/bus_schedule"></ImageView>
+                        android:src="@drawable/bus_schedule" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                         android:text="Schedule"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="23dp" />
+                        android:textSize="23sp" />
 
                 </LinearLayout>
 
@@ -115,7 +115,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/user_profile"></ImageView>
+                        android:src="@drawable/user_profile" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                         android:text="Driver Registration"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="23dp" />
+                        android:textSize="23sp" />
 
                 </LinearLayout>
 
@@ -155,7 +155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/trip_history_24"></ImageView>
+                        android:src="@drawable/trip_history_24" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
                         android:text="Add bus Schedule"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="23dp" />
+                        android:textSize="23sp" />
 
                 </LinearLayout>
 
@@ -195,7 +195,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/bus_icon"></ImageView>
+                        android:src="@drawable/bus_icon" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -204,7 +204,7 @@
                         android:text="Add bus"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="23dp" />
+                        android:textSize="23sp" />
 
                 </LinearLayout>
 
@@ -224,14 +224,6 @@
 
         </androidx.appcompat.widget.AppCompatButton>
 
-
-
-        <!--        <Button-->
-<!--            android:id="@+id/btn_view_drivers"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="View Drivers"-->
-<!--            android:layout_gravity="center"/>-->
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

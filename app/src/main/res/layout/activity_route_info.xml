@@ -178,20 +178,19 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_route_fare"
                 app:layout_constraintTop_toBottomOf="@+id/tv_route_fare" />
 
-            <FrameLayout
-                android:id="@+id/frameLayout_route_info"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
 
     <!-- frame layout to attach frags -->
+    <FrameLayout
+        android:id="@+id/frameLayout_route_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

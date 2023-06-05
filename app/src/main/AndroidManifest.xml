@@ -96,9 +96,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.UpdateSchedule"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".activity.AddRoute" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
         <activity
             android:name=".activity.AdminDashboard"
             android:exported="false" />

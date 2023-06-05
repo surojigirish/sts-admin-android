@@ -19,6 +19,8 @@ import com.example.sts_admin.apiservice.request.DriverRegisterRequest;
 import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
+import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,15 +40,15 @@ public class DriverRegistration extends AppCompatActivity {
 
         initViews();
 
+
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
 
 
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validation();
 
-               register(registerRequest());
+                register(registerRequest());
             }
         });
 
@@ -71,6 +73,7 @@ public class DriverRegistration extends AppCompatActivity {
         contactNo = findViewById(R.id.et_contact_number);
         driverDetailsBtn=findViewById(R.id.driverDetailsBtn);
         gender=findViewById(R.id.et_gender);
+
 
 
     }
@@ -103,15 +106,15 @@ public class DriverRegistration extends AppCompatActivity {
             lastname.setError(",ore than 3 char req");
         }
 
-//        if (email.getText().toString().isEmpty()) {
-//            email.setError("Field cannot be empty");
+        if (email.getText().toString().isEmpty()) {
+            email.requestFocus();
+            email.setError("Field cannot be empty");
 //        } else {
-//            if (android.util.Patterns.EMAIL_ADDRESS.matcher((CharSequence) email).matches()) {
-//                email.setText("Valid email address");
-//            } else {
-//                email.setText("Invalid email address");
+//            if (email.getText().toString().matches(!Pattern.matches(E,email))) {
+//                email.requestFocus();
+//                email.setText("Please Enter Correct Email");
 //            }
-//        }
+        }
         if (password.getText().toString().isEmpty()){
             password.setError("password is must");
         } else if (password.getText().toString().length()<=5) {
@@ -119,17 +122,33 @@ public class DriverRegistration extends AppCompatActivity {
 
         }
 
+        if (contactNo.getText().toString().length()>11){
+            contactNo.setError("Enter 10 digit number");
+        }
+
+
+        if (licenseNo.getText().toString().isEmpty()) {
+            // Show an error message that the license number is required
+            Toast.makeText(getApplicationContext(), "License number is required.", Toast.LENGTH_SHORT).show();
+        } else if (licenseNo.getText().toString().length() <= 6) {
+            Toast.makeText(getApplicationContext(), "Invalid license number.", Toast.LENGTH_SHORT).show();
+        }
+
     }
     public void register(DriverRegisterRequest registerRequest){
 
+
         Call<DriverRegisterResponse> registerResponseCall= Client.getInstance(Consts.BASE_URL_ADMIN).getRoute().driverRegister(getUserSession(),registerRequest);
+
 
         registerResponseCall.enqueue(new Callback<DriverRegisterResponse>() {
             @Override
             public void onResponse(Call<DriverRegisterResponse> call, Response<DriverRegisterResponse> response) {
                 DriverRegisterResponse registerResponse=response.body();
                 if (response.isSuccessful()){
+
                     if (registerResponse != null && registerResponse.getStatus() == 200) {
+                        validation();
                         Toast.makeText(DriverRegistration.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DriverRegistration.this, AdminDashboard.class);
                         startActivity(intent);
@@ -156,4 +175,5 @@ public class DriverRegistration extends AppCompatActivity {
 
         return sharedPrefManager.getUser().getToken();
     }
+
 }
