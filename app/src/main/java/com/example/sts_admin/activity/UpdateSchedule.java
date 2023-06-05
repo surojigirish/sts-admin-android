@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -17,7 +18,7 @@ import com.example.sts_admin.model.RouteInfo;
 
 public class UpdateSchedule extends AppCompatActivity {
 
-    Button btnAddRoute, btnAddSource, btnRouteInfo, btnScheduleInfo;
+    AppCompatButton btnAddRoute, btnAddSource, btnRouteInfo, btnScheduleInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
