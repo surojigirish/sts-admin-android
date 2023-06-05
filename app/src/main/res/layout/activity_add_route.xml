@@ -7,7 +7,7 @@
     tools:context=".activity.AddRoute">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout4"
+        android:id="@+id/constraint_design"
         android:layout_width="0dp"
         android:layout_height="120dp"
         android:background="@android:color/holo_orange_light"
@@ -18,9 +18,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
             android:id="@+id/source"
@@ -33,7 +37,7 @@
             android:id="@+id/destination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="DestinationStand"/>
+            android:hint="DestinationStand" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_route_btn"
@@ -48,16 +52,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/destination" />
 
-        <!-- Frame layout to handle recycler view on frag -->
-        <FrameLayout
-            android:id="@+id/frameLayout_route_container"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </LinearLayout>
+
+    <!-- Frame layout to handle recycler view on frag -->
+    <FrameLayout
+        android:id="@+id/frameLayout_route_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
