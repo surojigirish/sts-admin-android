@@ -14,6 +14,9 @@
     <!-- Bar Code Scanner required -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- Location background services -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,7 +28,7 @@
         android:theme="@style/Theme.STS_ADMIN"
         tools:targetApi="31">
         <activity
-            android:name=".activity.BusScheduleInfoListScanner"
+            android:name=".activity.BusScheduleLocation"
             android:exported="false" />
         <activity
             android:name=".activity.BusScheduleList"
