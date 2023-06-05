@@ -1,6 +1,7 @@
 package com.example.sts_admin.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
@@ -11,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +28,12 @@ import com.example.sts_admin.apiservice.request.HaltRequest;
 import com.example.sts_admin.apiservice.response.HaltResponse;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import retrofit2.Call;
@@ -35,7 +43,7 @@ import retrofit2.Response;
 public class AddHalts extends AppCompatActivity {
 
     EditText etHaltName, etHaltLongitude, etHaltLatitude;
-    AppCompatButton btnAddHalt, btnGetLatLong;
+    AppCompatButton btnAddHalt, btnGetLatLong, btnGoogleMaps;
 
     // location
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -66,6 +74,7 @@ public class AddHalts extends AppCompatActivity {
 
         btnAddHalt = findViewById(R.id.btn_add_halt);
         btnGetLatLong = findViewById(R.id.btn_geo_location);
+        btnGoogleMaps = findViewById(R.id.btn_googleMaps);
 
     }
 
@@ -91,6 +100,13 @@ public class AddHalts extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getHaltLocation();
+            }
+        });
+
+        btnGoogleMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectLocationFromMap();
             }
         });
     }
@@ -175,5 +191,53 @@ public class AddHalts extends AppCompatActivity {
             }
         });
 
+    }
+
+    // Method to launch Google Maps and select a location
+    private void selectLocationFromMap() {
+        // Create a Uri to specify the map mode and marker position
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme("geo")
+                .appendQueryParameter("q", "15.49606757343556, 73.83635705315176") // Default marker position
+                .appendQueryParameter("z", "15");  // Zoom level
+        Uri uri = builder.build();
+
+
+        // Intent to launch Google Maps
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+
+        /*// Specify the map mode to display
+        mapIntent.putExtra("map_mode", "place");*/
+
+        // Start the activity and wait for the result
+        startActivityForResult(mapIntent, Consts.REQUEST_CODE_MAP_LOCATION);
+    }
+
+    // Handle the result of the Google Maps activity
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == Consts.REQUEST_CODE_MAP_LOCATION) {
+            if (resultCode == RESULT_OK) {
+                // Get the selected location coordinates from the result intent
+                if (data != null && data.getData() != null) {
+                    Uri uri = data.getData();
+
+                    double latitude = Double.parseDouble(uri.getQueryParameter("latitude"));
+                    double longitude = Double.parseDouble(uri.getQueryParameter("longitude"));
+                    /*double latitude = data.getDoubleExtra("latitude", 0.0);
+                    double longitude = data.getDoubleExtra("longitude", 0.0);*/
+
+                    // Use the lat && long in app
+
+
+                    // Display a toast message with selected coordinates
+                    Toast.makeText(this, "Selected location " + latitude + ", " + longitude, Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 }

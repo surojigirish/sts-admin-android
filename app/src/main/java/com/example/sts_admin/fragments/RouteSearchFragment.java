@@ -24,6 +24,7 @@ import com.example.sts_admin.adapters.RouteAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.model.Route;
+import com.example.sts_admin.model.RouteInfo;
 
 import java.util.List;
 import java.util.Objects;
@@ -36,7 +37,7 @@ public class RouteSearchFragment extends Fragment {
 
     RecyclerView recyclerViewRoute;
     SearchView searchViewRoute;
-    List<Route> routes;
+    List<RouteInfo> routes;
 
     RouteAdapter.OnItemClickListener routeItemClickListener;
 

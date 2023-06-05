@@ -19,9 +19,9 @@ public class Schedule {
     private String departureAt;
     @SerializedName("duration")
     private String duration;
-    @SerializedName("route-destination")
+    @SerializedName("destination")
     private String routeDestination;
-    @SerializedName("route-source")
+    @SerializedName("source")
     private String routeSource;
     @SerializedName("id")
     private Integer id;

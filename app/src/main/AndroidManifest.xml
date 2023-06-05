@@ -17,6 +17,9 @@
     <!-- Location background services -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
+    <!-- Google Maps Location -->
+    <uses-feature android:name="android.hardware.location.gps" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -27,6 +30,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.STS_ADMIN"
         tools:targetApi="31">
+
+        <!-- Dependencies -->
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
         <activity
             android:name=".activity.BusScheduleLocation"
             android:exported="false" />

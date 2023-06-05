@@ -41,6 +41,8 @@ public class AddRoute extends AppCompatActivity {
 
     // SharedPreferences to Handle route data
     SharedPreferences sf;
+    SharedPreferences.Editor editor;
+
     // Store source halt
     Halts sourceBusStand;
     // Store destination halt
@@ -99,6 +101,8 @@ public class AddRoute extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 route(routeRequest());
+                clearRouteSharedPref();
+                resetViews();
             }
         });
 
@@ -166,10 +170,6 @@ public class AddRoute extends AppCompatActivity {
         sourceBusStand.setName(sf.getString("sourceName", ""));
         destinationBusStand.setId(sf.getInt("destinationId", 0));
         destinationBusStand.setName(sf.getString("destinationName", ""));
-        /*int sourceId = sf.getInt("sourceId", 0);
-        String sourceName = sf.getString("sourceName", "");
-        int destinationId = sf.getInt("destinationId", 0);
-        String destinationName = sf.getString("destinationName", "");*/
     }
 
     private void setViewData() {
@@ -212,5 +212,18 @@ public class AddRoute extends AppCompatActivity {
         source.setVisibility(View.INVISIBLE);
         destination.setVisibility(View.INVISIBLE);
         addNewRoute.setVisibility(View.INVISIBLE);
+    }
+
+    // Clear Route SharedPref
+    public void clearRouteSharedPref() {
+        editor = sf.edit();
+        editor.clear();
+        editor.apply();
+    }
+
+    // Reset textview and editTextView
+    public void resetViews() {
+        source.setText(Consts.SOURCE);
+        destination.setText(Consts.DESTINATION);
     }
 }

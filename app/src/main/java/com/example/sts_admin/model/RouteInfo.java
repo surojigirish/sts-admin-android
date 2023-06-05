@@ -4,40 +4,33 @@ import com.google.gson.annotations.SerializedName;
 
 public class RouteInfo {
 
-    /*"destination-name": 1,
-            "distance": "17",
-            "fare": "17",
-            "route-id": 4,
-            "source-name":
-            "bus-type"6*/
-
-    @SerializedName("destination-name")
-    private Integer destinationId;
+    @SerializedName("destination")
+    private Halts destinationId;
     @SerializedName("distance")
     private String distance;
 
-    @SerializedName("bus-type")
-    private String busType;
+    @SerializedName("type")
+    private String Type;
     @SerializedName("fare")
     private String fare;
     @SerializedName("route-id")
     private Integer routeId;
-    @SerializedName("source-name")
-    private Integer sourceId;
+    @SerializedName("source")
+    private Halts sourceId;
 
-    public String getBusType() {
-        return busType;
+    public String getType() {
+        return Type;
     }
 
-    public void setBusType(String busType) {
-        this.busType = busType;
+    public void setType(String Type) {
+        this.Type = Type;
     }
 
-    public Integer getDestinationId() {
+    public Halts getDestinationId() {
         return destinationId;
     }
 
-    public void setDestinationId(Integer destinationId) {
+    public void setDestinationId(Halts destinationId) {
         this.destinationId = destinationId;
     }
 
@@ -65,11 +58,11 @@ public class RouteInfo {
         this.routeId = routeId;
     }
 
-    public Integer getSourceId() {
+    public Halts getSourceId() {
         return sourceId;
     }
 
-    public void setSourceId(Integer sourceId) {
+    public void setSourceId(Halts sourceId) {
         this.sourceId = sourceId;
     }
 }

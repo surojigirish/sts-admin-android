@@ -24,6 +24,7 @@ import com.example.sts_admin.adapters.RouteAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.model.Route;
+import com.example.sts_admin.model.RouteInfo;
 import com.example.sts_admin.model.Routes;
 
 import java.util.List;
@@ -35,7 +36,7 @@ import retrofit2.Response;
 public class SearchRouteId extends Fragment {
 
     RecyclerView recyclerViewRouteId;
-    List<Route> routesList;
+    List<RouteInfo> routeInfoList;
 
     RouteAdapter.OnItemClickListener onRouteItemClickListener;
 
@@ -59,7 +60,7 @@ public class SearchRouteId extends Fragment {
 
         getRoutesInfo();
 
-        onRouteItemClickListener =new RouteAdapter.OnItemClickListener() {
+        onRouteItemClickListener = new RouteAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Integer routeId, String routeDestination, String routeSource) {
 
@@ -68,13 +69,13 @@ public class SearchRouteId extends Fragment {
     }
 
     public void getRoutesInfo(){
-        Call<RouteResponse> routeResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getAllRoutes();
+        Call<RouteResponse> routeResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getRoutes();
         routeResponseCall.enqueue(new Callback<RouteResponse>() {
             @Override
             public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
-                    routesList=response.body().getResult();
-                    recyclerViewRouteId.setAdapter(new RouteAdapter(getContext(), routesList, new RouteAdapter.OnItemClickListener() {
+                    routeInfoList = response.body().getResult();
+                    recyclerViewRouteId.setAdapter(new RouteAdapter(getContext(), routeInfoList, new RouteAdapter.OnItemClickListener() {
                         @RequiresApi(api = Build.VERSION_CODES.N)
                         @Override
                         public void onItemClick(Integer routeId, String routeDestination, String routeSource) {

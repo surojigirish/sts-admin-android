@@ -11,18 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sts_admin.R;
 import com.example.sts_admin.model.Route;
+import com.example.sts_admin.model.RouteInfo;
 
 import java.util.List;
 
 public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.ViewHolder> {
 
     Context context;
-    List<Route> routeList;
+    List<RouteInfo> routeList;
 
     // Listener instance
     public OnItemClickListener itemClickListener;
 
-    public RouteAdapter(Context context, List<Route> routeList, OnItemClickListener itemClickListener) {
+    public RouteAdapter(Context context, List<RouteInfo> routeList, OnItemClickListener itemClickListener) {
         this.context = context;
         this.routeList = routeList;
         this.itemClickListener = itemClickListener;
@@ -39,9 +40,9 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Route route = routeList.get(position);
-        holder.tvSourceStand.setText(route.getSource());
-        holder.tvDestinationStand.setText(route.getDestination());
+        RouteInfo route = routeList.get(position);
+        holder.tvSourceStand.setText(route.getSourceId().getHaltName());
+        holder.tvDestinationStand.setText(route.getDestinationId().getHaltName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,11 +51,11 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.ViewHolder> 
 
                 if (position != RecyclerView.NO_POSITION && itemClickListener != null) {
                     // get route position
-                    Route selectedRoute = routeList.get(position);
+                    RouteInfo selectedRoute = routeList.get(position);
                     // store route-id
                     int routeId = selectedRoute.getRouteId();
-                    String destination = selectedRoute.getDestination();
-                    String source = selectedRoute.getSource();
+                    String destination = selectedRoute.getDestinationId().getHaltName();
+                    String source = selectedRoute.getSourceId().getHaltName();
                     // call click listener and pass params
                     itemClickListener.onItemClick(routeId, destination, source);
                 }
@@ -72,7 +73,7 @@ public class RouteAdapter extends RecyclerView.Adapter<RouteAdapter.ViewHolder> 
 
         TextView tvSourceStand, tvDestinationStand;
 
-        public ViewHolder(@NonNull View itemView, final OnItemClickListener listener, final List<Route> routeList) {
+        public ViewHolder(@NonNull View itemView, final OnItemClickListener listener, final List<RouteInfo> routeList) {
             super(itemView);
 
             // init views

@@ -11,11 +11,8 @@ public class Route {
     @SerializedName("source")
     private String source;
 
-    public Route(String destination, int routeId, String source) {
-        this.destination = destination;
-        this.routeId = routeId;
-        this.source = source;
-    }
+    @SerializedName("type")
+    private String type;
 
     public Route () {
     }

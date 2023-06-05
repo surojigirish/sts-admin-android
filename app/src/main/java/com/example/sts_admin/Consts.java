@@ -25,6 +25,7 @@ public class Consts {
     public static final String ENDPOINT_ADD_HALT = "add-halt";
     public static final String ENDPOINT_ADD_ROUTE_INFO = "add-route-info";
     public static final String ENDPOINT_GET_ROUTE = "route";
+    public static final String ENDPOINT_GET_ROUTE_INFO = "route-info";
     public static final String ENDPOINT_GET_HALTS = "bus-stops";
     public static final String ENDPOINT_ADD_SCHEDULE = "add-schedule";
 
@@ -51,6 +52,7 @@ public class Consts {
 
     // request codes
     public static final Integer LOCATION_REQUEST_CODE = 1;
+    public static final int REQUEST_CODE_MAP_LOCATION = 1001;
 
     // TextViews
     public static final String TYPO_ROUTE_INFO_INIT = "Click to add route";
@@ -61,4 +63,8 @@ public class Consts {
 
     // Shared Preferences
     public static final String SHARED_PREF_DRIVER = "stsdriver";
+
+    // EditText Views
+    public static final String SOURCE = "Source";
+    public static final String DESTINATION = "Destination";
 }
