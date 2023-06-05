@@ -19,7 +19,6 @@ public class UpdateSchedule extends AppCompatActivity {
 
     Button btnAddRoute, btnAddSource, btnRouteInfo, btnScheduleInfo;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

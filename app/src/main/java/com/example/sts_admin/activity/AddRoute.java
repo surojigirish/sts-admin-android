@@ -63,12 +63,7 @@ public class AddRoute extends AppCompatActivity {
             public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null && response.body().getStatus() == 200) {
-
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-
-//                        Intent intent = new Intent(AddRoute.this, UpdateSchedule.class);
-//                        startActivity(intent);
-//                        finish();
                     } else {
                         Toast.makeText(AddRoute.this, "Failed To Add", Toast.LENGTH_SHORT).show();
                     }

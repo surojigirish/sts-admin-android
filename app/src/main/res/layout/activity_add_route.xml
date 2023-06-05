@@ -7,6 +7,7 @@
     tools:context=".activity.AddRoute">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout5"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@android:color/holo_orange_light"
@@ -16,9 +17,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="119dp"
-        android:background="@drawable/wave__1_"/>
+        android:layout_marginTop="120dp"
+        android:background="@drawable/wave__1_"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout5" />
 
     <EditText
         android:id="@+id/source"
