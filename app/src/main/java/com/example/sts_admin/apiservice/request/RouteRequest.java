@@ -1,29 +1,27 @@
 package com.example.sts_admin.apiservice.request;
 
+import com.google.gson.annotations.SerializedName;
+
 public class RouteRequest {
 
-    private String source;
-    private String destination;
+    @SerializedName("source-id")
+    private int sourceId;
+    @SerializedName("destination-id")
+    private int destinationId;
 
-
-    public RouteRequest() {
-        this.source = source;
-        this.destination = destination;
+    public int getSourceId() {
+        return sourceId;
     }
 
-    public String getSource() {
-        return source;
+    public void setSourceId(int sourceId) {
+        this.sourceId = sourceId;
     }
 
-    public void setSource(String source) {
-        this.source = source;
+    public int getDestinationId() {
+        return destinationId;
     }
 
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setDestinationId(int destinationId) {
+        this.destinationId = destinationId;
     }
 }

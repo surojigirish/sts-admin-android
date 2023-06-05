@@ -34,6 +34,8 @@ public class Halts {
         this.longitude = longitude;
     }
 
+    public Halts() {}
+
     public Integer getId() {
         return id;
     }

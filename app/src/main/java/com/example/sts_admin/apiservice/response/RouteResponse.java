@@ -1,6 +1,7 @@
 package com.example.sts_admin.apiservice.response;
 
 import com.example.sts_admin.model.Route;
+import com.example.sts_admin.model.RouteModel;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -9,6 +10,9 @@ public class RouteResponse {
 
         @SerializedName("result")
         private List<Route> result;
+
+        @SerializedName("route")
+        private RouteModel route;
         @SerializedName("status")
         private Integer status;
         @SerializedName("success")

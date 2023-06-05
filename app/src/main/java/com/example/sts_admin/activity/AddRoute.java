@@ -22,9 +22,12 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.RouteRequest;
 import com.example.sts_admin.apiservice.response.RouteResponse;
+import com.example.sts_admin.fragments.RouteDestinationFragment;
 import com.example.sts_admin.fragments.RouteSourceFragment;
 import com.example.sts_admin.fragments.SourceSearchFragment;
+import com.example.sts_admin.model.Halts;
 import com.example.sts_admin.model.Route;
+import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +41,10 @@ public class AddRoute extends AppCompatActivity {
 
     // SharedPreferences to Handle route data
     SharedPreferences sf;
+    // Store source halt
+    Halts sourceBusStand;
+    // Store destination halt
+    Halts destinationBusStand;
 
 
     @SuppressLint("MissingInflatedId")
@@ -52,7 +59,10 @@ public class AddRoute extends AppCompatActivity {
         destination=findViewById(R.id.destination);
         addNewRoute=findViewById(R.id.add_route_btn);
 
+        // Get sharedpref data
         getSharedPrefData();
+        // set views data
+        setViewData();
 
         // Source onClick handler to select Source Halt from available list
         source.setOnClickListener(new View.OnClickListener() {
@@ -70,15 +80,25 @@ public class AddRoute extends AppCompatActivity {
             }
         });
 
+        destination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Check if the fragment is already added
+                RouteDestinationFragment fragment = new RouteDestinationFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frameLayout_route_container, fragment);
+                transaction.commit();
+
+                // hide views on call
+                hideViewsOnFrag();
+            }
+        });
+
         // OnClick handler to add route on button click
         addNewRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 route(routeRequest());
-                Toast.makeText(AddRoute.this, "Route added", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(AddRoute.this, UpdateSchedule.class);
-                startActivity(i);
-                finish();
             }
         });
 
@@ -86,11 +106,16 @@ public class AddRoute extends AppCompatActivity {
 
 
     public RouteRequest routeRequest() {
-        RouteRequest addRequest=new RouteRequest();
+        RouteRequest request=new RouteRequest();
 
-        addRequest.setSource(source.getText().toString());
-        addRequest.setDestination(destination.getText().toString());
-        return addRequest;
+        // get data from sharedpref
+        int sourceId = sourceBusStand.getId();
+        int destinationId = destinationBusStand.getId();
+
+        request.setSourceId(sourceId);
+        request.setDestinationId(destinationId);
+
+        return request;
 
     }
 
@@ -100,7 +125,26 @@ public class AddRoute extends AppCompatActivity {
             @Override
             public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
                 if (response.isSuccessful()) {
-                    Log.i("TAG", "onResponse: success");
+                    if (response.body() != null) {
+                        int status = response.body().getStatus();
+                        String message = response.body().getMessage();
+
+                        if (status == 200) {
+                            Log.i("TAG", "onResponse: success");
+                            Toast.makeText(AddRoute.this, message, Toast.LENGTH_SHORT).show();
+                            // Start Schedule Dashboard activity
+                            Intent i = new Intent(AddRoute.this, UpdateSchedule.class);
+                            startActivity(i);
+                            finish();
+                        } else if (status == 405) {
+                            Log.i("TAG", "onResponse: failed");
+//                            Toast.makeText(AddRoute.this, "Already exists", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(addNewRoute, message, Snackbar.LENGTH_SHORT).show();
+                        } else {
+                            Log.i("TAG", "onResponse: unknown status");
+                            Toast.makeText(AddRoute.this, "Unknown status", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 } else {
                     Log.i("ADD ROUTE DATA", "onResponse: unable to add route data");
                 }
@@ -114,10 +158,23 @@ public class AddRoute extends AppCompatActivity {
     }
 
     private void getSharedPrefData() {
-        int sourceId = sf.getInt("sourceId", 0);
+        // init the source and destination halts
+        sourceBusStand = new Halts();
+        destinationBusStand = new Halts();
+
+        sourceBusStand.setId(sf.getInt("sourceId", 0));
+        sourceBusStand.setName(sf.getString("sourceName", ""));
+        destinationBusStand.setId(sf.getInt("destinationId", 0));
+        destinationBusStand.setName(sf.getString("destinationName", ""));
+        /*int sourceId = sf.getInt("sourceId", 0);
         String sourceName = sf.getString("sourceName", "");
         int destinationId = sf.getInt("destinationId", 0);
-        String destinationName = sf.getString("destinationName", "");
+        String destinationName = sf.getString("destinationName", "");*/
+    }
+
+    private void setViewData() {
+        String sourceName = sourceBusStand.getName();
+        String destinationName = destinationBusStand.getName();
 
         if (sourceName.isEmpty() && destinationName.isEmpty()) {
             sourceName = "SOURCE";
