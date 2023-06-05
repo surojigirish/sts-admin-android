@@ -2,6 +2,7 @@ package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.example.sts_admin.Consts;
@@ -16,6 +18,7 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.RouteRequest;
 import com.example.sts_admin.apiservice.response.RouteResponse;
+import com.example.sts_admin.fragments.SourceSearchFragment;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +28,7 @@ public class AddRoute extends AppCompatActivity {
 
     EditText source,destination;
     AppCompatButton addNewRoute;
+    FrameLayout routeContainer;
 
 
     @SuppressLint("MissingInflatedId")
@@ -37,6 +41,18 @@ public class AddRoute extends AppCompatActivity {
         destination=findViewById(R.id.destination);
         addNewRoute=findViewById(R.id.add_route_btn);
 
+        // Source onClick handler to select Source Halts from available list
+        source.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SourceSearchFragment frag = new SourceSearchFragment();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frameLayout_route_container, frag);
+                transaction.commit();
+            }
+        });
+
+        // OnClick handler to add route on button click
         addNewRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,5 +97,8 @@ public class AddRoute extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void getFragmentData() {
     }
 }

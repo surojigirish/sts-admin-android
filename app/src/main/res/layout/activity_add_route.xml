@@ -7,52 +7,57 @@
     tools:context=".activity.AddRoute">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:id="@+id/constraintLayout4"
+        android:layout_width="0dp"
         android:layout_height="120dp"
         android:background="@android:color/holo_orange_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-
-    <View
+    <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="119dp"
-        android:background="@drawable/wave__1_"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/source"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
-        android:hint="SourceStand"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:hint="SourceStand" />
 
-    <EditText
-        android:id="@+id/destination"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="DestinationStand"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/source"
-        app:layout_constraintVertical_bias="0.073" />
+        <EditText
+            android:id="@+id/destination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="DestinationStand"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_route_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Add Route"
-        android:textSize="20sp"
-        android:background="@android:color/holo_orange_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/destination" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_route_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/holo_orange_light"
+            android:text="Add Route"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/destination" />
+
+        <!-- Frame layout to handle recycler view on frag -->
+        <FrameLayout
+            android:id="@+id/frameLayout_route_container"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

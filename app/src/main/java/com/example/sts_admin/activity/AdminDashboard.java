@@ -56,7 +56,6 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 logout(logoutRequest());
-
             }
         });
     }
