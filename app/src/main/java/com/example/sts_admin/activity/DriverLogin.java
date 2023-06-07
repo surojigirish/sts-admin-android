@@ -88,11 +88,15 @@ public class DriverLogin extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
+                }else {
+                    Toast.makeText(DriverLogin.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<DriverLoginResponse> call, Throwable t) {
+                Toast.makeText(DriverLogin.this, "onFailure"+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
 
             }
         });

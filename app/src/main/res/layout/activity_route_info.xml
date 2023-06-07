@@ -17,9 +17,15 @@
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:id="@+id/constraintLayout5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="552dp"
                 android:background="@drawable/wave__1_"
+                app:layout_constraintBottom_toTopOf="@+id/routeInfoDetailsBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -29,8 +35,8 @@
                 android:layout_marginTop="144dp"
                 android:text="@string/add_route_info"
                 android:textAllCaps="true"
-                android:textSize="28sp"
                 android:textColor="@color/black"
+                android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -173,10 +179,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="34dp"
-                android:text="@string/btn_add_route_info"
                 android:background="@android:color/holo_orange_light"
+                android:text="@string/btn_add_route_info"
                 app:layout_constraintStart_toStartOf="@+id/tv_route_fare"
                 app:layout_constraintTop_toBottomOf="@+id/tv_route_fare" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/routeInfoDetailsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="108dp"
+                android:layout_marginBottom="31dp"
+                android:background="@android:color/holo_orange_light"
+                android:text="ROUTE INFO DETAILS"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
+                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

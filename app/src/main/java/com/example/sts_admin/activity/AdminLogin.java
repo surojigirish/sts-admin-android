@@ -65,13 +65,13 @@ public class AdminLogin extends AppCompatActivity {
         });
 
 
-        driverLoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i= new Intent(AdminLogin.this,DriverLogin.class);
-                startActivity(i);
-            }
-        });
+//        driverLoginBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i= new Intent(AdminLogin.this,DriverLogin.class);
+//                startActivity(i);
+//            }
+//        });
     }
 
 

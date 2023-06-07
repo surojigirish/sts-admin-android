@@ -25,6 +25,7 @@ import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.model.Route;
 import com.example.sts_admin.model.RouteInfo;
+import com.example.sts_admin.model.RouteModel;
 
 import java.util.List;
 import java.util.Objects;
@@ -37,7 +38,7 @@ public class RouteSearchFragment extends Fragment {
 
     RecyclerView recyclerViewRoute;
     SearchView searchViewRoute;
-    List<RouteInfo> routes;
+    List<RouteModel> routes;
 
     RouteAdapter.OnItemClickListener routeItemClickListener;
 
@@ -80,13 +81,13 @@ public class RouteSearchFragment extends Fragment {
     }
 
     public void getRoutes() {
-        Call<RouteResponse> routeResponseCall = Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getRoutes();
+        Call<RouteResponse> routeResponseCall = Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getAllRoutes();
         routeResponseCall.enqueue(new Callback<RouteResponse>() {
             @Override
             public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        routes = response.body().getResult();
+                        routes = response.body().getRoute();
                         recyclerViewRoute.setAdapter(new RouteAdapter(getContext(), routes, new RouteAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(Integer routeId, String routeDestination, String routeSource) {

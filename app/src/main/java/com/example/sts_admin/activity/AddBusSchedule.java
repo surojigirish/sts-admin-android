@@ -114,7 +114,7 @@ public class AddBusSchedule extends AppCompatActivity {
         addBusScheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddBusSchedules(addBusSchedule());
+                AddBusSchedules(addBusScheduleRequest());
                 finish();
             }
         });
@@ -122,7 +122,7 @@ public class AddBusSchedule extends AppCompatActivity {
 
 
 
-    public AddBusScheduleRequest addBusSchedule(){
+    public AddBusScheduleRequest addBusScheduleRequest(){
         AddBusScheduleRequest addBusScheduleRequest = new AddBusScheduleRequest();
         addBusScheduleRequest.setBusId(sharedPrefManager.getBusDetails().getId());
         addBusScheduleRequest.setScheduleId(sharedPrefManager.getScheduleDetails().getId());

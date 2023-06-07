@@ -82,7 +82,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
                     if(logoutResponse != null && logoutResponse.getStatus() == 200){
                         sharedPrefManager.logout();
                         Toast.makeText(AdminDashboard.this, "Logout successful", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(AdminDashboard.this, AdminLogin.class);
+                        Intent intent=new Intent(AdminDashboard.this, Welcome.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();

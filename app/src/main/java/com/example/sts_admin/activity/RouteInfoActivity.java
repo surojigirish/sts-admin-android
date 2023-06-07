@@ -1,10 +1,12 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,7 +41,7 @@ public class RouteInfoActivity extends AppCompatActivity {
     // views
     TextView tvDistance, tvFare;
     EditText etRouteInfo, etSource, etDestination;
-    Button btnAddRouteInfo;
+    AppCompatButton btnAddRouteInfo,routeInfoDetailsBtn;
     Spinner busTypeSpinner;
     String busTypeItem;
     LinearLayout llRouteInfoViewHolder;
@@ -216,6 +218,15 @@ public class RouteInfoActivity extends AppCompatActivity {
             }
         });
 
+        routeInfoDetailsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(RouteInfoActivity.this,RouteInfoDetails.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
     }
 
     // views init function
@@ -239,6 +250,8 @@ public class RouteInfoActivity extends AppCompatActivity {
 
         // linearlayout
         llRouteInfoViewHolder = findViewById(R.id.linearlayout_route_info_view_holder);
+
+        routeInfoDetailsBtn = findViewById(R.id.routeInfoDetailsBtn);
     }
 
     // hide views on fragment call

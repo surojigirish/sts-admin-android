@@ -9,15 +9,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <!-- Bar Code Scanner required -->
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!-- Location background services -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
-    <!-- Google Maps Location -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Bar Code Scanner required -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Location background services -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- Google Maps Location -->
     <uses-feature android:name="android.hardware.location.gps" />
 
     <application
@@ -30,9 +24,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.STS_ADMIN"
         tools:targetApi="31">
-
-        <!-- Dependencies -->
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        <activity
+            android:name=".activity.BusDetailsList"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RouteInfoDetails"
+            android:exported="false" />
+        <activity
+            android:name=".activity.BusDetails"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RouteDetails"
+            android:exported="false" /> <!-- Dependencies -->
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
         <activity
             android:name=".activity.BusScheduleLocation"
@@ -118,9 +124,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.TripHistory"
-            android:exported="false" />
-
-        <!-- Location Background Service -->
+            android:exported="false" /> <!-- Location Background Service -->
         <service
             android:name=".services.LocationUpdateService"
             android:enabled="true"

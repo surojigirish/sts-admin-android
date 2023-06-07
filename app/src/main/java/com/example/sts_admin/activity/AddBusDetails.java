@@ -27,7 +27,7 @@ import retrofit2.Response;
 public class AddBusDetails extends AppCompatActivity {
 
     EditText reg_no, capacity;
-    AppCompatButton addBus;
+    AppCompatButton addBus,getBusDetails;
     Spinner busStatusSpinner,busTypeSpinner;
     String busStatusItem,busTypeItem;
 
@@ -43,6 +43,7 @@ public class AddBusDetails extends AppCompatActivity {
         busTypeSpinner = findViewById(R.id.bus_type_spinner);
         busStatusSpinner = findViewById(R.id.bus_status_spinner);
         addBus = findViewById(R.id.add_bus_details_btn); // btn
+        getBusDetails = findViewById(R.id.get_bus_details_list);
 
         busType();
         busTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -74,6 +75,15 @@ public class AddBusDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AddBus(busRequest());
+            }
+        });
+
+        getBusDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(AddBusDetails.this,BusDetails.class);
+                startActivity(i);
+                finish();
             }
         });
 
