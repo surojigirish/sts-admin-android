@@ -8,27 +8,28 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:layout_weight="1"
             android:id="@+id/tvRouteSourceDisplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Source"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:layout_weight="1"
             android:id="@+id/tvRouteDestinationDisplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-85dp"
-            android:layout_marginTop="67dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Destination"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"

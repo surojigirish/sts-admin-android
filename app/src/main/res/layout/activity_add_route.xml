@@ -52,20 +52,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/destination" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="230dp"
-            android:layout_marginTop="-50dp"
-            android:text="Route List"
-            android:textSize="20sp"
-            android:id="@+id/routeDetailsBtn"/>
+        <!-- Pull to refresh gesture layout -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_margin="16dp"
+            android:id="@+id/swipeToRefreshRoutes"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="360dp"-->
-        <!--            android:layout_marginTop="20dp"-->
-        <!--            android:id="@+id/addedRouteList"/>-->
+            <!-- Recyclerview to hold routes list-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewRouteDetails"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
     </LinearLayout>
