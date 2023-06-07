@@ -12,8 +12,17 @@ public class RouteResponse {
         @SerializedName("result")
         private List<RouteInfo> result;
 
-        @SerializedName("route")
-        private RouteModel route;
+        @SerializedName("routes")
+        private List<RouteModel> route;
+
+        public List<RouteModel> getRoute() {
+                return route;
+        }
+
+        public void setRoute(List<RouteModel> route) {
+                this.route = route;
+        }
+
         @SerializedName("status")
         private Integer status;
         @SerializedName("success")
