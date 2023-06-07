@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
@@ -37,6 +40,9 @@ public class AddSchedule extends AppCompatActivity {
     Integer routeIdInfo;
     TextView departureTime,arrivalTime,durationTime, tv_routeId,text;
 
+    // ImageView holding screen bg
+    ImageView imageViewScreenBackground;
+
 
 
     AppCompatButton addScheduleBtn;
@@ -53,6 +59,13 @@ public class AddSchedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
+
+        imageViewScreenBackground = findViewById(R.id.imgView_screen_bg);
+
+        // Load the svg here
+        Glide.with(this)
+                .load(R.drawable.screen_bg_sts)
+                .into(imageViewScreenBackground);
 
 
         departureTime=findViewById(R.id.et_departure);

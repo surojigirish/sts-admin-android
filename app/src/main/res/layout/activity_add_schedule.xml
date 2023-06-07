@@ -6,16 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddSchedule">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/holo_orange_light"
-        app:layout_constraintBottom_toTopOf="@+id/view3"
+    <ImageView
+        android:id="@+id/imgView_screen_bg"
+        android:src="@drawable/screen_bg_sts"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/textView4"
@@ -100,19 +99,6 @@
         app:layout_constraintHorizontal_bias="0.947"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_duration" />
-
-    <View
-        android:id="@+id/view3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="571dp"
-        android:background="@drawable/wave__1_"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-        app:layout_editor_absoluteY="100dp"
-        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

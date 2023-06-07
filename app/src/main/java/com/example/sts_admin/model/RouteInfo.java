@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class RouteInfo {
 
     @SerializedName("destination")
-    private Halts destinationId;
+    private Halts destination;
     @SerializedName("distance")
     private String distance;
 
@@ -16,7 +16,7 @@ public class RouteInfo {
     @SerializedName("route-id")
     private Integer routeId;
     @SerializedName("source")
-    private Halts sourceId;
+    private Halts source;
 
     public String getType() {
         return Type;
@@ -26,12 +26,12 @@ public class RouteInfo {
         this.Type = Type;
     }
 
-    public Halts getDestinationId() {
-        return destinationId;
+    public Halts getDestination() {
+        return destination;
     }
 
-    public void setDestinationId(Halts destinationId) {
-        this.destinationId = destinationId;
+    public void setDestination(Halts destination) {
+        this.destination = destination;
     }
 
     public String getDistance() {
@@ -58,11 +58,11 @@ public class RouteInfo {
         this.routeId = routeId;
     }
 
-    public Halts getSourceId() {
-        return sourceId;
+    public Halts getSource() {
+        return source;
     }
 
-    public void setSourceId(Halts sourceId) {
-        this.sourceId = sourceId;
+    public void setSource(Halts source) {
+        this.source = source;
     }
 }
