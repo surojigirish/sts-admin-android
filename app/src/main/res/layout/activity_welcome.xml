@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.4"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -22,55 +22,62 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="100dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4"
-        app:layout_constraintVertical_bias="0.81">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="@android:color/holo_orange_light"
-            android:text="Login" />
-
-
-    </LinearLayout>
-
     <View
         android:id="@+id/view4"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="142dp"
-        android:layout_marginBottom="359dp"
+        android:layout_height="70dp"
         android:background="@drawable/wave__1_"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="150dp" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView4"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        android:layout_marginTop="220dp"
+        android:src="@drawable/sts_new_logo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4"
-        app:srcCompat="@drawable/sts_new_logo"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/adminHomeLoginBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="ADMIN LOGIN"
+        android:background="@drawable/button_border"
+        android:shadowRadius="250"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.309" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/driverHomeLoginBtn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="DRIVER LOGIN"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:background="@drawable/button_border"
+        android:shadowRadius="250"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminHomeLoginBtn"
+        app:layout_constraintVertical_bias="0.261" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.sts_admin.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -15,22 +16,25 @@ public class Welcome extends AppCompatActivity {
 
     ImageView imageView;
     TextView textView;
-    AppCompatButton btn1;
+    AppCompatButton adminHomeLoginBtn,driverHomeLoginBtn;
 
     // SharedPrefManager init
     SharedPrefManager sharedPrefManager;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        imageView=findViewById(R.id.imageView2);
+        imageView=findViewById(R.id.imageView4);
 //        textView=findViewById(R.id.textView);
-        btn1=findViewById(R.id.button);
+      adminHomeLoginBtn = findViewById(R.id.adminHomeLoginBtn);
+      driverHomeLoginBtn = findViewById(R.id.driverHomeLoginBtn);
 
         initSharedPrefManager();
-        findViewById(R.id.button).setOnClickListener(v->startActivity(new Intent(Welcome.this, AdminLogin.class)));
+        findViewById(R.id.adminHomeLoginBtn).setOnClickListener(v->startActivity(new Intent(Welcome.this, AdminLogin.class)));
+        findViewById(R.id.driverHomeLoginBtn).setOnClickListener(v->startActivity(new Intent(Welcome.this, DriverLogin.class)));
     }
 
     @Override

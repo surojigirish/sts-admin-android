@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.sts_admin.Consts;
@@ -25,6 +26,8 @@ public class BusDetails extends AppCompatActivity {
 
     List<BusResult> busResultList;
 
+    GetBusDetailsAdapter.OnBusDetailsClickListener onBusDetailsClickListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,13 @@ public class BusDetails extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         getAllBusList();
+
+        onBusDetailsClickListener = new GetBusDetailsAdapter.OnBusDetailsClickListener() {
+            @Override
+            public void onBusDetailsClick(Integer busCapacity, Integer busId, String busStatus, String busType) {
+
+            }
+        };
     }
 
 
@@ -49,7 +59,18 @@ public class BusDetails extends AppCompatActivity {
                 if (response.isSuccessful()){
                     if (response.body() != null){
                         busResultList = response.body().getBusResultList();
-                        recyclerView.setAdapter(new GetBusDetailsAdapter(getApplicationContext(),busResultList));
+                        recyclerView.setAdapter(new GetBusDetailsAdapter(getApplicationContext(), busResultList, new GetBusDetailsAdapter.OnBusDetailsClickListener() {
+                            @Override
+                            public void onBusDetailsClick(Integer busCapacity, Integer busId, String busStatus, String busType) {
+                                Intent i = new Intent(getApplicationContext(),BusDetailsList.class);
+                                i.putExtra("busId",busId);
+                                i.putExtra("busCapacity",busCapacity);
+                                i.putExtra("busStatus",busStatus);
+                                i.putExtra("busType",busType);
+                                startActivity(i);
+                            }
+                        }));
+
                     }
                 }
             }

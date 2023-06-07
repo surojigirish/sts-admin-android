@@ -19,9 +19,12 @@ public class GetBusDetailsAdapter extends RecyclerView.Adapter<GetBusDetailsAdap
     Context context;
     List<BusResult> busResultList;
 
-    public GetBusDetailsAdapter(Context context, List<BusResult> busResultList) {
+    OnBusDetailsClickListener onBusDetailsClickListener;
+
+    public GetBusDetailsAdapter(Context context, List<BusResult> busResultList, OnBusDetailsClickListener onBusDetailsClickListener) {
         this.context = context;
         this.busResultList = busResultList;
+        this.onBusDetailsClickListener = onBusDetailsClickListener;
     }
 
     @NonNull
@@ -36,6 +39,23 @@ public class GetBusDetailsAdapter extends RecyclerView.Adapter<GetBusDetailsAdap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.registrationNo.setText(busResultList.get(position).getRegistrationNo());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer pos = holder.getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION && onBusDetailsClickListener !=null){
+                  BusResult selectedBus = busResultList.get(pos);
+                  Integer busId= selectedBus.getId();
+                  Integer busCapacity = selectedBus.getCapacity();
+                  String busStatus = selectedBus.getStatus();
+                  String busType = selectedBus.getType();
+
+                  onBusDetailsClickListener.onBusDetailsClick(busId,busCapacity,busStatus,busType);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -53,6 +73,12 @@ public class GetBusDetailsAdapter extends RecyclerView.Adapter<GetBusDetailsAdap
 
             registrationNo  = itemView.findViewById(R.id.tv_registration_no);
         }
+    }
+
+
+    public interface OnBusDetailsClickListener{
+        void onBusDetailsClick(Integer busCapacity, Integer busId, String busStatus, String busType);
+
     }
 
 
