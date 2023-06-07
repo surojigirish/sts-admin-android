@@ -15,6 +15,9 @@ import com.example.sts_admin.apiservice.request.ValidationRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
 import com.example.sts_admin.apiservice.response.DriverLoginResponse;
+import com.example.sts_admin.apiservice.response.GetBusResponse;
+import com.example.sts_admin.apiservice.response.GetRouteInfoResponse;
+import com.example.sts_admin.apiservice.response.GetRouteResponse;
 import com.example.sts_admin.apiservice.response.MainResponse;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
@@ -114,4 +117,14 @@ public interface Api {
     // Driver bus-schedules
     @GET(Consts.ENDPOINT_DRIVER_BUS_SCHEDULE)
     Call<MainResponse> driverBusSchedules(@Path("employee-id") Integer empId);
+
+
+    @GET(Consts.ENDPOINT_GET_ROUTE)
+    Call<GetRouteResponse> getAllRouteList();
+
+    @GET(Consts.ENDPOINT_BUS_INFO)
+    Call<GetBusResponse> getAllBusList();
+
+    @GET(Consts.ENDPOINT_GET_ROUTE_INFO)
+    Call<GetRouteInfoResponse> getAllRouteInfoDetails();
 }
