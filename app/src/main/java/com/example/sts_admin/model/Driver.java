@@ -19,6 +19,28 @@ public class Driver {
     @SerializedName("empId")
     private Integer empId;
 
+    @SerializedName("license-no")
+    private String licenseNumber;
+
+    @SerializedName("id")
+    private int id;
+
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Driver(String contact, String employeeNo, String firstname, String gender, String lastname, String licenseNo, Integer empId) {
         this.contact = contact;
         this.employeeNo = employeeNo;
@@ -27,6 +49,10 @@ public class Driver {
         this.lastname = lastname;
         this.licenseNo = licenseNo;
         this.empId = empId;
+    }
+
+    public Driver(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
     }
 
     public String getContact() {

@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +17,6 @@ import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.AdminLogoutRequest;
 import com.example.sts_admin.apiservice.response.AdminLogoutResponse;
 import com.example.sts_admin.fragments.PassValidateScheduleListFragment;
-import com.example.sts_admin.fragments.RouteSearchFragment;
 import com.example.sts_admin.model.Session;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
@@ -89,7 +87,7 @@ public class DriverDashboard extends AppCompatActivity {
     // SharedPrefManager function
     public void setSharedPrefManager() {
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
-        savedSession = sharedPrefManager.getDriverId();
+        savedSession = sharedPrefManager.getDriverSession();
     }
 
     public AdminLogoutRequest logoutRequest(){
@@ -128,7 +126,7 @@ public class DriverDashboard extends AppCompatActivity {
     }
     public String getSessionToken() {
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
-        return sharedPrefManager.getDriverId().getToken();
+        return sharedPrefManager.getDriverSession().getToken();
     }
 
 

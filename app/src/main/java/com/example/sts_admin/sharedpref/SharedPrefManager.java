@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.model.Admin;
 import com.example.sts_admin.model.Bus;
+import com.example.sts_admin.model.Driver;
+import com.example.sts_admin.model.Employee;
 import com.example.sts_admin.model.Schedule;
 import com.example.sts_admin.model.Session;
+import com.example.sts_admin.model.User;
 
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "stsadmin";
@@ -98,13 +101,13 @@ public class SharedPrefManager {
     public void saveDriver(Session driver){
         sharedPreferences = context.getSharedPreferences(Consts.SHARED_PREF_DRIVER, Context.MODE_PRIVATE);
         editor= sharedPreferences.edit();
-//        editor.putInt("driver_Id",driver.getEmployee().getDriver().getEmpId());
+
         editor.putString("licenseNo",driver.getEmployee().getDriver().getLicenseNo());
-        editor.putString("employeeNo",driver.getEmployee().getDriver().getEmployeeNo());
-        editor.putString("firstName",driver.getEmployee().getDriver().getFirstname());
-        editor.putString("gender",driver.getEmployee().getDriver().getGender());
-        editor.putInt("id",driver.getEmployee().getId());
-        editor.putString("lastname",driver.getEmployee().getDriver().getLastname());
+        editor.putString("employeeNo",driver.getEmployee().getEmployeeNumber());
+        editor.putString("firstName",driver.getEmployee().getFirstName());
+        editor.putString("gender",driver.getEmployee().getGender());
+        editor.putInt("empId",driver.getEmployee().getId());
+        editor.putString("lastname",driver.getEmployee().getLastName());
         editor.putString("token",driver.getToken());
         editor.putString("email",driver.getUser().getEmail());
         editor.putInt("userId",driver.getUser().getId());
@@ -112,23 +115,35 @@ public class SharedPrefManager {
         editor.apply();
     }
 
-//    public boolean isLoggedIn() {
-//        sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-//        return sharedPreferences.getBoolean("logged", false);
-//    }
-
-    public Session getDriverId(){
+    public Session getDriverSession(){
         sharedPreferences = context.getSharedPreferences(Consts.SHARED_PREF_DRIVER, Context.MODE_PRIVATE);
-        return new Session(sharedPreferences.getString("licenseNo",null),
-                sharedPreferences.getString("employeeNo",null),
-                sharedPreferences.getString("firstname",null),
-                sharedPreferences.getString("gender",null),
-                sharedPreferences.getInt("id",-1),
-                sharedPreferences.getString("lastname",null),
-                sharedPreferences.getString("token"," "),
-                sharedPreferences.getString("email", ""),
-                sharedPreferences.getInt("userId",-1));
 
+        // User
+        int userId = sharedPreferences.getInt("userId", -1);
+        String email = sharedPreferences.getString("email", "");
+
+        // Session
+        String token = sharedPreferences.getString("token", "");
+
+        // Employee
+        int employeeId = sharedPreferences.getInt("empId", -1);
+        String firstName = sharedPreferences.getString("firstname", "");
+        String lastName = sharedPreferences.getString("lastname", "");
+        String gender = sharedPreferences.getString("gender", "");
+        String employeeNo = sharedPreferences.getString("employeeNo", "");
+
+        // Driver
+        String licenseNumber = sharedPreferences.getString("licenseNo", "");
+
+        // Create a new user instance
+        User user = new User(userId, email);
+        // Create a new driver instance
+        Driver driver = new Driver(licenseNumber);
+        // Create a new employee instance
+        Employee employee = new Employee(driver, employeeId, employeeNo, firstName, gender, lastName);
+
+        // Return new instance of session
+        return new Session(employee, token, user);
     }
 
 

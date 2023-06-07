@@ -13,7 +13,9 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.BusScheduleListAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.MainResponse;
+import com.example.sts_admin.model.Session;
 import com.example.sts_admin.model.results.ListOfBusSchedule;
+import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.List;
 
@@ -28,10 +30,16 @@ public class BusScheduleList extends AppCompatActivity {
 
     BusScheduleListAdapter.OnDriverBusScheduleClick clickListener;
 
+    // SharedPref to get driver user id
+    SharedPrefManager sharedPrefManager;
+    private Session driverSession;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_schedule_list);
+
+        setSharedPrefManager();
 
         recyclerView=findViewById(R.id.bus_schedule_list_recycler);
         recyclerView.setHasFixedSize(true);
@@ -49,9 +57,19 @@ public class BusScheduleList extends AppCompatActivity {
         };
     }
 
+    // SharedPrefManager function
+    public void setSharedPrefManager(){
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+        driverSession = sharedPrefManager.getDriverSession();
+    }
+
     // Driver schedules API call
     private void allDriverSchedules() {
-        Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().driverBusSchedules(4);
+        // Get driver employee id from shared pref manager
+        int driverId = driverSession.getEmployee().getId();
+        Log.i("TAG", "allDriverSchedules: empId" + driverId);
+
+        Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().driverBusSchedules(driverId);
         call.enqueue(new Callback<MainResponse>() {
             @Override
             public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
