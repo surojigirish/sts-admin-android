@@ -67,7 +67,7 @@ public interface Api {
     Call<RouteResponse> addRoute(@Body RouteRequest routeRequest);
 
     @GET(Consts.ENDPOINT_GET_ROUTE_INFO)
-    Call<RouteResponse> getRoutes();
+    Call<RouteResponse> getRoutesInfo();
 
     @GET(Consts.ENDPOINT_GET_HALTS)
     Call<HaltResponse> getAllHalts();

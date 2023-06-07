@@ -1,31 +1,23 @@
 package com.example.sts_admin.fragments;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
-import com.example.sts_admin.activity.AddRoute;
-import com.example.sts_admin.activity.AddSchedule;
 import com.example.sts_admin.adapters.RouteAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.RouteResponse;
-import com.example.sts_admin.model.Route;
 import com.example.sts_admin.model.RouteInfo;
-import com.example.sts_admin.model.Routes;
 
 import java.util.List;
 
@@ -36,7 +28,8 @@ import retrofit2.Response;
 public class SearchRouteId extends Fragment {
 
     RecyclerView recyclerViewRouteId;
-    List<RouteInfo> routeInfoList;
+    List<RouteInfo> routeInfoList;     // Bug arise needs fix, requires a route-info model
+    // placed RouteModel class for time being, need to changes to better alternative
 
     RouteAdapter.OnItemClickListener onRouteItemClickListener;
 
@@ -69,13 +62,13 @@ public class SearchRouteId extends Fragment {
     }
 
     public void getRoutesInfo(){
-        Call<RouteResponse> routeResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getRoutes();
+        Call<RouteResponse> routeResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getRoutesInfo();
         routeResponseCall.enqueue(new Callback<RouteResponse>() {
             @Override
             public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
                     routeInfoList = response.body().getResult();
-                    recyclerViewRouteId.setAdapter(new RouteAdapter(getContext(), routeInfoList, new RouteAdapter.OnItemClickListener() {
+                    /*recyclerViewRouteId.setAdapter(new RouteAdapter(getContext(), routeInfoList, new RouteAdapter.OnItemClickListener() {
                         @RequiresApi(api = Build.VERSION_CODES.N)
                         @Override
                         public void onItemClick(Integer routeId, String routeDestination, String routeSource) {
@@ -84,7 +77,7 @@ public class SearchRouteId extends Fragment {
                             i.putExtra("source", routeSource);
                             i.putExtra("destination", routeDestination);
                             startActivity(i);
-                        }}));
+                        }}));*/
                 }
             }
 
