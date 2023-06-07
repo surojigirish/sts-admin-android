@@ -33,6 +33,7 @@ import com.example.sts_admin.apiservice.response.ScheduleResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Header;
@@ -68,6 +69,9 @@ public interface Api {
 
     @POST(Consts.ENDPOINT_ADD_ROUTE)
     Call<RouteResponse> addRoute(@Body RouteRequest routeRequest);
+
+    @HTTP(method = "DELETE", path = Consts.ENDPOINT_DELETE_ROUTE)
+    Call<RouteResponse> deleteRoute(@Path("route_id") Integer routeId);
 
     @GET(Consts.ENDPOINT_GET_ROUTE_INFO)
     Call<RouteResponse> getRoutesInfo();
