@@ -243,7 +243,20 @@ public class AddRoute extends AppCompatActivity {
                 if (response.isSuccessful()){
                     if (response.body() != null){
                         addRouteDetailsList = response.body().getAddRouteDetailsList();
-                        recyclerView.setAdapter(new GetRouteDetailsAdapter(addRouteDetailsList,getApplicationContext()));
+
+                        // Setting Adapter
+                        GetRouteDetailsAdapter adapter = new GetRouteDetailsAdapter(addRouteDetailsList, getApplicationContext(), recyclerView);
+                        // Setting on Swipe Listener
+                        adapter.setOnDeleteClickListener(new GetRouteDetailsAdapter.OnDeleteClickListener() {
+                            @Override
+                            public void onDeleteClick(int position) {
+                                // Make Delete Api call and update the adapter
+                                deleteRoute(position, adapter);
+                            }
+                        });
+
+                        recyclerView.setAdapter(adapter);
+                        adapter.enableSwipeToDelete();
                     }
                 }
             }
@@ -285,5 +298,43 @@ public class AddRoute extends AppCompatActivity {
     public void resetViews() {
         source.setText(Consts.SOURCE);
         destination.setText(Consts.DESTINATION);
+    }
+
+
+    /* API calls functions */
+
+    // Route delete api request call
+    private void deleteRoute(int position, GetRouteDetailsAdapter adapter) {
+        AddRouteDetails route = addRouteDetailsList.get(position);
+        int routeId = route.getId();
+
+        Call<RouteResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE)
+                .getRoute().deleteRoute(routeId);
+
+        call.enqueue(new Callback<RouteResponse>() {
+            @Override
+            public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
+                if (response.isSuccessful()) {
+                    // Handle successful response
+                    if (response.body() != null && response.body().getStatus() == 200) {
+                        Toast.makeText(AddRoute.this, "Route deleted successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(AddRoute.this, "Failed to delete route", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // Handle error response
+                    Toast.makeText(AddRoute.this, "Could not make it to the server, sorry", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RouteResponse> call, Throwable t) {
+                // Handle failure
+            }
+        });
+
+        // Notify the adapter of the delete action
+        addRouteDetailsList.remove(position);
+        adapter.notifyItemRemoved(position);
     }
 }
