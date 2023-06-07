@@ -10,9 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.caverock.androidsvg.SVG;
-import com.caverock.androidsvg.SVGParseException;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -22,32 +19,32 @@ public class SVGConstraintLayout extends ConstraintLayout {
     public SVGConstraintLayout(@NonNull Context context) {
         super(context);
 
-        init();
+//        init();
     }
 
     public SVGConstraintLayout(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        init();
+//        init();
     }
 
     public SVGConstraintLayout(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        init();
+//        init();
     }
 
-    private void init() {
-        try {
-            InputStream inputStream = getContext().getAssets().open("screen_bg_sts.svg");
-            SVG svg = SVG.getFromInputStream(inputStream);
-            Picture picture = svg.renderToPicture();
-            pictureDrawable = new PictureDrawable(picture);
-            inputStream.close();
-        } catch (IOException | SVGParseException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void init() {
+//        try {
+//            InputStream inputStream = getContext().getAssets().open("screen_bg_sts.svg");
+//            SVG svg = SVG.getFromInputStream(inputStream);
+//            Picture picture = svg.renderToPicture();
+//            pictureDrawable = new PictureDrawable(picture);
+//            inputStream.close();
+//        } catch (IOException | SVGParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
@@ -59,4 +56,6 @@ public class SVGConstraintLayout extends ConstraintLayout {
 
         super.dispatchDraw(canvas);
     }
+
+
 }

@@ -16,6 +16,7 @@ import com.example.sts_admin.apiservice.response.AddBusResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
 import com.example.sts_admin.apiservice.response.DriverLoginResponse;
 import com.example.sts_admin.apiservice.response.GetBusResponse;
+import com.example.sts_admin.apiservice.response.GetPassengerDetailResponse;
 import com.example.sts_admin.apiservice.response.GetRouteInfoResponse;
 import com.example.sts_admin.apiservice.response.GetRouteResponse;
 import com.example.sts_admin.apiservice.response.MainResponse;
@@ -127,4 +128,7 @@ public interface Api {
 
     @GET(Consts.ENDPOINT_GET_ROUTE_INFO)
     Call<GetRouteInfoResponse> getAllRouteInfoDetails();
+
+    @GET(Consts.ENDPOINT_GET_PASSENGER_DETAILS)
+    Call<GetPassengerDetailResponse> getAllPassengerDetails();
 }

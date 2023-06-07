@@ -29,10 +29,11 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 
     TextView tvUsername, tvEmail;
 
-    AppCompatButton logoutBtn;
+    AppCompatButton logoutBtn, getPassengerDetailsBtn;
 //    Button viewDrivers;
     SharedPrefManager sharedPrefManager;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
         addBusSchedule =(CardView) findViewById(R.id.trip);
         bus=(CardView) findViewById(R.id.bus);
         logoutBtn=findViewById(R.id.logoutBtn);
+        getPassengerDetailsBtn = findViewById(R.id.getPassengerDetailsBtn);
 
 //        viewDrivers = findViewById(R.id.btn_view_drivers);
 
@@ -56,6 +58,15 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 logout(logoutRequest());
+            }
+        });
+
+        getPassengerDetailsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(AdminDashboard.this,GetPassengerDetails.class);
+                startActivity(i);
+                finish();
             }
         });
     }

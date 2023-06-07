@@ -13,6 +13,7 @@ public class Consts {
     public static final String BASE_URL_BUS = "http://" + IP_ADDRESS + "/bus/";
 
     public static final String BASE_URL_LOCATION = "http://" + IP_ADDRESS + "/location/";
+    public static final String BASE_URL_USER = "http://" + IP_ADDRESS + "/user/";
 
     // Endpoints
     public static final String ENDPOINT_ADMIN_LOGIN = "admin-login";
@@ -28,6 +29,9 @@ public class Consts {
     public static final String ENDPOINT_GET_ROUTE_INFO = "route-info";
     public static final String ENDPOINT_GET_HALTS = "bus-stops";
     public static final String ENDPOINT_ADD_SCHEDULE = "add-schedule";
+
+    //passengerDetails
+    public static final String ENDPOINT_GET_PASSENGER_DETAILS = "passenger";
 
     // bus
     public static final String ENDPOINT_ADD_BUS_DETAILS = "add-bus-details";

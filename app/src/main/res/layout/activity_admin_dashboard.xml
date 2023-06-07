@@ -220,9 +220,22 @@
             android:layout_gravity="center"
             android:text="logout"
             android:background="#FF9800"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="90dp">
 
         </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/getPassengerDetailsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#FF9800"
+            android:text="GET PASSENGER DETAILS"
+            android:layout_marginTop="-50dp"
+            android:layout_marginLeft="210dp">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
 
     </LinearLayout>
 
