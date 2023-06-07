@@ -63,8 +63,9 @@ public class BusDetails extends AppCompatActivity {
                             @Override
                             public void onBusDetailsClick(Integer busCapacity, Integer busId, String busStatus, String busType) {
                                 Intent i = new Intent(getApplicationContext(),BusDetailsList.class);
-                                i.putExtra("busId",busId);
+
                                 i.putExtra("busCapacity",busCapacity);
+                                i.putExtra("busId",busId);
                                 i.putExtra("busStatus",busStatus);
                                 i.putExtra("busType",busType);
                                 startActivity(i);
