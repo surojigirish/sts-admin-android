@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.sts_admin.Consts;
@@ -23,6 +24,8 @@ import retrofit2.Response;
 public class RouteInfoDetails extends AppCompatActivity {
     RecyclerView recyclerView;
     List<RouteInfoResult> routeInfoResultList;
+
+    GetRouteInfoDetailsAdapter.OnRouteInfoClickListener onRouteInfoClickListener;
 
 
     @Override
@@ -46,7 +49,14 @@ public class RouteInfoDetails extends AppCompatActivity {
                if (response.isSuccessful()){
                    if (response.body() != null){
                        routeInfoResultList = response.body().getRouteInfoResultList();
-                       recyclerView.setAdapter(new GetRouteInfoDetailsAdapter(getApplicationContext(),routeInfoResultList));
+                       recyclerView.setAdapter(new GetRouteInfoDetailsAdapter(getApplicationContext(), routeInfoResultList, new GetRouteInfoDetailsAdapter.OnRouteInfoClickListener() {
+                           @Override
+                           public void onRouteClick(String infoRouteBusType, String infoRouteDistance, String infoFare) {
+//                               Intent i = new Intent(getApplicationContext(),RouteInfoList.class);
+//                               i.putExtra("infoRouteBusType",infoRouteBusType);
+//                               i.putExtra("infoRoute")
+                           }
+                       }));
                    }
                }
            }

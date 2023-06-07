@@ -20,9 +20,12 @@ public class GetRouteInfoDetailsAdapter extends RecyclerView.Adapter<GetRouteInf
 
     List<RouteInfoResult> routeInfoResultList;
 
-    public GetRouteInfoDetailsAdapter(Context context, List<RouteInfoResult> routeInfoResultList) {
+    OnRouteInfoClickListener onRouteInfoClickListener;
+
+    public GetRouteInfoDetailsAdapter(Context context, List<RouteInfoResult> routeInfoResultList, OnRouteInfoClickListener onRouteInfoClickListener) {
         this.context = context;
         this.routeInfoResultList = routeInfoResultList;
+        this.onRouteInfoClickListener = onRouteInfoClickListener;
     }
 
     @NonNull
@@ -38,6 +41,21 @@ public class GetRouteInfoDetailsAdapter extends RecyclerView.Adapter<GetRouteInf
 
         holder.tvRouteInfoSource.setText(routeInfoResultList.get(position).getRouteSource().getName());
         holder.tvRouteInfoDestination.setText(routeInfoResultList.get(position).getDestination().getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer pos = holder.getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION && onRouteInfoClickListener != null ){
+                    RouteInfoResult selectedRouteInfo = routeInfoResultList.get(pos);
+                    String infoRouteBusType = selectedRouteInfo.getRouteId().toString();
+                    String infoRouteDistance = selectedRouteInfo.getDistance();
+                    String infoFare = selectedRouteInfo.getFare();
+
+                    onRouteInfoClickListener.onRouteClick(infoRouteBusType,infoRouteDistance,infoFare);
+                }
+            }
+        });
 
     }
 
@@ -57,5 +75,9 @@ public class GetRouteInfoDetailsAdapter extends RecyclerView.Adapter<GetRouteInf
             tvRouteInfoSource = itemView.findViewById(R.id.tv_route_info_source);
             tvRouteInfoDestination= itemView.findViewById(R.id.tv_route_info_destination);
         }
+    }
+
+    public interface OnRouteInfoClickListener{
+        void onRouteClick(String infoRouteBusType, String infoRouteDistance,String infoFare);
     }
 }
