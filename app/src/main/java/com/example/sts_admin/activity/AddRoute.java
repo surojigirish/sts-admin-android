@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,12 +21,14 @@ import android.widget.Toast;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
+import com.example.sts_admin.adapters.GetRouteDetailsAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.RouteRequest;
 import com.example.sts_admin.apiservice.response.GetRouteResponse;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.fragments.RouteDestinationFragment;
 import com.example.sts_admin.fragments.RouteSourceFragment;
+import com.example.sts_admin.model.AddRouteDetails;
 import com.example.sts_admin.model.Halts;
 import com.example.sts_admin.model.Route;
 import com.google.android.material.snackbar.Snackbar;
@@ -42,8 +45,6 @@ public class AddRoute extends AppCompatActivity {
     ConstraintLayout constraintDesign;
     AppCompatButton addNewRoute;
 
-    Button routeDetailsBtn;
-
     // SharedPreferences to Handle route data
     SharedPreferences sf;
     SharedPreferences.Editor editor;
@@ -53,8 +54,13 @@ public class AddRoute extends AppCompatActivity {
     // Store destination halt
     Halts destinationBusStand;
 
+    // RecyclerView to show route data
     RecyclerView recyclerView;
+    List<AddRouteDetails> addRouteDetailsList;
     List<Route> routeList;
+
+    // Refresh Route list
+    private SwipeRefreshLayout swipeRefreshLayout;
 
 
     @SuppressLint("MissingInflatedId")
@@ -68,14 +74,8 @@ public class AddRoute extends AppCompatActivity {
         source=findViewById(R.id.source);
         destination=findViewById(R.id.destination);
         addNewRoute=findViewById(R.id.add_route_btn);
-        routeDetailsBtn = findViewById(R.id.routeDetailsBtn);
 
-
-//        recyclerView= findViewById(R.id.addedRouteList);
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//
-//        getAllRouteList();
+        getAllRouteList();
 
         // Get sharedpref data
         getSharedPrefData();
@@ -122,12 +122,10 @@ public class AddRoute extends AppCompatActivity {
             }
         });
 
-        routeDetailsBtn.setOnClickListener(new View.OnClickListener() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View view) {
-                Intent i = new Intent(AddRoute.this,RouteDetails.class);
-                startActivity(i);
-                finish();
+            public void onRefresh() {
+                getAllRouteList();
             }
         });
 
@@ -226,6 +224,38 @@ public class AddRoute extends AppCompatActivity {
 
         // Views
         constraintDesign = findViewById(R.id.constraint_design);
+
+        // Recycler View
+        recyclerView = findViewById(R.id.recyclerViewRouteDetails);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        // Swipe to refresh
+        swipeRefreshLayout = findViewById(R.id.swipeToRefreshRoutes);
+    }
+
+    private void getAllRouteList(){
+        Call<GetRouteResponse> getRouteResponseCall = Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getAllRouteList();
+
+        getRouteResponseCall.enqueue(new Callback<GetRouteResponse>() {
+            @Override
+            public void onResponse(Call<GetRouteResponse> call, Response<GetRouteResponse> response) {
+                if (response.isSuccessful()){
+                    if (response.body() != null){
+                        addRouteDetailsList = response.body().getAddRouteDetailsList();
+                        recyclerView.setAdapter(new GetRouteDetailsAdapter(addRouteDetailsList,getApplicationContext()));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetRouteResponse> call, Throwable t) {
+
+            }
+        });
+
+        // Notify the SwipeRefreshLayout that the refresh action has finished
+        swipeRefreshLayout.setRefreshing(false);
     }
 
 
@@ -239,6 +269,9 @@ public class AddRoute extends AppCompatActivity {
         source.setVisibility(View.INVISIBLE);
         destination.setVisibility(View.INVISIBLE);
         addNewRoute.setVisibility(View.INVISIBLE);
+
+        // Swipe to refresh
+        swipeRefreshLayout.setVisibility(View.INVISIBLE);
     }
 
     // Clear Route SharedPref

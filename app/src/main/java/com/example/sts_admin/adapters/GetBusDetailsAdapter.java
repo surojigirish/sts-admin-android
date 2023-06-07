@@ -46,12 +46,13 @@ public class GetBusDetailsAdapter extends RecyclerView.Adapter<GetBusDetailsAdap
                 Integer pos = holder.getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION && onBusDetailsClickListener !=null){
                   BusResult selectedBus = busResultList.get(pos);
-                  Integer busId= selectedBus.getId();
+
                   Integer busCapacity = selectedBus.getCapacity();
+                    Integer busId= selectedBus.getId();
                   String busStatus = selectedBus.getStatus();
                   String busType = selectedBus.getType();
 
-                  onBusDetailsClickListener.onBusDetailsClick(busId,busCapacity,busStatus,busType);
+                  onBusDetailsClickListener.onBusDetailsClick(busCapacity,busId,busStatus,busType);
                 }
             }
         });
