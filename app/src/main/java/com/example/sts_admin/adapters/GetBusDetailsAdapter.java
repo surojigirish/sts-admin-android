@@ -24,6 +24,8 @@ public class GetBusDetailsAdapter extends RecyclerView.Adapter<GetBusDetailsAdap
     OnBusDetailsClickListener onBusDetailsClickListener;
     OnDeleteClickListener onDeleteClickListener;
 
+
+
     public GetBusDetailsAdapter(Context context, List<BusResult> busResultList, OnBusDetailsClickListener onBusDetailsClickListener) {
         this.context = context;
         this.busResultList = busResultList;

@@ -3,7 +3,9 @@ package com.example.sts_admin.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -13,8 +15,10 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.GetBusDetailsAdapter;
 import com.example.sts_admin.adapters.GetRouteDetailsAdapter;
 import com.example.sts_admin.apiservice.Client;
+import com.example.sts_admin.apiservice.request.UpdateBusDetailsRequest;
 import com.example.sts_admin.apiservice.response.GetBusResponse;
 import com.example.sts_admin.apiservice.response.RouteResponse;
+import com.example.sts_admin.apiservice.response.UpdateBusDetailsResponse;
 import com.example.sts_admin.model.AddRouteDetails;
 import com.example.sts_admin.model.BusResult;
 
@@ -33,10 +37,15 @@ public class BusDetails extends AppCompatActivity {
     GetBusDetailsAdapter.OnBusDetailsClickListener onBusDetailsClickListener;
 
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_details);
+
+        swipeRefreshLayout = findViewById(R.id.swipeToRefreshBusDetails);
 
         recyclerView = findViewById(R.id.recyclerViewBusList);
         recyclerView.setHasFixedSize(true);
@@ -50,6 +59,13 @@ public class BusDetails extends AppCompatActivity {
 
             }
         };
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getAllBusList();
+            }
+        });
     }
 
 
@@ -104,6 +120,9 @@ public class BusDetails extends AppCompatActivity {
 
             }
         });
+
+        // Notify the SwipeRefreshLayout that the refresh action has finished
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     private void deleteRoute(int position, GetBusDetailsAdapter adapter) {
@@ -139,4 +158,6 @@ public class BusDetails extends AppCompatActivity {
         busResultList.remove(position);
         adapter.notifyItemRemoved(position);
     }
+
+
 }

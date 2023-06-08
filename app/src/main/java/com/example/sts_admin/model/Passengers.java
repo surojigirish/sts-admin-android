@@ -2,56 +2,34 @@ package com.example.sts_admin.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class PassengerUser {
+import java.util.List;
 
-    @SerializedName("firstname")
-    private String firstname;
+public class Passengers {
 
-    @SerializedName("lastname")
-    private String lastname;
+   @SerializedName("passenger")
+    private List<PassengerDetail> passengerDetail;
 
-    @SerializedName("photo")
-    private String photo;
+   @SerializedName("user")
+    private List<UserDetail> userDetails;
 
-    @SerializedName("userId")
-    private Integer userId;
-//
-//    public PassengerUser(String firstname, String lastname, String photo, Integer userId) {
-//        this.firstname = firstname;
-//        this.lastname = lastname;
-//        this.photo = photo;
-//        this.userId = userId;
-//    }
-
-    public String getFirstname() {
-        return firstname;
+    public Passengers(List<PassengerDetail> passengerDetail, List<UserDetail> userDetails) {
+        this.passengerDetail = passengerDetail;
+        this.userDetails = userDetails;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public List<PassengerDetail> getPassengerDetail() {
+        return passengerDetail;
     }
 
-    public String getLastname() {
-        return lastname;
+    public void setPassengerDetail(List<PassengerDetail> passengerDetail) {
+        this.passengerDetail = passengerDetail;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public List<UserDetail> getUserDetails() {
+        return userDetails;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserDetails(List<UserDetail> userDetails) {
+        this.userDetails = userDetails;
     }
 }

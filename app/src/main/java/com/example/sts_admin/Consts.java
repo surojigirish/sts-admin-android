@@ -26,6 +26,7 @@ public class Consts {
     public static final String ENDPOINT_ADD_ROUTE = "add-route";
     public static final String ENDPOINT_GET_ROUTE = "route";
     public static final String ENDPOINT_DELETE_ROUTE = "route/{route_id}";
+    public static final String ENDPOINT_DELETE_ROUTE_INFO = "route-info/{route_info_id}";
 
     public static final String ENDPOINT_ADD_HALT = "add-halt";
     public static final String ENDPOINT_ADD_ROUTE_INFO = "add-route-info";
@@ -38,6 +39,8 @@ public class Consts {
 
     // bus
     public static final String ENDPOINT_ADD_BUS_DETAILS = "add-bus-details";
+
+    public static final String ENDPOINT_UPDATE_BUS_DETAILS = "bus-details/{bus_id}";
     public static final String ENDPOINT_BUS_INFO = "bus";
     public static final String ENDPOINT_ADD_BUS_SCHEDULE = "add-bus-schedule";
     public static final String ENDPOINT_BUS_SCHEDULE_LIST_ITEMS = "bus-schedule";

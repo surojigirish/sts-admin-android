@@ -3,9 +3,12 @@ package com.example.sts_admin.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.sts_admin.Consts;
@@ -13,6 +16,7 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.GetRouteInfoDetailsAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.GetRouteInfoResponse;
+import com.example.sts_admin.apiservice.response.RouteInfoResponse;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.model.RouteInfoResult;
 
@@ -28,18 +32,32 @@ public class RouteInfoDetails extends AppCompatActivity {
 
     GetRouteInfoDetailsAdapter.OnRouteInfoClickListener onRouteInfoClickListener;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_info_details);
+
+        swipeRefreshLayout = findViewById(R.id.swipeToRefreshRoutesInfo);
 
         recyclerView = findViewById(R.id.recyclerViewRouteInfoDetails);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         getAllRouteInfoDetails();
 
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getAllRouteInfoDetails();
+            }
+        });
+
     }
+
 
    public void getAllRouteInfoDetails(){
        Call<GetRouteInfoResponse> getRouteInfoResponseCall = Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getAllRouteInfoDetails();
@@ -61,7 +79,7 @@ public class RouteInfoDetails extends AppCompatActivity {
                            @Override
                            public void onDeleteClick(int position) {
                                // Make Delete Api call and update the adapter
-                               deleteRoute(position, adapter);
+                               deleteRouteInfo(position, adapter);
                            }
                        });
 
@@ -90,18 +108,22 @@ public class RouteInfoDetails extends AppCompatActivity {
 
            }
        });
+
+       swipeRefreshLayout.setRefreshing(false);
    }
 
-    private void deleteRoute(int position, GetRouteInfoDetailsAdapter adapter) {
+
+
+    private void deleteRouteInfo(int position, GetRouteInfoDetailsAdapter adapter) {
         RouteInfoResult routeInfo = routeInfoResultList.get(position);
-        int routeId = routeInfo.getId();
+        int routeInfoId = routeInfo.getId();
 
-        Call<RouteResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE)
-                .getRoute().deleteRoute(routeId);
+        Call<RouteInfoResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE)
+                .getRoute().deleteRouteInfo(routeInfoId);
 
-        call.enqueue(new Callback<RouteResponse>() {
+        call.enqueue(new Callback<RouteInfoResponse>() {
             @Override
-            public void onResponse(Call<RouteResponse> call, Response<RouteResponse> response) {
+            public void onResponse(Call<RouteInfoResponse> call, Response<RouteInfoResponse> response) {
                 if (response.isSuccessful()) {
                     // Handle successful response
                     if (response.body() != null && response.body().getStatus() == 200) {
@@ -116,7 +138,7 @@ public class RouteInfoDetails extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<RouteResponse> call, Throwable t) {
+            public void onFailure(Call<RouteInfoResponse> call, Throwable t) {
                 // Handle failure
             }
         });

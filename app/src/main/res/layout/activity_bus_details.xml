@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".activity.BusDetails">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_margin="16dp"
+        android:id="@+id/swipeToRefreshBusDetails"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBusList"
         android:layout_width="0dp"
@@ -14,6 +23,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
