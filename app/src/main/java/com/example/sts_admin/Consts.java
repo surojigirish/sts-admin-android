@@ -21,11 +21,14 @@ public class Consts {
     public static final String ENDPOINT_ADMIN_LOGOUT = "logout";
     public static final String ENDPOINT_REGISTER_DRIVER = "register-driver";
     public static final String ENDPOINT_DRIVERS = "drivers";
+
+    /* ROUTE API REQUESTS ENDPOINT */
     public static final String ENDPOINT_ADD_ROUTE = "add-route";
+    public static final String ENDPOINT_GET_ROUTE = "route";
+    public static final String ENDPOINT_DELETE_ROUTE = "route/{route_id}";
 
     public static final String ENDPOINT_ADD_HALT = "add-halt";
     public static final String ENDPOINT_ADD_ROUTE_INFO = "add-route-info";
-    public static final String ENDPOINT_GET_ROUTE = "route";
     public static final String ENDPOINT_GET_ROUTE_INFO = "route-info";
     public static final String ENDPOINT_GET_HALTS = "bus-stops";
     public static final String ENDPOINT_ADD_SCHEDULE = "add-schedule";

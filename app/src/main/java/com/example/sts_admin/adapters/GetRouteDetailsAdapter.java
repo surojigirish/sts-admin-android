@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sts_admin.R;
@@ -19,9 +20,19 @@ public class GetRouteDetailsAdapter extends RecyclerView.Adapter<GetRouteDetails
     List<AddRouteDetails> addRouteDetailsList;
     Context context;
 
+    // Delete Click Listener instance
+    private OnDeleteClickListener onDeleteClickListener;
+    private RecyclerView recyclerView;
+
     public GetRouteDetailsAdapter(List<AddRouteDetails> addRouteDetailsList, Context context) {
         this.addRouteDetailsList = addRouteDetailsList;
         this.context = context;
+    }
+
+    public GetRouteDetailsAdapter(List<AddRouteDetails> addRouteDetailsList, Context context, RecyclerView recyclerView) {
+        this.addRouteDetailsList = addRouteDetailsList;
+        this.context = context;
+        this.recyclerView = recyclerView;
     }
 
     @NonNull
@@ -46,7 +57,12 @@ public class GetRouteDetailsAdapter extends RecyclerView.Adapter<GetRouteDetails
         return addRouteDetailsList.size();
     }
 
-    public class ViewHolder extends  RecyclerView.ViewHolder{
+    // onDeleteClickListener setter
+    public void setOnDeleteClickListener(OnDeleteClickListener onDeleteClickListener) {
+        this.onDeleteClickListener = onDeleteClickListener;
+    }
+
+    public static class ViewHolder extends  RecyclerView.ViewHolder{
 
 
         TextView getRouteSource, getRouteDestination;
@@ -56,6 +72,36 @@ public class GetRouteDetailsAdapter extends RecyclerView.Adapter<GetRouteDetails
             getRouteSource = itemView.findViewById(R.id.tvRouteSourceDisplay);
             getRouteDestination = itemView.findViewById(R.id.tvRouteDestinationDisplay);
         }
+    }
+
+
+    // onDeleteClickListener interface
+    public interface OnDeleteClickListener {
+        void onDeleteClick(int position);
+    }
+
+    // ItemTouchHelper interface
+    // Implement ItemTouchHelper.SimpleCallBack separately
+    private ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+
+            if (onDeleteClickListener != null) {
+                onDeleteClickListener.onDeleteClick(position);
+            }
+        }
+    };
+
+    // Associate the ItemTouchHelper with the RecyclerView
+    public void enableSwipeToDelete() {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallBack);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
 }
