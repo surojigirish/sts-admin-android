@@ -17,17 +17,17 @@ public class RouteInfoList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_info_list);
 
-        routeBusType = findViewById(R.id.routeBusType);
+//        routeBusType = findViewById(R.id.routeBusType);
         routeDistance = findViewById(R.id.routeDistance);
         routeFare = findViewById(R.id.routeFare);
 
         Intent i = getIntent();
-        String infoRouteBusType = i.getStringExtra("infoRouteBusType");
+//        String infoRouteBusType = i.getStringExtra("infoRouteBusType");
         String infoRouteDistance = i.getStringExtra("infoRouteDistance");
         String infoRouteFare = i.getStringExtra("infoRouteFare");
 
 
-        routeBusType.setText(infoRouteBusType);
+//        routeBusType.setText(infoRouteBusType);
         routeDistance.setText(infoRouteDistance);
         routeFare.setText(infoRouteFare);
 

@@ -51,9 +51,9 @@ public class RouteInfoDetails extends AppCompatActivity {
                        routeInfoResultList = response.body().getRouteInfoResultList();
                        recyclerView.setAdapter(new GetRouteInfoDetailsAdapter(getApplicationContext(), routeInfoResultList, new GetRouteInfoDetailsAdapter.OnRouteInfoClickListener() {
                            @Override
-                           public void onRouteClick(String infoRouteBusType, String infoRouteDistance, String infoFare) {
+                           public void onRouteClick( String infoRouteDistance, String infoFare) {
                                Intent i = new Intent(getApplicationContext(),RouteInfoList.class);
-                               i.putExtra("infoRouteBusType",infoRouteBusType);
+//                               i.putExtra("infoRouteBusType",infoRouteBusType);
                                i.putExtra("infoRouteDistance",infoRouteDistance);
                                i.putExtra("infoRouteFare",infoFare);
                                startActivity(i);
