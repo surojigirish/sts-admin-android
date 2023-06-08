@@ -11,12 +11,12 @@ public class GetPassengerDetailResponse {
     private Integer id;
 
     @SerializedName("user")
-    private List<PassengerUser> passengerUser;
+    private PassengerUser passengerUser;
 
-//    public GetPassengerDetailResponse(Integer id, List<PassengerUser> passengerUser) {
-//        this.id = id;
-//        this.passengerUser = passengerUser;
-//    }
+    public GetPassengerDetailResponse(Integer id, PassengerUser passengerUser) {
+        this.id = id;
+        this.passengerUser = passengerUser;
+    }
 
     public Integer getId() {
         return id;
@@ -26,11 +26,11 @@ public class GetPassengerDetailResponse {
         this.id = id;
     }
 
-    public List<PassengerUser> getPassengerUser() {
+    public PassengerUser getPassengerUser() {
         return passengerUser;
     }
 
-    public void setPassengerUser(List<PassengerUser> passengerUser) {
+    public void setPassengerUser(PassengerUser passengerUser) {
         this.passengerUser = passengerUser;
     }
 }

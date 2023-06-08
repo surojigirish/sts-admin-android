@@ -23,7 +23,7 @@ public class GetPassengerDetails extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-    List<PassengerUser> passengerUserList;
+    PassengerUser passengerUserList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class GetPassengerDetails extends AppCompatActivity {
             public void onResponse(Call<GetPassengerDetailResponse> call, Response<GetPassengerDetailResponse> response) {
 
                     if (response.body() !=null){
-                        passengerUserList = response.body().getPassengerUser();
+                        passengerUserList= response.body().getPassengerUser();
                         recyclerView.setAdapter(new GetPassengerDetailsAdapter(getApplicationContext(),passengerUserList));
 
                     }
