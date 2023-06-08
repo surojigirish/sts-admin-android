@@ -57,6 +57,8 @@ public class PassValidateScheduleListFragment extends Fragment {
     private List<ListOfBusSchedule> vBusScheduleList;
     // On Bus schedule item click handler
     ShuttleBusScheduleAdapter.OnBusScheduleClickListener onBusScheduleItemClick;
+
+
     // Bus Schedule instance variables to handle date and bus-schedule id
     private BusSchedule onBusScheduleClickedData;
 
