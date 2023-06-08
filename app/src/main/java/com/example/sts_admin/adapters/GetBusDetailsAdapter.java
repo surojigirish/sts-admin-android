@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sts_admin.Consts;
@@ -18,13 +19,21 @@ import java.util.List;
 public class GetBusDetailsAdapter extends RecyclerView.Adapter<GetBusDetailsAdapter.ViewHolder> {
     Context context;
     List<BusResult> busResultList;
+    RecyclerView recyclerView;
 
     OnBusDetailsClickListener onBusDetailsClickListener;
+    OnDeleteClickListener onDeleteClickListener;
 
-    public GetBusDetailsAdapter(Context context, List<BusResult> busResultList, OnBusDetailsClickListener onBusDetailsClickListener) {
+//    public GetBusDetailsAdapter(Context context, List<BusResult> busResultList, OnBusDetailsClickListener onBusDetailsClickListener) {
+//        this.context = context;
+//        this.busResultList = busResultList;
+//        this.onBusDetailsClickListener = onBusDetailsClickListener;
+//    }
+
+    public GetBusDetailsAdapter(Context context, List<BusResult> busResultList, RecyclerView recyclerView) {
         this.context = context;
         this.busResultList = busResultList;
-        this.onBusDetailsClickListener = onBusDetailsClickListener;
+        this.recyclerView = recyclerView;
     }
 
     @NonNull
@@ -56,13 +65,19 @@ public class GetBusDetailsAdapter extends RecyclerView.Adapter<GetBusDetailsAdap
                 }
             }
         });
-
     }
 
     @Override
     public int getItemCount() {
         return busResultList.size();
     }
+
+
+    // onDeleteClickListener setter
+    public void setOnDeleteClickListener(OnDeleteClickListener onDeleteClickListener) {
+        this.onDeleteClickListener = onDeleteClickListener;
+    }
+
 
 
     public static class ViewHolder extends  RecyclerView.ViewHolder{
@@ -80,6 +95,39 @@ public class GetBusDetailsAdapter extends RecyclerView.Adapter<GetBusDetailsAdap
     public interface OnBusDetailsClickListener{
         void onBusDetailsClick(Integer busCapacity, Integer busId, String busStatus, String busType);
 
+    }
+
+
+
+
+
+    // onDeleteClickListener interface
+    public interface OnDeleteClickListener {
+        void onDeleteClick(int position);
+    }
+
+    // ItemTouchHelper interface
+    // Implement ItemTouchHelper.SimpleCallBack separately
+    private ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+
+            if (onDeleteClickListener != null) {
+                onDeleteClickListener.onDeleteClick(position);
+            }
+        }
+    };
+
+    // Associate the ItemTouchHelper with the RecyclerView
+    public void enableSwipeToDelete() {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallBack);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
 
