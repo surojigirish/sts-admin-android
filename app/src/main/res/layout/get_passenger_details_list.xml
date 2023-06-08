@@ -9,7 +9,6 @@
         android:id="@+id/tvPassengerFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
         android:text="Firstname"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,18 +24,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/passengerPhoto"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="219dp"-->
-<!--        android:layout_marginBottom="3dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/tvPassengerLastName"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/tvPassengerFirstName"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:ignore="MissingConstraints" />-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/passengerPhoto"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginEnd="219dp"-->
+    <!--        android:layout_marginBottom="3dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/tvPassengerLastName"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/tvPassengerFirstName"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:ignore="MissingConstraints" />-->
 
     <TextView
         android:id="@+id/tvPassengerUserId"

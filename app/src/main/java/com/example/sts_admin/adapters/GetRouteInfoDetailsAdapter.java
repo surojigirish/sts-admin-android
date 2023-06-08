@@ -48,11 +48,11 @@ public class GetRouteInfoDetailsAdapter extends RecyclerView.Adapter<GetRouteInf
                 Integer pos = holder.getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION && onRouteInfoClickListener != null ){
                     RouteInfoResult selectedRouteInfo = routeInfoResultList.get(pos);
-                    String infoRouteBusType = selectedRouteInfo.getRouteId().toString();
+//                    String infoRouteBusType = selectedRouteInfo.getRouteId().toString();
                     String infoRouteDistance = selectedRouteInfo.getDistance();
                     String infoFare = selectedRouteInfo.getFare();
 
-                    onRouteInfoClickListener.onRouteClick(infoRouteBusType,infoRouteDistance,infoFare);
+                    onRouteInfoClickListener.onRouteClick(infoRouteDistance,infoFare);
                 }
             }
         });
@@ -78,6 +78,6 @@ public class GetRouteInfoDetailsAdapter extends RecyclerView.Adapter<GetRouteInf
     }
 
     public interface OnRouteInfoClickListener{
-        void onRouteClick(String infoRouteBusType, String infoRouteDistance,String infoFare);
+        void onRouteClick(String infoRouteDistance,String infoFare);
     }
 }
