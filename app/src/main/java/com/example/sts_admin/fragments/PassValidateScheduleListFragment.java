@@ -164,6 +164,17 @@ public class PassValidateScheduleListFragment extends Fragment {
                                 Integer passId = Integer.valueOf(stringPassId);
                                 Integer passengerId = Integer.valueOf(stringPassengerId);
 
+                                // Pass the qrValues data to next fragment to allocate a bus-schedule to pass
+                                AllocatePassToBusScheduleFragment allocateFragment = new AllocatePassToBusScheduleFragment();
+                                Bundle args = new Bundle();
+                                args.putStringArray("qrValues", qrValues);
+                                allocateFragment.setArguments(args);
+
+                                // Start the next fragment
+                                getParentFragmentManager().beginTransaction()
+                                                .replace(R.id.frameLayout_validate_pass, allocateFragment)
+                                                        .commit();
+
                                 validatePass(passengerId, passId, passValidationRequest());
                                 // Toast the message
                                 Toast.makeText(requireContext(), "Pass ID: " + stringPassId + " PassengerId: " + stringPassengerId, Toast.LENGTH_SHORT).show();
