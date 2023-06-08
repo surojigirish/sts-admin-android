@@ -60,21 +60,10 @@ public class BusDetails extends AppCompatActivity {
         getBusResponseCall.enqueue(new Callback<GetBusResponse>() {
             @Override
             public void onResponse(Call<GetBusResponse> call, Response<GetBusResponse> response) {
-                if (response.isSuccessful()){
-                    if (response.body() != null){
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
                         busResultList = response.body().getBusResultList();
-//                        recyclerView.setAdapter(new GetBusDetailsAdapter(getApplicationContext(), busResultList, new GetBusDetailsAdapter.OnBusDetailsClickListener() {
-//                            @Override
-//                            public void onBusDetailsClick(Integer busCapacity, Integer busId, String busStatus, String busType) {
-//                                Intent i = new Intent(getApplicationContext(),BusDetailsList.class);
 //
-//                                i.putExtra("busCapacity",busCapacity);
-//                                i.putExtra("busId",busId);
-//                                i.putExtra("busStatus",busStatus);
-//                                i.putExtra("busType",busType);
-//                                startActivity(i);
-//                            }
-//                        }));
 
 
                         // Setting Adapter
@@ -91,15 +80,24 @@ public class BusDetails extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
                         adapter.enableSwipeToDelete();
 
-
-
-
-
-
-
                     }
+
+                    recyclerView.setAdapter(new GetBusDetailsAdapter(getApplicationContext(), busResultList, new GetBusDetailsAdapter.OnBusDetailsClickListener() {
+                        @Override
+                        public void onBusDetailsClick(Integer busCapacity, Integer busId, String busStatus, String busType) {
+                            Intent i = new Intent(getApplicationContext(), BusDetailsList.class);
+
+                            i.putExtra("busCapacity", busCapacity);
+                            i.putExtra("busId", busId);
+                            i.putExtra("busStatus", busStatus);
+                            i.putExtra("busType", busType);
+                            startActivity(i);
+                        }
+                    }));
+
                 }
             }
+
 
             @Override
             public void onFailure(Call<GetBusResponse> call, Throwable t) {
