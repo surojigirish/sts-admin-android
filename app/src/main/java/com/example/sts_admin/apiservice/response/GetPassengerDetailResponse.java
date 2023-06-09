@@ -1,36 +1,48 @@
 package com.example.sts_admin.apiservice.response;
 
-import com.example.sts_admin.model.PassengerUser;
+import com.example.sts_admin.model.Passengers;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class GetPassengerDetailResponse {
 
-    @SerializedName("id")
-    private Integer id;
+  @SerializedName("passengers")
+    private List<Passengers> passengers;
 
-    @SerializedName("user")
-    private PassengerUser passengerUser;
+  @SerializedName("status")
+    private Integer status;
 
-    public GetPassengerDetailResponse(Integer id, PassengerUser passengerUser) {
-        this.id = id;
-        this.passengerUser = passengerUser;
+  @SerializedName("success")
+    private boolean success;
+
+    public GetPassengerDetailResponse(List<Passengers> passengers, Integer status, boolean success) {
+        this.passengers = passengers;
+        this.status = status;
+        this.success = success;
     }
 
-    public Integer getId() {
-        return id;
+    public List<Passengers> getPassengers() {
+        return passengers;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setPassengers(List<Passengers> passengers) {
+        this.passengers = passengers;
     }
 
-    public PassengerUser getPassengerUser() {
-        return passengerUser;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setPassengerUser(PassengerUser passengerUser) {
-        this.passengerUser = passengerUser;
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

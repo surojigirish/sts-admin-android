@@ -314,6 +314,17 @@ public class RouteInfoActivity extends AppCompatActivity {
         });
     }
 
+//    private void hideViewsOnFrag() {
+//
+//        // EditTextView
+//        source.setVisibility(View.INVISIBLE);
+//        destination.setVisibility(View.INVISIBLE);
+//        addNewRoute.setVisibility(View.INVISIBLE);
+//
+//        // Swipe to refresh
+//        swipeRefreshLayout.setVisibility(View.INVISIBLE);
+//    }
+
     // clear shared pref for route
     public void clearRouteSharedPref() {
         SharedPreferences.Editor editor = sharedPreferences.edit();

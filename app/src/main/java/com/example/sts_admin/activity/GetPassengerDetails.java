@@ -11,7 +11,7 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.GetPassengerDetailsAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.GetPassengerDetailResponse;
-import com.example.sts_admin.model.PassengerUser;
+import com.example.sts_admin.model.Passengers;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class GetPassengerDetails extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-    PassengerUser passengerUserList;
+    List<Passengers> passengerUserList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class GetPassengerDetails extends AppCompatActivity {
             public void onResponse(Call<GetPassengerDetailResponse> call, Response<GetPassengerDetailResponse> response) {
 
                     if (response.body() !=null){
-                        passengerUserList= response.body().getPassengerUser();
+                        passengerUserList= response.body().getPassengers();
                         recyclerView.setAdapter(new GetPassengerDetailsAdapter(getApplicationContext(),passengerUserList));
 
                     }

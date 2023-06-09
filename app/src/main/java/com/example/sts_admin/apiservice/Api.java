@@ -11,6 +11,7 @@ import com.example.sts_admin.apiservice.request.DriverRegisterRequest;
 import com.example.sts_admin.apiservice.request.HaltRequest;
 import com.example.sts_admin.apiservice.request.RouteInfoRequest;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
+import com.example.sts_admin.apiservice.request.UpdateBusDetailsRequest;
 import com.example.sts_admin.apiservice.request.ValidationRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
@@ -32,6 +33,7 @@ import com.example.sts_admin.apiservice.response.EmployeeDriverResponse;
 import com.example.sts_admin.apiservice.response.HaltResponse;
 import com.example.sts_admin.apiservice.response.RouteInfoResponse;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
+import com.example.sts_admin.apiservice.response.UpdateBusDetailsResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -74,6 +76,13 @@ public interface Api {
 
     @HTTP(method = "DELETE", path = Consts.ENDPOINT_DELETE_ROUTE)
     Call<RouteResponse> deleteRoute(@Path("route_id") Integer routeId);
+
+    @HTTP(method = "DELETE", path = Consts.ENDPOINT_DELETE_ROUTE_INFO)
+    Call<RouteInfoResponse> deleteRouteInfo(@Path("route_info_id") Integer routeInfoId);
+
+    @PUT(Consts.ENDPOINT_UPDATE_BUS_DETAILS)
+    Call<UpdateBusDetailsResponse> updateBusDetails(@Path("bus_id")Integer busDetailId,
+                                                    @Body UpdateBusDetailsRequest updateBusDetailsRequest);
 
     @GET(Consts.ENDPOINT_GET_ROUTE_INFO)
     Call<RouteResponse> getRoutesInfo();
