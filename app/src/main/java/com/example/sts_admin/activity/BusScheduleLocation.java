@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.PendingIntent;
@@ -17,13 +19,26 @@ import android.widget.TextView;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
+import com.example.sts_admin.adapters.PassengerDaetailsAdapter;
+import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.LocationUpdate;
+import com.example.sts_admin.apiservice.response.OnBoardPassengerResponse;
+import com.example.sts_admin.model.results.TicketResult;
 import com.example.sts_admin.services.LocationUpdateService;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class BusScheduleLocation extends AppCompatActivity {
+
+
+    List<TicketResult> ticketResultList;
 
     private static final int REQUEST_CHECK_SETTINGS = 0;
     TextView tvBusScheduleID;
@@ -37,6 +52,7 @@ public class BusScheduleLocation extends AppCompatActivity {
     private LocationUpdate locationUpdateRequest;
     private PendingIntent locationUpdatePendingIntent;
     private boolean sendingLocationEnabled = false;
+    RecyclerView recyclerViewPassenger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +61,9 @@ public class BusScheduleLocation extends AppCompatActivity {
 
         tvBusScheduleID = findViewById(R.id.tv_driverBusSchedule);
         locationEnableDisable = findViewById(R.id.appCompatButton_location);
+        recyclerViewPassenger = findViewById(R.id.showOnboardPassengerrecyclerView);
+        recyclerViewPassenger.setHasFixedSize(true);
+        recyclerViewPassenger.setLayoutManager(new LinearLayoutManager(getApplication()));
 
 
         // get intent data from previous activity
@@ -52,6 +71,8 @@ public class BusScheduleLocation extends AppCompatActivity {
         busScheduleId = intent.getIntExtra("busScheduleId", 0);
 
         tvBusScheduleID.setText(String.valueOf(busScheduleId));
+
+
 
 
         initFusedLocationProviderClient();
@@ -66,6 +87,8 @@ public class BusScheduleLocation extends AppCompatActivity {
                 }
             }
         });
+
+        getOnBoardPassengerDeatils(busScheduleId);
 
     }
 
@@ -163,4 +186,26 @@ public class BusScheduleLocation extends AppCompatActivity {
         }
     }
 
+
+
+    /*----------------------------------- get Onboard passenger details call-------------------------------------*/
+
+    public void getOnBoardPassengerDeatils(int busScheduleId){
+        Call<OnBoardPassengerResponse> call = Client.getInstance(Consts.BASE_URL_BOOKING).getRoute().getPassengerDeatails(busScheduleId);
+        call.enqueue(new Callback<OnBoardPassengerResponse>() {
+            @Override
+            public void onResponse(Call<OnBoardPassengerResponse> call, Response<OnBoardPassengerResponse> response) {
+                if (response.isSuccessful()){
+                    ticketResultList = response.body().getTicketResultList();
+                    recyclerViewPassenger.setAdapter(new PassengerDaetailsAdapter(ticketResultList, getApplicationContext()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<OnBoardPassengerResponse> call, Throwable t) {
+
+            }
+        });
+
+    }
 }

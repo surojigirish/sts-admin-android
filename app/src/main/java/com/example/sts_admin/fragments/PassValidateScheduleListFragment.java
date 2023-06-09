@@ -51,15 +51,6 @@ import retrofit2.Response;
 
 public class PassValidateScheduleListFragment extends Fragment {
 
-    // Bus schedule list variables
-    private RecyclerView busScheduleRecyclerView;
-    private SwipeRefreshLayout swipeRefreshLayout;
-    private List<ListOfBusSchedule> vBusScheduleList;
-    // On Bus schedule item click handler
-    ShuttleBusScheduleAdapter.OnBusScheduleClickListener onBusScheduleItemClick;
-    // Bus Schedule instance variables to handle date and bus-schedule id
-    private BusSchedule onBusScheduleClickedData;
-
     // QR data store
     PassValidation passValidation;
 
@@ -81,22 +72,7 @@ public class PassValidateScheduleListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initViews(view);
-        getShuttleBusScheduleListData();
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getShuttleBusScheduleListData();
-            }
-        });
-
-        // Bus schedule list item click listener
-        onBusScheduleItemClick = new ShuttleBusScheduleAdapter.OnBusScheduleClickListener() {
-            @Override
-            public void onItemClick(Integer busId, String scheduleDate) {
-                Log.i("TAG", "onViewCreated->onBusScheduleItemClick: " + busId);
-            }
-        };
 
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(requireContext())
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
@@ -164,7 +140,17 @@ public class PassValidateScheduleListFragment extends Fragment {
                                 Integer passId = Integer.valueOf(stringPassId);
                                 Integer passengerId = Integer.valueOf(stringPassengerId);
 
-                                validatePass(passengerId, passId, passValidationRequest());
+                                // Pass the qrValues data to next fragment to allocate a bus-schedule to pass
+                                AllocatePassToBusScheduleFragment allocateFragment = new AllocatePassToBusScheduleFragment();
+                                Bundle args = new Bundle();
+                                args.putStringArray("qrValues", qrValues);
+                                allocateFragment.setArguments(args);
+
+                                // Start the next fragment
+                                getParentFragmentManager().beginTransaction()
+                                                .replace(R.id.frameLayout_validate_pass, allocateFragment)
+                                                        .commit();
+
                                 // Toast the message
                                 Toast.makeText(requireContext(), "Pass ID: " + stringPassId + " PassengerId: " + stringPassengerId, Toast.LENGTH_SHORT).show();
                             }
@@ -190,17 +176,6 @@ public class PassValidateScheduleListFragment extends Fragment {
         // Scanner view init
         scannerCameraPreview = v.findViewById(R.id.scanner_camera_preview);
 
-        // Swipe to refresh
-        swipeRefreshLayout = v.findViewById(R.id.swipeToRefreshBusSchedule);
-
-        // List of bus schedule recycler init
-        busScheduleRecyclerView = v.findViewById(R.id.bus_schedule_recycler);
-        busScheduleRecyclerView.setHasFixedSize(true);
-        busScheduleRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        // instance of Bus Schedule model class
-        onBusScheduleClickedData = new BusSchedule();
-
         // instance of PassValidation model class
         passValidation = new PassValidation();
     }
@@ -218,115 +193,4 @@ public class PassValidateScheduleListFragment extends Fragment {
         }
     }
 
-
-    // API call to get all bus schedule list and filter to show only shuttle buses
-    private void getShuttleBusScheduleListData() {
-        // Current date
-        LocalDate date = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            date = Assets.getCurrentDate();
-        }
-        Log.i("TAG", "getShuttleBusScheduleListData: date " + date);
-
-        // Api Call to get bus schedule list
-        Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_SCHEDULE)
-                .getRoute().getBusScheduleOnDate(String.valueOf(date));
-
-        call.enqueue(new Callback<MainResponse>() {
-            @Override
-            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null && response.body().getStatusCode() == 200) {
-                        // add response to vBusScheduleList
-                        vBusScheduleList = response.body().getListOfBusSchedule();
-                        // Filter shuttle buses from the vBusScheduleList
-                        List<ListOfBusSchedule> shuttleBusList = filterShuttleBuses(vBusScheduleList);
-                        // add the list to recyclerView instance of bus list
-                        busScheduleRecyclerView.setAdapter(new ShuttleBusScheduleAdapter(shuttleBusList, new ShuttleBusScheduleAdapter.OnBusScheduleClickListener() {
-                            @Override
-                            public void onItemClick(Integer busId, String scheduleDate) {
-                                onBusScheduleClickedData.setId(busId);
-                                onBusScheduleClickedData.setDate(scheduleDate);
-
-                                Log.i("TAG", "onItemClick: bus-id " + onBusScheduleClickedData.getId());
-                                Log.i("TAG", "onItemClick: schedule date " + onBusScheduleClickedData.getDate());
-                            }
-                        }));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MainResponse> call, Throwable t) {
-                Log.i("TAG", "onFailure: t " + t);
-            }
-        });
-
-        // Notify the SwipeRefreshLayout that the refresh action has finished
-        swipeRefreshLayout.setRefreshing(false);
-    }
-
-    // Function to filter list of shuttle buses schedule
-    private List<ListOfBusSchedule> filterShuttleBuses(List<ListOfBusSchedule> busScheduleList) {
-        // Create a new List to Store Shuttle Buses schedule
-        List<ListOfBusSchedule> shuttleBusList = new ArrayList<>();
-        int filtered = 0, loop = 0;
-
-        // Iterate through Bus Schedules
-        for (ListOfBusSchedule busSchedule : busScheduleList) {
-            loop++;
-            Log.i("TAG", "filterShuttleBuses: loop " + loop);
-            // Filter bus-type SHUTTLE and seats-available greater than 0
-            if (busSchedule.getBus().getType().equals("SHUTTLE") && busSchedule.getBusSchedule().getSeatsAvailable() > 0) {
-                filtered++;
-                Log.i("TAG", "filterShuttleBuses: filtered " + filtered);
-                shuttleBusList.add(busSchedule);
-            }
-        }
-        // Return shuttleBusList
-        return shuttleBusList;
-    }
-
-    // API call to validate pass and passenger
-    private void validatePass(Integer passengerId, Integer passId, ValidationRequest request) {
-
-        Call<MainResponse> call = Client.getInstance(Consts.BASE_URL_BOOKING).getRoute().validatePass(passengerId, passId, request);
-        call.enqueue(new Callback<MainResponse>() {
-            @Override
-            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null && response.body().getStatusCode() == 200) {
-                        Toast.makeText(requireContext(), "Pass validated", Toast.LENGTH_SHORT).show();
-                        Log.i("TAG", "onResponse 200: Pass and Passenger allocated a bus " + response.body().getMessage());
-                    } else if (response.body() != null && response.body().getStatusCode() == 400) {
-                        Log.i("TAG", "onResponse 400: Pass and Passenger not allocated a bus " + response.body().getMessage());
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MainResponse> call, Throwable t) {
-                Log.i("TAG", "onFailure: pass validation " + t);
-            }
-        });
-    }
-
-    // Pass validation request function
-    private ValidationRequest passValidationRequest() {
-        ValidationRequest request = new ValidationRequest();
-        // get request data from Bus Schedule instance
-        Integer busScheduleId = onBusScheduleClickedData.getId();
-        String date = onBusScheduleClickedData.getDate();
-        // get current time stamp
-        String timeStamp = null;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            timeStamp = Assets.getFormattedDate();
-        }
-        // set request data
-        request.setBusScheduleId(busScheduleId);
-        request.setTravelDate(date);
-        request.setBookingTimeStamp(timeStamp);
-
-        return request;
-    }
 }
