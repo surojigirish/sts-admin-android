@@ -4,54 +4,152 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.BusDetailsList">
+    tools:context=".activity.BusDetailsList"
+    android:padding="10dp">
 
 
-    <TextView
-        android:id="@+id/tv_bus_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BusId"
-        android:textSize="20sp"
+    <LinearLayout
+        android:id="@+id/ll_bus_id_details"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:background="@android:color/holo_orange_light">
 
-    <TextView
-        android:id="@+id/tv_bus_capacity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:text="Bus Capacity"
-        android:textSize="20sp"
+        <TextView
+            android:id="@+id/tv_bus_id_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Bus Id"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_bus_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Bus Id"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+<!--    <TextView-->
+<!--        android:id="@+id/tv_bus_capacity"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="11dp"-->
+<!--        android:text="Bus Capacity"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ll_bus_id_details" />-->
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_bus_capacity_details"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bus_id" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:background="@android:color/holo_orange_light"
+        app:layout_constraintTop_toBottomOf="@+id/ll_bus_id_details">
 
-    <TextView
-        android:id="@+id/tv_bus_status"
+        <TextView
+            android:id="@+id/tv_bus_capacity_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Capacity"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_bus_capacity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Capacity"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/ll_bus_status_details"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_chainStyle="packed"-->
+<!--        android:background="@android:color/holo_orange_light"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ll_bus_capacity_details">-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tv_bus_status_detail"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Capacity"-->
+<!--        android:textSize="16sp" />-->
+
+    <!--    </LinearLayout>-->
+    <EditText
+        android:id="@+id/et_bus_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Bus Status"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bus_capacity" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_bus_capacity_details" />
 
-    <TextView
-        android:id="@+id/tv_bus_details_type"
+
+    <!--    <Spinner-->
+    <!--        android:id="@+id/bus_type_details_spinner"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="7dp"-->
+    <!--        android:layout_marginTop="15dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_bus_status" />-->
+
+    <EditText
+        android:id="@+id/et_bus_details_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
         android:text="Bus Type"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_bus_status" />
+        app:layout_constraintTop_toBottomOf="@+id/et_bus_status" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/updateStatusType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="194dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="Update"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

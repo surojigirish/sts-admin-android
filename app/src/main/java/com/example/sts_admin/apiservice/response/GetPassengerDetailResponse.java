@@ -3,10 +3,12 @@ package com.example.sts_admin.apiservice.response;
 import com.example.sts_admin.model.Passengers;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class GetPassengerDetailResponse {
 
   @SerializedName("passengers")
-    private Passengers passengers;
+    private List<Passengers> passengers;
 
   @SerializedName("status")
     private Integer status;
@@ -14,17 +16,17 @@ public class GetPassengerDetailResponse {
   @SerializedName("success")
     private boolean success;
 
-    public GetPassengerDetailResponse(Passengers passengers, Integer status, boolean success) {
+    public GetPassengerDetailResponse(List<Passengers> passengers, Integer status, boolean success) {
         this.passengers = passengers;
         this.status = status;
         this.success = success;
     }
 
-    public Passengers getPassengers() {
+    public List<Passengers> getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(Passengers passengers) {
+    public void setPassengers(List<Passengers> passengers) {
         this.passengers = passengers;
     }
 

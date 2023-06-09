@@ -13,6 +13,8 @@ import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.GetPassengerDetailResponse;
 import com.example.sts_admin.model.Passengers;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -21,7 +23,7 @@ public class GetPassengerDetails extends AppCompatActivity {
 
     RecyclerView recyclerView;
 
-    Passengers passengerUserList;
+    List<Passengers> passengerUserList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +40,22 @@ public class GetPassengerDetails extends AppCompatActivity {
     }
 
     public void getAllPassengerDetails(){
-//        Call<GetPassengerDetailResponse> getPassengerDetailResponseCall = Client.getInstance(Consts.BASE_URL_USER).getRoute().getAllPassengerDetails();
-//        getPassengerDetailResponseCall.enqueue(new Callback<GetPassengerDetailResponse>() {
-//            @Override
-//            public void onResponse(Call<GetPassengerDetailResponse> call, Response<GetPassengerDetailResponse> response) {
-//
-//                    if (response.body() !=null){
-//                        passengerUserList= response.body().getPassenger();
-//                        recyclerView.setAdapter(new GetPassengerDetailsAdapter(getApplicationContext(),passengerUserList));
-//
-//                    }
-//                }
-//
-//            @Override
-//            public void onFailure(Call<GetPassengerDetailResponse> call, Throwable t) {
-//
-//            }
-//        });
+        Call<GetPassengerDetailResponse> getPassengerDetailResponseCall = Client.getInstance(Consts.BASE_URL_USER).getRoute().getAllPassengerDetails();
+        getPassengerDetailResponseCall.enqueue(new Callback<GetPassengerDetailResponse>() {
+            @Override
+            public void onResponse(Call<GetPassengerDetailResponse> call, Response<GetPassengerDetailResponse> response) {
+
+                    if (response.body() !=null){
+                        passengerUserList= response.body().getPassengers();
+                        recyclerView.setAdapter(new GetPassengerDetailsAdapter(getApplicationContext(),passengerUserList));
+
+                    }
+                }
+
+            @Override
+            public void onFailure(Call<GetPassengerDetailResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

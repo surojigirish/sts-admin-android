@@ -6,30 +6,30 @@ import java.util.List;
 
 public class Passengers {
 
-   @SerializedName("passenger")
-    private List<PassengerDetail> passengerDetail;
+    @SerializedName("passenger")
+    private PassengerDetail passengerDetail;
 
-   @SerializedName("user")
-    private List<UserDetail> userDetails;
+    @SerializedName("user")
+    private UserDetail userDetails;
 
-    public Passengers(List<PassengerDetail> passengerDetail, List<UserDetail> userDetails) {
+    public Passengers(PassengerDetail passengerDetail, UserDetail userDetails) {
         this.passengerDetail = passengerDetail;
         this.userDetails = userDetails;
     }
 
-    public List<PassengerDetail> getPassengerDetail() {
+    public PassengerDetail getPassengerDetail() {
         return passengerDetail;
     }
 
-    public void setPassengerDetail(List<PassengerDetail> passengerDetail) {
+    public void setPassengerDetail(PassengerDetail passengerDetail) {
         this.passengerDetail = passengerDetail;
     }
 
-    public List<UserDetail> getUserDetails() {
+    public UserDetail getUserDetails() {
         return userDetails;
     }
 
-    public void setUserDetails(List<UserDetail> userDetails) {
+    public void setUserDetails(UserDetail userDetails) {
         this.userDetails = userDetails;
     }
 }
