@@ -25,6 +25,9 @@
         android:theme="@style/Theme.STS_ADMIN"
         tools:targetApi="31">
         <activity
+            android:name=".activity.RouteRouteInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.GetPassengerDetails"
             android:exported="false" />
         <activity

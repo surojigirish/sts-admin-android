@@ -8,6 +8,8 @@ public class Route {
     private  String destination;
     @SerializedName("route-id")
     private  int routeId;
+    @SerializedName("id")
+    private int id;
     @SerializedName("source")
     private String source;
 
@@ -39,5 +41,21 @@ public class Route {
 
     public void setSource(String source) {
         this.source = source;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

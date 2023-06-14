@@ -26,6 +26,7 @@ public class Consts {
     public static final String ENDPOINT_ADD_ROUTE = "add-route";
     public static final String ENDPOINT_GET_ROUTE = "route";
     public static final String ENDPOINT_DELETE_ROUTE = "route/{route_id}";
+    public static final String ENDPOINT_GET_ROUTE_ROUTES_INFO = "routes-info/{route_id}";
     public static final String ENDPOINT_DELETE_ROUTE_INFO = "route-info/{route_info_id}";
 
     public static final String ENDPOINT_ADD_HALT = "add-halt";

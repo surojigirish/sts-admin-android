@@ -260,6 +260,7 @@ public class AddRoute extends AppCompatActivity {
                             @Override
                             public void onItemClick(int routeId) {
                                 Log.i("TAG", "onItemClick: " + routeId);
+                                startRouteInfoActivity(routeId);
                             }
                         });
 
@@ -347,5 +348,9 @@ public class AddRoute extends AppCompatActivity {
     }
 
     // OnItemClick Listener handle route-id and pass to next activity
-
+    private void startRouteInfoActivity(int routeId) {
+        Intent routeInfoActivityIntent = new Intent(this, RouteRouteInfoActivity.class);
+        routeInfoActivityIntent.putExtra("routeId", routeId);
+        startActivity(routeInfoActivityIntent);
+    }
 }
