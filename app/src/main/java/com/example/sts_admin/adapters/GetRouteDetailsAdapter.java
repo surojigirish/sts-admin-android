@@ -45,11 +45,8 @@ public class GetRouteDetailsAdapter extends RecyclerView.Adapter<GetRouteDetails
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         holder.getRouteSource.setText(addRouteDetailsList.get(position).getRouteSource().getName());
         holder.getRouteDestination.setText(addRouteDetailsList.get(position).getDestination().getName());
-
-
     }
 
     @Override
@@ -80,9 +77,14 @@ public class GetRouteDetailsAdapter extends RecyclerView.Adapter<GetRouteDetails
         void onDeleteClick(int position);
     }
 
+    // onClickRouteInfo interface
+    public interface onItemClickListener {
+        void onItemClick();
+    }
+
     // ItemTouchHelper interface
     // Implement ItemTouchHelper.SimpleCallBack separately
-    private ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+    private ItemTouchHelper.SimpleCallback itemTouchHelperCallBack = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
