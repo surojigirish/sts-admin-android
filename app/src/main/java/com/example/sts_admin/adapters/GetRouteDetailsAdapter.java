@@ -24,6 +24,9 @@ public class GetRouteDetailsAdapter extends RecyclerView.Adapter<GetRouteDetails
     private OnDeleteClickListener onDeleteClickListener;
     private RecyclerView recyclerView;
 
+    // OnItemClick listener instance
+    private OnItemClickListener onItemClickListener;
+
     public GetRouteDetailsAdapter(List<AddRouteDetails> addRouteDetailsList, Context context) {
         this.addRouteDetailsList = addRouteDetailsList;
         this.context = context;
@@ -40,13 +43,28 @@ public class GetRouteDetailsAdapter extends RecyclerView.Adapter<GetRouteDetails
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context)
                 .inflate(R.layout.add_route_details_list,parent,false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, addRouteDetailsList, onItemClickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.getRouteSource.setText(addRouteDetailsList.get(position).getRouteSource().getName());
         holder.getRouteDestination.setText(addRouteDetailsList.get(position).getDestination().getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+
+                if (position != RecyclerView.NO_POSITION && onItemClickListener != null) {
+                    AddRouteDetails route = addRouteDetailsList.get(position);
+                    // Route id
+                    int id = route.getId();
+                    // Call the click listener
+                    onItemClickListener.onItemClick(id);
+                }
+            }
+        });
     }
 
     @Override
@@ -59,11 +77,16 @@ public class GetRouteDetailsAdapter extends RecyclerView.Adapter<GetRouteDetails
         this.onDeleteClickListener = onDeleteClickListener;
     }
 
+    // onItemClickListener setter
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    // Custom viewHolder class to hold recyclerview views
     public static class ViewHolder extends  RecyclerView.ViewHolder{
 
-
         TextView getRouteSource, getRouteDestination;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, final List<AddRouteDetails> routesList, final OnItemClickListener listener) {
             super(itemView);
 
             getRouteSource = itemView.findViewById(R.id.tvRouteSourceDisplay);
@@ -78,8 +101,8 @@ public class GetRouteDetailsAdapter extends RecyclerView.Adapter<GetRouteDetails
     }
 
     // onClickRouteInfo interface
-    public interface onItemClickListener {
-        void onItemClick();
+    public interface OnItemClickListener {
+        void onItemClick(int routeId);
     }
 
     // ItemTouchHelper interface

@@ -255,6 +255,14 @@ public class AddRoute extends AppCompatActivity {
                             }
                         });
 
+                        // OnItemClick pass the route-id and get a list of route-info for that route-id
+                        adapter.setOnItemClickListener(new GetRouteDetailsAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int routeId) {
+                                Log.i("TAG", "onItemClick: " + routeId);
+                            }
+                        });
+
                         recyclerView.setAdapter(adapter);
                         adapter.enableSwipeToDelete();
                     }
@@ -337,4 +345,7 @@ public class AddRoute extends AppCompatActivity {
         addRouteDetailsList.remove(position);
         adapter.notifyItemRemoved(position);
     }
+
+    // OnItemClick Listener handle route-id and pass to next activity
+
 }
