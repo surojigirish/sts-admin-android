@@ -35,7 +35,7 @@ public class AdminLogin extends AppCompatActivity {
     TextView text;
     EditText email;
     TextInputEditText password;
-   AppCompatButton loginBtn,driverLoginBtn;
+   AppCompatButton loginBtn;
     TextView tvIpAddress;
 
     SharedPrefManager sharedPrefManager;
@@ -51,27 +51,25 @@ public class AdminLogin extends AppCompatActivity {
         email= findViewById(R.id.adminUsername);
         password = findViewById(R.id.adminPassword2);
         loginBtn = findViewById(R.id.adminLoginBtn);
-        driverLoginBtn=findViewById(R.id.driverLogin);
 
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
-
-        tvIpAddress = findViewById(R.id.tv_ip);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login(loginRequest());
+                String Email = email.getText().toString().trim();
+                String Password = password.getText().toString().trim();
+
+                if (Email.isEmpty()) {
+                    email.setError("Enter Username");
+                } else if (Password.isEmpty()){
+                    password.setError("Enter Password");
+                }else {
+                    login(loginRequest());
+                }
             }
         });
 
-
-//        driverLoginBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i= new Intent(AdminLogin.this,DriverLogin.class);
-//                startActivity(i);
-//            }
-//        });
     }
 
 

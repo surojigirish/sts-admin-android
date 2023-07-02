@@ -2,10 +2,15 @@ package com.example.sts_admin.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +22,7 @@ import com.example.sts_admin.R;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.DriverRegisterRequest;
 import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
+import com.example.sts_admin.model.Driver;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.regex.Pattern;
@@ -32,6 +38,8 @@ public class DriverRegistration extends AppCompatActivity {
     AppCompatButton regBtn, driverDetailsBtn;
 
     SharedPrefManager sharedPrefManager;
+    Spinner spinner_gender;
+    String driverRegGenderData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +51,58 @@ public class DriverRegistration extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
 
+        getGenderData();
+
 
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                register(registerRequest());
+                String Fname = firstname.getText().toString().trim();
+                String Lname = lastname.getText().toString().trim();
+                String Lno = licenseNo.getText().toString().trim();
+                String Contact = contactNo.getText().toString().trim();
+                String Email = email.getText().toString().trim();
+                String Pass = password.getText().toString().trim();
+
+                if (Fname.isEmpty()) { //-----------------------------------firstname
+                    firstname.setError("First name Required");
+                } else if (Fname.length() < 3) {
+                    firstname.setError("Minimum 3 characters required");
+                } else if (!isValidString(Fname)) {
+                    firstname.setError("Invalid input");
+                }else if (Lname.isEmpty()) { //-----------------------------lastname
+                    lastname.setError("Last name Required");
+                } else if (Lname.length() < 3) {
+                    lastname.setError("Minimum 3 characters required");
+                } else if (!isValidString(Fname)) {
+                    lastname.setError("Invalid input");
+                }else if (Lno.isEmpty()) { //-----------------------------license
+                    licenseNo.setError("Enter License No.");
+                } else if (Lno.length() < 6) {
+                    licenseNo.setError("Minimum 6 characters required");
+                }else if (Contact.isEmpty()) { //--------------------------- contact
+                    contactNo.setError("Enter Contact");
+                } else if (Contact.length()!=10) {
+                    contactNo.setError("10 characters required");
+                }else if (spinner_gender.getSelectedItemPosition() == 0) { // -------------gender
+                    TextView errorText = (TextView) spinner_gender.getSelectedView();
+                    errorText.setError("SELECT GENDER");
+                    errorText.setTextColor(Color.RED);
+                    errorText.setText("Please select gender");
+                }else if (Email.isEmpty()) { //-------------------------------email
+                    email.setError("Enter Email-id");
+                } else if (!isValidEmail(Email)) {
+                    email.setError("Invalid email address");
+                }else  if (Pass.isEmpty()) { //-----------------------------------password
+                    password.setError("Enter password");
+                } else if (Pass.length() < 3) {
+                    password.setError("Minimum 3 characters required");
+                } else {
+                    register(registerRequest());
+                }
+
+
             }
         });
 
@@ -72,9 +126,7 @@ public class DriverRegistration extends AppCompatActivity {
         licenseNo = findViewById(R.id.et_driver_license);
         contactNo = findViewById(R.id.et_contact_number);
         driverDetailsBtn=findViewById(R.id.driverDetailsBtn);
-        gender=findViewById(R.id.et_gender);
-
-
+        spinner_gender=findViewById(R.id.et_gender);
 
     }
 
@@ -86,55 +138,13 @@ public class DriverRegistration extends AppCompatActivity {
             registerRequest.setPassword(password.getText().toString());
             registerRequest.setLicenseNo(licenseNo.getText().toString());
             registerRequest.setContact(contactNo.getText().toString());
-            registerRequest.setGender(gender.getText().toString());
+            registerRequest.setGender(getDriverRegGenderData());
+        Log.i("TAG", "registerRequest: gender "+getDriverRegGenderData());
             registerRequest.setRole("driver");
 
             return registerRequest;
     }
 
-    private void validation() {
-
-        if (firstname.getText().toString().isEmpty()) {
-            firstname.setError("Field cannot be empty");
-        } else if (firstname.getText().toString().length() <= 3) {
-            firstname.setError(",ore than 3 char req");
-        }
-
-        if (lastname.getText().toString().isEmpty()) {
-            lastname.setError("Field cannot be empty");
-        } else if (lastname.getText().toString().length() <= 3) {
-            lastname.setError(",ore than 3 char req");
-        }
-
-        if (email.getText().toString().isEmpty()) {
-            email.requestFocus();
-            email.setError("Field cannot be empty");
-//        } else {
-//            if (email.getText().toString().matches(!Pattern.matches(E,email))) {
-//                email.requestFocus();
-//                email.setText("Please Enter Correct Email");
-//            }
-        }
-        if (password.getText().toString().isEmpty()){
-            password.setError("password is must");
-        } else if (password.getText().toString().length()<=5) {
-            password.setError("should contain more than 5 char");
-
-        }
-
-        if (contactNo.getText().toString().length()>11){
-            contactNo.setError("Enter 10 digit number");
-        }
-
-
-        if (licenseNo.getText().toString().isEmpty()) {
-            // Show an error message that the license number is required
-            Toast.makeText(getApplicationContext(), "License number is required.", Toast.LENGTH_SHORT).show();
-        } else if (licenseNo.getText().toString().length() <= 6) {
-            Toast.makeText(getApplicationContext(), "Invalid license number.", Toast.LENGTH_SHORT).show();
-        }
-
-    }
     public void register(DriverRegisterRequest registerRequest){
 
 
@@ -148,7 +158,6 @@ public class DriverRegistration extends AppCompatActivity {
                 if (response.isSuccessful()){
 
                     if (registerResponse != null && registerResponse.getStatus() == 200) {
-                        validation();
                         Toast.makeText(DriverRegistration.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(DriverRegistration.this, AdminDashboard.class);
                         startActivity(intent);
@@ -176,4 +185,46 @@ public class DriverRegistration extends AppCompatActivity {
         return sharedPrefManager.getUser().getToken();
     }
 
+    // gender data
+    public void getGenderData(){
+        ArrayAdapter<CharSequence> adapterGender = ArrayAdapter.createFromResource(getApplicationContext(),
+                R.array.Gender, android.R.layout.simple_spinner_item);
+        adapterGender.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_gender.setAdapter(adapterGender);
+
+        spinner_gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                setDriverRegGenderData(adapterView.getItemAtPosition(position).toString());
+                Log.i("TAG", "onItemSelected: selected gender : "+getDriverRegGenderData());
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Handle the case when no item is selected
+            }
+        });
+    }
+
+
+    // Function to check if the string contains only alphabetic characters
+    private boolean isValidString(String input) {
+        String regex = "^[a-zA-Z]+$";
+        return input.matches(regex);
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        return email.matches(emailRegex);
+    }
+
+
+
+    /*----------------------- getter and setter to store gender spinner data*/
+    public String getDriverRegGenderData() {
+        return driverRegGenderData;
+    }
+    public void setDriverRegGenderData(String driverRegGenderData) {
+        this.driverRegGenderData = driverRegGenderData;
+    }
 }

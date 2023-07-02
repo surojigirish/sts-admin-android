@@ -35,9 +35,9 @@
 
 
     <array name="Gender">
-        <item>Male</item>
-        <item>Female</item>
-        <item>Other</item>
+        <item>Select Gender</item>
+        <item>MALE</item>
+        <item>FEMALE</item>
     </array>
 
 </resources>

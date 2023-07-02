@@ -85,20 +85,19 @@
                 android:layout_below="@id/driverEmail"
                 android:drawableLeft="@drawable/baseline_person_pin_24"
                 android:padding="10dp"/>
-            <EditText
-                android:layout_margin="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Gender"
-                android:inputType="textCapWords"
+
+            <Spinner
                 android:id="@+id/et_gender"
-                android:layout_marginLeft="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/register_button_border"
+                android:layout_margin="8dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/et_contact_number"
-                android:drawableLeft="@drawable/baseline_person_pin_24"
-                android:padding="10dp"/>
+                android:padding="10dp" />
+
 
             <EditText
                 android:layout_margin="8dp"
