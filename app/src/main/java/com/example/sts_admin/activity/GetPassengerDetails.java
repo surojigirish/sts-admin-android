@@ -35,8 +35,14 @@ public class GetPassengerDetails extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
 
-        getAllPassengerDetails();
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getAllPassengerDetails();
     }
 
     public void getAllPassengerDetails(){

@@ -9,34 +9,6 @@
     android:elevation="20dp"
     android:background="@drawable/layout_border">
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/ll_passenger_first"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:gravity="center"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_chainStyle="packed">-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tv_bus_id_detail"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_weight="1"-->
-<!--        android:gravity="center"-->
-<!--        android:text="First Name"-->
-<!--        android:textSize="16sp" />-->
-<!--    <TextView-->
-<!--        android:id="@+id/passengerFirstName"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:text="firstName"-->
-<!--        android:textSize="20sp"-->
-<!--        tools:ignore="MissingConstraints" />-->
-<!--    -->
-<!--    </LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/ll_passenger_first"
@@ -54,7 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="First Name"
             android:textSize="16sp" />
 
@@ -62,23 +33,11 @@
             android:id="@+id/passengerFirstName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:text="First Name"
             android:textSize="16sp" />
 
     </LinearLayout>
-
-<!--    <TextView-->
-<!--        android:id="@+id/passengerLastName"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:text="lastName"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ll_passenger_first" />-->
 
     <LinearLayout
         android:id="@+id/ll_passenger_last"
@@ -97,7 +56,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="Last Name"
             android:textSize="16sp" />
 
@@ -105,25 +63,11 @@
             android:id="@+id/passengerLastName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:text="Last Name"
             android:textSize="16sp" />
 
     </LinearLayout>
-
-<!--    <TextView-->
-<!--        android:id="@+id/passengerAddress"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="address"-->
-<!--        android:layout_marginTop="80dp"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ll_passenger_last"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <LinearLayout
         android:id="@+id/ll_passenger_address"
@@ -142,7 +86,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="Passenger Address"
             android:textSize="16sp" />
 
@@ -150,22 +93,11 @@
             android:id="@+id/passengerAddress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:text="Address"
             android:textSize="16sp" />
 
     </LinearLayout>
-<!--    <TextView-->
-<!--        android:id="@+id/passengerDob"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:text="dob"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ll_passenger_address" />-->
 
     <LinearLayout
         android:id="@+id/ll_passenger_dob"
@@ -184,7 +116,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="Passenger DOB"
             android:textSize="16sp" />
 
@@ -192,23 +123,11 @@
             android:id="@+id/passengerDob"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:text="DOB"
             android:textSize="16sp" />
 
     </LinearLayout>
-
-<!--    <TextView-->
-<!--        android:id="@+id/passengerGender"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:text="gender"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ll_passenger_dob" />-->
 
     <LinearLayout
         android:id="@+id/ll_passenger_gender"
@@ -227,7 +146,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="Gender"
             android:textSize="16sp" />
 
@@ -235,23 +153,11 @@
             android:id="@+id/passengerGender"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:text="Gender"
             android:textSize="16sp" />
 
     </LinearLayout>
-
-<!--    <TextView-->
-<!--        android:id="@+id/passengerCategory"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="9dp"-->
-<!--        android:text="category"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ll_passenger_gender" />-->
 
 
     <LinearLayout
@@ -271,7 +177,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="Category"
             android:textSize="16sp" />
 
@@ -279,23 +184,11 @@
             android:id="@+id/passengerCategory"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:text="Category"
             android:textSize="16sp" />
 
     </LinearLayout>
-
-<!--    <TextView-->
-<!--        android:id="@+id/passengerContact"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="14dp"-->
-<!--        android:text="contact"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ll_passenger_category" />-->
 
     <LinearLayout
         android:id="@+id/ll_passenger_contact"
@@ -314,7 +207,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="Contact"
             android:textSize="16sp" />
 
@@ -322,22 +214,11 @@
             android:id="@+id/passengerContact"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:text="Contact"
             android:textSize="16sp" />
 
     </LinearLayout>
-<!--    <TextView-->
-<!--        android:id="@+id/passengerEmail"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:text="email"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ll_passenger_contact" />-->
 
     <LinearLayout
         android:id="@+id/ll_passenger_email"
@@ -356,7 +237,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="Email"
             android:textSize="16sp" />
 
@@ -364,20 +244,9 @@
             android:id="@+id/passengerEmail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:text="Email"
             android:textSize="16sp" />
 
     </LinearLayout>
-
-<!--    <ImageView-->
-<!--        android:id="@+id/passengerImage"-->
-<!--        android:layout_width="50dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginBottom="341dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ll_passenger_email" />-->
 </LinearLayout>
