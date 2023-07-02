@@ -132,11 +132,11 @@ public class DriverRegistration extends AppCompatActivity {
 
     public DriverRegisterRequest registerRequest(){
             DriverRegisterRequest registerRequest=new DriverRegisterRequest();
-            registerRequest.setFirstname(firstname.getText().toString());
-            registerRequest.setLastname(lastname.getText().toString());
+            registerRequest.setFirstname(firstname.getText().toString().toUpperCase());
+            registerRequest.setLastname(lastname.getText().toString().toUpperCase());
             registerRequest.setEmail(email.getText().toString());
             registerRequest.setPassword(password.getText().toString());
-            registerRequest.setLicenseNo(licenseNo.getText().toString());
+            registerRequest.setLicenseNo(licenseNo.getText().toString().toUpperCase());
             registerRequest.setContact(contactNo.getText().toString());
             registerRequest.setGender(getDriverRegGenderData());
         Log.i("TAG", "registerRequest: gender "+getDriverRegGenderData());

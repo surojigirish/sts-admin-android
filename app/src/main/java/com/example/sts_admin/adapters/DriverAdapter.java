@@ -20,18 +20,12 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
     Context context;
     OnItemClickListener onItemClickListener;
 
-//    OnItemClickListenerDriver onItemClickListenerDriver;
-
 
     public DriverAdapter(List<Driver> driverList, Context context, OnItemClickListener onItemClickListener) {
         this.driverList = driverList;
         this.context = context;
         this.onItemClickListener = onItemClickListener;
     }
-
-//    public DriverAdapter(List<Driver> driverList, Context context, OnItemClickListenerDriver onItemClickListenerDriver) {
-//
-//    }
 
 
     @NonNull
