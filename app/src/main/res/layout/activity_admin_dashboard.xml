@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,10 +39,12 @@
                 android:textStyle="bold"/>
         </RelativeLayout>
 
+
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:layout_marginTop="-150dp"
+            android:layout_marginTop="-170dp"
             android:layout_weight="4"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
@@ -210,8 +212,299 @@
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/getPassengerDetailsBtn"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="#FF9800"
+                app:cardBackgroundColor="#FF9800"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical">
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="10dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:src="@drawable/bus_icon" />-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="GET PASSENGER DETAILS"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_reports"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="#FF9800"
+                app:cardBackgroundColor="#FF9800"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="15dp"
+                    android:orientation="vertical">
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="90dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:src="@drawable/bus_icon" />-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:text="Reports"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="23sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
 
         </GridLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--        <GridLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="110dp"-->
+<!--            android:layout_marginTop="-150dp"-->
+<!--            android:layout_weight="4"-->
+<!--            android:alignmentMode="alignMargins"-->
+<!--            android:columnCount="2"-->
+<!--            android:columnOrderPreserved="false"-->
+<!--            android:padding="20dp"-->
+<!--            android:rowCount="2">-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/updateSch"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_rowWeight="1"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:layout_marginRight="15dp"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:background="@android:color/holo_orange_dark"-->
+<!--                app:cardBackgroundColor="#FF9800"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                app:cardElevation="8dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_margin="15dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="90dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:src="@drawable/bus_schedule" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:text="Add Route / update schedule"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="23sp" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/user_profile"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_rowWeight="1"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:layout_marginRight="15dp"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:background="#FF9800"-->
+<!--                app:cardBackgroundColor="#FF9800"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                app:cardElevation="8dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_margin="15dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="90dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:src="@drawable/user_profile" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:text="Driver Registration"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="23sp" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/trip"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_rowWeight="1"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:layout_marginRight="15dp"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:background="#FF9800"-->
+<!--                app:cardBackgroundColor="#FF9800"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                app:cardElevation="8dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_margin="15dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="90dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:src="@drawable/trip_history_24" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:text="Add bus Schedule"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="23sp" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/bus"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_rowWeight="1"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:layout_marginRight="15dp"-->
+<!--                android:layout_marginBottom="15dp"-->
+<!--                android:background="#FF9800"-->
+<!--                app:cardBackgroundColor="#FF9800"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                app:cardElevation="8dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:layout_margin="15dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="90dp"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:src="@drawable/bus_icon" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:text="Add bus"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="23sp" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+
+<!--        </GridLayout>-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/logoutBtn"
@@ -225,16 +518,16 @@
 
         </androidx.appcompat.widget.AppCompatButton>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/getPassengerDetailsBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#FF9800"
-            android:text="GET PASSENGER DETAILS"
-            android:layout_marginTop="-50dp"
-            android:layout_marginLeft="210dp">
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/getPassengerDetailsBtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#FF9800"-->
+<!--            android:text="GET PASSENGER DETAILS"-->
+<!--            android:layout_marginTop="-50dp"-->
+<!--            android:layout_marginLeft="210dp">-->
 
-        </androidx.appcompat.widget.AppCompatButton>
+<!--        </androidx.appcompat.widget.AppCompatButton>-->
 
 
     </LinearLayout>

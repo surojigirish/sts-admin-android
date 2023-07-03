@@ -45,7 +45,7 @@ public class GetPassengerDetailsAdapter extends RecyclerView.Adapter<GetPassenge
         holder.passengerContact.setText(passengerUsers.get(position).getPassengerDetail().getContact());
         holder.passengerCategory.setText(passengerUsers.get(position).getPassengerDetail().getCategory());
 //        holder.passengerImage.setText(passengerUsers.get(position).getPassengerDetail().getPhoto());
-//        holder.passengerEmail.setText(passengerUsers.getUserDetails().get(position).getEmail());
+        holder.passengerEmail.setText(passengerUsers.get(position).getUserDetails().getEmail());
     }
 
     @Override
@@ -70,7 +70,7 @@ public class GetPassengerDetailsAdapter extends RecyclerView.Adapter<GetPassenge
             passengerContact = itemView.findViewById(R.id.passengerContact);
             passengerDob = itemView.findViewById(R.id.passengerDob);
             passengerGender = itemView.findViewById(R.id.passengerGender);
-//            passengerEmail = itemView.findViewById(R.id.passengerEmail);
+            passengerEmail = itemView.findViewById(R.id.passengerEmail);
 //            passengerImage = itemView.findViewById(R.id.passengerImage);
 ////            passengerPhoto = itemView.findViewById(R.id.passengerPhoto);
 //            passengerUserId = itemView.findViewById(R.id.tvPassengerUserId);

@@ -3,63 +3,135 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     tools:context=".activity.UpdateSchedule">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@android:color/holo_orange_light"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/wave__1_"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_route"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
-        android:text="Add Route"
-        android:layout_marginLeft="70dp"
-        android:background="#FFFBC354"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@android:color/holo_orange_light"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_source"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginRight="90dp"
-        android:layout_marginTop="-100dp"
-        android:background="#FFFBC354"
-        android:text="Add Halt" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/wave__1_"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_marginTop="20dp"
-        android:id="@+id/btn_route_info"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginRight="90dp"
-        android:layout_gravity="center_horizontal"
-        android:text="add route info"
-        android:background="#FFFBC354"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_schedule_info"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-100dp"
-        android:layout_marginLeft="70dp"
-        android:text="add schedule info"
-        android:background="#FBC354"/>
 
-    <!--    <FrameLayout-->
-<!--        android:id="@+id/frameLayout_schedule_container"-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_source"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:text="Add Halt"
+            android:background="#FFFBC354"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_route"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="Add Route"
+            android:background="#FFFBC354"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_schedule_info"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="add schedule info"
+            android:background="#FFFBC354"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_route_info"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="add route info"
+            android:background="#FFFBC354"/>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
+<!--        android:layout_height="120dp"-->
+<!--        android:background="@android:color/holo_orange_light"/>-->
+
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="70dp"-->
+<!--        android:background="@drawable/wave__1_"/>-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/add_route"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginTop="80dp"-->
+<!--        android:text="Add Route"-->
+<!--        android:layout_marginLeft="70dp"-->
+<!--        android:background="#FFFBC354"/>-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/add_source"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginRight="90dp"-->
+<!--        android:layout_marginTop="-100dp"-->
+<!--        android:background="#FFFBC354"-->
+<!--        android:text="Add Halt" />-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:id="@+id/btn_route_info"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_marginLeft="70dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:text="add route info"-->
+<!--        android:background="#FFFBC354"/>-->
+
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/btn_schedule_info"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginTop="-100dp"-->
+<!--        android:layout_marginRight="90dp"-->
+<!--        android:text="add schedule info"-->
+<!--        android:background="#FBC354"/>-->
+
 
 
 </LinearLayout>
