@@ -23,18 +23,18 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="80dp"
         android:text="Add Route"
-        android:layout_marginRight="90dp"
+        android:layout_marginLeft="70dp"
         android:background="#FFFBC354"/>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/add_source"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginRight="90dp"
         android:layout_marginTop="-100dp"
-        android:layout_marginLeft="70dp"
-        android:text="Add Halt"
-        android:id="@+id/add_source"
-        android:background="#FFFBC354"/>
+        android:background="#FFFBC354"
+        android:text="Add Halt" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_marginTop="20dp"

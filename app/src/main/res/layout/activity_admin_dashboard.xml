@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Schedule"
+                        android:text="Add Route / update schedule"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="23sp" />
