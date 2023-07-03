@@ -51,8 +51,10 @@ public class GetRouteInfoDetailsAdapter extends RecyclerView.Adapter<GetRouteInf
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.tvRouteInfoSource.setText(routeInfoResultList.get(position).getRouteSource().getName());
-        holder.tvRouteInfoDestination.setText(routeInfoResultList.get(position).getDestination().getName());
+        holder.tvRouteInfoSource.setText("From : "+routeInfoResultList.get(position).getRouteSource().getName());
+        holder.tvRouteInfoDestination.setText("To : "+routeInfoResultList.get(position).getDestination().getName());
+        holder.tvRouteDistance.setText("Distence : "+routeInfoResultList.get(position).getDistance()+" km");
+        holder.tvRouteFare.setText("Fare"+routeInfoResultList.get(position).getFare());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,13 +87,15 @@ public class GetRouteInfoDetailsAdapter extends RecyclerView.Adapter<GetRouteInf
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvRouteInfoSource, tvRouteInfoDestination;
+        TextView tvRouteInfoSource, tvRouteInfoDestination, tvRouteDistance, tvRouteFare;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tvRouteInfoSource = itemView.findViewById(R.id.tv_route_info_source);
             tvRouteInfoDestination= itemView.findViewById(R.id.tv_route_info_destination);
+            tvRouteDistance= itemView.findViewById(R.id.tv_route_distance);
+            tvRouteFare= itemView.findViewById(R.id.tv_route_fare);
         }
     }
 
