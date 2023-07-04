@@ -166,7 +166,7 @@ public class AddBusSchedule extends AppCompatActivity {
         }
 
         etBusid.setText(busRegNo);
-//        etScheduleId.setText(schedule);
+        etScheduleId.setText(schedule);
 //        etDrivers.setText(driverName);
 
     }

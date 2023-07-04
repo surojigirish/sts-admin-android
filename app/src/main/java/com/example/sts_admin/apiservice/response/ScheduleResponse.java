@@ -7,12 +7,9 @@ import java.util.List;
 
 public class ScheduleResponse {
 
-
-//    @SerializedName("result")
-//    List<Schedule> scheduleList;
-
     @SerializedName("result")
     List<Schedule> scheduleList;
+
     private @SerializedName("status")
     Integer status;
     private @SerializedName("success")
@@ -44,12 +41,12 @@ public class ScheduleResponse {
         this.scheduleList = scheduleList;
     }
 
-    //    public List<Schedule> getScheduleList() {
+
+//    public Schedule getScheduleList() {
 //        return scheduleList;
 //    }
 //
-//    public void setScheduleList(List<Schedule> scheduleList) {
+//    public void setScheduleList(Schedule scheduleList) {
 //        this.scheduleList = scheduleList;
-//
 //    }
 }

@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sts_admin.R;
+import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.model.Schedule;
 
 import java.util.List;
@@ -37,17 +38,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-//<<<<<<< HEAD
-//        holder.tvScheduleSource.setText("source : "+scheduleList.get(position).getRouteR().getSource().getName());
-//        holder.tvScheduleDest.setText("Destination : "+scheduleList.get(position).getRouteR().getDestination().getName());
-//        holder.tvArrival.setText("Arrival at : "+scheduleList.get(position).getArrival());
-//        holder.tvDeparture.setText("Departure at : "+scheduleList.get(position).getDeparture());
-//=======
+
         holder.tvScheduleSource.setText("source : "+scheduleList.get(position).getRoute().getSource().getHaltName());
         holder.tvScheduleDest.setText("Destination : "+scheduleList.get(position).getRoute().getDestination().getHaltName());
         holder.tvArrival.setText("Arrival at : "+scheduleList.get(position).getArrivalAt());
         holder.tvDeparture.setText("Departure at : "+scheduleList.get(position).getDepartureAt());
-//>>>>>>> 0b6d6d98c1a0ca707dbb7c5ebce63d2f19a0af09
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,13 +53,10 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
                 if (pos != RecyclerView.NO_POSITION && onScheduleItemClickListener != null){
                     Schedule selectedSchedule = scheduleList.get(pos);
                     Integer scheduleId = selectedSchedule.getId();
-//<<<<<<< HEAD
-//                    String scheduleSource = selectedSchedule.getRouteR().getSource().getName();
-//                    String scheduleDestnation = selectedSchedule.getRouteR().getDestination().getName();
-//=======
+
                     String scheduleSource = selectedSchedule.getRoute().getSource().getHaltName();
                     String scheduleDestnation = selectedSchedule.getRoute().getDestination().getHaltName();
-//>>>>>>> 0b6d6d98c1a0ca707dbb7c5ebce63d2f19a0af09
+
                     onScheduleItemClickListener.onClickListener(scheduleId,scheduleSource,scheduleDestnation);
                 }
             }
