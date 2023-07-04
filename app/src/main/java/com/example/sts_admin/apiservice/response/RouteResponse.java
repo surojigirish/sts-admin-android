@@ -9,6 +9,7 @@ import java.util.List;
 
 public class RouteResponse {
 
+
         @SerializedName("result")
         private List<RouteInfo> result;
 

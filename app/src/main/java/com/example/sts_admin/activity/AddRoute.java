@@ -147,6 +147,8 @@ public class AddRoute extends AppCompatActivity {
 
     }
 
+
+    // add routes
     public void route(RouteRequest routeRequest){
         Call<RouteResponse> addResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().addRoute(routeRequest);
         addResponseCall.enqueue(new Callback<RouteResponse>() {

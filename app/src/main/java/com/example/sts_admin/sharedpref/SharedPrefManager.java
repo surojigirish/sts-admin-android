@@ -15,6 +15,7 @@ import com.example.sts_admin.model.User;
 public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "stsadmin";
     private static final String SHARED_PREF_ADD_BUS_SCHEDULE_NAME = "stsbusschedule";
+    private static final String SHARED_PREF_ROUTE = "stsroute";
     private static final String SHARED_PREF_DRIVER_DETAILS = "stsdriverlogin";
     SharedPreferences sharedPreferences;
     Context context;
@@ -83,6 +84,13 @@ public class SharedPrefManager {
         editor.putInt("scheduleId", scheduleId);
         editor.putString("source", source);
         editor.putString("destination", destination);
+        editor.apply();
+    }
+
+    public void saveRoute(Integer routeId) {
+        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ROUTE, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putInt("routeId", routeId);
         editor.apply();
     }
 

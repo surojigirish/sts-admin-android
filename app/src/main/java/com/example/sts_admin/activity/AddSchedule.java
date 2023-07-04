@@ -16,19 +16,26 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
+import com.example.sts_admin.adapters.ShowRouteAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
+import com.example.sts_admin.apiservice.response.GetRouteResponse;
+import com.example.sts_admin.apiservice.response.RouteScheduleResponse;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.assets.TimeDurationCalculator;
 import com.example.sts_admin.fragments.SearchRouteId;
+import com.example.sts_admin.model.AddRouteDetails;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -38,16 +45,18 @@ import retrofit2.Response;
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class AddSchedule extends AppCompatActivity {
     Integer routeIdInfo;
-    TextView departureTime,arrivalTime,durationTime, tv_routeId,text;
+    TextView departureTime,arrivalTime,durationTime, tv_routeId,text,textView5;
 
     // ImageView holding screen bg
     ImageView imageViewScreenBackground;
+    List<AddRouteDetails> addRouteDetailsList;
 
-
+    ShowRouteAdapter.OnRouteItemClickListener onRouteItemClickListener;
 
     AppCompatButton addScheduleBtn;
 
     String saveArrivalTime, savaDepartureTime, timeDuration;
+    RecyclerView rvShowRoutes;
 
     // Declare global variables
     int hour, minute;
@@ -75,6 +84,12 @@ public class AddSchedule extends AppCompatActivity {
         durationTime=findViewById(R.id.et_duration);
         tv_routeId =findViewById(R.id.tvrouteId);
         text=findViewById(R.id.textView4);
+        textView5=findViewById(R.id.textView5);
+
+        rvShowRoutes = findViewById(R.id.rvShowRoutesForSchedule);
+        rvShowRoutes.setHasFixedSize(true);
+        rvShowRoutes.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
 
         sharedPrefManager=new SharedPrefManager(getApplicationContext());
 
@@ -86,6 +101,7 @@ public class AddSchedule extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        getRouteList();
         // departure time setter
         departureTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,9 +154,50 @@ public class AddSchedule extends AppCompatActivity {
                 hideViews();
             }
         });
-
-
         getRouteInfo();
+
+        onRouteItemClickListener = new ShowRouteAdapter.OnRouteItemClickListener() {
+            @Override
+            public void onClickListener(Integer routeId) {
+
+            }
+        };
+
+    }
+
+
+
+    /*-- used to get all the routes and display schedule allocated to each route-----*/
+    private void getRouteList() {
+        Call<GetRouteResponse> getRouteResponseCall = Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().getAllRouteList();
+
+        getRouteResponseCall.enqueue(new Callback<GetRouteResponse>() {
+            @Override
+            public void onResponse(Call<GetRouteResponse> call, Response<GetRouteResponse> response) {
+                if (response.isSuccessful()){
+                    if (response.body() != null){
+                        addRouteDetailsList = response.body().getAddRouteDetailsList();
+
+                        // Setting Adapter
+                        rvShowRoutes.setAdapter(new ShowRouteAdapter(addRouteDetailsList, getApplicationContext(), new ShowRouteAdapter.OnRouteItemClickListener() {
+                            @Override
+                            public void onClickListener(Integer routeId) {
+                                Intent i = new Intent(getApplicationContext(), ShowRouteBasedSchedule.class);
+//                                sharedPrefManager.saveRoute(routeId);
+                                i.putExtra("routeId", routeId);
+                                startActivity(i);
+                            }
+                        }));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetRouteResponse> call, Throwable t) {
+
+            }
+        });
+
 
     }
 
@@ -151,6 +208,8 @@ public class AddSchedule extends AppCompatActivity {
         tv_routeId.setVisibility(View.GONE);
         addScheduleBtn.setVisibility(View.GONE);
         text.setVisibility(View.GONE);
+        textView5.setVisibility(View.GONE);
+        rvShowRoutes.setVisibility(View.GONE);
     }
 
     public void calculateDuration() {

@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Route {
 
+
     @SerializedName("destination")
     private  String destination;
     @SerializedName("route-id")
@@ -15,6 +16,7 @@ public class Route {
 
     @SerializedName("type")
     private String type;
+
 
     public Route () {
     }
