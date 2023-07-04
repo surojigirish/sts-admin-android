@@ -5,23 +5,19 @@ import com.example.sts_admin.model.Source;
 import com.google.gson.annotations.SerializedName;
 
 public class ResultRouteSchedule {
-    @SerializedName("arrival-at")
-    String arrivalAt;
-    @SerializedName("departure-at")
-    String departureAt;
-    @SerializedName("duration")
-    String duration;
-    @SerializedName("id")
-    String id;
-    @SerializedName("destination")
-    Destination destination;
-    @SerializedName("source")
-    Source source;
 
-    @SerializedName("status")
-    Integer status;
-    @SerializedName("succeed")
-    Boolean success;
+    @SerializedName("arrival-at")
+    private String arrivalAt;
+    @SerializedName("departure-at")
+    private String departureAt;
+    @SerializedName("duration")
+    private String duration;
+    @SerializedName("id")
+    private String id;
+    @SerializedName("destination")
+    private Destination destination;
+    @SerializedName("source")
+    private Source source;
 
 
     public String getArrivalAt() {
@@ -70,21 +66,5 @@ public class ResultRouteSchedule {
 
     public void setSource(Source source) {
         this.source = source;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
     }
 }

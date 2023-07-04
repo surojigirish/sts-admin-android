@@ -54,6 +54,7 @@ public class Consts {
     //schedule
     public static final String ENDPOINT_ADD_SCHEDULE_DETAILS = "schedules";
     public static final String ENDPOINT_GENERATE_BUS_REPORT = "bus-report";
+    public static final String ENDPOINT_SHOW_ROUTE_SCHEDULE_DETAILS = "schedules/route/{route-id}";
 
 
     // Buttons
