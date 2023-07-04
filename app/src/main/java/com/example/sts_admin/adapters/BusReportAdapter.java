@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sts_admin.R;
+import com.example.sts_admin.model.ScheduleR;
 import com.example.sts_admin.model.results.ResultReport;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class BusReportAdapter extends RecyclerView.Adapter<BusReportAdapter.View
     List<ResultReport> resultReportList;
     Context context;
 
-    public BusReportAdapter(List<ResultReport> resultReportList, Context context) {
+    public BusReportAdapter(List<ScheduleR> resultReportList, Context context) {
         this.resultReportList = resultReportList;
         this.context = context;
     }
@@ -39,13 +40,13 @@ public class BusReportAdapter extends RecyclerView.Adapter<BusReportAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
 
-        holder.tvSource.setText(resultReportList.get(position).getScheduleR().getRouteR().getSource().getName());
-        holder.tvDestination.setText(resultReportList.get(position).getScheduleR().getRouteR().getDestination().getName());
-        holder.tvScheduleAt.setText(resultReportList.get(position).getScheduleR().getDeparture());
-        holder.tvArrivalAt.setText(resultReportList.get(position).getScheduleR().getArrival());
-        holder.tvPassengerCount.setText(resultReportList.get(position).getScheduleR().getTicketR().getPassengerCount());
-        holder.tvAmount.setText(resultReportList.get(position).getScheduleR().getTicketR().getTotalFareAmount());
-        holder.tvTicketCount.setText(resultReportList.get(position).getScheduleR().getTicketR().getTotalTickets());
+        holder.tvSource.setText(resultReportList.get(position).getScheduleR().get(position).getRouteR().getSource().getName());
+        holder.tvDestination.setText(resultReportList.get(position).getScheduleR().get(position).getRouteR().getDestination().getName());
+        holder.tvScheduleAt.setText(resultReportList.get(position).getScheduleR().get(position).getDeparture());
+        holder.tvArrivalAt.setText(resultReportList.get(position).getScheduleR().get(position).getArrival());
+        holder.tvPassengerCount.setText(resultReportList.get(position).getScheduleR().get(position).getTicketR().getPassengerCount());
+        holder.tvAmount.setText(resultReportList.get(position).getScheduleR().get(position).getTicketR().getTotalFareAmount());
+        holder.tvTicketCount.setText(resultReportList.get(position).getScheduleR().get(position).getTicketR().getTotalTickets());
     }
 
     @Override

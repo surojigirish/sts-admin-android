@@ -25,7 +25,6 @@ import com.example.sts_admin.model.results.ResultReport;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,7 +40,7 @@ public class GetReport extends AppCompatActivity {
     Integer busId;
     private int year, month, dayOfMonth;
     SharedPrefManager sharedPrefManager;
-    List<ResultReport> resultReportList;
+    List<ScheduleR> resultReportList;
 
 
     @Override
@@ -91,7 +90,7 @@ public class GetReport extends AppCompatActivity {
             @Override
             public void onResponse(Call<ReportGenerationResponse> call, Response<ReportGenerationResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
-//                    resultReportList = response.body().getResult();
+                    resultReportList = response.body().getResult().getScheduleR();
                     rvReportList.setAdapter(new BusReportAdapter(resultReportList, getApplicationContext()));
                 }
             }

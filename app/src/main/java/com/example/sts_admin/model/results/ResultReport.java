@@ -4,6 +4,8 @@ import com.example.sts_admin.model.BusR;
 import com.example.sts_admin.model.ScheduleR;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class ResultReport {
 //    bus, date, schedules
 
@@ -12,7 +14,7 @@ public class ResultReport {
     @SerializedName("date")
     private String date;
     @SerializedName("schedules")
-    private ScheduleR scheduleR;
+    private List<ScheduleR> scheduleR;
 
     public BusR getBusR() {
         return busR;
@@ -30,11 +32,11 @@ public class ResultReport {
         this.date = date;
     }
 
-    public ScheduleR getScheduleR() {
+    public List<ScheduleR> getScheduleR() {
         return scheduleR;
     }
 
-    public void setScheduleR(ScheduleR scheduleR) {
+    public void setScheduleR(List<ScheduleR> scheduleR) {
         this.scheduleR = scheduleR;
     }
 }
