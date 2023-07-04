@@ -33,7 +33,7 @@ import retrofit2.Response;
 
 public class GetReport extends AppCompatActivity {
 
-    TextView title, tvDate,tvBusId;
+    TextView title, tvDate,tvBusId, tvReportDate, tvBusRegNumber, tvBusType;
     AppCompatButton reportBtn;
     RecyclerView rvReportList;
     String selectedDate;
@@ -90,6 +90,16 @@ public class GetReport extends AppCompatActivity {
             @Override
             public void onResponse(Call<ReportGenerationResponse> call, Response<ReportGenerationResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
+
+                    // Api bus data
+                    String busRegistrationNumber = response.body().getResult().getBusR().getRegNo();
+                    String busType = response.body().getResult().getBusR().getType();
+                    String reportDate = response.body().getResult().getDate();
+                    // Display the bus and report date on text views
+                    tvReportDate.setText(reportDate);
+                    tvBusRegNumber.setText(busRegistrationNumber);
+                    tvBusType.setText(busType);
+
                     resultReportList = response.body().getResult().getScheduleR();
                     rvReportList.setAdapter(new BusReportAdapter(resultReportList, getApplicationContext()));
                 }
@@ -120,6 +130,11 @@ public class GetReport extends AppCompatActivity {
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         reportBtn = findViewById(R.id.generateReportBtn);
         rvReportList = findViewById(R.id.rvReport);
+
+        // TextView to hold dynamic bus detail for report
+        tvReportDate = findViewById(R.id.tv_report_date);
+        tvBusRegNumber = findViewById(R.id.tv_report_busRegNumber);
+        tvBusType = findViewById(R.id.tv_report_busType);
     }
 
 

@@ -68,15 +68,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_margin="16dp"
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/generateReportBtn">
+
+        <TextView
+            android:id="@+id/tv_report_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date : "
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_report_busRegNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bus Number : "
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_report_busType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bus Type : "
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvReport"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/generateReportBtn" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
 
     <FrameLayout
         android:id="@+id/frameLayout_Report"
