@@ -31,7 +31,7 @@ import retrofit2.Response;
 
 public class SearchScheduleId extends Fragment {
     RecyclerView recycleViewScheduleItems;
-    List<ScheduleR> scheduleList;
+    List<Schedule> scheduleList;
     ScheduleAdapter.OnScheduleItemClickListener onScheduleItemClickListener;
 
 

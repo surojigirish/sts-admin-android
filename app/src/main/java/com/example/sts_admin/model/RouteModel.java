@@ -11,6 +11,12 @@ public class RouteModel {
     @SerializedName("id")
     private int id;
 
+    public RouteModel(Halts destination, Halts source, int id) {
+        this.destination = destination;
+        this.source = source;
+        this.id = id;
+    }
+
     public Halts getDestination() {
         return destination;
     }

@@ -26,12 +26,32 @@ public class Schedule {
     @SerializedName("id")
     private Integer id;
 
+    @SerializedName("route")
+    private RouteModel route;
 
-//    public Schedule(Destination routeDestination, Source routeSource, Integer id) {
-//        this.routeDestination = routeDestination;
-//        this.routeSource = routeSource;
-//        this.id = id;
-//    }
+//<<<<<<< HEAD
+////    public Schedule(Destination routeDestination, Source routeSource, Integer id) {
+////        this.routeDestination = routeDestination;
+////        this.routeSource = routeSource;
+////        this.id = id;
+////    }
+//=======
+    private String source;
+    private String destination;
+
+    public Schedule(Integer id, RouteModel route) {
+        this.id = id;
+        this.route = route;
+    }
+
+    public RouteModel getRoute() {
+        return route;
+    }
+
+    public void setRoute(RouteModel route) {
+        this.route = route;
+    }
+//>>>>>>> 0b6d6d98c1a0ca707dbb7c5ebce63d2f19a0af09
 
     public String getArrivalAt() {
         return arrivalAt;

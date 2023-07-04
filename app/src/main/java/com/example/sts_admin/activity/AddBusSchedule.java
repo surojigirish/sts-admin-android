@@ -157,7 +157,8 @@ public class AddBusSchedule extends AppCompatActivity {
 
     public void showTextViewData() {
         String busRegNo = sharedPrefManager.getBusDetails().getRegNo();
-//        String schedule = sharedPrefManager.getScheduleDetails().getRouteSource() + " to " + sharedPrefManager.getScheduleDetails().getRouteDestination();
+
+        String schedule = sharedPrefManager.getScheduleDetails().getRoute().getSource().getHaltName() + " to " + sharedPrefManager.getScheduleDetails().getRoute().getDestination().getHaltName();
 //        String driverName= sharedPrefManager.getDriverDetails().getFirstname();
 
         if (busRegNo.isEmpty()) {
