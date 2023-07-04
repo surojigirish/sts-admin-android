@@ -92,9 +92,9 @@ public class GetReport extends AppCompatActivity {
             public void onResponse(Call<ReportGenerationResponse> call, Response<ReportGenerationResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
                     // Api bus data
-                    String busRegistrationNumber = response.body().getResult().getBusR().getRegNo();
-                    String busType = response.body().getResult().getBusR().getType();
-                    String reportDate = response.body().getResult().getDate();
+                    String busRegistrationNumber = "Bus Number : " + response.body().getResult().getBusR().getRegNo();
+                    String busType = "Bus Type : " + response.body().getResult().getBusR().getType();
+                    String reportDate = "Date : " + response.body().getResult().getDate();
                     // Display the bus and report date on text views
                     tvReportDate.setText(reportDate);
                     tvBusRegNumber.setText(busRegistrationNumber);
