@@ -22,6 +22,7 @@ import com.example.sts_admin.apiservice.response.GetRouteInfoResponse;
 import com.example.sts_admin.apiservice.response.GetRouteResponse;
 import com.example.sts_admin.apiservice.response.MainResponse;
 import com.example.sts_admin.apiservice.response.OnBoardPassengerResponse;
+import com.example.sts_admin.apiservice.response.ReportGenerationResponse;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
 import com.example.sts_admin.apiservice.response.DriverRegisterResponse;
@@ -151,4 +152,7 @@ public interface Api {
     Call<GetPassengerDetailResponse> getAllPassengerDetails();
     @GET(Consts.ENDPOINT_GET_ONBOARD_PASSENGER)
     Call<OnBoardPassengerResponse> getPassengerDeatails(@Path("bus_schedule_id") Integer bus_schedule_id);
+
+    @GET(Consts.ENDPOINT_GENERATE_BUS_REPORT)
+    Call<ReportGenerationResponse> getBusReport(@Query("bus-id") int busId, @Query("date") String date);
 }
