@@ -69,9 +69,6 @@ public class RouteInfoDetails extends AppCompatActivity {
                    if (response.body() != null){
                        routeInfoResultList = response.body().getRouteInfoResultList();
 
-
-
-
                        // Setting Adapter
                        GetRouteInfoDetailsAdapter adapter = new GetRouteInfoDetailsAdapter( getApplicationContext(),routeInfoResultList, recyclerView);
                        // Setting on Swipe Listener

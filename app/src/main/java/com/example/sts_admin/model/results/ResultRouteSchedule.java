@@ -23,6 +23,14 @@ public class ResultRouteSchedule {
     @SerializedName("succeed")
     Boolean success;
 
+    public ResultRouteSchedule(String arrivalAt, String departureAt, String duration, String id, Destination destination, Source source) {
+        this.arrivalAt = arrivalAt;
+        this.departureAt = departureAt;
+        this.duration = duration;
+        this.id = id;
+        this.destination = destination;
+        this.source = source;
+    }
 
     public String getArrivalAt() {
         return arrivalAt;

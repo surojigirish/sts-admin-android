@@ -33,6 +33,7 @@ import com.example.sts_admin.apiservice.response.EmployeeDriverResponse;
 import com.example.sts_admin.apiservice.response.HaltResponse;
 import com.example.sts_admin.apiservice.response.RouteInfoResponse;
 import com.example.sts_admin.apiservice.response.RouteRoutesInfoResponse;
+import com.example.sts_admin.apiservice.response.RouteScheduleResponse;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.apiservice.response.UpdateBusDetailsResponse;
 
@@ -151,4 +152,7 @@ public interface Api {
     Call<GetPassengerDetailResponse> getAllPassengerDetails();
     @GET(Consts.ENDPOINT_GET_ONBOARD_PASSENGER)
     Call<OnBoardPassengerResponse> getPassengerDeatails(@Path("bus_schedule_id") Integer bus_schedule_id);
+
+    @GET(Consts.ENDPOINT_SHOW_ROUTE_SCHEDULE_DETAILS)
+    Call<RouteScheduleResponse> showRouteSchedule(@Path("route-id") Integer routeId);
 }
