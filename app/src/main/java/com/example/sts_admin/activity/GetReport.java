@@ -164,6 +164,9 @@ public class GetReport extends AppCompatActivity {
         tvBusId.setVisibility(View.GONE);
         tvDate.setVisibility(View.GONE);
         rvReportList.setVisibility(View.GONE);
+        tvReportDate.setVisibility(View.GONE);
+        tvBusType.setVisibility(View.GONE);
+        tvBusRegNumber.setVisibility(View.GONE);
 
 
     }

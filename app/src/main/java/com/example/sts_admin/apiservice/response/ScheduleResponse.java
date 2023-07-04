@@ -1,6 +1,7 @@
 package com.example.sts_admin.apiservice.response;
 
 import com.example.sts_admin.model.Schedule;
+import com.example.sts_admin.model.ScheduleR;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -8,9 +9,11 @@ import java.util.List;
 public class ScheduleResponse {
 
 
-    @SerializedName("result")
-    List<Schedule> scheduleList;
+//    @SerializedName("result")
+//    List<Schedule> scheduleList;
 
+    @SerializedName("result")
+    List<ScheduleR> scheduleList;
     private @SerializedName("status")
     Integer status;
     private @SerializedName("success")
@@ -34,12 +37,20 @@ public class ScheduleResponse {
         this.success = success;
     }
 
-    public List<Schedule> getScheduleList() {
+    public List<ScheduleR> getScheduleList() {
         return scheduleList;
     }
 
-    public void setScheduleList(List<Schedule> scheduleList) {
+    public void setScheduleList(List<ScheduleR> scheduleList) {
         this.scheduleList = scheduleList;
-
     }
+
+    //    public List<Schedule> getScheduleList() {
+//        return scheduleList;
+//    }
+//
+//    public void setScheduleList(List<Schedule> scheduleList) {
+//        this.scheduleList = scheduleList;
+//
+//    }
 }

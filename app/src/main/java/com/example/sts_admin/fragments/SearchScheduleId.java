@@ -20,6 +20,7 @@ import com.example.sts_admin.adapters.ScheduleAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.model.Schedule;
+import com.example.sts_admin.model.ScheduleR;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.List;
@@ -30,7 +31,7 @@ import retrofit2.Response;
 
 public class SearchScheduleId extends Fragment {
     RecyclerView recycleViewScheduleItems;
-    List<Schedule> scheduleList;
+    List<ScheduleR> scheduleList;
     ScheduleAdapter.OnScheduleItemClickListener onScheduleItemClickListener;
 
 

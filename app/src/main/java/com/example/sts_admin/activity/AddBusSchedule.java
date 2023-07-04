@@ -125,7 +125,7 @@ public class AddBusSchedule extends AppCompatActivity {
     public AddBusScheduleRequest addBusScheduleRequest(){
         AddBusScheduleRequest addBusScheduleRequest = new AddBusScheduleRequest();
         addBusScheduleRequest.setBusId(sharedPrefManager.getBusDetails().getId());
-        addBusScheduleRequest.setScheduleId(sharedPrefManager.getScheduleDetails().getId());
+//        addBusScheduleRequest.setScheduleId(sharedPrefManager.getScheduleDetails().getId());
         addBusScheduleRequest.setDriverId(driverId);
         addBusScheduleRequest.setDate(getSelectedDate());
         return addBusScheduleRequest;
@@ -157,7 +157,7 @@ public class AddBusSchedule extends AppCompatActivity {
 
     public void showTextViewData() {
         String busRegNo = sharedPrefManager.getBusDetails().getRegNo();
-        String schedule = sharedPrefManager.getScheduleDetails().getRouteSource() + " to " + sharedPrefManager.getScheduleDetails().getRouteDestination();
+//        String schedule = sharedPrefManager.getScheduleDetails().getRouteSource() + " to " + sharedPrefManager.getScheduleDetails().getRouteDestination();
 //        String driverName= sharedPrefManager.getDriverDetails().getFirstname();
 
         if (busRegNo.isEmpty()) {
@@ -165,7 +165,8 @@ public class AddBusSchedule extends AppCompatActivity {
         }
 
         etBusid.setText(busRegNo);
-        etScheduleId.setText(schedule);
+//        etScheduleId.setText(schedule);
+//        etDrivers.setText(driverName);
 
     }
 

@@ -20,21 +20,18 @@ public class Schedule {
     @SerializedName("duration")
     private String duration;
     @SerializedName("destination")
-    private String routeDestination;
+    private Destination routeDestination;
     @SerializedName("source")
-    private String routeSource;
+    private Source routeSource;
     @SerializedName("id")
     private Integer id;
 
 
-
-    public Schedule(Integer scheduleId, String source, String destination) {
-        this.id = scheduleId;
-        this.routeSource = source;
-        this.routeDestination  = destination;
-
-
-    }
+//    public Schedule(Destination routeDestination, Source routeSource, Integer id) {
+//        this.routeDestination = routeDestination;
+//        this.routeSource = routeSource;
+//        this.id = id;
+//    }
 
     public String getArrivalAt() {
         return arrivalAt;
@@ -61,20 +58,19 @@ public class Schedule {
         this.duration = duration;
     }
 
-
-    public String getRouteDestination() {
+    public Destination getRouteDestination() {
         return routeDestination;
     }
 
-    public void setRouteDestination(String routeDestination) {
+    public void setRouteDestination(Destination routeDestination) {
         this.routeDestination = routeDestination;
     }
 
-    public String getRouteSource() {
+    public Source getRouteSource() {
         return routeSource;
     }
 
-    public void setRouteSource(String routeSource) {
+    public void setRouteSource(Source routeSource) {
         this.routeSource = routeSource;
     }
 

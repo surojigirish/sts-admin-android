@@ -100,12 +100,12 @@ public class SharedPrefManager {
                 sharedPreferences.getString("busRegNo", ""));
     }
 
-    public Schedule getScheduleDetails() {
-        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
-        return new Schedule(sharedPreferences.getInt("scheduleId", 0),
-                sharedPreferences.getString("source", ""),
-                sharedPreferences.getString("destination", ""));
-    }
+//    public Schedule getScheduleDetails() {
+//        sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
+//        return new Schedule(sharedPreferences.getInt("scheduleId", 0),
+//                sharedPreferences.getString("source", ""),
+//                sharedPreferences.getString("destination", ""));
+//    }
     public void saveDriver(Session driver){
         sharedPreferences = context.getSharedPreferences(Consts.SHARED_PREF_DRIVER, Context.MODE_PRIVATE);
         editor= sharedPreferences.edit();
