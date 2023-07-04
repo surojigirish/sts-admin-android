@@ -16,12 +16,17 @@ import android.widget.TextView;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
+import com.example.sts_admin.adapters.BusReportAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.ReportGenerationResponse;
 import com.example.sts_admin.fragments.GetBusId;
+import com.example.sts_admin.model.ScheduleR;
+import com.example.sts_admin.model.results.ResultReport;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +41,7 @@ public class GetReport extends AppCompatActivity {
     Integer busId;
     private int year, month, dayOfMonth;
     SharedPrefManager sharedPrefManager;
+    List<ResultReport> resultReportList;
 
 
     @Override
@@ -85,7 +91,8 @@ public class GetReport extends AppCompatActivity {
             @Override
             public void onResponse(Call<ReportGenerationResponse> call, Response<ReportGenerationResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
-
+//                    resultReportList = response.body().getResult();
+                    rvReportList.setAdapter(new BusReportAdapter(resultReportList, getApplicationContext()));
                 }
             }
 
