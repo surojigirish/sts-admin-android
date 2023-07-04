@@ -8,6 +8,8 @@ import com.example.sts_admin.model.Admin;
 import com.example.sts_admin.model.Bus;
 import com.example.sts_admin.model.Driver;
 import com.example.sts_admin.model.Employee;
+import com.example.sts_admin.model.Halts;
+import com.example.sts_admin.model.RouteModel;
 import com.example.sts_admin.model.Schedule;
 import com.example.sts_admin.model.Session;
 import com.example.sts_admin.model.User;
@@ -82,8 +84,8 @@ public class SharedPrefManager {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putInt("scheduleId", scheduleId);
-        editor.putString("source", source);
-        editor.putString("destination", destination);
+        editor.putString("sName", source);
+        editor.putString("dName", destination);
         editor.apply();
     }
 
@@ -102,10 +104,32 @@ public class SharedPrefManager {
 
     public Schedule getScheduleDetails() {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_ADD_BUS_SCHEDULE_NAME, Context.MODE_PRIVATE);
-        return new Schedule(sharedPreferences.getInt("scheduleId", 0),
-                sharedPreferences.getString("source", ""),
-                sharedPreferences.getString("destination", ""));
+
+        // Source
+        int sId = sharedPreferences.getInt("sId", -1);
+        String sName = sharedPreferences.getString("sName", "");
+        String sLat = sharedPreferences.getString("sLat", "");
+        String sLng = sharedPreferences.getString("sLng", "");
+        Halts sourceHalt = new Halts(sId, sName, sLat, sLng);
+
+        // Destination
+        int dId = sharedPreferences.getInt("dId", -1);
+        String dName = sharedPreferences.getString("dName", "");
+        String dLat = sharedPreferences.getString("dLat", "");
+        String dLng = sharedPreferences.getString("dLng", "");
+        Halts destinationHalt = new Halts(dId, dName, dLat, dLng);
+
+        // Route
+        int routeId = sharedPreferences.getInt("routeId", -1);
+        RouteModel route = new RouteModel(destinationHalt, sourceHalt, routeId);
+
+        // Schedule
+        int scheduleId = sharedPreferences.getInt("scheduleId", -1);
+
+        return new Schedule(scheduleId, route);
     }
+
+
     public void saveDriver(Session driver){
         sharedPreferences = context.getSharedPreferences(Consts.SHARED_PREF_DRIVER, Context.MODE_PRIVATE);
         editor= sharedPreferences.edit();

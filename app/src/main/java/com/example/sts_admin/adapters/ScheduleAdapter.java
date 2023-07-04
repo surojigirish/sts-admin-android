@@ -37,8 +37,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.tvScheduleSource.setText("source : "+scheduleList.get(position).getRouteSource());
-        holder.tvScheduleDest.setText("Destination : "+scheduleList.get(position).getRouteDestination());
+        holder.tvScheduleSource.setText("source : "+scheduleList.get(position).getRoute().getSource().getHaltName());
+        holder.tvScheduleDest.setText("Destination : "+scheduleList.get(position).getRoute().getDestination().getHaltName());
         holder.tvArrival.setText("Arrival at : "+scheduleList.get(position).getArrivalAt());
         holder.tvDeparture.setText("Departure at : "+scheduleList.get(position).getDepartureAt());
 
@@ -50,8 +50,8 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
                 if (pos != RecyclerView.NO_POSITION && onScheduleItemClickListener != null){
                     Schedule selectedSchedule = scheduleList.get(pos);
                     Integer scheduleId = selectedSchedule.getId();
-                    String scheduleSource = selectedSchedule.getRouteSource();
-                    String scheduleDestnation = selectedSchedule.getRouteDestination();
+                    String scheduleSource = selectedSchedule.getRoute().getSource().getHaltName();
+                    String scheduleDestnation = selectedSchedule.getRoute().getDestination().getHaltName();
                     onScheduleItemClickListener.onClickListener(scheduleId,scheduleSource,scheduleDestnation);
                 }
             }
