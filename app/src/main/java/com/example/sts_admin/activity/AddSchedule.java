@@ -69,12 +69,12 @@ public class AddSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
 
-        imageViewScreenBackground = findViewById(R.id.imgView_screen_bg);
+//        imageViewScreenBackground = findViewById(R.id.imgView_screen_bg);
 
         // Load the svg here
-        Glide.with(this)
-                .load(R.drawable.screen_bg_sts)
-                .into(imageViewScreenBackground);
+//        Glide.with(this)
+//                .load(R.drawable.screen_bg_sts)
+//                .into(imageViewScreenBackground);
 
 
         departureTime=findViewById(R.id.et_departure);
@@ -233,7 +233,7 @@ public class AddSchedule extends AppCompatActivity {
         text.setVisibility(View.GONE);
         textView5.setVisibility(View.GONE);
         rvShowRoutes.setVisibility(View.GONE);
-        imageViewScreenBackground.setVisibility(View.GONE);
+//        imageViewScreenBackground.setVisibility(View.GONE);
     }
 
     public void calculateDuration() {

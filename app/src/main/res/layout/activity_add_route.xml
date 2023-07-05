@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_design"
         android:layout_width="0dp"
-        android:layout_height="120dp"
+        android:layout_height="match_parent"
         android:background="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,38 +26,128 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
+        <TextView
+            android:id="@+id/AddRoutetitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Add Routes "
+            android:layout_marginTop="70dp"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+        <TextView
             android:id="@+id/source"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="200dp"
-            android:hint="SourceStand" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/textview_custom_border"
+            android:padding="10dp"
+            android:hint="Select Source Stand"
+            android:textSize="20sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/destination"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:hint="DestinationStand" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/textview_custom_border"
+            android:padding="10dp"
+            android:hint="Select Destination Stand"
+            android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_route_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginTop="16dp"
-            android:background="@android:color/holo_orange_light"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/rounded_button_white"
+            android:elevation="40dp"
             android:text="Add Route"
+            android:textColor="@android:color/holo_orange_light"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/destination" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/AvailableRoutetitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Available Routes "
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+        <TableLayout
+            android:id="@+id/tableLayoutAddRoute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:background="@drawable/table_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/recyclerViewRouteId">
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:text="Source"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="30sp" />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#000000" />
+
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/white"
+                    android:text="Destination"
+                    android:textStyle="bold"
+                    android:textSize="30sp"/>
+            </TableRow>
+
+        </TableLayout>
+
         <!-- Pull to refresh gesture layout -->
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:layout_margin="16dp"
             android:id="@+id/swipeToRefreshRoutes"
             android:layout_width="match_parent"
             android:layout_height="350dp"
+            android:layout_margin="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -66,7 +156,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewRouteDetails"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

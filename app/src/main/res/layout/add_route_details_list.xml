@@ -3,36 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp">
 
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:background="@drawable/bg_list_item"
-        android:layout_margin="10dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/bg_list_item"
+        android:elevation="5dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:elevation="5dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_weight="1"
             android:id="@+id/tvRouteSourceDisplay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Source"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Source"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_weight="1"
             android:id="@+id/tvRouteDestinationDisplay"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Destination"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Destination"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

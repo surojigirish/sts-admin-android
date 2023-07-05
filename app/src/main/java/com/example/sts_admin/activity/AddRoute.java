@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sts_admin.Consts;
@@ -41,7 +43,8 @@ import retrofit2.Response;
 
 public class AddRoute extends AppCompatActivity {
 
-    EditText source,destination;
+    TextView source,destination,addRouteT,availableRouteT;
+    TableLayout tableLayout;
     ConstraintLayout constraintDesign;
     AppCompatButton addNewRoute;
 
@@ -74,8 +77,13 @@ public class AddRoute extends AppCompatActivity {
         source=findViewById(R.id.source);
         destination=findViewById(R.id.destination);
         addNewRoute=findViewById(R.id.add_route_btn);
+        addRouteT=findViewById(R.id.AddRoutetitle);
+        availableRouteT=findViewById(R.id.AvailableRoutetitle);
+        tableLayout=findViewById(R.id.tableLayoutAddRoute);
 
         getAllRouteList();
+
+
 
         // Get sharedpref data
         getSharedPrefData();
@@ -98,6 +106,7 @@ public class AddRoute extends AppCompatActivity {
             }
         });
 
+
         destination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,9 +125,24 @@ public class AddRoute extends AppCompatActivity {
         addNewRoute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                route(routeRequest());
+
+                String src = source.getText().toString();
+                String dest = destination.getText().toString();
+                if (src.isEmpty()) {
+                    source.setError("Required");
+                }else if (dest.isEmpty()) {
+                    source.setError(null);
+                    destination.setError("Required");
+                }else{
+                    destination.setError(null);
+                    route(routeRequest());
+
+                }
+
+
                 clearRouteSharedPref();
                 resetViews();
+
             }
         });
 
@@ -135,16 +159,13 @@ public class AddRoute extends AppCompatActivity {
 
     public RouteRequest routeRequest() {
         RouteRequest request=new RouteRequest();
-
         // get data from sharedpref
         int sourceId = sourceBusStand.getId();
         int destinationId = destinationBusStand.getId();
-
         request.setSourceId(sourceId);
         request.setDestinationId(destinationId);
 
         return request;
-
     }
 
 
@@ -168,7 +189,7 @@ public class AddRoute extends AppCompatActivity {
                             finish();
                         } else if (status == 405) {
                             Log.i("TAG", "onResponse: failed");
-//                            Toast.makeText(AddRoute.this, "Already exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddRoute.this, "Already exists", Toast.LENGTH_SHORT).show();
                             Snackbar.make(addNewRoute, message, Snackbar.LENGTH_SHORT).show();
                         } else {
                             Log.i("TAG", "onResponse: unknown status");
@@ -293,6 +314,9 @@ public class AddRoute extends AppCompatActivity {
         source.setVisibility(View.INVISIBLE);
         destination.setVisibility(View.INVISIBLE);
         addNewRoute.setVisibility(View.INVISIBLE);
+        addRouteT.setVisibility(View.INVISIBLE);
+        availableRouteT.setVisibility(View.INVISIBLE);
+        tableLayout.setVisibility(View.INVISIBLE);
 
         // Swipe to refresh
         swipeRefreshLayout.setVisibility(View.INVISIBLE);
