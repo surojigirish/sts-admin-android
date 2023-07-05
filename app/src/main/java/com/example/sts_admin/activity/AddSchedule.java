@@ -93,6 +93,7 @@ public class AddSchedule extends AppCompatActivity {
 
         sharedPrefManager=new SharedPrefManager(getApplicationContext());
 
+
 //        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.class.getModifiers(), android.R.layout.simple_dropdown_item_1line);
 
     }
@@ -100,6 +101,9 @@ public class AddSchedule extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        if (tv_routeId.getText().toString().isEmpty()){
+            tv_routeId.setText("SELECT ROUTE");
+        }
 
         getRouteList();
         // departure time setter

@@ -7,40 +7,33 @@
     tools:context=".activity.AddBusDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="568dp"
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:background="@android:color/holo_orange_light"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatButton2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 
     <View
-        android:id="@+id/view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="571dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/wave__1_"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="215dp"
+        android:layout_marginTop="132dp"
         android:text="Add bus Details"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,9 +41,14 @@
         android:id="@+id/bus_regno"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/textview_custom_border"
         android:hint="eg: GA-09-A-xxxx"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -61,6 +59,10 @@
         android:layout_marginTop="23dp"
         android:hint="enter bus capacity"
         android:inputType="number"
+        android:background="@drawable/textview_custom_border"
+        android:padding="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bus_regno" />
@@ -69,49 +71,62 @@
         android:id="@+id/bus_type_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/bus_status_spinner"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/textview_custom_border"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bus_capacity" />
 
     <Spinner
         android:id="@+id/bus_status_spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_bus_details_btn"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/textview_custom_border"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bus_type_spinner" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/add_bus_details_btn"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:background="@android:color/holo_orange_light"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/rounded_button_background"
+        android:padding="10dp"
         android:text="Add details"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:elevation="6dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.861"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bus_status_spinner" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/get_bus_details_list"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
-        android:background="@android:color/holo_orange_light"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/rounded_button_background"
+        android:padding="10dp"
         android:text="GET BUS DETAILS"
         android:textSize="20sp"
+        android:elevation="6dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/add_bus_details_btn"
+        app:layout_constraintHorizontal_bias="0.269"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/bus_status_spinner"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

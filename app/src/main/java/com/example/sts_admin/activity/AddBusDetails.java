@@ -74,7 +74,16 @@ public class AddBusDetails extends AppCompatActivity {
         addBus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddBus(busRequest());
+                if (reg_no.getText().toString().isEmpty()){
+                    reg_no.setError("Required");
+                } else if (capacity.getText().toString().isEmpty()) {
+                    reg_no.setError(null);
+                    capacity.setError("Required");
+                }else {
+                    capacity.setError(null);
+                    AddBus(busRequest());
+                }
+
             }
         });
 

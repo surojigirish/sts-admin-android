@@ -9,21 +9,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bud_details"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
 
         <TextView
             android:id="@+id/textView_list_bus_regNo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="10dp"
+            android:layout_marginRight="50dp"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView_list_bus_type"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="10dp"
             android:textSize="18sp"
             />
 

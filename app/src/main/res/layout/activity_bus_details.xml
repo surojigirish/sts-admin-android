@@ -6,23 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".activity.BusDetails">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_margin="16dp"
-        android:id="@+id/swipeToRefreshBusDetails"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewBusList"
+    <TextView
+        android:id="@+id/busListT"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="LIST OF BUSES"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefreshBusDetails"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/busListT">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewBusList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
