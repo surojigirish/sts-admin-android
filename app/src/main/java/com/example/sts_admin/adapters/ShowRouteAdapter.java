@@ -48,7 +48,9 @@ public class ShowRouteAdapter extends RecyclerView.Adapter<ShowRouteAdapter.View
                 if (pos != RecyclerView.NO_POSITION && onRouteItemClickListener != null){
                     AddRouteDetails selectedRoute = addRouteDetailsList.get(pos);
                     Integer routeId = selectedRoute.getId();
-                    onRouteItemClickListener.onClickListener(routeId);
+                    String routeSource = selectedRoute.getRouteSource().getName();
+                    String routeDest = selectedRoute.getDestination().getName();
+                    onRouteItemClickListener.onClickListener(routeId,routeSource,routeDest);
                 }
             }
         });
@@ -75,6 +77,6 @@ public class ShowRouteAdapter extends RecyclerView.Adapter<ShowRouteAdapter.View
 
     /*-------------  onclick interface to get route id --------------------*/
     public interface OnRouteItemClickListener {
-        void onClickListener(Integer routeId);
+        void onClickListener(Integer routeId, String routeSource, String routeDest);
     }
 }

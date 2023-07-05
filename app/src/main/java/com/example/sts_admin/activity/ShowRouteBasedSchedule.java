@@ -27,6 +27,7 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
 
 
     RecyclerView rvRouteScheduleList;
+    TextView route;
     List<ResultRouteSchedule> resultRouteScheduleList;
 
     @Override
@@ -35,12 +36,15 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
         setContentView(R.layout.activity_show_route_based_schedule);
         String rid = String.valueOf(getRouteId());
         rvRouteScheduleList = findViewById(R.id.rv_route_schedule);
+        route = findViewById(R.id.routeName);
         rvRouteScheduleList.setHasFixedSize(true);
         rvRouteScheduleList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
 
+        route.setText(getRouteInfo());
 
         getRouteScheduleList(rid);
+
 
 
     }
@@ -74,8 +78,15 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
 
 
 
-    private int getRouteId() {
+    private String getRouteInfo() {
         Intent intent = getIntent();
-        return intent.getIntExtra("routeId", -1);
+        String routeName = intent.getStringExtra("routeSource") + " To "+intent.getStringExtra("routeDest");
+
+
+        return routeName;
+    }
+    private int getRouteId(){
+        Intent i = getIntent();
+        return i.getIntExtra("routeId", -1);
     }
 }

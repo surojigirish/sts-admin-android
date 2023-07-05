@@ -158,7 +158,7 @@ public class AddSchedule extends AppCompatActivity {
 
         onRouteItemClickListener = new ShowRouteAdapter.OnRouteItemClickListener() {
             @Override
-            public void onClickListener(Integer routeId) {
+            public void onClickListener(Integer routeId, String routeSource, String routeDest) {
 
             }
         };
@@ -181,10 +181,12 @@ public class AddSchedule extends AppCompatActivity {
                         // Setting Adapter
                         rvShowRoutes.setAdapter(new ShowRouteAdapter(addRouteDetailsList, getApplicationContext(), new ShowRouteAdapter.OnRouteItemClickListener() {
                             @Override
-                            public void onClickListener(Integer routeId) {
+                            public void onClickListener(Integer routeId, String routeS,String routeD) {
                                 Intent i = new Intent(getApplicationContext(), ShowRouteBasedSchedule.class);
 //                                sharedPrefManager.saveRoute(routeId);
                                 i.putExtra("routeId", routeId);
+                                i.putExtra("routeSource", routeS);
+                                i.putExtra("routeDest", routeD);
                                 startActivity(i);
                             }
                         }));
@@ -210,6 +212,7 @@ public class AddSchedule extends AppCompatActivity {
         text.setVisibility(View.GONE);
         textView5.setVisibility(View.GONE);
         rvShowRoutes.setVisibility(View.GONE);
+        imageViewScreenBackground.setVisibility(View.GONE);
     }
 
     public void calculateDuration() {
