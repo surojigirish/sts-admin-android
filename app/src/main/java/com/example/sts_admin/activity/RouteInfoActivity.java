@@ -40,7 +40,7 @@ public class RouteInfoActivity extends AppCompatActivity {
 
     // views
     TextView tvDistance, tvFare;
-    EditText etRouteInfo, etSource, etDestination;
+    TextView etRouteInfo, etSource, etDestination;
     AppCompatButton btnAddRouteInfo,routeInfoDetailsBtn;
     Spinner busTypeSpinner;
     String busTypeItem;
@@ -212,7 +212,25 @@ public class RouteInfoActivity extends AppCompatActivity {
         btnAddRouteInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addRouteInfo(routeInfoRequest(routeId, sourceId, destinationId, finalDistance, finalFare));
+
+                String rInfo = etRouteInfo.getText().toString();
+                String src = etSource.getText().toString();
+                String dest = etDestination.getText().toString();
+
+                if (rInfo.isEmpty()){
+                    etRouteInfo.setError("Select route");
+                } else if (src.isEmpty()) {
+                    etRouteInfo.setError(null);
+                    etSource.setError("Select source");
+                } else if (dest.isEmpty()) {
+                    etSource.setError(null);
+                    etDestination.setError("Select destination");
+                }else{
+                    addRouteInfo(routeInfoRequest(routeId, sourceId, destinationId, finalDistance, finalFare));
+                }
+
+
+
                 resetViews();
                 clearRouteSharedPref();
             }

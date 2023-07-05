@@ -15,7 +15,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="50dp"
                 android:background="@android:color/holo_orange_light"/>
 
             <View
@@ -31,33 +31,33 @@
             android:layout_height="70dp"
             android:layout_margin="10dp"
             android:text="Add Halt"
-            android:background="#FFFBC354"/>
+            android:background="@drawable/rounded_button_background"/>
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_route"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
             android:text="Add Route"
-            android:background="#FFFBC354"/>
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_button_background"/>
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_schedule_info"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
             android:text="add schedule info"
-            android:background="#FFFBC354"/>
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_button_background"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_route_info"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
             android:text="route info"
-            android:background="#FFFBC354"/>
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_button_background"/>
 
 
 
