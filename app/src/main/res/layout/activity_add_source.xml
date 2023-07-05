@@ -7,9 +7,15 @@
     tools:context=".activity.AddHalts">
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:id="@+id/view3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="436dp"
         android:background="@drawable/wave__1_"
+        app:layout_constraintBottom_toTopOf="@+id/btn_googleMaps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -18,11 +24,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginTop="176dp"
+        android:padding="5dp"
         android:text="Add Halt Details"
         android:textAllCaps="true"
         android:textColor="@color/black"
-        android:textStyle="bold"
         android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,39 +66,46 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_add_halt"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="122dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/rounded_button_background"
+        android:padding="15dp"
         android:text="Add Source"
-        android:background="#FBC02D"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.847"
-        app:layout_constraintStart_toEndOf="@+id/btn_geo_location"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_googleMaps"
+        app:layout_constraintVertical_bias="0.873" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_geo_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/rounded_button_background"
+        android:padding="15dp"
         android:text="Get Geo Location"
-        android:background="#FBC02D"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_add_halt"
-        app:layout_constraintEnd_toStartOf="@+id/btn_add_halt"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_halt_lat" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:text="Google Maps"
-        android:background="#FBC02D"
         android:id="@+id/btn_googleMaps"
-        android:layout_width="match_parent"
-        android:textColor="@color/white"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/rounded_button_background"
+        android:padding="15dp"
+        android:text="Google Maps"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/et_halt_lat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

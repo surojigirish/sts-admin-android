@@ -88,11 +88,44 @@ public class AddHalts extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                source(haltRequest());
-                Toast.makeText(AddHalts.this, "Halt added successfully", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(AddHalts.this,UpdateSchedule.class);
-                startActivity(i);
-                finish();
+
+
+                String name = etHaltName.getText().toString().trim();
+                String lat = etHaltLatitude.getText().toString().trim();
+                String lon = etHaltLongitude.getText().toString().trim();
+
+
+                if (name.isEmpty()) {
+                    etHaltName.setError("Enter Halt Name");
+                }else if (!isValidString(name)) {
+                    etHaltName.setError(null);
+                    etHaltName.setError("Invalid input");
+                }else if (lon.isEmpty()) {
+                    etHaltName.setError(null);
+                    etHaltLongitude.setError("Required");
+                } else if (!isRealNumber(lon)) {
+                    etHaltLongitude.setError(null);
+                    etHaltLongitude.setError("Provide valid input");
+                }else if (lat.isEmpty()) {
+                    etHaltLongitude.setError(null);
+                    etHaltLatitude.setError("Required");
+                } else if (!isRealNumber(lat)) {
+                    etHaltLatitude.setError(null);
+                    etHaltLatitude.setError("Provide valid input");
+                }  else {
+                    etHaltLatitude.setError(null);
+                    source(haltRequest());
+                    Toast.makeText(AddHalts.this, "Halt added successfully", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(AddHalts.this,UpdateSchedule.class);
+                    startActivity(i);
+                    finish();
+                }
+
+
+
+
+
+
             }
         });
 
@@ -166,7 +199,7 @@ public class AddHalts extends AppCompatActivity {
 
     public HaltRequest haltRequest(){
         HaltRequest haltRequest = new HaltRequest();
-        haltRequest.setName(etHaltName.getText().toString());
+        haltRequest.setName(etHaltName.getText().toString().toUpperCase());
         haltRequest.setLatitude(etHaltLatitude.getText().toString());
         haltRequest.setLongitude(etHaltLongitude.getText().toString());
         return haltRequest;
@@ -240,4 +273,19 @@ public class AddHalts extends AppCompatActivity {
             }
         }
     }
+
+    // Function to check if the string contains only alphabetic characters
+    private boolean isValidString(String input) {
+        String regex = "^[a-zA-Z]+$";
+        return input.matches(regex);
+    }
+    private boolean isRealNumber(String value) {
+        try {
+            Double.parseDouble(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 }
