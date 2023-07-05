@@ -14,7 +14,16 @@ public class ScheduleResponse {
     Integer status;
     private @SerializedName("success")
     boolean success;
+    private @SerializedName("message")
+    String message;
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public Integer getStatus() {
         return status;

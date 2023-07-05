@@ -138,7 +138,28 @@ public class AddSchedule extends AppCompatActivity {
             @Override
             public void onClick(View view){
 
-                schedule(scheduleRequest());
+                String route = tv_routeId.getText().toString().trim();
+                String departure = departureTime.getText().toString().trim();
+                String arrival = arrivalTime.getText().toString().trim();
+                String duration = durationTime.getText().toString().trim();
+
+                if (route.isEmpty()) {
+                    tv_routeId.setError("Required");
+                } else if (departure.isEmpty()) {
+                    tv_routeId.setError(null);
+                    departureTime.setError("Required");
+                } else if (arrival.isEmpty()){
+                    departureTime.setError(null);
+                    arrivalTime.setError("Required");
+                }else if (duration.isEmpty()){
+                    arrivalTime.setError(null);
+                    durationTime.setError("Required");
+                }else {
+                    durationTime.setError(null);
+                    schedule(scheduleRequest());
+                }
+
+
             }
         });
 
