@@ -37,9 +37,11 @@ public class BusScheduleListAdapter extends RecyclerView.Adapter<BusScheduleList
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.busScheduleId.setText(String.valueOf(driverBusSchedule.get(position).getBusSchedule().getId()));
-        holder.busRegistration.setText(driverBusSchedule.get(position).getBus().getRegistrationNumber());
-        holder.busType.setText(driverBusSchedule.get(position).getBus().getType());
+        holder.busRegistration.setText("Bus Reg no.: "+driverBusSchedule.get(position).getBus().getRegistrationNumber());
+        holder.busType.setText("Bus Type: "+driverBusSchedule.get(position).getBus().getType());
+        holder.date.setText("Scheduled On : "+driverBusSchedule.get(position).getBusSchedule().getDate());
+        holder.arrivAt.setText("End Trip : "+driverBusSchedule.get(position).getBusSchedule().getSchedule().getArrivalAt());
+        holder.departureAt.setText("Start Trip AT : "+driverBusSchedule.get(position).getBusSchedule().getSchedule().getDepartureAt());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,13 +68,16 @@ public class BusScheduleListAdapter extends RecyclerView.Adapter<BusScheduleList
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView busScheduleId, busRegistration, busType;
+        TextView busScheduleId, busRegistration, busType, date, arrivAt, departureAt ;
 
         public ViewHolder(@NonNull View itemView, OnDriverBusScheduleClick listener, List<ListOfBusSchedule> driverBusScheduleList) {
             super(itemView);
             busScheduleId = itemView.findViewById(R.id.tv_busScheduleId);
             busRegistration = itemView.findViewById(R.id.tv_busRegistration);
             busType = itemView.findViewById(R.id.tv_busType);
+            date = itemView.findViewById(R.id.tv_busScheduleDate);
+            arrivAt = itemView.findViewById(R.id.tv_bus_scheduleEndTime);
+            departureAt = itemView.findViewById(R.id.tv_bus_scheduleStartTime);
         }
     }
 

@@ -26,9 +26,9 @@ import retrofit2.Response;
 
 public class DriverDashboard extends AppCompatActivity {
 
-    CardView busScheduleList;
+    CardView busScheduleList,btnValidatePassFrag;
 
-    private AppCompatButton btnValidatePassFrag, driverLogoutBtn;
+    private AppCompatButton driverLogoutBtn;
     private TextView tvDashBoardWelcomeText;
 
     SharedPrefManager sharedPrefManager;

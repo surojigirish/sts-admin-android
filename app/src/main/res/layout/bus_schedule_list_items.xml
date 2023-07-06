@@ -7,8 +7,13 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_driverBusSchedule"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_list_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -17,34 +22,83 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_busScheduleId"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bus Schedule ID : "
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_busRegistration"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="Registration : "
+                    android:background="@drawable/bg_list_item"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_busScheduleId" />
+
+                <TextView
+                    android:id="@+id/tv_busType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Type : "
+                    android:background="@drawable/bg_list_item"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_busRegistration" />
+
+
+            </LinearLayout>
+
+
+
 
             <TextView
-                android:id="@+id/tv_busRegistration"
+                android:id="@+id/tv_busScheduleDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Registration : "
+                android:text="Date : "
+                android:background="@drawable/bg_list_item"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_busScheduleId" />
-
-            <TextView
-                android:id="@+id/tv_busType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Type : "
-                android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_busRegistration" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_bus_scheduleStartTime"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_list_item"
+                    android:text="Registration : "
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_busScheduleId" />
+
+                <TextView
+                    android:id="@+id/tv_bus_scheduleEndTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_list_item"
+                    android:text="Type : "
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_busRegistration" />
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
