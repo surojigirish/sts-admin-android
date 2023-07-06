@@ -15,6 +15,8 @@ public class Consts {
 
     public static final String BASE_URL_LOCATION = "http://" + IP_ADDRESS + "/location/";
     public static final String BASE_URL_USER = "http://" + IP_ADDRESS + "/user/";
+    public static final String BASE_URL_GET_PASSENGER_PROFILE = "http://" + IP_ADDRESS + "file/pic/";
+
 
     // Endpoints
     public static final String ENDPOINT_ADMIN_LOGIN = "admin-login";

@@ -22,6 +22,7 @@ import com.example.sts_admin.apiservice.response.GetRouteInfoResponse;
 import com.example.sts_admin.apiservice.response.GetRouteResponse;
 import com.example.sts_admin.apiservice.response.MainResponse;
 import com.example.sts_admin.apiservice.response.OnBoardPassengerResponse;
+import com.example.sts_admin.apiservice.response.PassengerProfileImageResponse;
 import com.example.sts_admin.apiservice.response.ReportGenerationResponse;
 import com.example.sts_admin.apiservice.response.RouteResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleResponse;
@@ -158,4 +159,6 @@ public interface Api {
     Call<ReportGenerationResponse> getBusReport(@Query("bus-id") int busId, @Query("date") String date);
     @GET(Consts.ENDPOINT_SHOW_ROUTE_SCHEDULE_DETAILS)
     Call<RouteScheduleResponse> showRouteSchedule(@Path("route-id") Integer routeId);
+    @GET(Consts.BASE_URL_GET_PASSENGER_PROFILE)
+    Call<PassengerProfileImageResponse> getPassengerPrOfileImage(@Path("url") String url);
 }

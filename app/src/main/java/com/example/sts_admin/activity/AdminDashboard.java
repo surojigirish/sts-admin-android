@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,7 +67,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
 //        getPassengerDetailsBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                Intent i = new Intent(AdminDashboard.this,GetPassengerDetails.class);
+//                Intent i = new Intent(AdminDashboard.this,GetPassengerList.class);
 //                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 //                startActivity(i);
 //                finish();
@@ -126,7 +125,7 @@ public class AdminDashboard extends AppCompatActivity implements View.OnClickLis
             case R.id.user_profile:i=new Intent(this, DriverRegistration.class);startActivity(i);break;
             case R.id.trip:i=new Intent(this, AddBusSchedule.class);startActivity(i);break;
             case R.id.bus:i=new Intent(this, AddBusDetails.class);startActivity(i);break;
-            case R.id.getPassengerDetailsBtn:i=new Intent(this, GetPassengerDetails.class);startActivity(i);break;
+            case R.id.getPassengerDetailsBtn:i=new Intent(this, GetPassengerList.class);startActivity(i);break;
             case R.id.btn_reports:i=new Intent(this, GetReport.class);startActivity(i);break;
 
         }
