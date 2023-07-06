@@ -9,15 +9,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@drawable/textview_custom_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView_source_stand"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:gravity="left"
             android:padding="16dp"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -27,9 +27,8 @@
 
         <TextView
             android:id="@+id/textView_destination_stand"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="right"
             android:padding="16dp"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
