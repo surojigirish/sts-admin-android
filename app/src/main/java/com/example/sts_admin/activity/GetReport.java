@@ -21,7 +21,6 @@ import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.response.ReportGenerationResponse;
 import com.example.sts_admin.fragments.GetBusId;
 import com.example.sts_admin.model.ScheduleR;
-import com.example.sts_admin.model.results.ResultReport;
 import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.Calendar;
@@ -33,11 +32,12 @@ import retrofit2.Response;
 
 public class GetReport extends AppCompatActivity {
 
-    TextView title, tvDate,tvBusId, tvReportDate, tvBusRegNumber, tvBusType;
+    TextView title, tvDate,tvBusId, tvReportDate, tvBusRegNumber, tvBusType, busNo ,dateEnd;
     AppCompatButton reportBtn;
     RecyclerView rvReportList;
-    String selectedDate;
+    String selectedDate,endSelectedDate;
     Integer busId;
+    View v8,v9,v10;
     private int year, month, dayOfMonth;
     SharedPrefManager sharedPrefManager;
     List<ScheduleR> resultReportList;
@@ -55,7 +55,18 @@ public class GetReport extends AppCompatActivity {
         tvDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getCurrentDate();
+                getUserSelectedDate(tvDate);
+                setSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
+                Log.i("TAG", "date onClick: "+getSelectedDate());
+            }
+        });
+
+        dateEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getUserSelectedDate(dateEnd);
+                setEndSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
+                Log.i("TAG", "end date onClick: "+getEndSelectedDate());
             }
         });
 
@@ -77,14 +88,16 @@ public class GetReport extends AppCompatActivity {
         reportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ViewReport(getBusId(), getSelectedDate());
+                ViewReport(getBusId(), getSelectedDate(),getEndSelectedDate());
             }
         });
 
 
     }
 
-    private void ViewReport(Integer busId, String selectedDate) {
+    private void ViewReport(Integer busId, String selectedDate, String endSelectedDate) {
+        Log.i("TAG", "ViewReport: startdate "+selectedDate);
+        Log.i("TAG", "ViewReport: enddate "+endSelectedDate);
         Call<ReportGenerationResponse> responseCall = Client.getInstance(Consts.BASE_URL_REPORT).getRoute().getBusReport(busId,selectedDate);
         responseCall.enqueue(new Callback<ReportGenerationResponse>() {
             @Override
@@ -124,6 +137,7 @@ public class GetReport extends AppCompatActivity {
         title = findViewById(R.id.tvReportTitle);
         tvBusId = findViewById(R.id.tv_report_bus_id);
         tvDate = findViewById(R.id.tv_report_date_picker);
+        dateEnd = findViewById(R.id.tv_report_date_picker_last);
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
@@ -135,18 +149,23 @@ public class GetReport extends AppCompatActivity {
         tvReportDate = findViewById(R.id.tv_report_date);
         tvBusRegNumber = findViewById(R.id.tv_report_busRegNumber);
         tvBusType = findViewById(R.id.tv_report_busType);
+        busNo = findViewById(R.id.tvbusno);
+        v8 = findViewById(R.id.view8);
+        v9 = findViewById(R.id.view9);
+        v10 = findViewById(R.id.view10);
     }
 
 
-    public void getCurrentDate(){
+    public void getUserSelectedDate(TextView Date){
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 GetReport.this,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         setSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
-                        tvDate.setText(""+selectedDate);
-                        Log.i("TAG", "onDateSet: " +selectedDate);
+//                        tvDate.setText(""+selectedDate);
+                        Date.setText(""+selectedDate);
+//                        Log.i("TAG", "onDateSet: " +selectedDate);
                     }
                 },
                 year,
@@ -163,10 +182,15 @@ public class GetReport extends AppCompatActivity {
         reportBtn.setVisibility(View.GONE);
         tvBusId.setVisibility(View.GONE);
         tvDate.setVisibility(View.GONE);
+        dateEnd.setVisibility(View.GONE);
         rvReportList.setVisibility(View.GONE);
         tvReportDate.setVisibility(View.GONE);
         tvBusType.setVisibility(View.GONE);
         tvBusRegNumber.setVisibility(View.GONE);
+        busNo.setVisibility(View.GONE);
+        v8.setVisibility(View.GONE);
+        v9.setVisibility(View.GONE);
+        v10.setVisibility(View.GONE);
 
 
     }
@@ -199,6 +223,14 @@ public class GetReport extends AppCompatActivity {
     }
     public void setSelectedDate(String selectedDate) {
         this.selectedDate = selectedDate;
+    }
+
+    public String getEndSelectedDate() {
+        return endSelectedDate;
+    }
+
+    public void setEndSelectedDate(String endSelectedDate) {
+        this.endSelectedDate = endSelectedDate;
     }
 
     public Integer getBusId() {

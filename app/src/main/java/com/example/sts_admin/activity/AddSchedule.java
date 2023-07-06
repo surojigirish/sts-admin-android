@@ -101,9 +101,6 @@ public class AddSchedule extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (tv_routeId.getText().toString().isEmpty()){
-            tv_routeId.setText("SELECT ROUTE");
-        }
 
         getRouteList();
         // departure time setter
@@ -208,7 +205,7 @@ public class AddSchedule extends AppCompatActivity {
                             @Override
                             public void onClickListener(Integer routeId, String routeS,String routeD) {
                                 Intent i = new Intent(getApplicationContext(), ShowRouteBasedSchedule.class);
-//                                sharedPrefManager.saveRoute(routeId);
+                                sharedPrefManager.saveRoute(routeId,routeS,routeD);
                                 i.putExtra("routeId", routeId);
                                 i.putExtra("routeSource", routeS);
                                 i.putExtra("routeDest", routeD);
@@ -311,12 +308,12 @@ public class AddSchedule extends AppCompatActivity {
         String source=i.getStringExtra("source");
         String destination=i.getStringExtra("destination");
         String tvSrcDst = source +" to "+destination;
-        tv_routeId.setText( tvSrcDst);
+        tv_routeId.setText(tvSrcDst);
 
-//        if (source.equals(null) && destination.equals(null)){
+//        if (source.equals(null)){
 //            tv_routeId.setText("add route");
 //        }else {
-
+//            tv_routeId.setText(tvSrcDst);
 //        }
     }
 

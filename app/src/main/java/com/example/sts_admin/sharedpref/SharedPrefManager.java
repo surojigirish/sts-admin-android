@@ -89,10 +89,12 @@ public class SharedPrefManager {
         editor.apply();
     }
 
-    public void saveRoute(Integer routeId) {
+    public void saveRoute(Integer routeId,String routeS,String routeD) {
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_ROUTE, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putInt("routeId", routeId);
+        editor.putString("routeSource", routeS);
+        editor.putString("routeDestination", routeD);
         editor.apply();
     }
 
