@@ -125,9 +125,13 @@ public class AddBusSchedule extends AppCompatActivity {
     public AddBusScheduleRequest addBusScheduleRequest(){
         AddBusScheduleRequest addBusScheduleRequest = new AddBusScheduleRequest();
         addBusScheduleRequest.setBusId(sharedPrefManager.getBusDetails().getId());
-//        addBusScheduleRequest.setScheduleId(sharedPrefManager.getScheduleDetails().getId());
+        Log.i("TAG", "addBusScheduleRequest: bus "+sharedPrefManager.getBusDetails().getId());
+        addBusScheduleRequest.setScheduleId(sharedPrefManager.getScheduleDetails().getId());
+        Log.i("TAG", "addBusScheduleRequest: schedule "+sharedPrefManager.getScheduleDetails().getId());
         addBusScheduleRequest.setDriverId(driverId);
+        Log.i("TAG", "addBusScheduleRequest: driver "+driverId);
         addBusScheduleRequest.setDate(getSelectedDate());
+        Log.i("TAG", "addBusScheduleRequest: date "+getSelectedDate());
         return addBusScheduleRequest;
     }
 

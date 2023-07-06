@@ -61,6 +61,7 @@
         android:inputType="number"
         android:background="@drawable/textview_custom_border"
         android:padding="10dp"
+        android:maxLength="2"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         app:layout_constraintEnd_toEndOf="parent"

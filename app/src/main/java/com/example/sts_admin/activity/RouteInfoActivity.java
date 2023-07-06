@@ -41,9 +41,11 @@ public class RouteInfoActivity extends AppCompatActivity {
     // views
     TextView tvDistance, tvFare;
     TextView etRouteInfo, etSource, etDestination;
+    EditText fareAmount;
     AppCompatButton btnAddRouteInfo,routeInfoDetailsBtn;
     Spinner busTypeSpinner;
-    String busTypeItem;
+    String busTypeItem,finalDistance,finalFare;
+    Double BASE_FARE;
     LinearLayout llRouteInfoViewHolder;
 
     // get data from shared pref manager
@@ -168,47 +170,110 @@ public class RouteInfoActivity extends AppCompatActivity {
             }
         });
 
-        double doubleSourceLat = 0.0;
-        double doubleSourceLong = 0.0;
-        double doubleDestinationLat = 0.0;
-        double doubleDestinationLong = 0.0;
-        String distance = "";
-        String fare = "";
+//        setBASE_FARE(Double.valueOf(fareAmount.getText().toString()));
+        Log.i("TAG", "onStart: fare amount "+fareAmount.getText().toString());
 
-        if (!sourceLat.isEmpty() && !sourceLong.isEmpty() && !destinationLat.isEmpty() && !destinationLong.isEmpty()) {
-            try {
-                // Parse source and destination to Double
-                doubleSourceLat = Double.parseDouble(sourceLat);
-                Log.i("TAG", "onStart: source lat" + doubleSourceLat);
-                doubleSourceLong = Double.parseDouble(sourceLong);
-                doubleDestinationLat = Double.parseDouble(destinationLat);
-                doubleDestinationLong = Double.parseDouble(destinationLong);
 
-                // calculate distance between source and destination
-                double calculateDistance = calculateDistance(doubleSourceLat, doubleSourceLong, doubleDestinationLat, doubleDestinationLong);
-                distance = String.format("%.2f", calculateDistance);
-                tvDistance.setText(distance);
+        tvDistance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double doubleSourceLat = 0.0;
+                double doubleSourceLong = 0.0;
+                double doubleDestinationLat = 0.0;
+                double doubleDestinationLong = 0.0;
+                String distance = "";
+                String fare = "";
 
-                // calculate fare
-                double calculateFare = calculateFare(calculateDistance);
-                fare = String.format("%.2f", calculateFare);
-                tvFare.setText(fare);
-            } catch (NumberFormatException e) {
-                // Handle parsing error
-                e.printStackTrace();
 
-                // show error message or handle empty
-                tvDistance.setText(R.string.distance);
+                if (!sourceLat.isEmpty() && !sourceLong.isEmpty() && !destinationLat.isEmpty() && !destinationLong.isEmpty()) {
+                    try {
+                        // Parse source and destination to Double
+                        doubleSourceLat = Double.parseDouble(sourceLat);
+                        Log.i("TAG", "onStart: source lat" + doubleSourceLat);
+                        doubleSourceLong = Double.parseDouble(sourceLong);
+                        doubleDestinationLat = Double.parseDouble(destinationLat);
+                        doubleDestinationLong = Double.parseDouble(destinationLong);
+
+                        // calculate distance between source and destination
+                        double calculateDistance = calculateDistance(doubleSourceLat, doubleSourceLong, doubleDestinationLat, doubleDestinationLong);
+                        distance = String.format("%.2f", calculateDistance);
+                        tvDistance.setText(distance);
+
+                        // calculate fare
+                        double calculateFare = calculateFare(calculateDistance, Double.valueOf(fareAmount.getText().toString()));
+                        fare = String.format("%.2f", calculateFare);
+                        tvFare.setText(fare);
+                    } catch (NumberFormatException e) {
+                        // Handle parsing error
+                        e.printStackTrace();
+
+                        // show error message or handle empty
+                        tvDistance.setText(R.string.distance);
+                    }
+                } else {
+                    // handle empty lat or long
+                    tvDistance.setText(R.string.distance);
+                }
+
+
+                // on Click call api request
+                setFinalDistance(distance);
+                setFinalFare(fare);
+
             }
-        } else {
-            // handle empty lat or long
-            tvDistance.setText(R.string.distance);
-        }
+        });
+
+        fareAmount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double doubleSourceLat = 0.0;
+                double doubleSourceLong = 0.0;
+                double doubleDestinationLat = 0.0;
+                double doubleDestinationLong = 0.0;
+                String distance = "";
+                String fare = "";
 
 
-        // on Click call api request
-        String finalDistance = distance;
-        String finalFare = fare;
+                if (!sourceLat.isEmpty() && !sourceLong.isEmpty() && !destinationLat.isEmpty() && !destinationLong.isEmpty()) {
+                    try {
+                        // Parse source and destination to Double
+                        doubleSourceLat = Double.parseDouble(sourceLat);
+                        Log.i("TAG", "onStart: source lat" + doubleSourceLat);
+                        doubleSourceLong = Double.parseDouble(sourceLong);
+                        doubleDestinationLat = Double.parseDouble(destinationLat);
+                        doubleDestinationLong = Double.parseDouble(destinationLong);
+
+                        // calculate distance between source and destination
+                        double calculateDistance = calculateDistance(doubleSourceLat, doubleSourceLong, doubleDestinationLat, doubleDestinationLong);
+                        distance = String.format("%.2f", calculateDistance);
+                        tvDistance.setText(distance);
+
+                        // calculate fare
+                        double calculateFare = calculateFare(calculateDistance, Double.valueOf(fareAmount.getText().toString()));
+                        fare = String.format("%.2f", calculateFare);
+                        tvFare.setText(fare);
+                    } catch (NumberFormatException e) {
+                        // Handle parsing error
+                        e.printStackTrace();
+
+                        // show error message or handle empty
+                        tvDistance.setText(R.string.distance);
+                    }
+                } else {
+                    // handle empty lat or long
+                    tvDistance.setText(R.string.distance);
+                }
+
+
+                // on Click call api request
+                setFinalDistance(distance);
+                setFinalFare(fare);
+            }
+        });
+
+
+
+
         btnAddRouteInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,7 +291,7 @@ public class RouteInfoActivity extends AppCompatActivity {
                     etSource.setError(null);
                     etDestination.setError("Select destination");
                 }else{
-                    addRouteInfo(routeInfoRequest(routeId, sourceId, destinationId, finalDistance, finalFare));
+                    addRouteInfo(routeInfoRequest(routeId, sourceId, destinationId, getFinalDistance(), getFinalFare()));
                 }
 
 
@@ -259,6 +324,7 @@ public class RouteInfoActivity extends AppCompatActivity {
         // textview
         tvDistance = findViewById(R.id.tv_distance);
         tvFare = findViewById(R.id.tv_fare);
+        fareAmount = findViewById(R.id.et_set_fare);
 
         // button
         btnAddRouteInfo = findViewById(R.id.btn_add_route_info);
@@ -293,8 +359,8 @@ public class RouteInfoActivity extends AppCompatActivity {
         return EARTH_RADIUS * c;
     }
 
-    public double calculateFare(Double distance) {
-        double BASE_FARE = 1;
+    public double calculateFare(Double distance, Double baseFare) {
+        double BASE_FARE = baseFare;
         return BASE_FARE * distance;
     }
 
@@ -358,6 +424,7 @@ public class RouteInfoActivity extends AppCompatActivity {
         etDestination.setText(R.string.destination_id);
         tvDistance.setText(R.string.distance);
         tvFare.setText(R.string.fare);
+        fareAmount.setText("1");
     }
 
 
@@ -373,8 +440,30 @@ public class RouteInfoActivity extends AppCompatActivity {
     public String getBusTypeItem() {
         return busTypeItem;
     }
-
     public void setBusTypeItem(String busTypeItem) {
         this.busTypeItem = busTypeItem;
+    }
+
+    public Double getBASE_FARE() {
+        return BASE_FARE;
+    }
+    public void setBASE_FARE(Double BASE_FARE) {
+        this.BASE_FARE = BASE_FARE;
+    }
+
+    public String getFinalDistance() {
+        return finalDistance;
+    }
+
+    public void setFinalDistance(String finalDistance) {
+        this.finalDistance = finalDistance;
+    }
+
+    public String getFinalFare() {
+        return finalFare;
+    }
+
+    public void setFinalFare(String finalFare) {
+        this.finalFare = finalFare;
     }
 }

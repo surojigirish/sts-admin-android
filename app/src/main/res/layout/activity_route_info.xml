@@ -19,30 +19,18 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_route_stands"
             app:layout_constraintStart_toStartOf="@+id/tv_route_stands">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout5"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginBottom="552dp"
-                android:background="@drawable/wave__1_"
-                app:layout_constraintBottom_toTopOf="@+id/routeInfoDetailsBtn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="104dp"
+                android:layout_marginTop="64dp"
                 android:text="@string/add_route_info"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.486"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,25 +38,25 @@
                 android:id="@+id/view6"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="#FFFFFF"
                 app:layout_constraintBottom_toTopOf="@+id/tv_route_stands"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <TextView
                 android:id="@+id/tv_route_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
-                android:layout_marginTop="208dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/route_info"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <TextView
                 android:id="@+id/tv_route_stands"
@@ -76,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:background="@drawable/textview_custom_border"
-                android:padding="10dp"
+                android:padding="8dp"
                 android:text="SELECT ROUTE"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -101,9 +89,9 @@
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/textview_custom_border"
-                android:padding="10dp"
+                android:padding="8dp"
                 android:text="@string/source_id"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/tv_route_source"
@@ -114,27 +102,56 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="28dp"
                 android:text="@string/destination"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_route_source" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_destination"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_set_fare_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="4dp"
+                android:text="Fare per Km :"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/et_set_fare"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <EditText
+                android:id="@+id/et_set_fare"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="@string/destination_id"
+                android:background="@drawable/textview_custom_border"
+                android:inputType="number"
+                android:maxLength="1"
+                android:padding="10dp"
+                android:hint="eg:- 2"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bus_type_spinner" />
 
             <TextView
                 android:id="@+id/tv_destination"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
                 android:autofillHints="@string/destination_id"
                 android:background="@drawable/textview_custom_border"
                 android:inputType="text"
-                android:padding="10dp"
+                android:padding="8dp"
                 android:text="@string/destination_id"
                 android:textSize="24sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tv_route_destination"
-                app:layout_constraintStart_toEndOf="@+id/tv_route_destination" />
+                app:layout_constraintStart_toEndOf="@+id/tv_route_destination"
+                app:layout_constraintTop_toBottomOf="@+id/tv_source" />
 
             <TextView
                 android:id="@+id/tv_bus_type"
@@ -154,10 +171,10 @@
                 android:id="@+id/bus_type_spinner"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/textview_custom_border"
-                android:padding="10dp"
+                android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_destination" />
 
@@ -177,35 +194,35 @@
                 android:id="@+id/tv_distance"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/textview_custom_border"
-                android:padding="10dp"
+                android:padding="8dp"
                 android:text="Distance"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/tv_route_distance"
-                app:layout_constraintTop_toBottomOf="@+id/bus_type_spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/et_set_fare" />
 
             <TextView
                 android:id="@+id/tv_route_fare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="14dp"
+                android:layout_marginStart="128dp"
                 android:text="@string/fare_id"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_fare"
-                app:layout_constraintEnd_toStartOf="@+id/tv_distance" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_fare"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
                 android:background="@drawable/textview_custom_border"
-                android:padding="10dp"
+                android:padding="8dp"
                 android:text="@string/fare"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/tv_route_fare"
@@ -215,44 +232,40 @@
                 android:id="@+id/btn_add_route_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="36dp"
                 android:background="@drawable/rounded_button_white"
                 android:elevation="4dp"
                 android:padding="10dp"
                 android:text="@string/btn_add_route_info"
                 android:textColor="@android:color/holo_orange_light"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fare" />
 
             <View
                 android:id="@+id/view7"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
                 android:background="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/btn_add_route_info"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_route_info" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/routeInfoDetailsBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="112dp"
                 android:background="@drawable/rounded_button_white"
                 android:elevation="4dp"
                 android:padding="10dp"
-                android:text="ROUTE INFO DETAILS"
+                android:text="SHOW EXISTING ROUTE INFO DETAILS"
                 android:textColor="@android:color/holo_orange_light"
                 android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.42"
-                app:layout_constraintStart_toEndOf="@+id/btn_add_route_info"
-                app:layout_constraintTop_toBottomOf="@+id/tv_fare"
-                app:layout_constraintVertical_bias="0.166"
+                app:layout_constraintTop_toBottomOf="@+id/view7"
                 tools:ignore="MissingConstraints" />
 
             <androidx.constraintlayout.widget.Guideline
