@@ -9,22 +9,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/schedule_details"
-        android:background="#DAD8D8"
+        android:padding="2dp"
+        android:background="@drawable/textview_custom_border"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView_sche_source"
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:padding="16dp"/>
 
             <TextView
                 android:id="@+id/textView_sche_destination"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:padding="16dp"
@@ -34,17 +37,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView_sche_departure"
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:padding="16dp"/>
 
             <TextView
                 android:id="@+id/textView_sche_arrival"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:padding="16dp"
