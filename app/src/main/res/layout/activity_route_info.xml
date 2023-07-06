@@ -69,71 +69,75 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_route_info"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_route_info" />
+
 
             <TextView
                 android:id="@+id/tv_route_source"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:text="@string/source"
+                android:layout_marginEnd="32dp"
+                android:text="Source :"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_source"
-                app:layout_constraintStart_toStartOf="parent" />
-
+                app:layout_constraintEnd_toStartOf="@+id/tv_source" />
 
             <TextView
                 android:id="@+id/tv_source"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/textview_custom_border"
                 android:padding="8dp"
                 android:text="@string/source_id"
                 android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/tv_route_source"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_route_stands" />
 
             <TextView
                 android:id="@+id/tv_route_destination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/destination"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_destination"
+                app:layout_constraintEnd_toStartOf="@+id/tv_destination"
+                app:layout_constraintHorizontal_bias="0.03"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_set_fare_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
                 android:text="Fare per Km :"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/et_set_fare"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintEnd_toStartOf="@+id/et_set_fare" />
 
             <EditText
                 android:id="@+id/et_set_fare"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
                 android:autofillHints="@string/destination_id"
                 android:background="@drawable/textview_custom_border"
+                android:hint="eg:- 2"
                 android:inputType="number"
                 android:maxLength="1"
-                android:padding="10dp"
-                android:hint="eg:- 2"
+                android:padding="8dp"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bus_type_spinner" />
@@ -142,29 +146,29 @@
                 android:id="@+id/tv_destination"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
                 android:autofillHints="@string/destination_id"
                 android:background="@drawable/textview_custom_border"
                 android:inputType="text"
                 android:padding="8dp"
                 android:text="@string/destination_id"
                 android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/tv_route_destination"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_source" />
 
             <TextView
                 android:id="@+id/tv_bus_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="64dp"
-                android:layout_marginEnd="16dp"
-                android:text="Bus Type : "
+                android:layout_marginEnd="28dp"
+                android:text="Bus Type :"
                 android:textColor="@color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@+id/bus_type_spinner"
                 app:layout_constraintEnd_toStartOf="@+id/bus_type_spinner"
+                app:layout_constraintHorizontal_bias="0.924"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Spinner
@@ -172,9 +176,9 @@
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/textview_custom_border"
-                android:padding="8dp"
+                android:padding="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_destination" />
 
@@ -188,26 +192,28 @@
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_distance"
+                app:layout_constraintEnd_toStartOf="@+id/tv_distance"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_distance"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/textview_custom_border"
                 android:padding="8dp"
                 android:text="Distance"
                 android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/tv_route_distance"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_set_fare" />
 
             <TextView
                 android:id="@+id/tv_route_fare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="128dp"
+                android:layout_marginStart="116dp"
                 android:text="@string/fare_id"
                 android:textColor="@color/white"
                 android:textSize="28sp"
@@ -219,13 +225,13 @@
                 android:id="@+id/tv_fare"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/textview_custom_border"
                 android:padding="8dp"
                 android:text="@string/fare"
                 android:textSize="24sp"
-                app:layout_constraintStart_toEndOf="@+id/tv_route_fare"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_distance" />
 
             <androidx.appcompat.widget.AppCompatButton
