@@ -6,17 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddHalts">
 
+
     <View
         android:id="@+id/view3"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="436dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/wave__1_"
-        app:layout_constraintBottom_toTopOf="@+id/btn_googleMaps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_orange_light"
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back_btn_add_routeinfo_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/rounded_button_white"
+            android:src="@drawable/back_arrow_orange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView2"

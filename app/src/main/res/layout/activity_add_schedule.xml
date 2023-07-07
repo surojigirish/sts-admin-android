@@ -7,15 +7,26 @@
     android:background="@android:color/holo_orange_light"
     tools:context=".activity.AddSchedule">
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/imgView_screen_bg"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="150dp"-->
-    <!--        android:src="@drawable/screen_bg_sts"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_orange_light"
+        tools:ignore="MissingConstraints">
 
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back_btn_add_scheduleinfo_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/rounded_button_white"
+            android:src="@drawable/back_arrow_orange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView4"
@@ -95,17 +106,16 @@
         app:layout_constraintTop_toBottomOf="@+id/et_arrival" />
 
 
-        <FrameLayout
-            android:id="@+id/fl_routeId"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"></FrameLayout>
-
+    <FrameLayout
+        android:id="@+id/fl_routeId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></FrameLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addScheduleBtn"

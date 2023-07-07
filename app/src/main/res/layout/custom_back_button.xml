@@ -1,0 +1,17 @@
+<!-- custom_back_button.xml -->
+<!--<ImageView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:id="@+id/backButton"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:src="@drawable/back_arrow_white" />-->
+
+<androidx.appcompat.widget.AppCompatImageButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:background="@drawable/rounded_button_white"
+    android:src="@drawable/back_arrow_orange"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

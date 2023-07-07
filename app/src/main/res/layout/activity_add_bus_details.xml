@@ -11,13 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/holo_orange_light"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints">
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/back_btn_add_routeinfo_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/rounded_button_white"
+            android:src="@drawable/back_arrow_orange"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <View
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/wave__1_"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
