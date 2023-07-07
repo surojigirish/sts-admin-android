@@ -3,18 +3,22 @@ package com.example.sts_admin.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.BusReportAdapter;
@@ -36,6 +40,7 @@ public class GetReport extends AppCompatActivity {
     TextView title, tvDate,tvBusId, tvReportDate, tvBusRegNumber, tvBusType, busNo ,dateEnd;
     AppCompatButton reportBtn;
     AppCompatImageButton backButton;
+    AppCompatImageView no_schedule_data_image;
     RecyclerView rvReportList;
     String selectedDate,endSelectedDate;
     Integer busId;
@@ -116,7 +121,22 @@ public class GetReport extends AppCompatActivity {
                     tvBusType.setText(busType);
 
                     resultReportList = response.body().getResult().getScheduleR();
-                    rvReportList.setAdapter(new BusReportAdapter(resultReportList, getApplicationContext()));
+
+
+                     // ui changes if not bus schedule available
+                    if (resultReportList.isEmpty()){
+                        rvReportList.setVisibility(View.GONE);
+                        no_schedule_data_image.setVisibility(View.VISIBLE);
+
+                        // Use Glide to load the image into the ImageView
+                        Glide.with(getApplicationContext())
+                                .load(R.drawable.no_results)
+                                .into(no_schedule_data_image);
+                    }else {
+                        no_schedule_data_image.setVisibility(View.GONE);
+                        rvReportList.setAdapter(new BusReportAdapter(resultReportList, getApplicationContext()));
+                    }
+
                 }
             }
 
@@ -148,6 +168,7 @@ public class GetReport extends AppCompatActivity {
         title = findViewById(R.id.tvReportTitle);
         tvBusId = findViewById(R.id.tv_report_bus_id);
         tvDate = findViewById(R.id.tv_report_date_picker);
+        no_schedule_data_image = findViewById(R.id.no_data);
         dateEnd = findViewById(R.id.tv_report_date_picker_last);
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);

@@ -185,6 +185,15 @@
 
     </LinearLayout>
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/no_data"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:src="@drawable/no_results"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvReport"
         android:layout_width="0dp"
