@@ -93,84 +93,88 @@
 
     </LinearLayout>
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/ll_bus_status_details"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:gravity="center"-->
-<!--        android:layout_marginTop="80dp"-->
-<!--        android:orientation="horizontal"-->
+<!--    <EditText-->
+<!--        android:id="@+id/et_bus_status"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+
+
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:background="@drawable/textview_custom_border"-->
+<!--        android:padding="5dp"-->
+<!--        android:text="Bus Status"-->
+
+<!--        android:textSize="20sp"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_chainStyle="packed"-->
-<!--        android:background="@android:color/holo_orange_light"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/ll_bus_capacity_details">-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ll_bus_capacity_details" />-->
 
-<!--    <TextView-->
-<!--        android:id="@+id/tv_bus_status_detail"-->
+
+    <!--    <Spinner-->
+<!--        android:id="@+id/bus_status_spinner"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:background="@drawable/textview_custom_border"-->
+<!--        android:padding="10dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/bus_type_spinner" />-->
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_bus_details_type"-->
 <!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_weight="1"-->
-<!--        android:gravity="center"-->
-<!--        android:text="Capacity"-->
-<!--        android:textSize="16sp" />-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:background="@drawable/textview_custom_border"-->
+<!--        android:padding="5dp"-->
+<!--        android:text="Bus Type"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/et_bus_status"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/et_bus_status" />-->
 
-    <!--    </LinearLayout>-->
-    <EditText
-        android:id="@+id/et_bus_status"
+    <Spinner
+        android:id="@+id/bus_type_update_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/textview_custom_border"
-        android:padding="5dp"
-        android:text="Bus Status"
-
-        android:textSize="20sp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_bus_capacity_details" />
 
-
-    <!--    <Spinner-->
-    <!--        android:id="@+id/bus_type_details_spinner"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="7dp"-->
-    <!--        android:layout_marginTop="15dp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/tv_bus_status" />-->
-
-    <EditText
-        android:id="@+id/et_bus_details_type"
+    <Spinner
+        android:id="@+id/bus_status_update_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:background="@drawable/textview_custom_border"
-        android:padding="5dp"
-        android:text="Bus Type"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/et_bus_status"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_bus_status" />
+        app:layout_constraintTop_toBottomOf="@+id/bus_type_update_spinner" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/updateStatusType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/holo_orange_light"
         android:text="Update"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/et_bus_details_type"
+        app:layout_constraintEnd_toEndOf="@+id/bus_type_update_spinner"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_bus_details_type" />
+        app:layout_constraintTop_toBottomOf="@+id/bus_status_update_spinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

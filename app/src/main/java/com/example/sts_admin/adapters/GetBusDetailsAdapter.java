@@ -59,7 +59,7 @@ public class GetBusDetailsAdapter extends RecyclerView.Adapter<GetBusDetailsAdap
                   BusResult selectedBus = busResultList.get(pos);
 
                   Integer busCapacity = selectedBus.getCapacity();
-                    Integer busId= selectedBus.getId();
+                  Integer busId= selectedBus.getId();
                   String busStatus = selectedBus.getStatus();
                   String busType = selectedBus.getType();
 

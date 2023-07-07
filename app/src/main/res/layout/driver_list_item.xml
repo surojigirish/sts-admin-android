@@ -7,10 +7,11 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="#FFFED266"
+        android:padding="10dp"
+        android:background="@drawable/textview_custom_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,24 +20,19 @@
 
         <TextView
             android:id="@+id/tv_driver_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:textSize="21sp"
-            android:padding="8dp"
+            android:textSize="15sp"
+            android:background="@drawable/bg_list_item"
             android:text="driver name" />
 
         <TextView
             android:id="@+id/tv_driver_emp_no"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:padding="8dp"
-            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_list_item"
             android:text="employee_no"
-            android:textAlignment="center"
-            android:textSize="21sp" />
+            android:textSize="15sp" />
 
 
     </LinearLayout>

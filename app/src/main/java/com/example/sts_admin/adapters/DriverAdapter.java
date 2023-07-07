@@ -1,6 +1,7 @@
 package com.example.sts_admin.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,8 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
                 driverList.get(position).getLastname();
 
         holder.driverName.setText(driverName);
-        holder.driverEmployeeNo.setText(driverList.get(position).getEmployeeNo());
+        holder.driverEmployeeNo.setText(driverList.get(position).getLicenseNo());
+        Log.i("TAG", "onBindViewHolder: "+driverList.get(position).getLicenseNo());
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

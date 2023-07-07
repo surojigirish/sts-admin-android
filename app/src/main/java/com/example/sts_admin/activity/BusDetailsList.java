@@ -30,12 +30,14 @@ public class BusDetailsList extends AppCompatActivity {
 
     TextView busDetailsId, busDetailsCapacity;
 
-    EditText busDetailsType,busDetailsStatus;
+//    EditText busDetailsType,busDetailsStatus;
+
+    Spinner busDetailsType,busDetailsStatus;
 
     Button updateStatusType;
 //    Spinner busTypeSpinner;
 //
-//    String busTypeItem;
+    String busTypeItem, busStatusItem;
 
 
     @SuppressLint("MissingInflatedId")
@@ -46,9 +48,8 @@ public class BusDetailsList extends AppCompatActivity {
 //
         busDetailsId = findViewById(R.id.tv_bus_id);
         busDetailsCapacity= findViewById(R.id.tv_bus_capacity);
-        busDetailsStatus = findViewById(R.id.et_bus_status);
-        busDetailsType= findViewById(R.id.et_bus_details_type);
-//        busTypeSpinner = findViewById(R.id.bus_type_details_spinner);
+        busDetailsType = findViewById(R.id.bus_type_update_spinner);
+        busDetailsStatus = findViewById(R.id.bus_status_update_spinner);
         updateStatusType=findViewById(R.id.updateStatusType);
 
         Intent i = getIntent();
@@ -61,22 +62,44 @@ public class BusDetailsList extends AppCompatActivity {
 
         busDetailsCapacity.setText(busCapacity.toString());
         busDetailsId.setText(busId.toString());
-        busDetailsStatus.setText(busStatus);
-        busDetailsType.setText(busType);
+        if (busStatus.equals("INACTIVE")) {
+            busDetailsStatus.setSelection(0);
+        }else{
+            busDetailsStatus.setSelection(1);
+        }
 
-//        busType();
+        if (busType.equals("LOCAL")) {
+            busDetailsType.setSelection(0);
+        }else{
+            busDetailsType.setSelection(1);
+        }
 
-//        busTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-//                setBusTypeItem(adapterView.getItemAtPosition(position).toString());
-//                Log.i("TAG", "onItemSelected: selected item "+adapterView.getItemAtPosition(position).toString());
-//            }
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//                // Handle the case when no item is selected
-//            }
-//        });
+
+        busDetailsType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                setBusTypeItem(adapterView.getItemAtPosition(position).toString());
+                Log.i("TAG", "onItemSelected: selected item "+adapterView.getItemAtPosition(position).toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Handle the case when no item is selected
+            }
+        });
+        busType();
+
+        busDetailsStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                setBusStatusItem(adapterView.getItemAtPosition(position).toString());
+                Log.i("TAG", "onItemSelected: selected item "+adapterView.getItemAtPosition(position).toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Handle the case when no item is selected
+            }
+        });
+        busStatus();
 
 
         updateStatusType.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +121,10 @@ public class BusDetailsList extends AppCompatActivity {
 
         UpdateBusDetailsRequest updateBusDetailsRequest = new UpdateBusDetailsRequest();
 
-        String updateStatus =  busDetailsStatus.getText().toString();
-        String updateType = busDetailsType.getText().toString();
+        String updateStatus = getBusStatusItem();
+        String updateType = getBusTypeItem();
+        Log.i("TAG", "updateBusDetail: "+getBusTypeItem());
+        Log.i("TAG", "updateBusDetail: "+getBusStatusItem());
 
 
         updateBusDetailsRequest.setStatus(updateStatus);
@@ -135,19 +160,34 @@ public class BusDetailsList extends AppCompatActivity {
     }
 
 //    // adapter for bus type spinner
-//    // bus type
-//    public void busType(){
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.bus_type_spinner_items, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        busTypeSpinner.setAdapter(adapter);
-//    }
+    // bus type
+    public void busType(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.bus_type_spinner_items, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        busDetailsType.setAdapter(adapter);
+    }
+//public void busStatus(){
+    public void busStatus(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.bus_status_spinner_items, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        busDetailsStatus.setAdapter(adapter);
+    }
 //
-//    public String getBusTypeItem() {
-//        return busTypeItem;
-//    }
-//
-//    public void setBusTypeItem(String busTypeItem) {
-//        this.busTypeItem = busTypeItem;
-//    }
+    public String getBusTypeItem() {
+        return busTypeItem;
+    }
+
+    public void setBusTypeItem(String busTypeItem) {
+        this.busTypeItem = busTypeItem;
+    }
+
+    public String getBusStatusItem() {
+        return busStatusItem;
+    }
+
+    public void setBusStatusItem(String busStatusItem) {
+        this.busStatusItem = busStatusItem;
+    }
 }
