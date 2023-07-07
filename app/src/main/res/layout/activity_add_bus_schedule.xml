@@ -7,6 +7,7 @@
     tools:context=".activity.AddBusSchedule">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutAddBusSchedule"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@android:color/holo_orange_light"
@@ -127,6 +128,7 @@
 
 
         <View
+            android:id="@+id/viewAddBusSchedule"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="50dp"

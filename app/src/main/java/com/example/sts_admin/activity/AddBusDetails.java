@@ -2,6 +2,8 @@ package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +30,8 @@ public class AddBusDetails extends AppCompatActivity {
 
     EditText reg_no, capacity;
     AppCompatButton addBus,getBusDetails;
+    AppCompatImageButton backButton;
+    ConstraintLayout constraintLayout;
     Spinner busStatusSpinner,busTypeSpinner;
     String busStatusItem,busTypeItem;
 
@@ -39,6 +43,7 @@ public class AddBusDetails extends AppCompatActivity {
         setContentView(R.layout.activity_add_bus_details);
 
         reg_no = findViewById(R.id.bus_regno);
+        backButton = findViewById(R.id.back_btn_add_bus_screen);
         capacity = findViewById(R.id.bus_capacity);
         busTypeSpinner = findViewById(R.id.bus_type_spinner);
         busStatusSpinner = findViewById(R.id.bus_status_spinner);
@@ -96,6 +101,15 @@ public class AddBusDetails extends AppCompatActivity {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminDashboard.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     // api call

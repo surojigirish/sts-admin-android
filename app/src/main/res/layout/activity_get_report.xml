@@ -7,7 +7,7 @@
     tools:context=".activity.GetReport">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout4"
+        android:id="@+id/constraintLayoutGetReport"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,7 +16,7 @@
         tools:ignore="MissingConstraints">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/back_btn_add_routeinfo_screen"
+            android:id="@+id/back_btn_passenger_details_screen"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutGetReport" />
 
     <TextView
         android:id="@+id/tv_report_date_picker"

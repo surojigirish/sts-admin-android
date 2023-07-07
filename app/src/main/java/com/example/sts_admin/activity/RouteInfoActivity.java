@@ -2,6 +2,7 @@ package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
@@ -43,6 +44,7 @@ public class RouteInfoActivity extends AppCompatActivity {
     TextView etRouteInfo, etSource, etDestination;
     EditText fareAmount;
     AppCompatButton btnAddRouteInfo,routeInfoDetailsBtn;
+    AppCompatImageButton backButton;
     Spinner busTypeSpinner;
     String busTypeItem,finalDistance,finalFare;
     Double BASE_FARE;
@@ -69,6 +71,16 @@ public class RouteInfoActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UpdateSchedule.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         int routeId = sharedPreferences.getInt("routeId", 0);
         String routeDestination = sharedPreferences.getString("routeDestination", "");
@@ -319,6 +331,7 @@ public class RouteInfoActivity extends AppCompatActivity {
         etRouteInfo = findViewById(R.id.tv_route_stands);
         etSource = findViewById(R.id.tv_source);
         etDestination = findViewById(R.id.tv_destination);
+        backButton = findViewById(R.id.back_btn_add_routeinfo_screen);
 
 
         // textview

@@ -7,11 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.sts_admin.Consts;
@@ -39,6 +42,8 @@ public class AddBusSchedule extends AppCompatActivity {
     private int year, month, dayOfMonth;
     TextView etBusid,etScheduleId,etDrivers;
     AppCompatButton addBusScheduleBtn;
+    AppCompatImageButton backButton;
+    ConstraintLayout constraintLayout;
 
     // shared pref
     SharedPrefManager sharedPrefManager;
@@ -52,6 +57,15 @@ public class AddBusSchedule extends AppCompatActivity {
 
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminDashboard.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
         etBusid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -202,6 +216,8 @@ public class AddBusSchedule extends AppCompatActivity {
         etScheduleId = findViewById(R.id.et_schedule_id);
         datePicker = findViewById(R.id.tv_date_picker);
         addBusScheduleBtn = findViewById(R.id.add_bus_details_btn);
+        constraintLayout = findViewById(R.id.constraintLayoutAddBusSchedule);
+        backButton = findViewById(R.id.back_btn_add_bus_schedule);
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
@@ -217,6 +233,7 @@ public class AddBusSchedule extends AppCompatActivity {
         datePicker.setVisibility(View.GONE);
         addBusScheduleBtn.setVisibility(View.GONE);
         etDrivers.setVisibility(View.GONE);
+        backButton.setVisibility(View.GONE);
     }
 
     public void getSearchBusData(){

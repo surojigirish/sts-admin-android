@@ -2,6 +2,7 @@ package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +35,7 @@ public class GetReport extends AppCompatActivity {
 
     TextView title, tvDate,tvBusId, tvReportDate, tvBusRegNumber, tvBusType, busNo ,dateEnd;
     AppCompatButton reportBtn;
+    AppCompatImageButton backButton;
     RecyclerView rvReportList;
     String selectedDate,endSelectedDate;
     Integer busId;
@@ -130,6 +132,15 @@ public class GetReport extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminDashboard.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
 //        showTextViewData();
     }
 
@@ -144,6 +155,7 @@ public class GetReport extends AppCompatActivity {
         dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
         reportBtn = findViewById(R.id.generateReportBtn);
         rvReportList = findViewById(R.id.rvReport);
+        backButton = findViewById(R.id.back_btn_passenger_details_screen);
 
         // TextView to hold dynamic bus detail for report
         tvReportDate = findViewById(R.id.tv_report_date);
@@ -191,6 +203,7 @@ public class GetReport extends AppCompatActivity {
         v8.setVisibility(View.GONE);
         v9.setVisibility(View.GONE);
         v10.setVisibility(View.GONE);
+        backButton.setVisibility(View.GONE);
 
 
     }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -44,6 +45,7 @@ public class AddHalts extends AppCompatActivity {
 
     EditText etHaltName, etHaltLongitude, etHaltLatitude;
     AppCompatButton btnAddHalt, btnGetLatLong, btnGoogleMaps;
+    AppCompatImageButton backButton;
 
     // location
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -76,6 +78,8 @@ public class AddHalts extends AppCompatActivity {
         btnGetLatLong = findViewById(R.id.btn_geo_location);
         btnGoogleMaps = findViewById(R.id.btn_googleMaps);
 
+        backButton = findViewById(R.id.back_btn_add_halts_screen);
+
     }
 
     @Override
@@ -83,6 +87,16 @@ public class AddHalts extends AppCompatActivity {
         super.onStart();
 
         requestLocationPermission();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UpdateSchedule.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         btnAddHalt.setOnClickListener(new View.OnClickListener() {
             @Override

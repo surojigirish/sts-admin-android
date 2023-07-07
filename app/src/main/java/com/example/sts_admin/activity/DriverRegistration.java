@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
@@ -36,6 +37,7 @@ public class DriverRegistration extends AppCompatActivity {
     TextView text;
     EditText firstname,email, lastname,password,licenseNo, contactNo, gender;
     AppCompatButton regBtn, driverDetailsBtn;
+    AppCompatImageButton backButton;
 
     SharedPrefManager sharedPrefManager;
     Spinner spinner_gender;
@@ -52,6 +54,16 @@ public class DriverRegistration extends AppCompatActivity {
         sharedPrefManager = new SharedPrefManager(getApplicationContext());
 
         getGenderData();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminDashboard.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         regBtn.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +139,7 @@ public class DriverRegistration extends AppCompatActivity {
         contactNo = findViewById(R.id.et_contact_number);
         driverDetailsBtn=findViewById(R.id.driverDetailsBtn);
         spinner_gender=findViewById(R.id.et_gender);
+        backButton=findViewById(R.id.back_btn_add_driver_reg_screen);
 
     }
 

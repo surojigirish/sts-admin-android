@@ -4,11 +4,13 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.sts_admin.Consts;
@@ -27,6 +29,7 @@ public class ViewPassengerDetails extends AppCompatActivity {
 
     TextView tvname,tvEmail,tvContact, tvAddress, tvGender, tvCategory;
     CircleImageView profile_picture;
+    AppCompatImageButton backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,20 @@ public class ViewPassengerDetails extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GetPassengerList.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
     private void initViews() {
         tvname = findViewById(R.id.name_text);
         tvEmail = findViewById(R.id.email_text);
@@ -57,6 +74,7 @@ public class ViewPassengerDetails extends AppCompatActivity {
         tvGender = findViewById(R.id.genger_text);
         tvCategory = findViewById(R.id.category_text);
         profile_picture = findViewById(R.id.passenger_profile_picture);
+        backButton = findViewById(R.id.back_btn_passenger_details_screen);
 
     }
 }

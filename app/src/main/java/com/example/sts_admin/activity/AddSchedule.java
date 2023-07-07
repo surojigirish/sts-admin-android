@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,6 +55,7 @@ public class AddSchedule extends AppCompatActivity {
     ShowRouteAdapter.OnRouteItemClickListener onRouteItemClickListener;
 
     AppCompatButton addScheduleBtn;
+    AppCompatImageButton backButton;
 
     String saveArrivalTime, savaDepartureTime, timeDuration;
     RecyclerView rvShowRoutes;
@@ -85,22 +87,29 @@ public class AddSchedule extends AppCompatActivity {
         tv_routeId =findViewById(R.id.tvrouteId);
         text=findViewById(R.id.textView4);
         textView5=findViewById(R.id.textView5);
+        backButton=findViewById(R.id.back_btn_add_scheduleinfo_screen);
 
         rvShowRoutes = findViewById(R.id.rvShowRoutesForSchedule);
         rvShowRoutes.setHasFixedSize(true);
         rvShowRoutes.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-
         sharedPrefManager=new SharedPrefManager(getApplicationContext());
-
-
-//        ArrayAdapter<CharSequence> adapter=ArrayAdapter.createFromResource(this, R.array.class.getModifiers(), android.R.layout.simple_dropdown_item_1line);
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UpdateSchedule.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         getRouteList();
         // departure time setter
@@ -120,9 +129,7 @@ public class AddSchedule extends AppCompatActivity {
 
         });
 
-
         // method to calculate time duration
-
         durationTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,8 +139,6 @@ public class AddSchedule extends AppCompatActivity {
 
             }
         });
-
-
 
         addScheduleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +169,6 @@ public class AddSchedule extends AppCompatActivity {
             }
         });
 
-
         tv_routeId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,7 +190,6 @@ public class AddSchedule extends AppCompatActivity {
         };
 
     }
-
 
 
     /*-- used to get all the routes and display schedule allocated to each route-----*/
@@ -234,6 +237,7 @@ public class AddSchedule extends AppCompatActivity {
         text.setVisibility(View.GONE);
         textView5.setVisibility(View.GONE);
         rvShowRoutes.setVisibility(View.GONE);
+        backButton.setVisibility(View.GONE);
 //        imageViewScreenBackground.setVisibility(View.GONE);
     }
 
@@ -242,7 +246,6 @@ public class AddSchedule extends AppCompatActivity {
         Log.i("TAG", "onCreate: " + duration);
         durationTime.setText(duration);
     }
-
     public void departureTimeFunc() {
         // Button click listener
 
@@ -275,7 +278,6 @@ public class AddSchedule extends AppCompatActivity {
         // Show the TimePickerDialog
         timePickerDialog.show();
     }
-
     public void arrivalTimeFunc() {
         // Create a TimePickerDialog
         TimePickerDialog timePickerDialog = new TimePickerDialog(
@@ -301,7 +303,6 @@ public class AddSchedule extends AppCompatActivity {
         // Show the TimePickerDialog
         timePickerDialog.show();
     }
-
     public void getRouteInfo(){
         Intent i= getIntent();
         setRouteIdInfo(i.getIntExtra("routeId",0));
@@ -316,8 +317,6 @@ public class AddSchedule extends AppCompatActivity {
 //            tv_routeId.setText(tvSrcDst);
 //        }
     }
-
-
     public ScheduleRequest scheduleRequest(){
         ScheduleRequest scheduleRequest=new ScheduleRequest();
         scheduleRequest.setDepartureTime(getSavaDepartureTime());
@@ -327,7 +326,6 @@ public class AddSchedule extends AppCompatActivity {
         scheduleRequest.setRouteId(getRouteIdInfo());
         return scheduleRequest;
     }
-
     public void schedule(ScheduleRequest scheduleRequest){
         Call<ScheduleResponse>scheduleResponseCall= Client.getInstance(Consts.BASE_URL_SCHEDULE).getRoute().addSchedule(scheduleRequest);
         scheduleResponseCall.enqueue(new Callback<ScheduleResponse>() {
@@ -352,9 +350,6 @@ public class AddSchedule extends AppCompatActivity {
             }
         });
     }
-
-
-
 
     // getter setter of arrive and departure time
     public String getSaveArrivalTime() {

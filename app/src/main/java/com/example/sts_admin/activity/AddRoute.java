@@ -2,6 +2,7 @@ package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,6 +48,7 @@ public class AddRoute extends AppCompatActivity {
     TableLayout tableLayout;
     ConstraintLayout constraintDesign;
     AppCompatButton addNewRoute;
+    AppCompatImageButton backButton;
 
     // SharedPreferences to Handle route data
     SharedPreferences sf;
@@ -90,6 +92,15 @@ public class AddRoute extends AppCompatActivity {
         // set views data
         setViewData();
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UpdateSchedule.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
         // Source onClick handler to select Source Halt from available list
         source.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,8 +261,10 @@ public class AddRoute extends AppCompatActivity {
 
         // Recycler View
         recyclerView = findViewById(R.id.recyclerViewRouteDetails);
+        backButton = findViewById(R.id.back_btn_add_route_screen);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
 
         // Swipe to refresh
         swipeRefreshLayout = findViewById(R.id.swipeToRefreshRoutes);
@@ -317,6 +330,7 @@ public class AddRoute extends AppCompatActivity {
         addRouteT.setVisibility(View.INVISIBLE);
         availableRouteT.setVisibility(View.INVISIBLE);
         tableLayout.setVisibility(View.INVISIBLE);
+        backButton.setVisibility(View.INVISIBLE);
 
         // Swipe to refresh
         swipeRefreshLayout.setVisibility(View.INVISIBLE);

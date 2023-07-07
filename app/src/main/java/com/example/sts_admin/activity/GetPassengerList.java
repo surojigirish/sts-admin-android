@@ -1,11 +1,13 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
@@ -25,6 +27,7 @@ public class GetPassengerList extends AppCompatActivity {
     RecyclerView recyclerView;
 
     List<Passengers> passengerUserList;
+    AppCompatImageButton backButton;
 
     GetPassengerListAdapter.OnPassengerItemClickListener onPassengerItemClickListener;
 
@@ -34,6 +37,7 @@ public class GetPassengerList extends AppCompatActivity {
         setContentView(R.layout.activity_get_passenger_details);
 
         recyclerView = findViewById(R.id.recyclerViewPassengerDetails);
+        backButton = findViewById(R.id.back_btn_get_pass_list_screen);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -46,6 +50,15 @@ public class GetPassengerList extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         getAllPassengerDetails();
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdminDashboard.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         onPassengerItemClickListener = new GetPassengerListAdapter.OnPassengerItemClickListener() {
             @Override
