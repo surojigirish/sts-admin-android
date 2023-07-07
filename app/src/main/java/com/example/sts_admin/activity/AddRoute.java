@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -108,8 +109,9 @@ public class AddRoute extends AppCompatActivity {
 
                 // Check if the fragment is already added
                 RouteSourceFragment routeSourceFragment = new RouteSourceFragment();
+                String fragmentTag = "sourceFrag";
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frameLayout_route_container, routeSourceFragment);
+                transaction.add(R.id.frameLayout_route_container, routeSourceFragment,fragmentTag);
                 transaction.commit();
 
                 // hide views on call
@@ -126,6 +128,8 @@ public class AddRoute extends AppCompatActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frameLayout_route_container, fragment);
                 transaction.commit();
+
+
 
                 // hide views on call
                 hideViewsOnFrag();
