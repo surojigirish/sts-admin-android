@@ -12,6 +12,7 @@ import com.example.sts_admin.apiservice.request.HaltRequest;
 import com.example.sts_admin.apiservice.request.RouteInfoRequest;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.request.UpdateBusDetailsRequest;
+import com.example.sts_admin.apiservice.request.UpdateScheduleRequest;
 import com.example.sts_admin.apiservice.request.ValidationRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
@@ -38,6 +39,7 @@ import com.example.sts_admin.apiservice.response.RouteRoutesInfoResponse;
 import com.example.sts_admin.apiservice.response.RouteScheduleResponse;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.apiservice.response.UpdateBusDetailsResponse;
+import com.example.sts_admin.apiservice.response.UpdateScheduleResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -161,4 +163,9 @@ public interface Api {
     Call<RouteScheduleResponse> showRouteSchedule(@Path("route-id") Integer routeId);
     @GET(Consts.BASE_URL_GET_PASSENGER_PROFILE)
     Call<PassengerProfileImageResponse> getPassengerPrOfileImage(@Path("url") String url);
+
+
+    @PUT(Consts.ENDPOINT_UPDATE_SCHEDULE_DETAILS)
+    Call<UpdateScheduleResponse> updateScheduleDetails(@Path("schedule-id")Integer scheduleId,
+                                                  @Body UpdateScheduleRequest updateScheduleRequest);
 }

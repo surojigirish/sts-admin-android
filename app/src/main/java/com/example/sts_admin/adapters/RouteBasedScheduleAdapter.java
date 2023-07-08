@@ -19,9 +19,12 @@ public class RouteBasedScheduleAdapter extends RecyclerView.Adapter<RouteBasedSc
     List<ResultRouteSchedule> resultRouteSchedule;
     Context context;
 
-    public RouteBasedScheduleAdapter(List<ResultRouteSchedule> resultRouteSchedule, Context context) {
+    OnItemClickListener onItemClickListener;
+
+    public RouteBasedScheduleAdapter(List<ResultRouteSchedule> resultRouteSchedule, Context context, OnItemClickListener onItemClickListener) {
         this.resultRouteSchedule = resultRouteSchedule;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -45,6 +48,26 @@ public class RouteBasedScheduleAdapter extends RecyclerView.Adapter<RouteBasedSc
         holder.tvArrivalAt.setText(resultRouteSchedule.get(position).getArrivalAt());
         holder.tvDuration.setText(resultRouteSchedule.get(position).getDuration());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = holder.getAdapterPosition();
+
+                if (pos != RecyclerView.NO_POSITION && onItemClickListener != null){
+                    ResultRouteSchedule selectedSchedule = resultRouteSchedule.get(pos);
+
+                    String id = selectedSchedule.getId();
+                    String source = selectedSchedule.getSource().getName();
+                    String destination = selectedSchedule.getDestination().getName();
+                    String arrivalT = selectedSchedule.getArrivalAt();
+                    String departureT = selectedSchedule.getDepartureAt();
+                    String duration = selectedSchedule.getDuration();
+
+
+                    onItemClickListener.onScheduleItemClick(id,source,destination,arrivalT,departureT,duration);
+                }
+            }
+        });
     }
 
     @Override
@@ -67,5 +90,13 @@ public class RouteBasedScheduleAdapter extends RecyclerView.Adapter<RouteBasedSc
             tvDuration = itemView.findViewById(R.id.tvDuration);
         }
     }
+
+
+    // OnClick listener interface
+    public interface OnItemClickListener {
+        void onScheduleItemClick(String id, String source, String destination, String arrivalTime,String departureTime,String duration);
+    }
+
+
 
 }
