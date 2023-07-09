@@ -24,6 +24,7 @@ public class Consts {
     public static final String ENDPOINT_ADMIN_LOGOUT = "logout";
     public static final String ENDPOINT_REGISTER_DRIVER = "register-driver";
     public static final String ENDPOINT_DRIVERS = "drivers";
+    public static final String ENDPOINT_UPDATE_DRIVER_DETAILS = "update-driver/{driver-id}";
 
     /* ROUTE API REQUESTS ENDPOINT */
     public static final String ENDPOINT_ADD_ROUTE = "add-route";

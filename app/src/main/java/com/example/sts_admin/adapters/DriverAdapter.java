@@ -45,8 +45,8 @@ public class DriverAdapter extends RecyclerView.Adapter<DriverAdapter.ViewHolder
         String driverName = driverList.get(position).getFirstname() + " " +
                 driverList.get(position).getLastname();
 
-        holder.driverName.setText(driverName);
-        holder.driverEmployeeNo.setText(driverList.get(position).getLicenseNo());
+        holder.driverName.setText("Driver Name : "+driverName);
+        holder.driverEmployeeNo.setText("Employee No : "+driverList.get(position).getEmployeeNo());
         Log.i("TAG", "onBindViewHolder: "+driverList.get(position).getLicenseNo());
 
 

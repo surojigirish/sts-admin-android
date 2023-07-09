@@ -12,6 +12,7 @@ import com.example.sts_admin.apiservice.request.HaltRequest;
 import com.example.sts_admin.apiservice.request.RouteInfoRequest;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.request.UpdateBusDetailsRequest;
+import com.example.sts_admin.apiservice.request.UpdateDriverRequest;
 import com.example.sts_admin.apiservice.request.UpdateScheduleRequest;
 import com.example.sts_admin.apiservice.request.ValidationRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
@@ -39,6 +40,7 @@ import com.example.sts_admin.apiservice.response.RouteRoutesInfoResponse;
 import com.example.sts_admin.apiservice.response.RouteScheduleResponse;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.apiservice.response.UpdateBusDetailsResponse;
+import com.example.sts_admin.apiservice.response.UpdateDriverDetailsResponse;
 import com.example.sts_admin.apiservice.response.UpdateScheduleResponse;
 
 import retrofit2.Call;
@@ -168,4 +170,9 @@ public interface Api {
     @PUT(Consts.ENDPOINT_UPDATE_SCHEDULE_DETAILS)
     Call<UpdateScheduleResponse> updateScheduleDetails(@Path("schedule-id")Integer scheduleId,
                                                   @Body UpdateScheduleRequest updateScheduleRequest);
+
+    @PUT(Consts.ENDPOINT_UPDATE_DRIVER_DETAILS)
+    Call<UpdateDriverDetailsResponse> updateDriverDetails(@Path("driver-id")Integer driverId,
+                                                            @Body UpdateDriverRequest updateDriverRequest,
+                                                            @Header("Authorization") String token);
 }

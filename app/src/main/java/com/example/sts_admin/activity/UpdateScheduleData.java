@@ -19,6 +19,7 @@ import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.UpdateScheduleRequest;
 import com.example.sts_admin.apiservice.response.UpdateScheduleResponse;
 import com.example.sts_admin.assets.TimeDurationCalculator;
+import com.example.sts_admin.sharedpref.SharedPrefManager;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -34,6 +35,7 @@ public class UpdateScheduleData extends AppCompatActivity {
     AppCompatImageButton backButton;
     int hour, minute;
     String SavaDepartureTime,SavaArrivalTime;
+    SharedPrefManager sharedPrefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,6 +212,10 @@ public class UpdateScheduleData extends AppCompatActivity {
             public void onResponse(Call<UpdateScheduleResponse> call, Response<UpdateScheduleResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
                     Toast.makeText(UpdateScheduleData.this, "Schedule Updated Successfully", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), ShowRouteBasedSchedule.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
                 }else {
                     Toast.makeText(UpdateScheduleData.this, "fail to connect to db", Toast.LENGTH_LONG).show();
                     Log.i("TAG", "onFailure: ");
@@ -224,6 +230,15 @@ public class UpdateScheduleData extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    // ================== user session token =================
+
+    public String getUserSession() {
+        sharedPrefManager = new SharedPrefManager(getApplicationContext());
+
+        return sharedPrefManager.getUser().getToken();
     }
 
 
