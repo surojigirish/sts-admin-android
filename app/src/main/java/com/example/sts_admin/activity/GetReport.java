@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.sts_admin.Consts;
@@ -62,18 +63,16 @@ public class GetReport extends AppCompatActivity {
         tvDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getUserSelectedDate(tvDate);
-                setSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
-                Log.i("TAG", "date onClick: "+getSelectedDate());
+                getUserSelectedDate();
+//                Log.i("TAG", "date onClick: "+getSelectedDate());
             }
         });
 
         dateEnd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getUserSelectedDate(dateEnd);
-                setEndSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
-                Log.i("TAG", "end date onClick: "+getEndSelectedDate());
+                getUserEndSelectedDate();
+//                Log.i("TAG", "end date onClick: "+getEndSelectedDate());
             }
         });
 
@@ -95,7 +94,19 @@ public class GetReport extends AppCompatActivity {
         reportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ViewReport(getBusId(), getSelectedDate(),getEndSelectedDate());
+                if (tvBusId.getText().toString().equals(null)){
+                    tvBusId.setError("BUS Id Required");
+                } else if (tvDate.getText().toString().isEmpty()) {
+                    tvBusId.setError(null);
+                    tvDate.setError("Required");
+                } else if (dateEnd.getText().toString().isEmpty()) {
+                    tvDate.setError(null);
+                    dateEnd.setError("Required");
+                }else {
+                    dateEnd.setError(null);
+                    ViewReport(getBusId(), getSelectedDate(),getEndSelectedDate());
+                }
+
             }
         });
 
@@ -105,46 +116,91 @@ public class GetReport extends AppCompatActivity {
     private void ViewReport(Integer busId, String selectedDate, String endSelectedDate) {
         Log.i("TAG", "ViewReport: startdate "+selectedDate);
         Log.i("TAG", "ViewReport: enddate "+endSelectedDate);
-        Call<ReportGenerationResponse> responseCall = Client.getInstance(Consts.BASE_URL_REPORT).getRoute().getBusReport(busId,selectedDate);
-        responseCall.enqueue(new Callback<ReportGenerationResponse>() {
-            @Override
-            public void onResponse(Call<ReportGenerationResponse> call, Response<ReportGenerationResponse> response) {
-                if (response.isSuccessful() && response.body() != null){
 
-                    // Api bus data
-                    String busRegistrationNumber = "Bus Number : " + response.body().getResult().getBusR().getRegNo();
-                    String busType = "Bus Type : " + response.body().getResult().getBusR().getType();
-                    String reportDate = "Date : " + response.body().getResult().getDate();
-                    // Display the bus and report date on text views
-                    tvReportDate.setText(reportDate);
-                    tvBusRegNumber.setText(busRegistrationNumber);
-                    tvBusType.setText(busType);
+//        if (endSelectedDate.isEmpty()){
+//            Call<ReportGenerationResponse> responseCall = Client.getInstance(Consts.BASE_URL_REPORT).getRoute().getBusReport(busId,selectedDate);
+//            responseCall.enqueue(new Callback<ReportGenerationResponse>() {
+//                @Override
+//                public void onResponse(Call<ReportGenerationResponse> call, Response<ReportGenerationResponse> response) {
+//                    if (response.isSuccessful() && response.body() != null){
+//
+//                        // Api bus data
+//                        String busRegistrationNumber = "Bus Number : " + response.body().getResult().getBusR().getRegNo();
+//                        String busType = "Bus Type : " + response.body().getResult().getBusR().getType();
+//                        String reportDate = "Date : " + response.body().getResult().getDate();
+//                        // Display the bus and report date on text views
+//                        tvReportDate.setText(reportDate);
+//                        tvBusRegNumber.setText(busRegistrationNumber);
+//                        tvBusType.setText(busType);
+//
+//                        resultReportList = response.body().getResult().getScheduleR();
+//                        // ui changes if not bus schedule available
+//                        if (resultReportList.isEmpty()){
+//                            rvReportList.setVisibility(View.GONE);
+//                            no_schedule_data_image.setVisibility(View.VISIBLE);
+//
+//                            // Use Glide to load the image into the ImageView
+//                            Glide.with(getApplicationContext())
+//                                    .load(R.drawable.no_results)
+//                                    .into(no_schedule_data_image);
+//                        }else {
+//                            no_schedule_data_image.setVisibility(View.GONE);
+//                            rvReportList.setAdapter(new BusReportAdapter(resultReportList, getApplicationContext()));
+//                        }
+//
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<ReportGenerationResponse> call, Throwable t) {
+//
+//                }
+//            });
+//        }else {
+            Call<ReportGenerationResponse> responseCall = Client.getInstance(Consts.BASE_URL_REPORT).getRoute().getBusReportEndDate(busId,selectedDate,endSelectedDate);
+            responseCall.enqueue(new Callback<ReportGenerationResponse>() {
+                @Override
+                public void onResponse(Call<ReportGenerationResponse> call, Response<ReportGenerationResponse> response) {
+                    if (response.isSuccessful() && response.body() != null){
 
-                    resultReportList = response.body().getResult().getScheduleR();
+                        // Api bus data
+                        String busRegistrationNumber = "Bus Number : " + response.body().getResult().getBusR().getRegNo();
+                        String busType = "Bus Type : " + response.body().getResult().getBusR().getType();
+                        String reportDate = "Date : " + response.body().getResult().getApiStrartDate() +" - "+ response.body().getResult().getApiEndDate();
+                        // Display the bus and report date on text views
+                        tvReportDate.setText(reportDate);
+                        tvBusRegNumber.setText(busRegistrationNumber);
+                        tvBusType.setText(busType);
 
+                        resultReportList = response.body().getResult().getScheduleR();
+                        // ui changes if not bus schedule available
+                        if (resultReportList.isEmpty()){
+                            rvReportList.setVisibility(View.GONE);
+                            no_schedule_data_image.setVisibility(View.VISIBLE);
 
-                     // ui changes if not bus schedule available
-                    if (resultReportList.isEmpty()){
-                        rvReportList.setVisibility(View.GONE);
-                        no_schedule_data_image.setVisibility(View.VISIBLE);
+                            // Use Glide to load the image into the ImageView
+                            Glide.with(getApplicationContext())
+                                    .load(R.drawable.no_results)
+                                    .into(no_schedule_data_image);
+                        }else {
+                            no_schedule_data_image.setVisibility(View.GONE);
+                            rvReportList.setAdapter(new BusReportAdapter(resultReportList, getApplicationContext()));
+                        }
 
-                        // Use Glide to load the image into the ImageView
-                        Glide.with(getApplicationContext())
-                                .load(R.drawable.no_results)
-                                .into(no_schedule_data_image);
                     }else {
-                        no_schedule_data_image.setVisibility(View.GONE);
-                        rvReportList.setAdapter(new BusReportAdapter(resultReportList, getApplicationContext()));
+                        Toast.makeText(GetReport.this, ""+response.message(), Toast.LENGTH_SHORT).show();
                     }
-
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ReportGenerationResponse> call, Throwable t) {
+                @Override
+                public void onFailure(Call<ReportGenerationResponse> call, Throwable t) {
 
-            }
-        });
+                    Toast.makeText(GetReport.this, "err " +t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+//        }
+//      Call<ReportGenerationResponse> responseCall = Client.getInstance(Consts.BASE_URL_REPORT).getRoute().getBusReport(busId,selectedDate);
+
 
     }
 
@@ -189,16 +245,33 @@ public class GetReport extends AppCompatActivity {
     }
 
 
-    public void getUserSelectedDate(TextView Date){
+    public void getUserSelectedDate(){
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 GetReport.this,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         setSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
-//                        tvDate.setText(""+selectedDate);
-                        Date.setText(""+selectedDate);
-//                        Log.i("TAG", "onDateSet: " +selectedDate);
+                        tvDate.setText(""+getSelectedDate());
+//                        Log.i("TAG", "onDateSet: start date " +selectedDate);
+                    }
+                },
+                year,
+                month,
+                dayOfMonth
+        );
+        datePickerDialog.show();
+    }
+
+    public void getUserEndSelectedDate(){
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                GetReport.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        setEndSelectedDate(year + "-" + (month + 1) + "-" + dayOfMonth);
+                        dateEnd.setText(""+getEndSelectedDate());
+//                        Log.i("TAG", "onDateSet: end date " +getEndSelectedDate());
                     }
                 },
                 year,

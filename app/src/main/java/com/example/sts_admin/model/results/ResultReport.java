@@ -15,6 +15,11 @@ public class ResultReport {
     private String date;
     @SerializedName("schedules")
     private List<ScheduleR> scheduleR;
+    @SerializedName("end-date")
+    private String apiEndDate;
+    @SerializedName("start-date")
+    private String apiStrartDate;
+
 
     public BusR getBusR() {
         return busR;
@@ -38,5 +43,22 @@ public class ResultReport {
 
     public void setScheduleR(List<ScheduleR> scheduleR) {
         this.scheduleR = scheduleR;
+    }
+
+
+    public String getApiEndDate() {
+        return apiEndDate;
+    }
+
+    public void setApiEndDate(String apiEndDate) {
+        this.apiEndDate = apiEndDate;
+    }
+
+    public String getApiStrartDate() {
+        return apiStrartDate;
+    }
+
+    public void setApiStrartDate(String apiStrartDate) {
+        this.apiStrartDate = apiStrartDate;
     }
 }

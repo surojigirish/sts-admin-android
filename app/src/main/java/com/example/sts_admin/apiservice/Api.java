@@ -161,6 +161,11 @@ public interface Api {
 
     @GET(Consts.ENDPOINT_GENERATE_BUS_REPORT)
     Call<ReportGenerationResponse> getBusReport(@Query("bus-id") int busId, @Query("date") String date);
+
+    @GET(Consts.ENDPOINT_GENERATE_BUS_REPORT_ENDDATE)
+    Call<ReportGenerationResponse> getBusReportEndDate(@Query("bus-id") int busId,
+                                                       @Query("start-date") String startDate,
+                                                       @Query("end-date") String endDate);
     @GET(Consts.ENDPOINT_SHOW_ROUTE_SCHEDULE_DETAILS)
     Call<RouteScheduleResponse> showRouteSchedule(@Path("route-id") Integer routeId);
     @GET(Consts.BASE_URL_GET_PASSENGER_PROFILE)

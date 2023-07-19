@@ -55,7 +55,10 @@ public class UpdateScheduleData extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ShowRouteBasedSchedule.class);
+                Intent intent = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    intent = new Intent(getApplicationContext(), AddSchedule.class);
+                }
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -212,7 +215,10 @@ public class UpdateScheduleData extends AppCompatActivity {
             public void onResponse(Call<UpdateScheduleResponse> call, Response<UpdateScheduleResponse> response) {
                 if (response.isSuccessful() && response.body() != null){
                     Toast.makeText(UpdateScheduleData.this, "Schedule Updated Successfully", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), ShowRouteBasedSchedule.class);
+                    Intent intent = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        intent = new Intent(getApplicationContext(), AddSchedule.class);
+                    }
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
