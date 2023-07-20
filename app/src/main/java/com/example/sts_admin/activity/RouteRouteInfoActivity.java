@@ -104,8 +104,6 @@ public class RouteRouteInfoActivity extends AppCompatActivity {
                         // change ui based on data
                         if (routeInfoList.isEmpty()){
                             rvRoutesInfo.setVisibility(View.GONE);
-                            tvRouteSource.setVisibility(View.GONE);
-                            tvRouteDestination.setVisibility(View.GONE);
                             no_schedule_data_image.setVisibility(View.VISIBLE);
 
                             // Use Glide to load the image into the ImageView

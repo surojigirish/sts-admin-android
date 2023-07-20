@@ -197,6 +197,11 @@ public class RouteInfoActivity extends AppCompatActivity {
                 String fare = "";
 
 
+                if (fareAmount.getText().toString().isEmpty()){
+                    fareAmount.setError("Required");
+                }
+
+
                 if (!sourceLat.isEmpty() && !sourceLong.isEmpty() && !destinationLat.isEmpty() && !destinationLong.isEmpty()) {
                     try {
                         // Parse source and destination to Double
@@ -244,6 +249,9 @@ public class RouteInfoActivity extends AppCompatActivity {
                 double doubleDestinationLong = 0.0;
                 String distance = "";
                 String fare = "";
+
+                    fareAmount.setError(null);
+
 
 
                 if (!sourceLat.isEmpty() && !sourceLong.isEmpty() && !destinationLat.isEmpty() && !destinationLong.isEmpty()) {
