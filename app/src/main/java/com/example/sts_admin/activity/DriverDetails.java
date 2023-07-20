@@ -74,10 +74,8 @@ public class DriverDetails extends AppCompatActivity{
                                 i.putExtra("gender",driverGender);
                                 i.putExtra("employeeNo",driverEmployeeNo);
                                 startActivity(i);
-
                             }
                         }));
-
                     }
                 } else {
                     if (response.body() != null) {

@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Schedule {
 
-
 //    "arrival-at": "18:00",
 //        "departure-at": "17:15",
 //        "duration": "45",

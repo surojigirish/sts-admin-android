@@ -24,6 +24,7 @@ public class Consts {
     public static final String ENDPOINT_ADMIN_LOGOUT = "logout";
     public static final String ENDPOINT_REGISTER_DRIVER = "register-driver";
     public static final String ENDPOINT_DRIVERS = "drivers";
+    public static final String ENDPOINT_UPDATE_DRIVER_DETAILS = "update-driver/{driver-id}";
 
     /* ROUTE API REQUESTS ENDPOINT */
     public static final String ENDPOINT_ADD_ROUTE = "add-route";
@@ -56,7 +57,9 @@ public class Consts {
     //schedule
     public static final String ENDPOINT_ADD_SCHEDULE_DETAILS = "schedules";
     public static final String ENDPOINT_GENERATE_BUS_REPORT = "bus-report";
+    public static final String ENDPOINT_GENERATE_BUS_REPORT_ENDDATE = "bus-report/dates";
     public static final String ENDPOINT_SHOW_ROUTE_SCHEDULE_DETAILS = "schedules/route/{route-id}";
+    public static final String ENDPOINT_UPDATE_SCHEDULE_DETAILS = "schedules/{schedule-id}";
 
 
     // Buttons

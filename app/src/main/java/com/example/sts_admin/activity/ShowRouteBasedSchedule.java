@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.sts_admin.Consts;
@@ -29,11 +30,14 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
     RecyclerView rvRouteScheduleList;
     TextView route;
     List<ResultRouteSchedule> resultRouteScheduleList;
+    RouteBasedScheduleAdapter.OnItemClickListener itemClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_route_based_schedule);
+
+
         String rid = String.valueOf(getRouteId());
         rvRouteScheduleList = findViewById(R.id.rv_route_schedule);
         route = findViewById(R.id.routeName);
@@ -44,6 +48,13 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
         route.setText(getRouteInfo());
 
         getRouteScheduleList(rid);
+
+        itemClickListener = new RouteBasedScheduleAdapter.OnItemClickListener() {
+            @Override
+            public void onScheduleItemClick(String id, String source, String destination, String arrivalTime, String departureTime,String duration) {
+
+            }
+        };
 
 
 
@@ -59,7 +70,22 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
                 if (response.isSuccessful()){
                     if (response.body().getStatus() == 200 && response.body() != null){
                         resultRouteScheduleList =response.body().getResultRouteSchedule();
-                        rvRouteScheduleList.setAdapter(new RouteBasedScheduleAdapter(resultRouteScheduleList, getApplicationContext()));
+                        rvRouteScheduleList.setAdapter(new RouteBasedScheduleAdapter(resultRouteScheduleList, getApplicationContext(), new RouteBasedScheduleAdapter.OnItemClickListener() {
+                            @Override
+                            public void onScheduleItemClick(String id, String source, String destination, String arrivalTime, String departureTime,String duration) {
+
+                                Intent i = new Intent(getApplicationContext(), UpdateScheduleData.class);
+                                i.putExtra("sId", id);
+                                i.putExtra("Ssource", source);
+                                i.putExtra("Sdestination", destination);
+                                i.putExtra("SarrivalAt", arrivalTime);
+                                i.putExtra("SdepartureAt", departureTime);
+                                i.putExtra("Sduration", duration);
+                                startActivity(i);
+
+
+                            }
+                        }));
 
                     }
 
@@ -81,8 +107,6 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
     private String getRouteInfo() {
         Intent intent = getIntent();
         String routeName = intent.getStringExtra("routeSource") + " To "+intent.getStringExtra("routeDest");
-
-
         return routeName;
     }
     private int getRouteId(){

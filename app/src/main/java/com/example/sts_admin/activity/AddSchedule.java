@@ -1,12 +1,13 @@
 package com.example.sts_admin.activity;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -20,15 +21,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.ShowRouteAdapter;
 import com.example.sts_admin.apiservice.Client;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.response.GetRouteResponse;
-import com.example.sts_admin.apiservice.response.RouteScheduleResponse;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.assets.TimeDurationCalculator;
 import com.example.sts_admin.fragments.SearchRouteId;
@@ -38,6 +36,7 @@ import com.example.sts_admin.sharedpref.SharedPrefManager;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,16 +46,12 @@ import retrofit2.Response;
 public class AddSchedule extends AppCompatActivity {
     Integer routeIdInfo;
     TextView departureTime,arrivalTime,durationTime, tv_routeId,text,textView5;
-
     // ImageView holding screen bg
     ImageView imageViewScreenBackground;
     List<AddRouteDetails> addRouteDetailsList;
-
     ShowRouteAdapter.OnRouteItemClickListener onRouteItemClickListener;
-
     AppCompatButton addScheduleBtn;
     AppCompatImageButton backButton;
-
     String saveArrivalTime, savaDepartureTime, timeDuration;
     RecyclerView rvShowRoutes;
 
@@ -64,20 +59,13 @@ public class AddSchedule extends AppCompatActivity {
     int hour, minute;
 
     SharedPrefManager sharedPrefManager;
+    SharedPreferences sharedPreferences;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule);
-
-//        imageViewScreenBackground = findViewById(R.id.imgView_screen_bg);
-
-        // Load the svg here
-//        Glide.with(this)
-//                .load(R.drawable.screen_bg_sts)
-//                .into(imageViewScreenBackground);
-
 
         departureTime=findViewById(R.id.et_departure);
         arrivalTime=findViewById(R.id.et_arrival);
@@ -89,17 +77,24 @@ public class AddSchedule extends AppCompatActivity {
         textView5=findViewById(R.id.textView5);
         backButton=findViewById(R.id.back_btn_add_scheduleinfo_screen);
 
+
+
+
+
         rvShowRoutes = findViewById(R.id.rvShowRoutesForSchedule);
         rvShowRoutes.setHasFixedSize(true);
         rvShowRoutes.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         sharedPrefManager=new SharedPrefManager(getApplicationContext());
 
+        sharedPreferences = getSharedPreferences("schedule", Context.MODE_PRIVATE);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+//            tv_routeId.setText("add route");
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +105,26 @@ public class AddSchedule extends AppCompatActivity {
                 finish();
             }
         });
+
+        int routeId = sharedPreferences.getInt("routeId", 0);
+        String routeDestination = sharedPreferences.getString("routeDestination", "");
+        String routeSource = sharedPreferences.getString("routeSource", "");
+        setRouteIdInfo(routeId);
+
+        // check if route values are present in sp
+        if (routeId == 0 && routeDestination.isEmpty() && routeSource.isEmpty()) {
+            // set default values
+            routeSource = "N/A";
+            routeDestination = "N/A";
+        }
+
+        // set values to views
+        if (Objects.equals(routeSource, "N/A") && Objects.equals(routeDestination, "N/A")) {
+            tv_routeId.setText("SELECT ROUTE");
+        } else {
+            String routeInfo = routeSource + " " + routeDestination;
+            tv_routeId.setText(routeInfo);
+        }
 
         getRouteList();
         // departure time setter
@@ -164,6 +179,7 @@ public class AddSchedule extends AppCompatActivity {
                     durationTime.setError(null);
                     schedule(scheduleRequest());
                 }
+                clearRouteSharedPref();
 
 
             }
@@ -180,7 +196,7 @@ public class AddSchedule extends AppCompatActivity {
                 hideViews();
             }
         });
-        getRouteInfo();
+//        getRouteInfo();
 
         onRouteItemClickListener = new ShowRouteAdapter.OnRouteItemClickListener() {
             @Override
@@ -351,6 +367,14 @@ public class AddSchedule extends AppCompatActivity {
         });
     }
 
+
+
+    // clear shared pref for route
+    public void clearRouteSharedPref() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
     // getter setter of arrive and departure time
     public String getSaveArrivalTime() {
         return saveArrivalTime;

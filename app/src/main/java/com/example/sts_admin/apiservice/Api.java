@@ -12,6 +12,8 @@ import com.example.sts_admin.apiservice.request.HaltRequest;
 import com.example.sts_admin.apiservice.request.RouteInfoRequest;
 import com.example.sts_admin.apiservice.request.ScheduleRequest;
 import com.example.sts_admin.apiservice.request.UpdateBusDetailsRequest;
+import com.example.sts_admin.apiservice.request.UpdateDriverRequest;
+import com.example.sts_admin.apiservice.request.UpdateScheduleRequest;
 import com.example.sts_admin.apiservice.request.ValidationRequest;
 import com.example.sts_admin.apiservice.response.AddBusResponse;
 import com.example.sts_admin.apiservice.response.BusScheduleDetailsResponse;
@@ -38,6 +40,8 @@ import com.example.sts_admin.apiservice.response.RouteRoutesInfoResponse;
 import com.example.sts_admin.apiservice.response.RouteScheduleResponse;
 import com.example.sts_admin.apiservice.response.ScheduleResponse;
 import com.example.sts_admin.apiservice.response.UpdateBusDetailsResponse;
+import com.example.sts_admin.apiservice.response.UpdateDriverDetailsResponse;
+import com.example.sts_admin.apiservice.response.UpdateScheduleResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -157,8 +161,23 @@ public interface Api {
 
     @GET(Consts.ENDPOINT_GENERATE_BUS_REPORT)
     Call<ReportGenerationResponse> getBusReport(@Query("bus-id") int busId, @Query("date") String date);
+
+    @GET(Consts.ENDPOINT_GENERATE_BUS_REPORT_ENDDATE)
+    Call<ReportGenerationResponse> getBusReportEndDate(@Query("bus-id") int busId,
+                                                       @Query("start-date") String startDate,
+                                                       @Query("end-date") String endDate);
     @GET(Consts.ENDPOINT_SHOW_ROUTE_SCHEDULE_DETAILS)
     Call<RouteScheduleResponse> showRouteSchedule(@Path("route-id") Integer routeId);
     @GET(Consts.BASE_URL_GET_PASSENGER_PROFILE)
     Call<PassengerProfileImageResponse> getPassengerPrOfileImage(@Path("url") String url);
+
+
+    @PUT(Consts.ENDPOINT_UPDATE_SCHEDULE_DETAILS)
+    Call<UpdateScheduleResponse> updateScheduleDetails(@Path("schedule-id")Integer scheduleId,
+                                                  @Body UpdateScheduleRequest updateScheduleRequest);
+
+    @PUT(Consts.ENDPOINT_UPDATE_DRIVER_DETAILS)
+    Call<UpdateDriverDetailsResponse> updateDriverDetails(@Path("driver-id")Integer driverId,
+                                                            @Body UpdateDriverRequest updateDriverRequest,
+                                                            @Header("Authorization") String token);
 }

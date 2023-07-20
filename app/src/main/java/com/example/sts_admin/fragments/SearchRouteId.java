@@ -1,6 +1,8 @@
 package com.example.sts_admin.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -18,6 +20,7 @@ import android.view.ViewGroup;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.activity.AddSchedule;
+import com.example.sts_admin.activity.RouteInfoActivity;
 import com.example.sts_admin.adapters.RouteAdapter;
 import com.example.sts_admin.adapters.RouteInfoAdapter;
 import com.example.sts_admin.apiservice.Client;
@@ -37,7 +40,7 @@ public class SearchRouteId extends Fragment {
     List<RouteModel> routeInfoList;   // Search routes available to update schedule data for route
 
     RouteInfoAdapter.OnItemClickListener iItemClickListener;
-
+    SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,6 +59,7 @@ public class SearchRouteId extends Fragment {
         recyclerViewRouteId.setHasFixedSize(true);
         recyclerViewRouteId.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        sharedPreferences = requireActivity().getSharedPreferences("schedule", Context.MODE_PRIVATE);
         getRoutesInfo();
 
         iItemClickListener = new RouteInfoAdapter.OnItemClickListener() {
@@ -77,13 +81,14 @@ public class SearchRouteId extends Fragment {
                     recyclerViewRouteId.setAdapter(new RouteInfoAdapter(routeInfoList, new RouteInfoAdapter.OnItemClickListener() {
                         @Override
                         public void onRouteItemClick(int id, String source, String destination) {
-                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                                Intent i = new Intent(getContext(), AddSchedule.class);
-                                i.putExtra("routeId", id);
-                                i.putExtra("source", source);
-                                i.putExtra("destination", destination);
-                                startActivity(i);
-                            }
+//                            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+//                                Intent i = new Intent(getContext(), AddSchedule.class);
+//                                i.putExtra("routeId", id);
+//                                i.putExtra("source", source);
+//                                i.putExtra("destination", destination);
+//                                startActivity(i);
+//                            }
+                            setRouteInfo(id, source, destination);
                         }
                     }));
                     /*recyclerViewRouteId.setAdapter(new RouteAdapter(getContext(), routeInfoList, new RouteAdapter.OnItemClickListener() {
@@ -104,5 +109,21 @@ public class SearchRouteId extends Fragment {
 
             }
         });
+    }
+
+    public void setRouteInfo(int routeId, String destination, String source) {
+        // store data in shared pref
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("routeId", routeId);
+        editor.putString("routeDestination", destination);
+        editor.putString("routeSource", source);
+        editor.apply();
+
+        // go back to route detail activity
+        Intent intent = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            intent = new Intent(getContext(), AddSchedule.class);
+        }
+        startActivity(intent);
     }
 }

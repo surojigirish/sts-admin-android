@@ -25,6 +25,9 @@
         android:theme="@style/Theme.STS_ADMIN"
         tools:targetApi="31">
         <activity
+            android:name=".activity.UpdateScheduleData"
+            android:exported="false" />
+        <activity
             android:name=".activity.ViewPassengerDetails"
             android:exported="false" />
         <activity
