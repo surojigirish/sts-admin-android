@@ -1,13 +1,17 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.ExtendedRouteInfoAdapter;
@@ -33,6 +37,9 @@ public class RouteRouteInfoActivity extends AppCompatActivity {
     // FloatingActionButton
     FloatingActionButton fabNewRouteInfo;
 
+    AppCompatImageView no_schedule_data_image;
+
+
     // Routes Info list
     List<RouteInfoResult> routeInfoList;
 
@@ -43,6 +50,14 @@ public class RouteRouteInfoActivity extends AppCompatActivity {
 
         initializeViews();
         routeRouteInfo();
+
+        fabNewRouteInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(RouteRouteInfoActivity.this, RouteInfoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     // Initialize views
@@ -50,7 +65,7 @@ public class RouteRouteInfoActivity extends AppCompatActivity {
         // TextViews
         tvRouteSource = findViewById(R.id.tv_route_routeInfo_source);
         tvRouteDestination = findViewById(R.id.tv_route_routeInfo_destination);
-
+        no_schedule_data_image = findViewById(R.id.no_data);
         // RecyclerView
         rvRoutesInfo = findViewById(R.id.recyclerView_route_routeInfo);
         rvRoutesInfo.setHasFixedSize(true);
@@ -86,9 +101,25 @@ public class RouteRouteInfoActivity extends AppCompatActivity {
                         // RouteInfo results in the list
                         routeInfoList = response.body().getRouteInfoResults();
 
-                        // Set the adapter
-                        rvRoutesInfo.setAdapter(new ExtendedRouteInfoAdapter(routeInfoList));
-                    }
+                        // change ui based on data
+                        if (routeInfoList.isEmpty()){
+                            rvRoutesInfo.setVisibility(View.GONE);
+                            tvRouteSource.setVisibility(View.GONE);
+                            tvRouteDestination.setVisibility(View.GONE);
+                            no_schedule_data_image.setVisibility(View.VISIBLE);
+
+                            // Use Glide to load the image into the ImageView
+                            Glide.with(getApplicationContext())
+                                    .load(R.drawable.no_results)
+                                    .into(no_schedule_data_image);
+                        }else {
+                            no_schedule_data_image.setVisibility(View.GONE);
+                            // Set the adapter
+                            rvRoutesInfo.setAdapter(new ExtendedRouteInfoAdapter(routeInfoList));
+
+                        }
+
+                        }
                 }
             }
 

@@ -14,7 +14,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints">
+
+                <FrameLayout
+                    android:id="@+id/frameLayout_route_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="0dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -163,39 +172,38 @@
 
         </TableLayout>
 
-        <!-- Pull to refresh gesture layout -->
+
+
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeToRefreshRoutes"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="250dp"
             android:layout_margin="5dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent">
 
             <!-- Recyclerview to hold routes list-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewRouteDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
     </LinearLayout>
 
     <!-- Frame layout to handle recycler view on frag -->
-    <FrameLayout
-        android:id="@+id/frameLayout_route_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
+
+
+
+    <!-- Pull to refresh gesture layout -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
