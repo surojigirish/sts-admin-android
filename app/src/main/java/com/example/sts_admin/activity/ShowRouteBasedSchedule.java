@@ -1,6 +1,7 @@
 package com.example.sts_admin.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.sts_admin.Consts;
 import com.example.sts_admin.R;
 import com.example.sts_admin.adapters.RouteBasedScheduleAdapter;
@@ -29,6 +31,7 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
 
     RecyclerView rvRouteScheduleList;
     TextView route;
+    AppCompatImageView no_schedule_data_image;
     List<ResultRouteSchedule> resultRouteScheduleList;
     RouteBasedScheduleAdapter.OnItemClickListener itemClickListener;
 
@@ -41,6 +44,7 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
         String rid = String.valueOf(getRouteId());
         rvRouteScheduleList = findViewById(R.id.rv_route_schedule);
         route = findViewById(R.id.routeName);
+        no_schedule_data_image = findViewById(R.id.no_data_route_based_schedule);
         rvRouteScheduleList.setHasFixedSize(true);
         rvRouteScheduleList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -68,11 +72,23 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
             @Override
             public void onResponse(Call<RouteScheduleResponse> call, Response<RouteScheduleResponse> response) {
                 if (response.isSuccessful()){
-                    if (response.body().getStatus() == 200 && response.body() != null){
-                        resultRouteScheduleList =response.body().getResultRouteSchedule();
+                    if (response.body().getStatus() == 200 && response.body() != null) {
+                        resultRouteScheduleList = response.body().getResultRouteSchedule();
+
+                        if (resultRouteScheduleList.isEmpty()) {
+                            rvRouteScheduleList.setVisibility(View.GONE);
+                            no_schedule_data_image.setVisibility(View.VISIBLE);
+
+                            // Use Glide to load the image into the ImageView
+                            Glide.with(getApplicationContext())
+                                    .load(R.drawable.no_results)
+                                    .into(no_schedule_data_image);
+                        } else {
+
+                            no_schedule_data_image.setVisibility(View.GONE);
                         rvRouteScheduleList.setAdapter(new RouteBasedScheduleAdapter(resultRouteScheduleList, getApplicationContext(), new RouteBasedScheduleAdapter.OnItemClickListener() {
                             @Override
-                            public void onScheduleItemClick(String id, String source, String destination, String arrivalTime, String departureTime,String duration) {
+                            public void onScheduleItemClick(String id, String source, String destination, String arrivalTime, String departureTime, String duration) {
 
                                 Intent i = new Intent(getApplicationContext(), UpdateScheduleData.class);
                                 i.putExtra("sId", id);
@@ -86,6 +102,7 @@ public class ShowRouteBasedSchedule extends AppCompatActivity {
 
                             }
                         }));
+                    }
 
                     }
 
