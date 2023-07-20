@@ -67,7 +67,6 @@ public class DriverDashboard extends AppCompatActivity {
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frameLayout_validate_pass, fragment);
                 transaction.commit();
-
                 // hide views
                 hideViewsOnFragCall();
             }
